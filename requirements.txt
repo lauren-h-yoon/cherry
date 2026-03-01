@@ -1,0 +1,43 @@
+# Cherry: Spatial Scene Understanding Pipeline
+# Core dependencies for both local and remote
+
+# Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Vision Models
+transformers>=4.30.0
+
+# Depth/SAM3 dependencies
+iopath
+timm
+pycocotools
+einops
+decord
+psutil
+ftfy
+regex
+
+# Graph operations
+networkx>=3.0
+
+# Image processing
+pillow>=9.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# LangChain for agentic system
+langchain>=0.1.0
+langchain-anthropic>=0.1.0
+langchain-core>=0.1.0
+
+# Anthropic SDK
+anthropic>=0.18.0
+
+# Config management
+hydra-core
+omegaconf
+
+# Utilities
+scipy
+pydantic>=2.0.0
