@@ -34,6 +34,18 @@ SYSTEM_PROMPT = """You are an embodied spatial reasoning agent navigating throug
 3. **rotate**: Rotate your view to better understand spatial relationships
 4. **scale**: Zoom in/out to see depth relationships more clearly
 
+## Visual Feedback
+After each move, you will receive an UPDATED IMAGE showing:
+- Your NEW position (green AGENT triangle)
+- Visited waypoints (purple circles with checkmarks ✓)
+- The path you've taken (purple arrows connecting visited points)
+- Remaining unvisited waypoints (colored by depth)
+
+Use this visual feedback to:
+- Verify you moved to the correct location
+- Track your progress toward the target
+- Adjust your strategy based on what you observe
+
 ## Key Concepts
 - **Z-order**: Depth ordering. Lower z = closer to camera, higher z = farther
 - **Occlusion**: Objects in front can block access to objects behind. You cannot pass through objects.
@@ -45,13 +57,15 @@ SYSTEM_PROMPT = """You are an embodied spatial reasoning agent navigating throug
 3. Consider using rotate/scale if you need to better understand depth relationships
 4. Plan a path from your current position to the target
 5. Execute the path using move_to commands
-6. Explain your reasoning at each step
+6. After each move, OBSERVE the visual feedback to verify your progress
+7. Explain your reasoning at each step
 
 ## Important
 - Think carefully about occlusion - you cannot pass through objects
 - Consider the z-order when planning your path
 - A valid path respects the 3D structure of the scene
 - Explain why you chose your path and why it avoids obstacles
+- USE the visual feedback images to confirm your moves and adjust your plan
 
 Begin by examining the waypoints and planning your approach."""
 
@@ -92,6 +106,9 @@ class SpatialReasoningAgent:
         self.agent_state: Optional[AgentState] = None
         self.agent_graph = None
         self.annotated_image_path: Optional[str] = None
+        self.annotator: Optional[SpatialAnnotator] = None
+        self.output_dir: Optional[Path] = None
+        self.target_waypoint_id: Optional[str] = None
 
     def setup_scenario(
         self,
@@ -115,23 +132,26 @@ class SpatialReasoningAgent:
             SceneConfig for the scenario
         """
         # Create output directory
-        output_dir = Path(output_dir)
-        output_dir.mkdir(parents=True, exist_ok=True)
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # Create annotator and scene config
-        annotator = SpatialAnnotator(spatial_graph_path, image_path)
+        self.annotator = SpatialAnnotator(spatial_graph_path, image_path)
 
         if target_z is None:
-            target_z = max(wp.z_order for wp in annotator.waypoints)
+            target_z = max(wp.z_order for wp in self.annotator.waypoints)
 
-        scene_config = annotator.create_scene_config(
+        scene_config = self.annotator.create_scene_config(
             agent_z=agent_z,
             target_z=target_z
         )
 
+        # Store target waypoint ID for rendering
+        self.target_waypoint_id = scene_config.target_position.id
+
         # Generate annotated image
-        self.annotated_image_path = str(output_dir / "scenario_annotated.png")
-        annotator.annotate(scene_config, self.annotated_image_path)
+        self.annotated_image_path = str(self.output_dir / "scenario_annotated.png")
+        self.annotator.annotate(scene_config, self.annotated_image_path)
 
         # Create agent state
         self.agent_state = AgentState.from_scene_config(scene_config)
@@ -152,6 +172,35 @@ class SpatialReasoningAgent:
         """Encode image as base64 for vision input."""
         with open(image_path, "rb") as f:
             return base64.standard_b64encode(f.read()).decode("utf-8")
+
+    def _render_current_state(self, move_number: Optional[int] = None) -> str:
+        """
+        Render the current agent state and return base64 encoded image.
+
+        Args:
+            move_number: Optional move number for labeling
+
+        Returns:
+            Base64 encoded PNG image
+        """
+        if not self.annotator or not self.agent_state:
+            raise ValueError("Must call setup_scenario first")
+
+        # Render current state
+        output_path = str(self.output_dir / f"state_move_{move_number or 0}.png")
+        img = self.annotator.render_state(
+            self.agent_state,
+            self.target_waypoint_id,
+            output_path=output_path,
+            move_number=move_number
+        )
+
+        # Encode to base64
+        import io
+        buffer = io.BytesIO()
+        img.save(buffer, format='PNG')
+        buffer.seek(0)
+        return base64.standard_b64encode(buffer.read()).decode("utf-8")
 
     def run(
         self,
@@ -214,12 +263,21 @@ Please analyze the scene, plan a path, and navigate to the target. Explain your 
 
     def run_with_image(
         self,
-        additional_context: str = ""
+        additional_context: str = "",
+        visual_feedback: bool = True
     ) -> Dict[str, Any]:
         """
         Run with multimodal input (image + text).
 
         This uses direct Anthropic API for multimodal support.
+        With visual_feedback=True, the agent receives updated images after each move.
+
+        Args:
+            additional_context: Additional instructions for the agent
+            visual_feedback: If True, send updated rendered image after each move
+
+        Returns:
+            Dict with conversation log, path summary, and results
         """
         if not self.agent_state:
             raise ValueError("Must call setup_scenario first")
@@ -228,7 +286,7 @@ Please analyze the scene, plan a path, and navigate to the target. Explain your 
 
         client = Anthropic(api_key=self.api_key)
 
-        # Encode image
+        # Encode initial image
         image_data = self._encode_image(self.annotated_image_path)
 
         # Build tool descriptions
@@ -238,6 +296,17 @@ Please analyze the scene, plan a path, and navigate to the target. Explain your 
         ])
 
         messages = []
+
+        # Visual feedback instructions
+        visual_feedback_note = ""
+        if visual_feedback:
+            visual_feedback_note = """
+IMPORTANT: After each move, you will receive an updated image showing:
+- Your NEW position (green triangle)
+- Visited waypoints (purple with checkmarks)
+- The path you've taken (purple arrows)
+- Remaining unvisited waypoints
+Use this visual feedback to verify your progress and adjust your strategy."""
 
         # Initial message with image
         initial_content = [
@@ -260,6 +329,7 @@ The colored dots are waypoints:
 
 Your current position: {self.agent_state.get_current_waypoint_info().get('name')} (z={self.agent_state.current_z_order})
 Your target: {self.agent_state.get_target_waypoint_info().get('name')} (z={self.agent_state.target_z_order})
+{visual_feedback_note}
 
 {additional_context}
 
@@ -331,13 +401,62 @@ Explain your reasoning about depth and occlusion at each step."""
                         print(f"\n[Tool Result: {tool_name}]")
                         print(tool_result[:500] + "..." if len(tool_result) > 500 else tool_result)
 
-                    # Add to conversation
+                    # Add assistant message
                     messages.append({"role": "assistant", "content": assistant_text})
-                    messages.append({"role": "user", "content": f"Tool result:\n{tool_result}"})
-                    conversation_log.append({"role": "tool", "name": tool_name, "result": tool_result})
+
+                    # Build response with optional visual feedback
+                    if visual_feedback and tool_name == "move_to":
+                        # Render updated state image
+                        updated_image_data = self._render_current_state(
+                            move_number=self.agent_state.move_count
+                        )
+
+                        if self.verbose:
+                            print(f"[Visual Feedback: Rendered state after move #{self.agent_state.move_count}]")
+
+                        # Send image + text response
+                        feedback_content = [
+                            {
+                                "type": "image",
+                                "source": {
+                                    "type": "base64",
+                                    "media_type": "image/png",
+                                    "data": updated_image_data
+                                }
+                            },
+                            {
+                                "type": "text",
+                                "text": f"""Tool result:
+{tool_result}
+
+[VISUAL FEEDBACK] Here is the updated scene showing your current position after the move.
+- Your position is marked with the green AGENT triangle
+- Purple waypoints with checkmarks (✓) are places you've already visited
+- Purple arrows show the path you've taken so far
+
+Analyze this visual feedback and continue navigating to the TARGET."""
+                            }
+                        ]
+                        messages.append({"role": "user", "content": feedback_content})
+                        conversation_log.append({
+                            "role": "tool",
+                            "name": tool_name,
+                            "result": tool_result,
+                            "visual_feedback": True,
+                            "move_number": self.agent_state.move_count
+                        })
+                    else:
+                        # Text-only response for non-move tools
+                        messages.append({"role": "user", "content": f"Tool result:\n{tool_result}"})
+                        conversation_log.append({"role": "tool", "name": tool_name, "result": tool_result})
 
                     # Check if reached target
                     if self.agent_state.reached_target:
+                        # Render final state
+                        if visual_feedback:
+                            self._render_current_state(move_number=self.agent_state.move_count)
+                            if self.verbose:
+                                print(f"[Visual Feedback: Rendered final state - TARGET REACHED!]")
                         break
             else:
                 # No tool call, add response and prompt for action

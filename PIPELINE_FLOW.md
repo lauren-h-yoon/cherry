@@ -873,6 +873,97 @@ class MoveToTool(BaseTool):
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+### 3.8 Visual Feedback Loop
+
+The agent receives **updated rendered images** after each move, enabling visual self-improvement.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    VISUAL FEEDBACK LOOP                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   Turn 1: Initial State                                          │
+│   ┌─────────────────────────────────────────────────────────┐   │
+│   │  [IMAGE: Initial scene]                                 │   │
+│   │  • Agent ▲ at z=0 (green triangle)                      │   │
+│   │  • Target ★ at z=8 (gold star)                          │   │
+│   │  • Waypoints ● colored by depth (green→red)             │   │
+│   └─────────────────────────────────────────────────────────┘   │
+│                           │                                      │
+│                           ▼                                      │
+│   Agent: "I'll move to entity_5 (z=1)"                           │
+│   TOOL: move_to                                                  │
+│   ARGS: {"waypoint_id": "entity_5"}                              │
+│                           │                                      │
+│                           ▼                                      │
+│   Turn 2: After Move (VISUAL FEEDBACK)                           │
+│   ┌─────────────────────────────────────────────────────────┐   │
+│   │  [IMAGE: Updated scene - Move #1]                       │   │
+│   │  • Agent ▲ NOW at z=1 (moved!)                          │   │
+│   │  • Start position marked (gray)                         │   │
+│   │  • Visited waypoint ● with checkmark ✓ (purple)         │   │
+│   │  • Path arrow ─► showing movement                       │   │
+│   │  • Target ★ still at z=8                                │   │
+│   └─────────────────────────────────────────────────────────┘   │
+│                           │                                      │
+│                           ▼                                      │
+│   Agent: "I can see I moved successfully. The purple arrow       │
+│           shows my path. Now moving to entity_1 (z=2)..."        │
+│                           │                                      │
+│                           ▼                                      │
+│   Turn 3: After Move (VISUAL FEEDBACK)                           │
+│   ┌─────────────────────────────────────────────────────────┐   │
+│   │  [IMAGE: Updated scene - Move #2]                       │   │
+│   │  • Agent ▲ at z=2                                       │   │
+│   │  • Two visited waypoints with ✓ (purple)                │   │
+│   │  • Path arrows: z=0 ─► z=1 ─► z=2                       │   │
+│   │  • Progress toward target visible                       │   │
+│   └─────────────────────────────────────────────────────────┘   │
+│                           │                                      │
+│                           ▼                                      │
+│   ... continues with visual feedback at each step ...            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Visual Elements in Feedback Images
+
+| Element | Appearance | Meaning |
+|---------|------------|---------|
+| Agent ▲ | Green triangle | Current position |
+| Target ★ | Gold star | Goal position |
+| Unvisited ● | Depth-colored (green→red) | Waypoints not yet visited |
+| Visited ● | Purple with checkmark ✓ | Waypoints already visited |
+| Path arrows | Purple lines with arrows | Route taken so far |
+| Move counter | "Move #N" in corner | Current move number |
+
+#### Implementation
+
+```python
+# In agent.py - after each move_to
+if visual_feedback and tool_name == "move_to":
+    # Render updated state
+    updated_image = self._render_current_state(move_number=self.agent_state.move_count)
+
+    # Send image + text to Claude
+    feedback_content = [
+        {"type": "image", "source": {"type": "base64", "data": updated_image}},
+        {"type": "text", "text": f"Tool result: {result}\n\n[VISUAL FEEDBACK] ..."}
+    ]
+    messages.append({"role": "user", "content": feedback_content})
+```
+
+#### Output Files
+
+```
+spatial_agent_outputs/
+├── scenario_annotated.png      # Initial scene
+├── state_move_1.png            # After move 1
+├── state_move_2.png            # After move 2
+├── state_move_3.png            # After move 3
+└── state_move_N.png            # Final state
+```
+
 ---
 
 ## Complete End-to-End Example

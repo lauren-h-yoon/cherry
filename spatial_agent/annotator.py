@@ -74,6 +74,10 @@ class SpatialAnnotator:
         'label_text': (255, 255, 255, 255),
         'depth_near': (76, 175, 80, 200),      # Green for near
         'depth_far': (244, 67, 54, 200),       # Red for far
+        'visited': (138, 43, 226, 230),        # Purple for visited
+        'visited_outline': (75, 0, 130, 255),
+        'path_line': (138, 43, 226, 180),      # Purple path line
+        'start_marker': (100, 100, 100, 200),  # Gray for start position
     }
 
     def __init__(self, spatial_graph_path: str, image_path: Optional[str] = None):
@@ -186,15 +190,24 @@ class SpatialAnnotator:
         position: Tuple[float, float],
         z_order: int,
         relative_depth: float,
-        radius: int = None
+        radius: int = None,
+        visited: bool = False,
+        is_start: bool = False
     ):
         """Draw a waypoint dot with z-order label."""
         radius = radius or self.WAYPOINT_RADIUS
         x, y = position
 
-        # Color based on depth
-        color = self._get_depth_color(relative_depth)
-        outline_color = (max(0, color[0]-40), max(0, color[1]-40), max(0, color[2]-40), 255)
+        # Color based on state
+        if visited:
+            color = self.COLORS['visited']
+            outline_color = self.COLORS['visited_outline']
+        elif is_start:
+            color = self.COLORS['start_marker']
+            outline_color = (60, 60, 60, 255)
+        else:
+            color = self._get_depth_color(relative_depth)
+            outline_color = (max(0, color[0]-40), max(0, color[1]-40), max(0, color[2]-40), 255)
 
         # Draw filled circle
         draw.ellipse(
@@ -204,8 +217,21 @@ class SpatialAnnotator:
             width=3
         )
 
+        # Draw checkmark for visited waypoints
+        if visited:
+            check_size = radius * 0.6
+            # Draw checkmark
+            check_points = [
+                (x - check_size * 0.5, y),
+                (x - check_size * 0.1, y + check_size * 0.4),
+                (x + check_size * 0.5, y - check_size * 0.3)
+            ]
+            draw.line(check_points, fill=(255, 255, 255, 255), width=4)
+
         # Draw z-order label
         label = f"z={z_order}"
+        if visited:
+            label = f"z={z_order} ✓"
         try:
             font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", self.FONT_SIZE)
         except:
@@ -222,14 +248,53 @@ class SpatialAnnotator:
 
         # Draw label background
         padding = 4
+        bg_color = self.COLORS['visited'] if visited else self.COLORS['label_bg']
         draw.rectangle(
             [label_x - padding, label_y - padding,
              label_x + text_width + padding, label_y + text_height + padding],
-            fill=self.COLORS['label_bg']
+            fill=bg_color
         )
 
         # Draw label text
         draw.text((label_x, label_y), label, fill=self.COLORS['label_text'], font=font)
+
+    def _draw_path_line(
+        self,
+        draw: ImageDraw.Draw,
+        positions: List[Tuple[float, float]],
+        line_width: int = 6
+    ):
+        """Draw path line connecting visited waypoints."""
+        if len(positions) < 2:
+            return
+
+        # Draw line segments
+        for i in range(len(positions) - 1):
+            start = positions[i]
+            end = positions[i + 1]
+            draw.line([start, end], fill=self.COLORS['path_line'], width=line_width)
+
+            # Draw arrow at midpoint
+            mid_x = (start[0] + end[0]) / 2
+            mid_y = (start[1] + end[1]) / 2
+
+            # Calculate arrow direction
+            dx = end[0] - start[0]
+            dy = end[1] - start[1]
+            length = np.sqrt(dx*dx + dy*dy)
+            if length > 0:
+                dx, dy = dx/length, dy/length
+
+                # Arrow head
+                arrow_size = 15
+                arrow_points = [
+                    (mid_x + dx * arrow_size, mid_y + dy * arrow_size),
+                    (mid_x - dy * arrow_size * 0.5 - dx * arrow_size * 0.5,
+                     mid_y + dx * arrow_size * 0.5 - dy * arrow_size * 0.5),
+                    (mid_x + dy * arrow_size * 0.5 - dx * arrow_size * 0.5,
+                     mid_y - dx * arrow_size * 0.5 - dy * arrow_size * 0.5),
+                ]
+                draw.polygon(arrow_points, fill=self.COLORS['path_line'])
 
     def _draw_agent(
         self,
@@ -390,6 +455,133 @@ class SpatialAnnotator:
         config = self.create_scene_config(agent_z=agent_z, target_z=target_z)
         img = self.annotate(config, output_path)
         return img, config
+
+    def render_state(
+        self,
+        agent_state: 'AgentState',
+        target_waypoint_id: str,
+        output_path: Optional[str] = None,
+        move_number: Optional[int] = None
+    ) -> Image.Image:
+        """
+        Render the current agent state with visual feedback.
+
+        Shows:
+        - Current agent position (green triangle)
+        - Visited waypoints (purple with checkmarks)
+        - Path taken (purple lines with arrows)
+        - Unvisited waypoints (depth-colored)
+        - Target (gold star)
+        - Start position (gray marker)
+
+        Args:
+            agent_state: Current AgentState object
+            target_waypoint_id: ID of target waypoint
+            output_path: Optional path to save image
+            move_number: Optional move number for labeling
+
+        Returns:
+            Annotated PIL Image showing current state
+        """
+        # Load original image
+        img = Image.open(self.image_path).convert('RGBA')
+
+        # Create overlay for annotations
+        overlay = Image.new('RGBA', img.size, (0, 0, 0, 0))
+        draw = ImageDraw.Draw(overlay)
+
+        # Get state info
+        current_wp_id = agent_state.current_waypoint_id
+        path_history = agent_state.path_history
+        visited_ids = set(path_history)
+        start_wp_id = path_history[0] if path_history else None
+
+        # Get waypoint info from state
+        waypoints_info = agent_state.waypoints
+
+        # Collect path positions for drawing lines
+        path_positions = []
+        for wp_id in path_history:
+            if wp_id in waypoints_info:
+                path_positions.append(tuple(waypoints_info[wp_id]['position']))
+
+        # Draw path lines first (behind everything)
+        self._draw_path_line(draw, path_positions)
+
+        # Sort waypoints by z-order (back to front) for proper layering
+        sorted_wp_ids = sorted(
+            waypoints_info.keys(),
+            key=lambda x: -waypoints_info[x]['z_order']
+        )
+
+        # Draw waypoints
+        for wp_id in sorted_wp_ids:
+            wp_info = waypoints_info[wp_id]
+            position = tuple(wp_info['position'])
+            z_order = wp_info['z_order']
+            relative_depth = wp_info.get('relative_depth', 0.5)
+
+            # Skip current position (will draw agent there)
+            if wp_id == current_wp_id:
+                continue
+
+            # Skip target (will draw star there)
+            if wp_id == target_waypoint_id:
+                continue
+
+            # Determine waypoint state
+            is_visited = wp_id in visited_ids
+            is_start = wp_id == start_wp_id and wp_id != current_wp_id
+
+            self._draw_waypoint(
+                draw, position, z_order, relative_depth,
+                visited=is_visited, is_start=is_start
+            )
+
+        # Draw target (star)
+        if target_waypoint_id in waypoints_info:
+            target_info = waypoints_info[target_waypoint_id]
+            self._draw_target(
+                draw,
+                tuple(target_info['position']),
+                target_info['z_order']
+            )
+
+        # Draw agent at current position (triangle) - draw last so it's on top
+        if current_wp_id in waypoints_info:
+            current_info = waypoints_info[current_wp_id]
+            self._draw_agent(
+                draw,
+                tuple(current_info['position']),
+                current_info['z_order']
+            )
+
+        # Draw move counter in corner
+        if move_number is not None:
+            try:
+                font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", 36)
+            except:
+                font = ImageFont.load_default()
+
+            move_label = f"Move #{move_number}"
+            padding = 20
+            draw.rectangle(
+                [padding, padding, padding + 200, padding + 60],
+                fill=(0, 0, 0, 200)
+            )
+            draw.text((padding + 10, padding + 10), move_label,
+                     fill=(255, 255, 255, 255), font=font)
+
+        # Composite overlay onto image
+        annotated = Image.alpha_composite(img, overlay)
+
+        # Convert to RGB for saving as JPEG/PNG
+        annotated_rgb = annotated.convert('RGB')
+
+        if output_path:
+            annotated_rgb.save(output_path)
+
+        return annotated_rgb
 
 
 def main():
