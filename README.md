@@ -244,6 +244,7 @@ The spatial agent system tests whether AI agents can:
 - Reason about occlusion (objects blocking paths)
 - Navigate through 3D space using waypoints
 - Plan valid paths that respect depth ordering
+- **Self-correct using visual feedback** after each action
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -266,6 +267,27 @@ The spatial agent system tests whether AI agents can:
 | `move_to` | Navigate to a specific waypoint |
 | `rotate` | Rotate view to understand spatial relationships |
 | `scale` | Zoom in/out to see depth relationships |
+
+#### Visual Feedback Loop
+
+The agent receives **updated rendered images after each move**, enabling visual self-improvement:
+
+```
+Initial State                    After Move #1                    After Move #2
+┌─────────────────┐              ┌─────────────────┐              ┌─────────────────┐
+│  ▲ Agent (z=0)  │              │  ● Visited (✓)  │              │  ● Visited (✓)  │
+│  ● z=1          │   move_to    │  ▲ Agent (z=1)  │   move_to    │  ● Visited (✓)  │
+│  ● z=2          │  ────────►   │  ● z=2          │  ────────►   │  ▲ Agent (z=2)  │
+│  ★ Target (z=3) │              │  ★ Target (z=3) │              │  ★ Target (z=3) │
+└─────────────────┘              └─────────────────┘              └─────────────────┘
+                                 [Image sent to agent]           [Image sent to agent]
+```
+
+Visual markers in feedback images:
+- **Agent ▲** (green triangle): Current position
+- **Visited ●** (purple with ✓): Waypoints already visited
+- **Path arrows** (purple lines): Route taken so far
+- **Move counter**: "Move #N" displayed on image
 
 #### Usage
 
@@ -306,10 +328,12 @@ agent = SpatialReasoningAgent(verbose=True)
 agent.setup_scenario(
     spatial_graph_path="spatial_graph.json",
     agent_z=0,
-    target_z=8
+    target_z=8,
+    output_dir="spatial_agent_outputs/"
 )
 
-result = agent.run_with_image()
+# Run with visual feedback (agent receives updated images after each move)
+result = agent.run_with_image(visual_feedback=True)
 print(f"Reached target: {result['reached_target']}")
 print(f"Path taken: {result['path_summary']}")
 ```
@@ -317,9 +341,19 @@ print(f"Path taken: {result['path_summary']}")
 #### Output
 
 The agent produces:
-- `scenario_annotated.png` - Annotated scene with waypoints
+- `scenario_annotated.png` - Initial annotated scene with waypoints
+- `state_move_1.png`, `state_move_2.png`, ... - Visual feedback after each move
 - Conversation log with reasoning steps
 - Path summary and success/failure status
+
+```
+spatial_agent_outputs/
+├── scenario_annotated.png      # Initial scene
+├── state_move_1.png            # After move 1 (visited waypoints marked)
+├── state_move_2.png            # After move 2 (path arrows shown)
+├── state_move_3.png            # After move 3
+└── state_move_N.png            # Final state before reaching target
+```
 
 ```
 === Results ===
@@ -427,11 +461,11 @@ annotator = SpatialAnnotator("spatial_graph.json")
 config = annotator.create_scene_config(agent_z=0, target_z=8)
 annotator.annotate(config, "scene_annotated.png")
 
-# Create and run agent
+# Create and run agent with visual feedback
 SpatialReasoningAgent = get_agent()
 agent = SpatialReasoningAgent()
-agent.setup_scenario("spatial_graph.json", agent_z=0, target_z=8)
-result = agent.run_with_image()
+agent.setup_scenario("spatial_graph.json", agent_z=0, target_z=8, output_dir="outputs/")
+result = agent.run_with_image(visual_feedback=True)  # Agent sees updated images after each move
 ```
 
 ## Environment Variables
