@@ -2,19 +2,25 @@
 """
 generate_queries.py
 
-Generate allocentric-style spatial reasoning queries from a spatial_graph.json file,
-using one user-specified anchor object.
+Generate allocentric-style spatial reasoning queries and object prompts for the
+Cherry spatial intelligence evaluation pipeline.
 
-This version:
-- uses one chosen anchor object
-- uses all other objects as targets
-- estimates anchor orientation using a VLM (OpenAI)
-- caches orientation estimates to avoid repeated API calls
-- computes answers from bbox_center, z_order, and estimated orientation
-- uses a simple occlusion heuristic for visibility
-- writes:
-    1) JSON output
-    2)  readable TXT summary
+This script can work in two modes:
+
+1. FROM IMAGE (--image): Auto-detect objects using GPT-4o, then generate queries
+   - Outputs: prompts.json (for SAM3) + queries.json (for evaluation)
+   - Use this BEFORE running depth_sam3_connector.py
+
+2. FROM GRAPH (--input): Generate queries from existing spatial_graph.json
+   - Outputs: queries.json (for evaluation)
+   - Use this AFTER running depth_sam3_connector.py
+
+Features:
+- Auto-detect objects in image using GPT-4o (--auto-detect-objects)
+- Estimate anchor orientation using GPT-4o
+- Cache orientation/detection results to avoid repeated API calls
+- Compute ground truth answers from bbox_center, z_order, and estimated orientation
+- Use simple occlusion heuristic for visibility
 
 Reference-frame convention:
 - above/below use image y relative to the anchor
@@ -31,6 +37,13 @@ Supported orientation labels from VLM:
 - toward_camera
 - away_from_camera
 - unclear
+
+Usage Examples:
+    # Mode 1: Auto-detect objects from image (before SAM3)
+    python generate_queries.py --image scene.jpg --auto-detect-objects --anchor "table" -o outputs/
+
+    # Mode 2: Generate queries from existing spatial graph (after SAM3)
+    python generate_queries.py --input spatial_graph.json --anchor "table" -o outputs/
 """
 
 from __future__ import annotations
@@ -194,6 +207,132 @@ def pil_to_base64(image: Image.Image) -> str:
     return base64.b64encode(buf.getvalue()).decode("utf-8")
 
 
+def make_detection_cache_key(image_path: Path) -> str:
+    """Create cache key for object detection results."""
+    raw = f"{image_path.resolve()}|object_detection"
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16]
+
+
+def detect_objects_in_image(image_path: Path, cache_dir: Path) -> Dict[str, Any]:
+    """
+    Detect objects in an image using GPT-4o.
+
+    Returns:
+        Dict with keys:
+        - objects: List of detected object names
+        - suggested_anchor: Suggested anchor object
+        - confidence: Detection confidence
+        - raw_response: Raw model response
+    """
+    # Check cache first
+    cache_key = make_detection_cache_key(image_path)
+    cache_path = cache_dir / f"detection_{cache_key}.json"
+
+    if cache_path.exists():
+        with open(cache_path, "r") as f:
+            cached = json.load(f)
+            print(f"  Using cached object detection: {cache_path}")
+            return cached
+
+    # Load and encode image
+    image = Image.open(image_path).convert("RGB")
+
+    # Resize if too large (to reduce API costs)
+    max_size = 1024
+    if max(image.size) > max_size:
+        ratio = max_size / max(image.size)
+        new_size = (int(image.size[0] * ratio), int(image.size[1] * ratio))
+        image = image.resize(new_size, Image.LANCZOS)
+
+    image_b64 = pil_to_base64(image)
+
+    prompt = """Analyze this image and list all distinct objects you can see.
+
+Return ONLY valid JSON with these keys:
+- "objects": List of object names (use simple, common names like "table", "chair", "lamp", "person", "couch", "plant", "tv", "bed", etc.)
+- "suggested_anchor": The most prominent/central object that would make a good reference point
+- "confidence": A number from 0 to 1 indicating your confidence in the detection
+- "scene_type": Brief description of the scene (e.g., "living room", "office", "bedroom")
+
+Guidelines:
+- Use singular, lowercase names (e.g., "chair" not "chairs" or "Chair")
+- For multiple similar objects, just list the category once (e.g., "chair" not "chair_1, chair_2")
+- Include people as "person"
+- Be specific but not overly detailed (e.g., "lamp" not "brass floor lamp")
+- Only include objects that are clearly visible and distinct
+
+Do not include any text outside the JSON."""
+
+    client = OpenAI()
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        response_format={"type": "json_object"},
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/png;base64,{image_b64}"
+                        },
+                    },
+                ],
+            }
+        ],
+        max_tokens=500,
+    )
+
+    content = response.choices[0].message.content
+    if content is None:
+        # API returned no content (possibly content moderation or error)
+        print(f"  Warning: GPT-4o returned no content for image")
+        data = {
+            "objects": [],
+            "suggested_anchor": None,
+            "confidence": 0.0,
+            "scene_type": "unknown",
+            "error": "Model returned no content",
+        }
+        # Cache empty result
+        with open(cache_path, "w") as f:
+            json.dump(data, f, indent=2)
+        return data
+
+    text = content.strip()
+
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        data = {
+            "objects": [],
+            "suggested_anchor": None,
+            "confidence": 0.0,
+            "scene_type": "unknown",
+            "error": f"Could not parse model response: {text[:200]}",
+        }
+
+    # Validate and clean up objects list
+    if "objects" not in data or not isinstance(data["objects"], list):
+        data["objects"] = []
+
+    # Normalize object names
+    data["objects"] = [obj.lower().strip() for obj in data["objects"] if obj]
+    data["objects"] = list(dict.fromkeys(data["objects"]))  # Remove duplicates, preserve order
+
+    # Store raw response
+    data["raw_response"] = text
+
+    # Cache the result
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    with open(cache_path, "w") as f:
+        json.dump(data, f, indent=2)
+    print(f"  Cached object detection: {cache_path}")
+
+    return data
+
+
 def crop_anchor_region(image_path: Path, bbox: List[float], pad: float = 0.2) -> Image.Image:
     image = Image.open(image_path).convert("RGB")
     x1, y1, x2, y2 = bbox
@@ -211,6 +350,14 @@ def crop_anchor_region(image_path: Path, bbox: List[float], pad: float = 0.2) ->
 
 def estimate_anchor_orientation(anchor: Entity, crop: Image.Image) -> Dict[str, Any]:
     client = OpenAI()
+
+    # Resize if too large to reduce API costs and avoid issues
+    max_size = 512
+    if max(crop.size) > max_size:
+        ratio = max_size / max(crop.size)
+        new_size = (int(crop.size[0] * ratio), int(crop.size[1] * ratio))
+        crop = crop.resize(new_size, Image.LANCZOS)
+
     image_b64 = pil_to_base64(crop)
 
     prompt = f"""
@@ -250,7 +397,15 @@ Do not include any extra text outside the JSON.
         max_tokens=250,
     )
 
-    text = response.choices[0].message.content.strip()
+    content = response.choices[0].message.content
+    if content is None:
+        return {
+            "orientation": "unclear",
+            "confidence": 0.0,
+            "reason": "Model returned no content",
+        }
+
+    text = content.strip()
 
     try:
         data = json.loads(text)
@@ -699,63 +854,223 @@ def make_readable_txt(output_data: Dict[str, Any], output_path: Path) -> None:
         f.write("\n".join(lines))
 
 
+def save_prompts_json(objects: List[str], output_path: Path, detection_info: Dict[str, Any]) -> None:
+    """Save detected objects as prompts.json for SAM3."""
+    prompts_data = {
+        "prompts": objects,
+        "suggested_anchor": detection_info.get("suggested_anchor"),
+        "scene_type": detection_info.get("scene_type", "unknown"),
+        "confidence": detection_info.get("confidence", 0.0),
+        "num_objects": len(objects),
+    }
+    with open(output_path, "w") as f:
+        json.dump(prompts_data, f, indent=2)
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate allocentric-style queries from a spatial graph using one specified anchor"
+        description="Generate spatial queries and object prompts for Cherry pipeline",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Mode 1: Auto-detect objects from image (before SAM3)
+  python generate_queries.py --image scene.jpg --auto-detect-objects -o outputs/
+
+  # Mode 2: Generate queries from existing spatial graph (after SAM3)
+  python generate_queries.py --input spatial_graph.json --anchor "table" -o outputs/
+
+  # Combined: Detect objects AND specify anchor
+  python generate_queries.py --image scene.jpg --auto-detect-objects --anchor "table" -o outputs/
+"""
     )
-    parser.add_argument("--input", "-i", required=True, help="Path to spatial_graph.json")
-    parser.add_argument("--output", "-o", required=True, help="Output query JSON path")
-    parser.add_argument("--anchor", help="Anchor object name, e.g. chair_1")
-    parser.add_argument("--anchor-id", help="Anchor object id, e.g. entity_1")
+
+    # Input options (mutually exclusive modes)
+    input_group = parser.add_argument_group("Input (choose one mode)")
+    input_group.add_argument("--input", "-i", help="Path to spatial_graph.json (Mode 2: after SAM3)")
+    input_group.add_argument("--image", help="Path to image file (Mode 1: before SAM3)")
+
+    # Object detection options
+    detect_group = parser.add_argument_group("Object Detection")
+    detect_group.add_argument(
+        "--auto-detect-objects",
+        action="store_true",
+        help="Auto-detect objects in image using GPT-4o (requires --image)"
+    )
+    detect_group.add_argument(
+        "--additional-prompts",
+        nargs="+",
+        help="Additional object prompts to include (e.g., --additional-prompts 'remote' 'book')"
+    )
+
+    # Anchor options
+    anchor_group = parser.add_argument_group("Anchor Selection")
+    anchor_group.add_argument("--anchor", help="Anchor object name (e.g., 'table')")
+    anchor_group.add_argument("--anchor-id", help="Anchor object id (e.g., 'entity_1')")
+    anchor_group.add_argument(
+        "--auto-anchor",
+        action="store_true",
+        help="Automatically select anchor (uses suggested_anchor from detection or largest object)"
+    )
+
+    # Output options
+    output_group = parser.add_argument_group("Output")
+    output_group.add_argument("--output", "-o", required=True, help="Output directory or query JSON path")
+
+    # Cache options
     parser.add_argument(
         "--cache-dir",
         default="orientation_cache",
-        help="Directory for cached orientation estimates"
+        help="Directory for cached orientation/detection estimates"
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Disable caching (always call API)"
+    )
+
     args = parser.parse_args()
 
-    graph_data = load_json(args.input)
-    entities = parse_entities(graph_data)
+    # Validate input mode
+    if not args.input and not args.image:
+        parser.error("Must provide either --input (spatial_graph.json) or --image")
 
-    if len(entities) < 2:
-        raise ValueError("Need at least two entities in the graph")
+    if args.auto_detect_objects and not args.image:
+        parser.error("--auto-detect-objects requires --image")
 
-    anchor = get_anchor(entities, args.anchor, args.anchor_id)
-    image_path = resolve_image_path(graph_data, args.input)
+    cache_dir = Path(args.cache_dir)
 
-    cache_key = make_orientation_cache_key(image_path, anchor)
-    cache_path = Path(args.cache_dir) / f"{cache_key}.json"
-
-    orientation_info = load_cached_orientation(cache_path)
-    if orientation_info is None:
-        crop = crop_anchor_region(image_path, anchor.bbox)
-        orientation_info = estimate_anchor_orientation(anchor, crop)
-        save_cached_orientation(cache_path, orientation_info)
-        cache_status = f"miss -> saved {cache_path}"
-    else:
-        cache_status = f"hit -> {cache_path}"
-
-    output = generate_queries(graph_data, entities, anchor, orientation_info)
-
+    # Determine output paths
     output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    save_json(str(output_path), output)
+    if output_path.suffix == ".json":
+        # User specified a file path
+        output_dir = output_path.parent
+        queries_path = output_path
+    else:
+        # User specified a directory
+        output_dir = output_path
+        queries_path = output_dir / "queries.json"
 
-    stem = output_path.stem
-    txt_path = output_path.with_name(f"{stem}_readable.txt")
-    make_readable_txt(output, txt_path)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    prompts_path = output_dir / "prompts.json"
 
-    print("=" * 60)
-    print("Query Generation Complete")
-    print("=" * 60)
-    print(f"Input graph:      {args.input}")
-    print(f"Anchor chosen:    {anchor.name} ({anchor.category}, z={anchor.z_order})")
-    print(f"Orientation:      {orientation_info['orientation']} (conf={orientation_info['confidence']:.2f})")
-    print(f"Orientation cache:{' '}{cache_status}")
-    print(f"JSON output:      {output_path}")
-    print(f"Readable output:  {txt_path}")
-    print(f"Queries made:     {output['metadata']['num_queries']}")
-    print("=" * 60)
+    # ========== MODE 1: From Image (before SAM3) ==========
+    if args.image and args.auto_detect_objects:
+        image_path = Path(args.image)
+        if not image_path.exists():
+            raise FileNotFoundError(f"Image not found: {image_path}")
+
+        print("=" * 60)
+        print("MODE 1: Object Detection from Image")
+        print("=" * 60)
+        print(f"Image: {image_path}")
+
+        # Detect objects
+        print("\nStep 1: Detecting objects using GPT-4o...")
+        detection_info = detect_objects_in_image(image_path, cache_dir)
+
+        objects = detection_info["objects"]
+        if args.additional_prompts:
+            objects = list(dict.fromkeys(objects + [p.lower().strip() for p in args.additional_prompts]))
+            detection_info["objects"] = objects
+
+        print(f"  Detected {len(objects)} objects: {objects}")
+        print(f"  Suggested anchor: {detection_info.get('suggested_anchor')}")
+        print(f"  Scene type: {detection_info.get('scene_type')}")
+
+        # Save prompts.json
+        save_prompts_json(objects, prompts_path, detection_info)
+        print(f"\nStep 2: Saved prompts for SAM3: {prompts_path}")
+
+        # If we don't have a spatial graph yet, we can't generate full queries
+        # But we can prepare a preliminary query template
+        if not args.input:
+            # Determine anchor
+            anchor_name = args.anchor or detection_info.get("suggested_anchor") or (objects[0] if objects else None)
+
+            preliminary_output = {
+                "status": "preliminary",
+                "message": "Run depth_sam3_connector.py with prompts.json, then re-run with --input",
+                "image_path": str(image_path),
+                "detected_objects": objects,
+                "anchor": anchor_name,
+                "scene_type": detection_info.get("scene_type"),
+                "next_steps": [
+                    f"python depth_sam3_connector.py --image {image_path} --prompts-file {prompts_path} -o spatial_outputs/",
+                    f"python generate_queries.py --input spatial_outputs/*_spatial_graph.json --anchor {anchor_name} -o {output_dir}/"
+                ]
+            }
+
+            save_json(str(queries_path), preliminary_output)
+
+            print("\n" + "=" * 60)
+            print("Preliminary Output Complete")
+            print("=" * 60)
+            print(f"Prompts file:     {prompts_path}")
+            print(f"Preliminary JSON: {queries_path}")
+            print(f"\nNext steps:")
+            print(f"  1. python depth_sam3_connector.py --image {image_path} --prompts-file {prompts_path} -o spatial_outputs/")
+            print(f"  2. python generate_queries.py --input spatial_outputs/*_spatial_graph.json --anchor {anchor_name} -o {output_dir}/")
+            print("=" * 60)
+            return
+
+    # ========== MODE 2: From Spatial Graph (after SAM3) ==========
+    if args.input:
+        print("=" * 60)
+        print("MODE 2: Query Generation from Spatial Graph")
+        print("=" * 60)
+
+        graph_data = load_json(args.input)
+        entities = parse_entities(graph_data)
+
+        if len(entities) < 2:
+            raise ValueError("Need at least two entities in the graph")
+
+        # Handle anchor selection
+        if args.auto_anchor:
+            # Use largest object by pixel count, or first object
+            anchor = max(entities, key=lambda e: e.pixel_count) if entities else entities[0]
+            print(f"Auto-selected anchor: {anchor.name} (largest by pixel count)")
+        elif args.anchor or args.anchor_id:
+            anchor = get_anchor(entities, args.anchor, args.anchor_id)
+        else:
+            # List available objects and ask user to specify
+            available = ", ".join(e.name for e in entities)
+            raise ValueError(f"Must specify --anchor, --anchor-id, or --auto-anchor.\nAvailable: {available}")
+
+        image_path = resolve_image_path(graph_data, args.input)
+
+        cache_key = make_orientation_cache_key(image_path, anchor)
+        cache_path = Path(args.cache_dir) / f"{cache_key}.json"
+
+        orientation_info = load_cached_orientation(cache_path)
+        if orientation_info is None or args.no_cache:
+            print("\nEstimating anchor orientation using GPT-4o...")
+            crop = crop_anchor_region(image_path, anchor.bbox)
+            orientation_info = estimate_anchor_orientation(anchor, crop)
+            save_cached_orientation(cache_path, orientation_info)
+            cache_status = f"miss -> saved {cache_path}"
+        else:
+            cache_status = f"hit -> {cache_path}"
+
+        output = generate_queries(graph_data, entities, anchor, orientation_info)
+
+        save_json(str(queries_path), output)
+
+        stem = queries_path.stem
+        txt_path = queries_path.with_name(f"{stem}_readable.txt")
+        make_readable_txt(output, txt_path)
+
+        print("\n" + "=" * 60)
+        print("Query Generation Complete")
+        print("=" * 60)
+        print(f"Input graph:      {args.input}")
+        print(f"Anchor chosen:    {anchor.name} ({anchor.category}, z={anchor.z_order})")
+        print(f"Orientation:      {orientation_info['orientation']} (conf={orientation_info['confidence']:.2f})")
+        print(f"Orientation cache:{' '}{cache_status}")
+        print(f"JSON output:      {queries_path}")
+        print(f"Readable output:  {txt_path}")
+        print(f"Queries made:     {output['metadata']['num_queries']}")
+        print("=" * 60)
 
 
 if __name__ == "__main__":

@@ -18,6 +18,8 @@ from langgraph.prebuilt import create_react_agent
 from .state import AgentState
 from .tools import create_tools
 from .annotator import SpatialAnnotator, SceneConfig
+from .allocentric import AllocentricRelationships
+from .allocentric_tools import create_allocentric_tools
 
 
 SYSTEM_PROMPT = """You are an embodied spatial reasoning agent navigating through a 3D scene.
@@ -569,6 +571,479 @@ def main():
     print(f"Reached target: {result['reached_target']}")
     print(f"Total moves: {result['total_moves']}")
     print(f"Path: {result['path_summary']}")
+
+
+# ========== Allocentric Reasoning Agent ==========
+
+ALLOCENTRIC_SYSTEM_PROMPT = """
+
+## Allocentric Reasoning Capabilities
+
+In addition to z-order navigation, you can reason about object-to-object spatial relationships:
+
+### Spatial Relations
+- **Left/Right**: Horizontal position in the scene (from camera's view)
+- **Front/Behind**: Depth relationship (front = closer to camera, behind = farther)
+- **Above/Below**: Vertical position in the scene
+- **Between**: Whether an object is spatially between two others
+- **Near/Far**: Proximity between objects
+
+### Additional Tools
+- **get_spatial_relation**: Query pairwise relationships between any two entities
+- **query_scene**: Answer natural language spatial questions
+- **perspective_shift**: Describe the scene from any object's viewpoint
+- **resolve_allocentric_goal**: Convert allocentric goals (e.g., "object behind the table") to waypoint IDs
+
+### Evaluation Modes
+You may be asked to:
+1. **Q&A**: Answer spatial questions directly (e.g., "Is the lamp behind the table?")
+2. **Navigation**: Navigate to allocentrically-described targets (e.g., "Go to the object behind the table")
+3. **Perspective-Shift**: Describe what you would see from another object's position
+
+### Important Notes
+- Always reason about spatial relationships explicitly
+- Use the allocentric tools to verify your understanding
+- Explain your spatial reasoning step by step
+- For perspective shifts, imagine standing at the reference object and looking around
+"""
+
+
+class AllocentricReasoningAgent(SpatialReasoningAgent):
+    """
+    Extended agent with allocentric spatial reasoning capabilities.
+
+    Supports:
+    - Q&A evaluation: Answer spatial relationship questions
+    - Navigation with allocentric goals: Navigate to "object behind table"
+    - Perspective-shift tasks: Describe view from object's position
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.allocentric: Optional[AllocentricRelationships] = None
+        self.evaluation_mode: str = "navigation"
+
+    def setup_scenario(
+        self,
+        spatial_graph_path: str,
+        agent_z: int = 0,
+        target_z: Optional[int] = None,
+        image_path: Optional[str] = None,
+        output_dir: str = "spatial_agent_outputs",
+        evaluation_mode: str = "navigation"
+    ) -> SceneConfig:
+        """
+        Set up a spatial reasoning scenario with allocentric capabilities.
+
+        Args:
+            spatial_graph_path: Path to spatial_graph.json
+            agent_z: Starting z-order for agent
+            target_z: Target z-order (default: farthest)
+            image_path: Optional override for image path
+            output_dir: Directory for output files
+            evaluation_mode: 'navigation', 'qa', or 'perspective_shift'
+
+        Returns:
+            SceneConfig for the scenario
+        """
+        # Call parent setup
+        config = super().setup_scenario(
+            spatial_graph_path=spatial_graph_path,
+            agent_z=agent_z,
+            target_z=target_z,
+            image_path=image_path,
+            output_dir=output_dir
+        )
+
+        # Initialize allocentric relationships
+        self.allocentric = AllocentricRelationships(spatial_graph_path)
+        self.evaluation_mode = evaluation_mode
+
+        # Create combined tools
+        base_tools = create_tools(self.agent_state)
+        allocentric_tools = create_allocentric_tools(
+            self.allocentric,
+            self.agent_state
+        )
+        all_tools = base_tools + allocentric_tools
+
+        # Combine system prompts
+        combined_prompt = SYSTEM_PROMPT + ALLOCENTRIC_SYSTEM_PROMPT
+
+        # Recreate agent with extended tools
+        self.agent_graph = create_react_agent(
+            self.llm,
+            all_tools,
+            prompt=combined_prompt
+        )
+
+        return config
+
+    def run_qa_task(
+        self,
+        question: str,
+        include_image: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Run a Q&A evaluation task.
+
+        This is a single-turn Q&A without navigation - the agent
+        simply answers a spatial relationship question.
+
+        Args:
+            question: The spatial question to answer
+            include_image: Whether to include the annotated image
+
+        Returns:
+            Dict with response and evaluation info
+        """
+        if not self.agent_state:
+            raise ValueError("Must call setup_scenario first")
+
+        from anthropic import Anthropic
+
+        client = Anthropic(api_key=self.api_key)
+
+        # Build message
+        content = []
+
+        if include_image and self.annotated_image_path:
+            image_data = self._encode_image(self.annotated_image_path)
+            content.append({
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": "image/png",
+                    "data": image_data
+                }
+            })
+
+        content.append({
+            "type": "text",
+            "text": f"""Look at this scene and answer the following spatial reasoning question.
+
+Question: {question}
+
+Use the available tools if needed to verify spatial relationships.
+Provide a clear answer (yes/no if applicable) and explain your reasoning about the spatial relationships.
+"""
+        })
+
+        # Get scene info for context
+        scene_summary = self.allocentric.get_scene_summary()
+        tool_descriptions = self._get_tool_descriptions()
+
+        qa_system_prompt = f"""You are a spatial reasoning assistant answering questions about a scene.
+
+Scene Info:
+- {scene_summary['entity_count']} entities
+- Depth range: z=0 (closest to camera) to z={scene_summary['depth_range'][1]} (farthest)
+
+{tool_descriptions}
+
+Answer the question clearly and explain your spatial reasoning."""
+
+        messages = [{"role": "user", "content": content}]
+
+        # Single-turn response (may use tools)
+        max_turns = 5
+        for turn in range(max_turns):
+            response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=1024,
+                system=qa_system_prompt,
+                messages=messages
+            )
+
+            assistant_text = response.content[0].text
+
+            if self.verbose:
+                print(f"\n=== Turn {turn + 1} ===")
+                print(assistant_text)
+
+            # Check for tool use
+            if "TOOL:" in assistant_text:
+                tool_name, tool_args = self._parse_tool_call(assistant_text)
+                if tool_name:
+                    tool_result = self._execute_tool(tool_name, tool_args)
+
+                    if self.verbose:
+                        print(f"\n[Tool: {tool_name}]")
+                        print(tool_result[:300] + "..." if len(tool_result) > 300 else tool_result)
+
+                    messages.append({"role": "assistant", "content": assistant_text})
+                    messages.append({"role": "user", "content": f"Tool result:\n{tool_result}"})
+                    continue
+
+            # No tool call - this is the final answer
+            break
+
+        return {
+            "question": question,
+            "response": assistant_text,
+            "turns": turn + 1
+        }
+
+    def run_perspective_shift_task(
+        self,
+        reference_entity: str,
+        direction: Optional[str] = None,
+        include_image: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Run a perspective-shift evaluation task.
+
+        The agent describes what would be visible from a specific
+        object's viewpoint.
+
+        Args:
+            reference_entity: Entity to view the scene from
+            direction: Optional specific direction to describe
+            include_image: Whether to include the annotated image
+
+        Returns:
+            Dict with response and evaluation info
+        """
+        if not self.agent_state:
+            raise ValueError("Must call setup_scenario first")
+
+        from anthropic import Anthropic
+
+        client = Anthropic(api_key=self.api_key)
+
+        # Resolve entity
+        entity_id = self.allocentric.resolve_entity(reference_entity)
+        if not entity_id:
+            return {"error": f"Could not find entity: {reference_entity}"}
+
+        entity_name = self.allocentric.nodes[entity_id].get('name', entity_id)
+
+        # Build question
+        if direction:
+            question = f"Imagine you are standing at the {entity_name}. What would be to your {direction}?"
+        else:
+            question = f"Imagine you are standing at the {entity_name}. Describe what you would see in all directions (left, right, in front, behind)."
+
+        # Build message
+        content = []
+
+        if include_image and self.annotated_image_path:
+            image_data = self._encode_image(self.annotated_image_path)
+            content.append({
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": "image/png",
+                    "data": image_data
+                }
+            })
+
+        content.append({
+            "type": "text",
+            "text": f"""This is a perspective-shift task. You need to mentally position yourself at a specific object and describe the scene from that viewpoint.
+
+{question}
+
+Use the perspective_shift tool to help verify your answer.
+Remember: "in front" means closer to the camera, "behind" means farther from the camera.
+"""
+        })
+
+        tool_descriptions = self._get_tool_descriptions()
+
+        perspective_system_prompt = f"""You are a spatial reasoning assistant performing a perspective-shift task.
+
+You need to imagine being positioned at a specific object in the scene and describe what you would see from that viewpoint.
+
+{tool_descriptions}
+
+Describe the scene from the requested perspective, listing objects in each direction."""
+
+        messages = [{"role": "user", "content": content}]
+
+        # Allow multiple turns for tool use
+        max_turns = 5
+        final_response = ""
+
+        for turn in range(max_turns):
+            response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=1024,
+                system=perspective_system_prompt,
+                messages=messages
+            )
+
+            assistant_text = response.content[0].text
+
+            if self.verbose:
+                print(f"\n=== Turn {turn + 1} ===")
+                print(assistant_text)
+
+            # Check for tool use
+            if "TOOL:" in assistant_text:
+                tool_name, tool_args = self._parse_tool_call(assistant_text)
+                if tool_name:
+                    tool_result = self._execute_tool(tool_name, tool_args)
+
+                    if self.verbose:
+                        print(f"\n[Tool: {tool_name}]")
+                        print(tool_result[:300] + "..." if len(tool_result) > 300 else tool_result)
+
+                    messages.append({"role": "assistant", "content": assistant_text})
+                    messages.append({"role": "user", "content": f"Tool result:\n{tool_result}"})
+                    continue
+
+            final_response = assistant_text
+            break
+
+        return {
+            "reference_entity": reference_entity,
+            "direction": direction,
+            "question": question,
+            "response": final_response,
+            "turns": turn + 1
+        }
+
+    def run_navigation_with_allocentric_goal(
+        self,
+        goal_description: str,
+        visual_feedback: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Run navigation with an allocentric goal description.
+
+        The agent must first resolve the allocentric goal to a waypoint,
+        then navigate to it.
+
+        Args:
+            goal_description: e.g., "the object behind the table"
+            visual_feedback: Whether to provide visual feedback after moves
+
+        Returns:
+            Dict with path summary and evaluation info
+        """
+        if not self.agent_state:
+            raise ValueError("Must call setup_scenario first")
+
+        # Build navigation prompt with allocentric goal
+        additional_context = f"""Your goal is to navigate to: {goal_description}
+
+First, use the resolve_allocentric_goal tool to identify the target waypoint.
+Then navigate to that waypoint using move_to.
+
+Explain your spatial reasoning as you go."""
+
+        # Use the existing multimodal run with this context
+        return self.run_with_image(
+            additional_context=additional_context,
+            visual_feedback=visual_feedback
+        )
+
+    def _get_tool_descriptions(self) -> str:
+        """Get formatted tool descriptions for prompts."""
+        base_tools = create_tools(self.agent_state)
+        allocentric_tools = create_allocentric_tools(self.allocentric, self.agent_state)
+        all_tools = base_tools + allocentric_tools
+
+        descriptions = ["Available tools:"]
+        for tool in all_tools:
+            descriptions.append(f"- {tool.name}: {tool.description.split(chr(10))[0]}")
+
+        descriptions.append("\nTo use a tool, respond with:")
+        descriptions.append("TOOL: <tool_name>")
+        descriptions.append("ARGS: <json arguments>")
+
+        return "\n".join(descriptions)
+
+    def _parse_tool_call(self, text: str) -> tuple:
+        """Parse tool name and args from response text."""
+        import json
+
+        tool_name = None
+        tool_args = {}
+
+        lines = text.split("\n")
+        for line in lines:
+            if line.startswith("TOOL:"):
+                tool_name = line.replace("TOOL:", "").strip()
+            elif line.startswith("ARGS:"):
+                args_str = line.replace("ARGS:", "").strip()
+                try:
+                    tool_args = json.loads(args_str)
+                except json.JSONDecodeError:
+                    tool_args = {}
+
+        return tool_name, tool_args
+
+    def _execute_tool(self, tool_name: str, args: Dict) -> str:
+        """Execute a tool by name (extended for allocentric tools)."""
+        # First try parent implementation
+        if tool_name in ["get_waypoints", "move_to", "rotate", "scale"]:
+            return super()._execute_tool(tool_name, args)
+
+        # Allocentric tools
+        if tool_name == "get_spatial_relation":
+            entity_a = args.get("entity_a", "")
+            entity_b = args.get("entity_b", "")
+            relation_types = args.get("relation_types", ["all"])
+
+            a_id = self.allocentric.resolve_entity(entity_a)
+            b_id = self.allocentric.resolve_entity(entity_b)
+
+            if not a_id or not b_id:
+                return f"Could not find entities: {entity_a}, {entity_b}"
+
+            results = []
+            a_name = self.allocentric.nodes[a_id].get('name', a_id)
+            b_name = self.allocentric.nodes[b_id].get('name', b_id)
+
+            if "all" in relation_types or "left_right" in relation_types:
+                lr = self.allocentric.compute_left_right(a_id, b_id)
+                results.append(f"{a_name} is {lr.replace('_', ' ')} {b_name}")
+
+            if "all" in relation_types or "front_behind" in relation_types:
+                fb = self.allocentric.compute_front_behind(a_id, b_id)
+                results.append(f"{a_name} is {fb.replace('_', ' ')} {b_name}")
+
+            return "\n".join(results)
+
+        elif tool_name == "query_scene":
+            query = args.get("query", "")
+            # Simple query handling
+            return f"Query: {query}\n(Use get_spatial_relation for specific entity pairs)"
+
+        elif tool_name == "perspective_shift":
+            ref_entity = args.get("reference_entity", "")
+            direction = args.get("direction", None)
+            return self.allocentric.describe_view_from(ref_entity)
+
+        elif tool_name == "resolve_allocentric_goal":
+            goal = args.get("goal_description", "")
+            # Parse and resolve
+            import re
+
+            patterns = [
+                (r'behind\s+(?:the\s+)?(\w+)', 'behind', 'front_behind'),
+                (r'left of\s+(?:the\s+)?(\w+)', 'left_of', 'left_right'),
+                (r'right of\s+(?:the\s+)?(\w+)', 'right_of', 'left_right'),
+            ]
+
+            for pattern, relation, rel_type in patterns:
+                match = re.search(pattern, goal.lower())
+                if match:
+                    ref_name = match.group(1)
+                    ref_id = self.allocentric.resolve_entity(ref_name)
+                    if ref_id:
+                        results = self.allocentric.find_entities_with_relation(
+                            ref_id, relation, rel_type
+                        )
+                        if results:
+                            target = results[0]
+                            return f"Target resolved: {target['name']} ({target['id']})"
+
+            return f"Could not resolve goal: {goal}"
+
+        return f"Unknown tool: {tool_name}"
 
 
 if __name__ == "__main__":
