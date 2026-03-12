@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A building is red and light brown and has square, round and arched windows. There is a tower with a clock in it. On top of a tower there is a decoration. There are cars on the road next to the building, most have their brake lights on. The sky is cloudy.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

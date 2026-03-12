@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_eafa5705e3b0",
+  "category": "architectural_street",
+  "image_id": "5fca21e8d023194e",
+  "caption": "This picture is taken outside of the city. In this image, we can see a wood wall, trees, plants, mountains. At the top, we can see a sky a bit cloudy.",
+  "caption_word_count": 31,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "5fca21e8d023194e"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:45.455415+00:00"
+}

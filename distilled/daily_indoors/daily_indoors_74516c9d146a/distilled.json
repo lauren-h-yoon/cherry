@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_74516c9d146a",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_74516c9d146a/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see two men and a woman. In the background of the image there is a rack in which there are many objects. There is a wall on which there are posters and boards. There are bottles. In the center of the image there is a wooden table with some text on it. There is a machine. There are wires. At the bottom of the image there is floor.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:21.042270+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

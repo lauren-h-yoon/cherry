@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A man is sitting at a small table outside on a sunny day. He is wearing a short sleeve shirt and blue jean pants. The table has a large drink bottle, a book, white plate, and cutlery on top of it. The table is beside a colorful building. There is another table sitting behind the man on a sidewalk. Part of a green tree can be seen behind the building on the sidewalk.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

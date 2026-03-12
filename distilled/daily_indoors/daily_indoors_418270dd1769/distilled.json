@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_418270dd1769",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_418270dd1769/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see people sitting on chairs. There is a table in front of them there is a bottle, mics and other objects. In the background of the image there is wall. There is a camera. There is a door.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:07.763847+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

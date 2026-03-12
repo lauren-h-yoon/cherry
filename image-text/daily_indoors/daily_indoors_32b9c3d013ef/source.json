@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_32b9c3d013ef",
+  "category": "daily_indoors",
+  "image_id": "9aa8c87307d1df12",
+  "caption": "In this image, there are a few people sitting. We can see the table covered with a cloth with some objects like bottles, glasses and a cup. We can also see some papers and a board with some image and text. In the background, we can see the wooden wall with an object.",
+  "caption_word_count": 53,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "9aa8c87307d1df12"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:57.329200+00:00"
+}

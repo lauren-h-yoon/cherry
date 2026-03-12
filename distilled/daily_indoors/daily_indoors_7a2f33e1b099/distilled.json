@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_7a2f33e1b099",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_7a2f33e1b099/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis is a picture taken in a room, there are a group of people sitting on chairs in front of these people there are tables on the table there are paper, cups and flag and name board. In front of the people on the stage there is a man in black blazer was standing behind the podium on the podium there are laptop and microphone. To the right side of the podium there is other table covered with red cloth and a projector screen and there is a ceiling lights on the top and a chandelier.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:31.258544+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

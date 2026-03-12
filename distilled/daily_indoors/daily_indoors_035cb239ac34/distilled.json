@@ -1,0 +1,40 @@
+{
+  "item_id": "daily_indoors_035cb239ac34",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_035cb239ac34/image.jpg",
+  "objects": [
+    {
+      "object": "walls",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "watermarks",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "toilet seat",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "bucket",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "pipe",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nIn the picture I can see an inner view of a bathroom. In the bathroom I can see white color pipe, a toilet seat, bucket and some other objects on the floor. The walls are pink in color. On the bottom right corner of the image I can see watermarks.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:13.392467+00:00",
+  "stats": {
+    "total_objects": 5,
+    "spatially_referenced": 2,
+    "not_spatially_referenced": 3
+  }
+}

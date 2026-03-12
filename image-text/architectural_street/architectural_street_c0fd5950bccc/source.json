@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_c0fd5950bccc",
+  "category": "architectural_street",
+  "image_id": "4988cdc579301c5d",
+  "caption": "This is an outside view. In the foreground there are two men standing, smiling and giving pose for the picture. The man who is on the right side is wearing a white color jacket and cap on the head, another man is wearing a suit. In the background there are many cars on the roads and also there are many trees and houses. On the left side there is a pole beside the road. On the right side there is a flag on the building. At the top of the image I can see the sky.",
+  "caption_word_count": 96,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "4988cdc579301c5d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:37.169358+00:00"
+}

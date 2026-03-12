@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This picture is taken on an airport tarmac. There is a green and white airplane sitting on the tarmac. The right wing of the plane has a large engine on it. A man is standing below the plane wearing an orange vest. Part of a building can be seen behind the plane. The sky above the plane is sunny and blue white white clouds in it.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

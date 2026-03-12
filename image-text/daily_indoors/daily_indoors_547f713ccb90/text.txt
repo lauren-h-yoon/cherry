@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+In this image we can see two persons. Behind the persons we can see a wall and a black object on which we can see some text. On the right side, we can see few objects. On the left side, we can see a window with glass. At the top we can see some text. At the bottom left we can see glasses on a table. In the bottom right we can see an image with text.
+
+Source: Localized Narratives (Open Images)

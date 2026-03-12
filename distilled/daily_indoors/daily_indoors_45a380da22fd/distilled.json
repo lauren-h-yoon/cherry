@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_45a380da22fd",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_45a380da22fd/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image i can see group of people standing and i can see a table on which there are many ceramic objects. In the background i can see a wall, a mirror, a table and a chandelier.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:17.245423+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

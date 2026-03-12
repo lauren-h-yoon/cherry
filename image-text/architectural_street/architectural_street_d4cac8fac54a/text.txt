@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is the picture of a building. In this image there is a building. At the back there is grass. At the top there is sky. At the bottom there are plants.
+
+Source: Localized Narratives (Open Images)

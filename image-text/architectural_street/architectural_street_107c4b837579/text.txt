@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A person in a white shirt is carrying a bag and walking down a long brick sidewalk. There are trees lining the sidewalk near the street, and cars parked along the side of this street. On the other side of the sidewalk is a retaining wall bordering green grass. There is a large white building full of windows on one up ahead. In the distance there is another large building made of glass.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

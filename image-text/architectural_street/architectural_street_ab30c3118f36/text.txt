@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Two people are standing in the white snow outside. Both have ski equipment on. One person is taking a picture of the other person. The sun is setting low in the sky, as it is getting night time. Of in the distance you can see some trees.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

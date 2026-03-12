@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_5a7cf009a7d1",
+  "category": "architectural_street",
+  "image_id": "00607c8121301d54",
+  "caption": "There is a road. On the road there are many vehicles. On the sides of the road there are sidewalks. On the sidewalk there are many people. There are many buildings. There are trees. On the right side there is a person sitting on stool. There is a table and a stool. On the table there is a cup and some other items. In the background there is sky. Also there are name boards and windows for the building.",
+  "caption_word_count": 79,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "00607c8121301d54"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T14:59:40.327866+00:00"
+}

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A red light at an intersection. Some people are sitting on a bench across the street. There are three flag poles to the east of the picture. The sky is very clear but there are a few clouds in the air.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

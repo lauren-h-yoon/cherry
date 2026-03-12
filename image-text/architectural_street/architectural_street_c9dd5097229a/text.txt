@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A net is outside near some housing. It is a volleyball net located in some sand which is in a grass area. There is a park with some slides right next to the housing area.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

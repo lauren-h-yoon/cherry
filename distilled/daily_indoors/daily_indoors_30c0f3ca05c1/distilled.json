@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_30c0f3ca05c1",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_30c0f3ca05c1/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThere is a white toilet in a bathroom. There is a black tissue box on the back of the toilet. There is a small black waste basket on the ground next to the toilet. There is a wire rack above the toilet with folded white towels on it. There is a roll of toilet paper hanging off of a counter next to the toilet.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:36.279041+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

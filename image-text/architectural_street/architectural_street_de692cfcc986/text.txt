@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Two trains are parked at a station facing one another. They both are identical. Each having a grey roof and yellow painted trim. The doors have silver handlebars on either side of them. One of the trains has the black number 47200.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

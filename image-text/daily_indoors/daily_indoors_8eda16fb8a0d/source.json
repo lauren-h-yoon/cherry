@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_8eda16fb8a0d",
+  "category": "daily_indoors",
+  "image_id": "0053ceb9ccc3e39a",
+  "caption": "On the left side of the image, we can see glass object. On this object, there is a sticker. On the right side of the image, we can see the blur view. Here there are few frames, flag, wall, lights and few things.",
+  "caption_word_count": 43,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0053ceb9ccc3e39a"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:47.560424+00:00"
+}

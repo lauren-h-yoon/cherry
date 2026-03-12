@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_6a2c4dbe0dc2",
+  "category": "architectural_street",
+  "image_id": "af77dd3954f2ff41",
+  "caption": "In this image there are houses, trees, light poles. There is a road on which there are cars. At the top of the image there is sky and clouds. In the foreground of the image there is a pole. To the right side bottom of the image there is grass.",
+  "caption_word_count": 50,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "af77dd3954f2ff41"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:27.127460+00:00"
+}

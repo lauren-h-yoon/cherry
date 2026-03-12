@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This photo is taken inside of a hotel room. A black backpack is sitting on the floor beside a bed. There are four white pillows on the bed. Two white lamps are sitting on nightstands on both sides of the bed. A picture frame is hanging on a wall above the bed. The carpet in the room has a checkered pattern.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

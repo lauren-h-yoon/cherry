@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_cd6092b479a5",
+  "category": "architectural_street",
+  "image_id": "001fb8f686998b36",
+  "caption": "There is a road. On the side of the road there are cars. Also there are buildings with brick wall. On the wall there are windows. Near to that that there are pot with plants. Also there are windows with mesh.",
+  "caption_word_count": 41,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "001fb8f686998b36"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T14:59:54.465226+00:00"
+}

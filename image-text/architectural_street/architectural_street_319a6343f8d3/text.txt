@@ -1,0 +1,5 @@
+Category: architectural_street
+
+An abstract designed building is in the foreground.  The entrance has an accordion style roof and the walls are slanted and distorted.  Many windows surround the building's walls.  A sidewalk with new trees are planted in the front.  Apartment buildings are seen across the way and light poles cover the sidewalks.  The sky is blue with a few white clouds.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

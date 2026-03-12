@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_7312dd075b8c",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_7312dd075b8c/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see three persons sitting on the sofa, among them one person is holding a plate with a cake, there are some photo frames on the wall, also we can see a table and the book.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:18.138872+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

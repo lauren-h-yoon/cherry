@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4348ed2f7513",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4348ed2f7513/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there are 2 persons sitting in couch and talking to each other ,and at the back ground there is a briefcase , mirror, wall, some photos stick to the wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:13.598721+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

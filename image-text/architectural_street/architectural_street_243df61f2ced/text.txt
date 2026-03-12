@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A sidewalk path is shown. There is a major shadow cast over the majority of the ground. The sun is beaming on the trees that are off in the background.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

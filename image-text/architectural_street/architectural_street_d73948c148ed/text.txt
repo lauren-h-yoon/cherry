@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There is a white car parked in a parking garage. There are at least five or six cars parked together. The white car has black wheels. There are pillars in the parking lot white pillars. The white cars headlights are turned off. Bike in the background of the parking garage. There are lights on the ceiling of the parking garage.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A man is standing outside on a sidewalk. He is wearing a short sleeve shirt, shorts and a backpack on his back. Buildings can be seen in front of the man. People are standing outside of the buildings. Green trees surround the buildings on different sides. A row of vehicles are parked along the sidewalk near the man. Part of a truck is seen on a road near the vehicles.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

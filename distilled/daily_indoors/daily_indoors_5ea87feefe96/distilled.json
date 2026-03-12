@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_5ea87feefe96",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_5ea87feefe96/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture I can see few people seated on the chairs and I can see a woman holding a microphone and speaking and I can see few papers and glasses and bottles on the table and I can see a poster on the wall and blinds to the window and I can see few books, papers on another table.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:47.320777+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

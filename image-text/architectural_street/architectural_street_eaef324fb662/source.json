@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_eaef324fb662",
+  "category": "architectural_street",
+  "image_id": "05040e6ef557a8af",
+  "caption": "In front of the image there is a building with name on it, to the left of the image there are leaves, at the top of the image there are clouds in the sky.",
+  "caption_word_count": 34,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "05040e6ef557a8af"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:39.080423+00:00"
+}

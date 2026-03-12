@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Three cars are parked in a parking lot. The car on the right is a black hatchback. The car on the left is a gray compact. The middle car is a white sedan. In front of the cars is a short beige wall with a railing on top. The railing is supported by blue support beams. In the distance are a row of trees and some beige buildings.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

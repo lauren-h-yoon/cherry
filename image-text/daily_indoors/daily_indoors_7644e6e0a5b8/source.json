@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_7644e6e0a5b8",
+  "category": "daily_indoors",
+  "image_id": "cfd5a53df94865ce",
+  "caption": "In this image there is a person sitting and holding an object, there is a table truncated towards the right of the image, there are objects on the table, there is a fencing truncated, the background of the image is blurred.",
+  "caption_word_count": 41,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "cfd5a53df94865ce"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:48.615398+00:00"
+}

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+White stripes are on the road. The traffic light is on a pole that has a sign shaped triangular. The building on the corner is color white that have roof black. On the left side there is a row of lights on front the building. The sky is cloudy with some blue parts. On the left side a long pole holds two lights and it is on front the buildings.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

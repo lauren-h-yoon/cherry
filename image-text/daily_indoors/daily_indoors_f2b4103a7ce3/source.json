@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_f2b4103a7ce3",
+  "category": "daily_indoors",
+  "image_id": "ac714ebbac196a7d",
+  "caption": "In this image there are people sitting on the chairs. On the left side of the image there is a person walking on the stairs. In the background of the image there are curtains. On top of the image there are lights.",
+  "caption_word_count": 42,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "ac714ebbac196a7d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:52.512116+00:00"
+}

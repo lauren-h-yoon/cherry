@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This is an image of a stairway. The stairs are very worn and are made of stone. The stairs have some green moss growing on them. The wall beside the stairs and old gray and brown stone. The wall is cracked. There is a large vase by the people at the top of the stairs. The vase is brown and black. The people are wearing white shirts. The man has one leg up against the wall.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

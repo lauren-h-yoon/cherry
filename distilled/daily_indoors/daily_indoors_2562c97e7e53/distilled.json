@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_2562c97e7e53",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_2562c97e7e53/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the center of the image there is a table. On the table we can see trays, plates, fork, food item is present on a bowl, fruits are present on a bowl, glasses, plates, paper, cloth are there. In the background of the image we can see chairs, wall, bag, cloth, mat are there. At the bottom of the image floor is there.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:18.011235+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

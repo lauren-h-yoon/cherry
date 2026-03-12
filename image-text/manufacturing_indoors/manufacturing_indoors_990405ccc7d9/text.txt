@@ -1,0 +1,5 @@
+Category: manufacturing_indoors
+
+A black plastic coffee pot is sitting on a small corner shelf. The carafe is glass with a silver band around it and a black plastic handle. The whole thing is black and has a bright red button. Under the shelf are two black coffee mugs. Behind the coffee maker is a mirror that is reflecting the coffee pot.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

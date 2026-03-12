@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_32b9c3d013ef",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_32b9c3d013ef/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image, there are a few people sitting. We can see the table covered with a cloth with some objects like bottles, glasses and a cup. We can also see some papers and a board with some image and text. In the background, we can see the wooden wall with an object.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:41.415017+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

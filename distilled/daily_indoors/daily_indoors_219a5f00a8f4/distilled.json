@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_219a5f00a8f4",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_219a5f00a8f4/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the center of the picture there is a man holding a mic, beside him there is another person sitting. In the foreground there is a desk, on the desk there are laptop, paper, glass and other object, beside the table there is a microphone. On the left there is a projector screen. The background is dark.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:14.346309+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

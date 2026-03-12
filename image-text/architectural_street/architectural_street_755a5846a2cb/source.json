@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_755a5846a2cb",
+  "category": "architectural_street",
+  "image_id": "90239144f3750a38",
+  "caption": "In this image there is the sky towards the top of the image, there is a building, there is a bridge, there is a train on the bridge, there are trees towards the right of the image, there are trees towards the left of the image, there is water towards the bottom of the image, there is a boat on the water, there is a woman sitting on the boat, she is holding an object.",
+  "caption_word_count": 75,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "90239144f3750a38"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:57.343571+00:00"
+}

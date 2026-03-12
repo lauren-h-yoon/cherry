@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_533fcdeed5c9",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_533fcdeed5c9/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there is a couch, there is a pillow on the couch, there is a man sitting on the couch, there are two women sitting on the couch, the man is holding an object, the woman is holding an object, there is a wall towards the top of the image, there is an object towards the top of the image.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:31.823610+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

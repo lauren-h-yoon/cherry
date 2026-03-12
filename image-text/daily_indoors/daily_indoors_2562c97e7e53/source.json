@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_2562c97e7e53",
+  "category": "daily_indoors",
+  "image_id": "37f89d6e836249a3",
+  "caption": "In the center of the image there is a table. On the table we can see trays, plates, fork, food item is present on a bowl, fruits are present on a bowl, glasses, plates, paper, cloth are there. In the background of the image we can see chairs, wall, bag, cloth, mat are there. At the bottom of the image floor is there.",
+  "caption_word_count": 63,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "37f89d6e836249a3"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:52.569826+00:00"
+}

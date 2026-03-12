@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A book store on a busy but old fashioned city street has a long line, and a large crowd standing outside at dusk. Cars are parked on both sides of the street, as cars are also driving down the street. The cars have their lights on, but the street lights are still dark. Across from the book store there are bare, leafless trees lining the sidewalk.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_0b1a51b3a09a",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_0b1a51b3a09a/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see three women's on the floor. In the background I can see a kitchen cabinet, grinder, kitchen tools, refrigerator, door and shelves. This image is taken may be in a room.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:42.807883+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

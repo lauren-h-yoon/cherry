@@ -1,0 +1,5 @@
+Category: architectural_street
+
+An apartment building parking lot has two cars parked.  There are yellow lines on the pavement to signify numbered, reserved spots.  Two blue dumpsters are on the side of the building.  The apartments have fire escapes and balconies.  There are many windows in view.  Trees are at the back of the building.  The sky is blue with no clouds.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

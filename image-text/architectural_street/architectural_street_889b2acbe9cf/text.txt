@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This picture is taken outside on a sunny day. A truck is parked on a road. A man can be seen exiting the truck. Large trees are leaning from the side of the road into the middle of the road. Part of a white sky can be seen in between the trees. Homes are on both sides of the road. People are standing at the back of the road near vehicles.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

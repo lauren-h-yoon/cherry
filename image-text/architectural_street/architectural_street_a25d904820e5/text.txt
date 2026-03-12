@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Cars pedestrians, and scooters or motorcycles are traveling along a busy city intersection.  On one street is a bus, a car, a truck, and some motorcycles waiting for pedestrians to cross the street.  A few scooters are parked on the crosswalk.  This street is lined with tall green trees on one side as well as on a median strip.  On the other side are multi storied buildings.  A black car with yellow doors is traveling along the street perpendicular to the abovementioned road.  It is sunny.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

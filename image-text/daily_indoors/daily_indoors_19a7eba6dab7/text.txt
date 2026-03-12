@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This is a room that appears to be in a hotel. There is one lit lamp on the wall,hanging above a red footstool. There is another unlit lamp connected to a chain and hanging from the ceiling. The unlit lamp hangs above a painting of a forest scene, and a glass top table with two black chairs underneath. There is a small table to the left of the glass top table, and one that smaller table is a vase of black and gold. To the left of this, there is a large window, covered with red, orange, blue, and white curtains. The carpet is a black/brown color.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

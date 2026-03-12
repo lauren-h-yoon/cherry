@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_314e8ac8fd24",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_314e8ac8fd24/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThree rolling chairs are sitting inside of an office. Two of the chairs are in front of a long brown desk. A computer tower, keyboard, mouse and other objects are sitting on top of the desk. Three brown shelves hang on a wall above the desk. A glass door leads to another office with a computer and other objects in it. A window can be seen in the other office.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:37.011798+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

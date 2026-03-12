@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There are many cars on the street. There are street lights hanging from poles above the street. There are large trees next to the street. There is a man sitting on top of a motorcycle on the street. There are wires in the air hanging from poles next to the street. There are signs hanging from the pole.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

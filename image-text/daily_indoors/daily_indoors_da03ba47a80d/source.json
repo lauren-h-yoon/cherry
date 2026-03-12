@@ -1,0 +1,10 @@
+{
+  "item_id": "daily_indoors_da03ba47a80d",
+  "category": "daily_indoors",
+  "image_name": "1677",
+  "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1677.jpg",
+  "paragraph": "A desk with a computer and keyboard is visible in the image.  It seems to be an office area.  There is a painting on a green wall.  The lamp is besides the computer screen and appears to be off.  A phone with a cord, a box of tissues and scissors are on the desk area.  There is a tan swivel chair next to the desk.  A newspaper clipping is attached to the tan wall.",
+  "paragraph_word_count": 74,
+  "source": "stanford_image_paragraph_captioning",
+  "retrieved_at": "2026-02-26T12:40:57.872226+00:00"
+}

@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This is an image of some children. The children are in a classroom. The children are at a short table. The children have matching uniforms. The uniforms are red and blue. The chairs the children are sitting in are light gray. There are multicolored papers hanging on the black and white bulletin board on the back wall.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

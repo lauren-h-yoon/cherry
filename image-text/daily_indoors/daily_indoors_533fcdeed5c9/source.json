@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_533fcdeed5c9",
+  "category": "daily_indoors",
+  "image_id": "bd81e160d1656690",
+  "caption": "In this image there is a couch, there is a pillow on the couch, there is a man sitting on the couch, there are two women sitting on the couch, the man is holding an object, the woman is holding an object, there is a wall towards the top of the image, there is an object towards the top of the image.",
+  "caption_word_count": 62,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "bd81e160d1656690"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:27:23.534725+00:00"
+}

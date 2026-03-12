@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4e3d8b7c8204",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4e3d8b7c8204/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image i can see there are two women are sitting on a chair in front of a table. On the table i can see there few glasses, plates and other objects on it.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:25.266632+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

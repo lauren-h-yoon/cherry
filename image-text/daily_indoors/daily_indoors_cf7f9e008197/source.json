@@ -1,0 +1,10 @@
+{
+  "item_id": "daily_indoors_cf7f9e008197",
+  "category": "daily_indoors",
+  "image_name": "150495",
+  "image_url": "https://cs.stanford.edu/people/rak248/VG_100K/150495.jpg",
+  "paragraph": "A large mirror is in a bathroom. Under the mirror is a large black counter with two white sinks. There is a television hanging from the ceiling above the counter.",
+  "paragraph_word_count": 30,
+  "source": "stanford_image_paragraph_captioning",
+  "retrieved_at": "2026-02-26T12:41:05.949376+00:00"
+}

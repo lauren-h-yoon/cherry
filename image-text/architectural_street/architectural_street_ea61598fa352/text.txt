@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In the foreground I can see the road and there is a text on the road. In the background, I can see a bus on the road. I can see the glass windows at the top of the picture.
+
+Source: Localized Narratives (Open Images)

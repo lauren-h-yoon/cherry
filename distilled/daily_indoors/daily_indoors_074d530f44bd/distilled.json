@@ -1,0 +1,55 @@
+{
+  "item_id": "daily_indoors_074d530f44bd",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_074d530f44bd/image.jpg",
+  "objects": [
+    {
+      "object": "mannequins",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "guitars",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "boards",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "wall",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "lights",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "frames",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "poster",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "board",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nThere are mannequins. Here we can see a person standing on the floor. These are the guitars and there are boards. On the background there is a wall and these are the lights. Here we can see frames and this is poster. And there is a board.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:28.261161+00:00",
+  "stats": {
+    "total_objects": 8,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 8
+  }
+}

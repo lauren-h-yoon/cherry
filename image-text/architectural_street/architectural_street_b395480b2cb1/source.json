@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_b395480b2cb1",
+  "category": "architectural_street",
+  "image_id": "32fd921dd030a188",
+  "caption": "In this image there is a building. There are windows to the walls of the building. On the top of the building there is a clock to the wall. At the top there is the sky. At the bottom there are street lights to a pole.",
+  "caption_word_count": 46,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "32fd921dd030a188"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:44.697574+00:00"
+}

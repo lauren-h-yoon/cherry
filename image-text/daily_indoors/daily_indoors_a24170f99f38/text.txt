@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+There are three people sleeping in chairs in a lobby at an airport. The people on the left are in dark clothes, and a woman is wearing a hoodie and leaning on the man sitting next to her. There is a cart on wheels next to the chairs they are sitting in. The third person is sitting a few chairs down from the couple and is resting his feet on the cart that is holding his luggage. There is a line of machines for checking in to the left of him.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

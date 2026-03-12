@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Two people are crossing the street coming from both directions. The sun is shining bright outside. The trees are bare with no leaves there are bikes Park on the sidewalk going away from the camera. There's a woman coming towards the camera crossing the street. She is wearing a backpack. The woman is wearing a purple jacket. The woman is wearing blue jeans and brown shoes. The person going away from the camera is wearing a light blue hoodie sweatshirt. A person is also wearing a long blue skirt.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

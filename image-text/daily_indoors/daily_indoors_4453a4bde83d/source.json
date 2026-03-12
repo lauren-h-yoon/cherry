@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_4453a4bde83d",
+  "category": "daily_indoors",
+  "image_id": "0050abfcdc439b5c",
+  "caption": "In the foreground of the image there is a lady singing in a mic. In the background of the image there is a person holding a guitar. There is a mic. There is a wall.",
+  "caption_word_count": 35,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0050abfcdc439b5c"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T14:59:49.511664+00:00"
+}

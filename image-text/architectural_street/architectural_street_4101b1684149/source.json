@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_4101b1684149",
+  "category": "architectural_street",
+  "image_id": "0010f1c1ccecae49",
+  "caption": "This picture is clicked outside. In the foreground we can see the clothes and the masks and there are some persons. In the background there is a sky, trees and some other items.",
+  "caption_word_count": 33,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0010f1c1ccecae49"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:01:02.814929+00:00"
+}

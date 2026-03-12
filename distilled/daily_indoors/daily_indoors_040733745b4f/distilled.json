@@ -1,0 +1,35 @@
+{
+  "item_id": "daily_indoors_040733745b4f",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_040733745b4f/image.jpg",
+  "objects": [
+    {
+      "object": "chair",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "pen",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "book",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "wall",
+      "spatially_referenced": true,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nThis is a picture taken in a room, The woman in black jacket was sitting on a chair and holding a pen. Under the hand there is a book. Behind the woman is a wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:20.391511+00:00",
+  "stats": {
+    "total_objects": 4,
+    "spatially_referenced": 4,
+    "not_spatially_referenced": 0
+  }
+}

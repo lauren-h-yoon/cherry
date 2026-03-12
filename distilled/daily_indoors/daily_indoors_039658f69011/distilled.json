@@ -1,0 +1,35 @@
+{
+  "item_id": "daily_indoors_039658f69011",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_039658f69011/image.jpg",
+  "objects": [
+    {
+      "object": "plate",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "vegetable salads",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "curries",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "cream",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nIn the picture we can see a white color plate on it, we can see some food items like vegetable salads, curries, and some cream which is yellow in color.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:14.291784+00:00",
+  "stats": {
+    "total_objects": 4,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 4
+  }
+}

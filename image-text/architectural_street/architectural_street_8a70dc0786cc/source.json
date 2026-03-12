@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_8a70dc0786cc",
+  "category": "architectural_street",
+  "image_id": "5e0f939d10164810",
+  "caption": "These are the buildings with the windows. This looks like a filling station. I can see two cars. This looks like a traffic signal, which is attached to a pole. These are the current poles with the current wires. I can see the trees with branches. I think these are the bushes. I can see the name boards, which are attached to the poles. This is the sky.",
+  "caption_word_count": 68,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "5e0f939d10164810"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:45.877889+00:00"
+}

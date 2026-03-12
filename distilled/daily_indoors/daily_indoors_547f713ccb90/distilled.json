@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_547f713ccb90",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_547f713ccb90/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see two persons. Behind the persons we can see a wall and a black object on which we can see some text. On the right side, we can see few objects. On the left side, we can see a window with glass. At the top we can see some text. At the bottom left we can see glasses on a table. In the bottom right we can see an image with text.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:32.555958+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

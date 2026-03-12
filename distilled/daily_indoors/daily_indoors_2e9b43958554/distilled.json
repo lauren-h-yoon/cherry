@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_2e9b43958554",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_2e9b43958554/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis image is taken in a room. In this image we can see some persons on the floor. We can also see the green color doors, a mirror, sign board, text board and also the frames attached to the plain wall. Ceiling is also visible in this image.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:33.358274+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

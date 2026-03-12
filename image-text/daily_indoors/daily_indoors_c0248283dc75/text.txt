@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A orange,blue and red train is sitting on some tracks and next to the tracks is a pile of trash on the ground.Some flowerpots is sitting near the trash. People are sitting on chairs Just behind the pile of trash. A man standing near the tracks is wearing a brown uniform hat, shirt and pants and he is holding a red flag in one hand and a green flag in his other hand. There are some children standing near the tracks behind him.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

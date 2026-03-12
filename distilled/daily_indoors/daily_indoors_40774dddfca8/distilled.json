@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_40774dddfca8",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_40774dddfca8/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture we can see there are two people standing and other people are sitting. Behind the two people there is a chair and tables. Behind the people there is a wooden wall. At the top there is a light and an object.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:06.299961+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

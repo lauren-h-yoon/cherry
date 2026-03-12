@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Parked at a harbor with a long dock many power boats with motors are parked bow front to the dock. Some of them are white, one is blue and the other one is white and yellow. On the opposite side of the dock on the blue still water are a couple of large sailboats. One is teal and white and the other one is blue and white. Far off in the distance are an uncountable number of sailboats.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

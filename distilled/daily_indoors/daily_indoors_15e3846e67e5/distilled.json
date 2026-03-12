@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_15e3846e67e5",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_15e3846e67e5/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThere are persons in different color dresses, some of them are holding, which are filled with drink, standing on the floor. On the right side, there is a table, which is covered with white color cloth, on which, there are bottles arranged. On the right side, there is a person in suit, holding green color bottle. In the background, there are curtains, persons sitting on chairs around a table and the background is dark in color.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:56.856061+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

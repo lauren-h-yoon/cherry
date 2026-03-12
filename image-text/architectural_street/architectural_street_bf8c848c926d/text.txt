@@ -1,0 +1,5 @@
+Category: architectural_street
+
+an afternoon shot of a park with a paved dark road to the right of several trees that are brown in color. their is light shining through the trees onto the paved road way. there is some benches that are brown in color in the background and brown leaves on the ground with some green shrubs mixed in between.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

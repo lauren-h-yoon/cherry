@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_0bec23b972fe",
+  "category": "architectural_street",
+  "image_id": "000e21b2b693030b",
+  "caption": "In this picture there is a train in the center of the image and there is another train on the left side of the image, there are tracks and traffic lights at the bottom side of the image and there is a boundary behind the train, there are poles in the image and there are houses and trees in the background area of the image.",
+  "caption_word_count": 65,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "000e21b2b693030b"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T14:59:51.716387+00:00"
+}

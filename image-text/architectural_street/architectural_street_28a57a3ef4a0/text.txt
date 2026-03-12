@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In this image, we can see some cars and there are some chairs, we can see a tree, there is a building and we can see some windows on the building.
+
+Source: Localized Narratives (Open Images)

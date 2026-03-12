@@ -1,0 +1,13 @@
+{
+  "item_id": "manufacturing_indoors_aab7693c7702",
+  "category": "manufacturing_indoors",
+  "image_id": "00056223ec2b5aa1",
+  "caption": "This is a picture taken from a vehicle. In the foreground of the picture there are seats and two women seated. In the center of the picture there is a mining land and heavy machinery. In the background there are trees. Sky clear and little bit cloudy.",
+  "caption_word_count": 47,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "00056223ec2b5aa1"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:01:04.561794+00:00"
+}

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A large white building that has palm trees lined up in front of it. There is a street in front of the trees with cars driving on it. Next to the street is a sidewalk that people are walking down.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

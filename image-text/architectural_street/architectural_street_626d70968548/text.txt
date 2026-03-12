@@ -1,0 +1,5 @@
+Category: architectural_street
+
+An image of a building during the day.  The building faces and empty parking lot surrounded by a metal fence and railing.  There are glass window surrounding the top of the building with light brown bricks.   There are green bushes in front of the building.  A tree is visible behind the building to the left.  A shadow is casted on the left side of the building.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

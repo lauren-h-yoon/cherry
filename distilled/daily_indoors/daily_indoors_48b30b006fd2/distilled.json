@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_48b30b006fd2",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_48b30b006fd2/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThere is a white computer sitting on a desk. There is a white keyboard in front of the computer. There is a green bottle on the desk next to the computer. There is a white mouse on top of a black mouse pad on the desk. There are books lined up along the back of the desk and the wall. There is a white speaker on the desk in front of the books.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:20.885821+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

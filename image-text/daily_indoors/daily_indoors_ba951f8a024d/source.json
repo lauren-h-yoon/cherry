@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_ba951f8a024d",
+  "category": "daily_indoors",
+  "image_id": "ebf4d2a531530e05",
+  "caption": "In the image there is some machine in the foreground and behind that there is some object, behind that object there are few people, in the background there is a wall and in front of the wall there are some posters, on the right side there are plants.",
+  "caption_word_count": 48,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "ebf4d2a531530e05"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:11.165523+00:00"
+}

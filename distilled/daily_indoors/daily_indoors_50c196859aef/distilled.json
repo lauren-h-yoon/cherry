@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_50c196859aef",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_50c196859aef/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see two persons. In front the woman is holding a cup. At the background we can see a wall and frames are attached to the wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:27.446189+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

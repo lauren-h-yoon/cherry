@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A street has tall green trees. There are bicycles parked on the sidewalk and people are walking on the sidewalk. Street lights are on metal poles, the case housing of the lights is yellow. There are no cars on the road. The trees are casting shadows.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

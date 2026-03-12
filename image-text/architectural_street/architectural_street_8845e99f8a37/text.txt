@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A girl is outside with ski equipment. She has a pink and white hat on and is smiling. Her rods are also pink and white. There is a young boy located directly behind her.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

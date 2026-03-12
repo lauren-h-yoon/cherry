@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_7817257ab996",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_7817257ab996/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there is a woman standing behind the podium having a mike. Left bottom there is a bouquet having flowers. Right side there is a banner having some text. Middle of the image there is a pillar. Background there is a wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:29.083822+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

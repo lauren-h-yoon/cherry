@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This photo is taken outside on a cloudy day. A woman can be seen standing on a sidewalk wearing a blue coat, jeans and a brown purse. Different types of vehicles are on the road near the woman. The road has white markings on it. Large green trees can be seen sitting below the cloudy sky.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

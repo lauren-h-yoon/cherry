@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The photo is of a large building in the city that has five visible store front windows. Each window has frames in them. There are American flags on poles on the third level of the building. Each flag is individually perched on the poles hanging over the sidewalk below. There are people walking on the sidewalk and a yellow taxi cab in the street. It appears that the street is wet.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

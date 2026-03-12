@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A very neat desk area is being shown. There is a very old computer on top of a desk and a clock over that. The chair is gray and black and a small garbage can is under the desk.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

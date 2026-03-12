@@ -1,0 +1,5 @@
+Category: architectural_street
+
+It appears an old refrigerator has been removed from a house, The refrigerator is filled with food and drinks that appear to be really old. It also seems to be broken and in need of repair. The ground is filled with firt and dry plants. There is also a sidewalk in between the dirt. Behind the refrigerator lies two houses, red bushes, and a dry tree. The Houses are made of red bricks, the roofs are grey and they have clear windows with blinds.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

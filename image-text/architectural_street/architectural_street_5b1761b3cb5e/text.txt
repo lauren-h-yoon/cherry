@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is an outside view. Here I can see a black color car on the road. In the background there are many plants and trees. On the left side there is a building. In front of this building there are many flower plants.
+
+Source: Localized Narratives (Open Images)

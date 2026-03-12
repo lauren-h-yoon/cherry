@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A long street with cars and vans are sitting on each side of the street.  There is a street light sitting on the sidewalk.  A brick apartment building with a lot of widows is sitting off the road.  There is a lot of trees sitting in front of the building.  There are also cars riding down the street.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

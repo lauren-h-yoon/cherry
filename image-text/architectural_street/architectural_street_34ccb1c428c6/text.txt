@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In the center of the image there are cars on the road. On the left side of the image there are buildings. At the bottom of the image there is snow on the surface. On the right side of the image there are trees. There are poles. There are street lights. In the background of the image there is sky.
+
+Source: Localized Narratives (Open Images)

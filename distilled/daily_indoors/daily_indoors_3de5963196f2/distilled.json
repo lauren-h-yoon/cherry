@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3de5963196f2",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3de5963196f2/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the center of the image there is a person standing on the floor and she is holding the mike and a paper. On top of the image there are lights and there is some text written at the bottom of the image.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:00.461054+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

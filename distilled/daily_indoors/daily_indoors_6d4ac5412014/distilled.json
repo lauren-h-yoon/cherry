@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_6d4ac5412014",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_6d4ac5412014/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the picture we can see inside the palace hall with full of architect and paintings and we can see chandeliers in the ceiling and many people are walking and some people are standing and watching the architecture.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:09.385876+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

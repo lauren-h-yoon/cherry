@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_69f4606ce750",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_69f4606ce750/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThere is table with with flower vase on it with some water on that arranged with some leaves and white flowers. In front of that there are chairs covered with cloth and behind the tables there is a glass wall in it. below that we can see small part of table with tissue box on it and there is a frame sticked on wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:04.265857+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

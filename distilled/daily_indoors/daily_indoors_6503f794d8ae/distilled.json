@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_6503f794d8ae",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_6503f794d8ae/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nA white door can be seen in front of a closet in a room. Clothes are hanging on a silver rod in the closet. A floor with large tiles can be seen in the room. Black shoes are sitting on the floor in the room. White painted walls are around the room surrounding the closet. Part of a brown wooden door is seen in the photo. A beige light switch is seen near the door.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:57.545773+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

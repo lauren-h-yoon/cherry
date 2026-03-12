@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_c22f89327393",
+  "category": "daily_indoors",
+  "image_id": "000bc5006eb7fd98",
+  "caption": "In the foreground of the picture we can see a girl holding a red ribbon. In the background there are kids sitting on the floor. On the right we can see a photograph.",
+  "caption_word_count": 33,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "000bc5006eb7fd98"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:50.595423+00:00"
+}

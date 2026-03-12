@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_141f07fc0855",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_141f07fc0855/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis picture is taken in a room, there is a bad which is in white color, there is a table in green color, In the left side there is a table which in brown color and there is a chair, on that table there is a lamp which is in yellow color, in the middle there is a man siting in a tub which is in white color, in the top there is a orange color roof.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:52.425200+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

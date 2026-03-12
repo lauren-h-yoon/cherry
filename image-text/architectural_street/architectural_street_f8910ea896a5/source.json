@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_f8910ea896a5",
+  "category": "architectural_street",
+  "image_id": "0064ec0daed1e80f",
+  "caption": "In the image in the center there is a statue,\u00a0which is in black color.\u00a0In the background, we can see the sky,\u00a0clouds,\u00a0buildings,\u00a0windows,\u00a0trees,\u00a0one pole etc.",
+  "caption_word_count": 30,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0064ec0daed1e80f"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:36.291066+00:00"
+}

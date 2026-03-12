@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_661a71bd1a61",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_661a71bd1a61/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nA bathroom with white tile on the wall. There is a white toilet on the ground. There is a white sink next to the toilet and a mirror hanging on the wall above the sink.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:59.811295+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

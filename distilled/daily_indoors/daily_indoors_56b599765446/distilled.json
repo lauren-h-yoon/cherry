@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_56b599765446",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_56b599765446/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there are a few people standing with a smile on their face and they are holding mobile phones in their hands, one of them is sitting on her knees and holding a bottle in her hand, beside her there is another bottle. In the background there is a wall and at the bottom of the image there is some text.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:35.530488+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+there is a roof made of straw. there are now windows in the house. there is a lamp next to the bed. there is a fan that is tall and black.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

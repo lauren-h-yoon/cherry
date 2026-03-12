@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_ec16c122b359",
+  "category": "architectural_street",
+  "image_id": "3692b40260b959c0",
+  "caption": "In this picture we can see some persons sitting on the chairs. This is table. On the table there are cups, bottles, plates, and some food. Here we can see lights and this is hut. There is a board. On the background we can see a building and these are the trees.",
+  "caption_word_count": 52,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "3692b40260b959c0"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:09.098009+00:00"
+}

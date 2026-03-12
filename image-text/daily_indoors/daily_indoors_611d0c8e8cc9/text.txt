@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A counter is filled with plates of food. A white bowl is filled with french fries. A blue plate is filled with cheesy bread. There are bottle of condiments next to the plates. There is a dishwasher underneath the counter. There is a bottle next to the cheese bread. The fries are big and thick. There is some mayo, ketchup, and mustard on the counter.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

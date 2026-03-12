@@ -1,0 +1,10 @@
+{
+  "item_id": "architectural_street_9dbccd18b78c",
+  "category": "architectural_street",
+  "image_name": "137",
+  "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/137.jpg",
+  "paragraph": "The sky is overcast and cloudy. There's a bike leaning against the pole on the sidewalk. The street light is green. There are cars driving along the street. Some people are crossing at the corner. There are trees lining the buildings in the distance. Some cars are parked. There is a gray garbage can sitting by the building. The person Crossing in the middle of the street in the distance has on a red shirt.",
+  "paragraph_word_count": 75,
+  "source": "stanford_image_paragraph_captioning",
+  "retrieved_at": "2026-02-26T12:41:25.070198+00:00"
+}

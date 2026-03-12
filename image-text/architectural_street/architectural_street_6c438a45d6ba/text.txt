@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A stop sign covered in a couple of stickers towards its bottom portion is visible in the forefront of the photo on a cloudy day. The street behind is has cars parked on either side of it. It also has a zebra crossing, upon which a lady with long thick red hair is crossing. She is wearing a black jacket and black slacks, and she is grasping a large black purse. Also visible in the scene is a hedge needing trimming next to the sidewalk, several trees changing colors as if it's Fall, and a parking lot tucked away behind a brick walled fence.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

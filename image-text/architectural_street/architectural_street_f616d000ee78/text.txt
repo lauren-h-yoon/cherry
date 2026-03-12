@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A shadow from the streetlight appears on the ground. There are virtually no cars seen in the photo besides the one truck very far off. There are some houses shown near the street that have big trees in front of them.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

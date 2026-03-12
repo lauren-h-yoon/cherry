@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_77f4db042d2c",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_77f4db042d2c/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the image we can see there is a sofa on which there is a person is sitting and he is holding a white paper on which there are drawings of a cartoon and behind the person there is a green colour wall on which the photographs are hanging to a clip and beside the sofa there is a window.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:28.354362+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

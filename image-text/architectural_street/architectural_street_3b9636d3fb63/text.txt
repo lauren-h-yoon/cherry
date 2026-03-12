@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In this image is a picture of a tall building with at least eight floors in it.  It is made of brick. The upper portion of the building is gold.  The bottom half is red. Below the red portion is a store with a red awning near the entryway.  Two gray cars and a motorcycle are parked along the street.  A man wearing a helmet stands near the motorcycle.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

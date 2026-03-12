@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_8ee7492ba11b",
+  "category": "daily_indoors",
+  "image_id": "63db28256dfe650d",
+  "caption": "In the middle of the image a man is standing and holding a cat. Behind him there is a wall. Top right side of the image there is a glass window.",
+  "caption_word_count": 31,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "63db28256dfe650d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:27:04.065642+00:00"
+}
