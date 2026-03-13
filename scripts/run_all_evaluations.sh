@@ -2,12 +2,12 @@
 # run_all_evaluations.sh
 # Run embodied spatial evaluations across all images and models
 #
-# Run on ml-login7:
-#   chmod +x run_all_evaluations.sh
-#   ./run_all_evaluations.sh
+# Run from the `cherry/` directory:
+#   chmod +x scripts/run_all_evaluations.sh
+#   ./scripts/run_all_evaluations.sh
 #
 # Prerequisites:
-#   - Spatial graphs generated for all images (run generate_all_spatial_graphs.sh first)
+#   - Spatial graphs generated for all images (run scripts/generate_all_spatial_graphs.sh first)
 #   - vLLM server running for Qwen model (optional)
 #   - API keys for Claude and OpenAI
 
@@ -116,7 +116,7 @@ NUM_GRAPHS=${#GRAPHS[@]}
 
 if [ $NUM_GRAPHS -eq 0 ]; then
     log "ERROR: No spatial graphs found in $SPATIAL_OUTPUTS"
-    log "Run generate_all_spatial_graphs.sh first"
+    log "Run scripts/generate_all_spatial_graphs.sh first"
     exit 1
 fi
 

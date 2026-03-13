@@ -265,7 +265,8 @@ Inputs:
 |                           v                                  |
 |   Step 3: Z-Order Ranking                                    |
 |   +------------------------------------------------------+   |
-|   |  # Sort by median depth (lower = closer)             |   |
+|   |  # Sort by median depth, then assign z_order so      |   |
+|   |  # larger z_order means closer to camera             |   |
 |   |  entities.sort(key=lambda e: e.depth_median)         |   |
 |   |                                                      |   |
 |   |  # Assign z-order                                    |   |

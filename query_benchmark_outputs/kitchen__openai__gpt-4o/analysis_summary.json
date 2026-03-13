@@ -1,0 +1,331 @@
+{
+  "overall": {
+    "count": 120,
+    "correct": 51,
+    "accuracy": 0.425,
+    "partial": false
+  },
+  "model": {
+    "provider": "openai",
+    "model_name": "gpt-4o"
+  },
+  "by_task_type": {
+    "allocentric_qa": {
+      "count": 48,
+      "correct": 17,
+      "accuracy": 0.3541666666666667
+    },
+    "egocentric_qa": {
+      "count": 72,
+      "correct": 34,
+      "accuracy": 0.4722222222222222
+    }
+  },
+  "by_frame_type": {
+    "object_to_object": {
+      "count": 60,
+      "correct": 27,
+      "accuracy": 0.45
+    },
+    "viewer_centered": {
+      "count": 60,
+      "correct": 24,
+      "accuracy": 0.4
+    }
+  },
+  "by_query_subtype": {
+    "binary_relation": {
+      "count": 40,
+      "correct": 24,
+      "accuracy": 0.6
+    },
+    "object_retrieval": {
+      "count": 40,
+      "correct": 1,
+      "accuracy": 0.025
+    },
+    "relation_mcq": {
+      "count": 40,
+      "correct": 26,
+      "accuracy": 0.65
+    }
+  },
+  "by_relation_axis": {
+    "above_below": {
+      "count": 24,
+      "correct": 14,
+      "accuracy": 0.5833333333333334
+    },
+    "foreground_background": {
+      "count": 12,
+      "correct": 5,
+      "accuracy": 0.4166666666666667
+    },
+    "front_behind": {
+      "count": 36,
+      "correct": 10,
+      "accuracy": 0.2777777777777778
+    },
+    "left_right": {
+      "count": 48,
+      "correct": 22,
+      "accuracy": 0.4583333333333333
+    }
+  },
+  "by_template_id": {
+    "allo_v1": {
+      "count": 28,
+      "correct": 11,
+      "accuracy": 0.39285714285714285
+    },
+    "allo_v2": {
+      "count": 20,
+      "correct": 6,
+      "accuracy": 0.3
+    },
+    "ego_v1": {
+      "count": 37,
+      "correct": 14,
+      "accuracy": 0.3783783783783784
+    },
+    "ego_v2": {
+      "count": 35,
+      "correct": 20,
+      "accuracy": 0.5714285714285714
+    }
+  },
+  "by_task_frame_subtype": {
+    "allocentric_qa | object_to_object | binary_relation": {
+      "correct": 6,
+      "count": 8,
+      "accuracy": 0.75
+    },
+    "allocentric_qa | object_to_object | object_retrieval": {
+      "correct": 0,
+      "count": 8,
+      "accuracy": 0.0
+    },
+    "allocentric_qa | object_to_object | relation_mcq": {
+      "correct": 3,
+      "count": 8,
+      "accuracy": 0.375
+    },
+    "allocentric_qa | viewer_centered | binary_relation": {
+      "correct": 3,
+      "count": 8,
+      "accuracy": 0.375
+    },
+    "allocentric_qa | viewer_centered | object_retrieval": {
+      "correct": 1,
+      "count": 8,
+      "accuracy": 0.125
+    },
+    "allocentric_qa | viewer_centered | relation_mcq": {
+      "correct": 4,
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "egocentric_qa | object_to_object | binary_relation": {
+      "correct": 8,
+      "count": 12,
+      "accuracy": 0.6666666666666666
+    },
+    "egocentric_qa | object_to_object | object_retrieval": {
+      "correct": 0,
+      "count": 12,
+      "accuracy": 0.0
+    },
+    "egocentric_qa | object_to_object | relation_mcq": {
+      "correct": 10,
+      "count": 12,
+      "accuracy": 0.8333333333333334
+    },
+    "egocentric_qa | viewer_centered | binary_relation": {
+      "correct": 7,
+      "count": 12,
+      "accuracy": 0.5833333333333334
+    },
+    "egocentric_qa | viewer_centered | object_retrieval": {
+      "correct": 0,
+      "count": 12,
+      "accuracy": 0.0
+    },
+    "egocentric_qa | viewer_centered | relation_mcq": {
+      "correct": 9,
+      "count": 12,
+      "accuracy": 0.75
+    }
+  },
+  "task_frame_subtype_rows": [
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "binary_relation",
+      "correct": 6,
+      "count": 8,
+      "accuracy": 0.75
+    },
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "object_retrieval",
+      "correct": 0,
+      "count": 8,
+      "accuracy": 0.0
+    },
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "relation_mcq",
+      "correct": 3,
+      "count": 8,
+      "accuracy": 0.375
+    },
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "binary_relation",
+      "correct": 3,
+      "count": 8,
+      "accuracy": 0.375
+    },
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "object_retrieval",
+      "correct": 1,
+      "count": 8,
+      "accuracy": 0.125
+    },
+    {
+      "task_type": "allocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "relation_mcq",
+      "correct": 4,
+      "count": 8,
+      "accuracy": 0.5
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "binary_relation",
+      "correct": 8,
+      "count": 12,
+      "accuracy": 0.6666666666666666
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "object_retrieval",
+      "correct": 0,
+      "count": 12,
+      "accuracy": 0.0
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "object_to_object",
+      "query_subtype": "relation_mcq",
+      "correct": 10,
+      "count": 12,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "binary_relation",
+      "correct": 7,
+      "count": 12,
+      "accuracy": 0.5833333333333334
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "object_retrieval",
+      "correct": 0,
+      "count": 12,
+      "accuracy": 0.0
+    },
+    {
+      "task_type": "egocentric_qa",
+      "frame_type": "viewer_centered",
+      "query_subtype": "relation_mcq",
+      "correct": 9,
+      "count": 12,
+      "accuracy": 0.75
+    }
+  ],
+  "by_task_template": {
+    "allocentric_qa | allo_v1": {
+      "count": 28,
+      "correct": 11,
+      "accuracy": 0.39285714285714285
+    },
+    "allocentric_qa | allo_v2": {
+      "count": 20,
+      "correct": 6,
+      "accuracy": 0.3
+    },
+    "egocentric_qa | ego_v1": {
+      "count": 37,
+      "correct": 14,
+      "accuracy": 0.3783783783783784
+    },
+    "egocentric_qa | ego_v2": {
+      "count": 35,
+      "correct": 20,
+      "accuracy": 0.5714285714285714
+    }
+  },
+  "top_mistakes": [
+    {
+      "ground_truth": "in_front",
+      "predicted": "behind",
+      "count": 13
+    },
+    {
+      "ground_truth": "left",
+      "predicted": "right",
+      "count": 9
+    },
+    {
+      "ground_truth": "window_2",
+      "predicted": "window_1",
+      "count": 4
+    },
+    {
+      "ground_truth": "window_2",
+      "predicted": "window_0",
+      "count": 3
+    },
+    {
+      "ground_truth": "window_2",
+      "predicted": "window_4",
+      "count": 3
+    },
+    {
+      "ground_truth": "behind",
+      "predicted": "in_front",
+      "count": 2
+    },
+    {
+      "ground_truth": "above",
+      "predicted": "below",
+      "count": 2
+    },
+    {
+      "ground_truth": "foreground",
+      "predicted": "background",
+      "count": 2
+    },
+    {
+      "ground_truth": "window_2",
+      "predicted": "lamp_1",
+      "count": 2
+    },
+    {
+      "ground_truth": "cabinet_10",
+      "predicted": "counter_0",
+      "count": 2
+    }
+  ]
+}

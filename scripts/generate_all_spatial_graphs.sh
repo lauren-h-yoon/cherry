@@ -2,9 +2,9 @@
 # generate_all_spatial_graphs.sh
 # Generate spatial graphs for all images in visual_scenes_2d_unsplash
 #
-# Run on ml-login7:
-#   chmod +x generate_all_spatial_graphs.sh
-#   ./generate_all_spatial_graphs.sh
+# Run from the `cherry/` directory:
+#   chmod +x scripts/generate_all_spatial_graphs.sh
+#   ./scripts/generate_all_spatial_graphs.sh
 #
 # Requirements:
 #   - GPU for SAM3 + Depth
