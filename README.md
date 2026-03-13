@@ -1,6 +1,9 @@
 # Cherry: Z-Ordered Scene Understanding Pipeline
 
-A pipeline for extracting z-ordered entities from images by combining SAM3 (Segment Anything Model 3) segmentation with depth estimation. Produces depth-sorted entity graphs for downstream scene understanding tasks, including an **embodied spatial intelligence evaluation system**.
+A pipeline for extracting z-ordered entities from images by combining SAM3 (Segment Anything Model 3) segmentation with depth estimation. It produces depth-sorted spatial graphs for downstream evaluation, including:
+
+- the current **query benchmark** workflow
+- the older **embodied spatial evaluation** workflow
 
 ## Overview
 
@@ -41,6 +44,41 @@ Image + Text Prompts
 |                           EVALUATION SCORES                    |
 +---------------------------------------------------------------+
 ```
+
+## Current Workflows
+
+Cherry currently has two evaluation paths:
+
+1. **Query benchmark** (current primary path)
+   - Stage 1 builds `spatial_graph.json` and a labeled `*_spatial_viz.png`
+   - models answer egocentric and allocentric spatial queries directly
+   - outputs are saved per image and model under `query_benchmark_outputs/`
+
+2. **Embodied evaluation** (older path, still available)
+   - models use primitive tools like `point_to()` and `draw_path()`
+   - outputs are evaluated against the same Stage 1 ground truth
+
+## Key Concept: Query Benchmark
+
+The current benchmark is designed to isolate spatial reasoning more cleanly than the primitive-tool setup.
+
+1. **Stage 1 builds the scene representation**
+   - SAM3 + depth produce `spatial_graph.json`
+   - Stage 1 also produces a labeled visualization image used as model input
+2. **Model sees the labeled image**
+   - object boxes and labels are already shown
+   - the model answers with a text label only, such as `left`, `behind`, or `chair_0`
+3. **Evaluation is exact-match on the normalized answer**
+   - the benchmark compares the model answer to the ground-truth answer computed from the graph
+
+Current query families:
+- `egocentric_qa`
+- `allocentric_qa`
+
+Current query subtypes:
+- `binary_relation`
+- `relation_mcq`
+- `object_retrieval`
 
 ## Key Concept: Embodied Spatial Intelligence Evaluation
 
@@ -103,6 +141,34 @@ export OPENAI_API_KEY=your_key_here       # For query generation (GPT-4o)
 export HF_TOKEN=your_huggingface_token    # For SAM3 gated model
 ```
 
+## Quick Start: Query Benchmark
+
+```bash
+# 1. Run Stage 1 perception pipeline
+python depth_sam3_connector.py \
+    --image photos/living_room2.jpg \
+    --prompts "chair" "lamp" "painting" "vase" \
+    --output_dir spatial_outputs/
+
+# 2. Generate query benchmark prompts only
+python run_query_benchmark.py \
+    --graph spatial_outputs/living_room2_spatial_graph.json \
+    --output-dir query_benchmark_outputs/
+
+# 3. Run and evaluate one model
+python run_query_benchmark.py \
+    --graph spatial_outputs/living_room2_spatial_graph.json \
+    --render-image \
+    --evaluate \
+    --provider openai \
+    --model gpt-4o \
+    --output-dir query_benchmark_outputs/
+
+# 4. Analyze results
+python analyze_query_results.py \
+    --input query_benchmark_outputs/living_room2__openai__gpt-4o/evaluation_results.json
+```
+
 ## Quick Start: Embodied Evaluation
 
 ```bash
@@ -118,12 +184,30 @@ python run_embodied_eval.py \
     --task suite \
     --num-tasks 20
 
-# 3. Or run allocentric evaluation with query generation
-python run_allocentric_eval.py \
-    --graph spatial_outputs/scene_spatial_graph.json \
-    --mode full \
-    --anchor "table"
 ```
+
+## Batch Scripts
+
+For repeated runs across many images and models, use the shell helpers under `scripts/`.
+
+```bash
+# Query benchmark batch run
+chmod +x scripts/run_query_benchmark_batch.sh
+MODEL_FILTER=openai,claude ./scripts/run_query_benchmark_batch.sh
+
+# Stage 1 spatial graph generation batch helper
+chmod +x scripts/generate_all_spatial_graphs.sh
+./scripts/generate_all_spatial_graphs.sh
+
+# Older embodied-evaluation batch helper
+chmod +x scripts/run_all_evaluations.sh
+./scripts/run_all_evaluations.sh
+```
+
+Useful query-batch filters:
+- `IMAGE_FILTER=living_room2`
+- `IMAGE_LIMIT=1`
+- `MODEL_FILTER=openai,claude`
 
 ---
 
@@ -186,6 +270,11 @@ python depth_sam3_connector.py \
 - `{image}_masks.npz` - All entity masks
 - `{image}_depth.npy` - Full depth map
 
+Convention:
+- `z_order = 0` is farthest from the camera / background
+- larger `z_order` values are closer to the camera / foreground
+- `z_order_sequence` is ordered from back to front
+
 **Spatial Graph JSON Structure (Ground Truth):**
 ```json
 {
@@ -208,7 +297,52 @@ python depth_sam3_connector.py \
 
 ---
 
-### 4. `run_embodied_eval.py` - Embodied Spatial Intelligence Evaluation
+### 4. `run_query_benchmark.py` - Query Benchmark Runner
+
+Generate and optionally evaluate text-only spatial queries using the Stage 1 labeled scene image.
+
+```bash
+# Generate queries only
+python run_query_benchmark.py \
+    --graph spatial_outputs/living_room2_spatial_graph.json \
+    --output-dir query_benchmark_outputs/
+
+# Evaluate with GPT-4o
+python run_query_benchmark.py \
+    --graph spatial_outputs/living_room2_spatial_graph.json \
+    --render-image \
+    --evaluate \
+    --provider openai \
+    --model gpt-4o \
+    --output-dir query_benchmark_outputs/
+```
+
+**Outputs:**
+- `<image>__queries/queries.json`
+- `<image>__queries/queries_readable.txt`
+- `<image>__<provider>__<model>/evaluation_results.json`
+- model-specific analysis files produced by `analyze_query_results.py`
+
+---
+
+### 5. `analyze_query_results.py` - Query Benchmark Analysis
+
+Summarize query benchmark results and save text/JSON reports plus plots.
+
+```bash
+python analyze_query_results.py \
+    --input query_benchmark_outputs/living_room2__openai__gpt-4o/evaluation_results.json
+```
+
+**Outputs:**
+- `analysis_summary.txt`
+- `analysis_summary.json`
+- accuracy plots by task type, frame type, subtype, relation axis, and template
+- `task_frame_subtype_table.png`
+
+---
+
+### 6. `run_embodied_eval.py` - Embodied Spatial Intelligence Evaluation
 
 The core evaluation script. VLM sees image, uses tools to express spatial understanding, outputs are evaluated against ground truth.
 
@@ -253,69 +387,17 @@ python run_embodied_eval.py --graph ... --task perspective --reference "table" -
 
 ---
 
-### 5. `run_allocentric_eval.py` - Allocentric Q&A Evaluation
+### 7. Legacy Scripts
 
-Unified pipeline that generates allocentric queries and evaluates VLM responses.
+Older scripts are kept under `legacy/` for reference:
 
-```bash
-# Step 1: Generate queries (uses GPT-4o for orientation estimation)
-python run_allocentric_eval.py \
-    --graph spatial_outputs/scene_spatial_graph.json \
-    --mode generate \
-    --anchor "table"
+- `legacy/generate_queries.py`
+- `legacy/visualize_tasks.py`
+- `legacy/run_spatial_agent.py`
 
-# Step 2: Run evaluation on generated queries
-python run_allocentric_eval.py \
-    --graph spatial_outputs/scene_spatial_graph.json \
-    --mode evaluate \
-    --queries queries_output/allocentric_queries.json
+Older ad-hoc output folders are also kept there when retained for reference.
 
-# Full pipeline (generate + evaluate)
-python run_allocentric_eval.py \
-    --graph spatial_outputs/scene_spatial_graph.json \
-    --mode full \
-    --anchor "table"
-```
-
-**Query Types Generated:**
-- `left_right` - "Is the lamp to the left or right of the table?"
-- `front_behind` - "Is the chair in front of or behind the table?"
-- `above_below` - "Is the ceiling above or below the table?"
-- `visibility` - "Can you see the lamp from the table's position?"
-- `nearest_object` - "What object is closest to the table?"
-- `farthest_object` - "What object is farthest from the table?"
-- `closest_left` - "What is the closest object to the left of the table?"
-
----
-
-### 6. `generate_queries.py` - Query Generation
-
-Generates allocentric Q&A pairs using GPT-4o for anchor orientation estimation.
-
-```bash
-python generate_queries.py \
-    --input spatial_outputs/scene_spatial_graph.json \
-    --output queries_output/queries.json \
-    --anchor "table"
-```
-
-**Output JSON:**
-```json
-{
-  "image_path": "scene.jpg",
-  "anchor_entity": {"id": "entity_2", "name": "table"},
-  "anchor_orientation": {"orientation": "facing_camera", "confidence": 0.85},
-  "queries": [
-    {
-      "query_id": "q_001",
-      "query_type": "left_right",
-      "prompt": "Is the lamp to the left or right of the table?",
-      "answer": "left",
-      "targets": ["lamp_0"]
-    }
-  ]
-}
-```
+The query benchmark does **not** use `legacy/generate_queries.py` for query generation. That script is only still reused for Stage 1 prompt detection when object prompts need to be auto-generated from an image.
 
 ---
 
@@ -424,34 +506,18 @@ for task_type, data in results['by_type'].items():
 
 ```
 cherry/
-+-- run_sam3.py                  # SAM3 segmentation
-+-- extract_depth.py             # Depth extraction (DPT/DINOv3)
-+-- depth_sam3_connector.py      # Combined pipeline -> ground truth
-+-- spatial_graph.py             # Graph conversion & visualization
-+-- run_embodied_eval.py         # Embodied evaluation runner
-+-- run_allocentric_eval.py      # Allocentric Q&A evaluation
-+-- generate_queries.py          # Query generation with GPT-4o
-|
-+-- spatial_agent/
-|   +-- __init__.py              # Package exports
-|   +-- annotator.py             # Scene annotation with waypoints
-|   +-- state.py                 # Agent state management
-|   +-- tools.py                 # LangChain tools (navigation)
-|   +-- agent.py                 # Navigation agents
-|   |
-|   +-- primitive_tools.py       # OUTPUT MECHANISM tools
-|   +-- ground_truth.py          # Ground truth from SAM3+Depth
-|   +-- evaluator.py             # Compares VLM outputs to ground truth
-|   +-- tasks.py                 # Task definitions
-|   +-- embodied_agent.py        # Embodied spatial agent
-|   |
-|   +-- allocentric.py           # Allocentric relationship computation
-|   +-- allocentric_tools.py     # Allocentric LangChain tools
-|   +-- allocentric_eval.py      # Allocentric evaluation framework
-|   +-- query_integration.py     # Connects queries with embodied eval
-|
-+-- web/                         # Web interface (FastAPI + Next.js)
-|
++-- depth_sam3_connector.py      # Stage 1: SAM3 + depth -> spatial graph
++-- run_sam3.py                  # SAM3 segmentation helper
++-- extract_depth.py             # Depth extraction helper
++-- run_query_benchmark.py       # Current query benchmark runner
++-- analyze_query_results.py     # Query benchmark analysis
++-- run_embodied_eval.py         # Older embodied evaluation runner
++-- query_benchmark/             # Query schema, templates, ground truth, generator
++-- spatial_agent/               # Embodied evaluation stack + model providers
++-- scripts/                     # Batch scripts
++-- legacy/                      # Older scripts kept for reference
++-- spatial_outputs/             # Stage 1 outputs
++-- query_benchmark_outputs/     # Query benchmark outputs
 +-- sam3/                        # SAM3 model (submodule)
 +-- dinov3/                      # DINOv3 depth model (submodule)
 ```
@@ -462,10 +528,11 @@ cherry/
 
 | Component | Model | Purpose |
 |-----------|-------|---------|
-| VLM Evaluation | `claude-sonnet-4-20250514` | Spatial reasoning agent |
-| Query Generation | GPT-4o | Anchor orientation estimation |
-| Segmentation | SAM3 (facebook/sam3-hiera-large) | Object detection |
-| Depth | DPT (Intel/dpt-large) | Monocular depth estimation |
+| Query Benchmark Evaluation | `gpt-4o`, `claude-sonnet-4-5`, `vllm`/Qwen | Text-only spatial QA |
+| Embodied Evaluation | Claude / OpenAI / Qwen / Ollama | Primitive-tool benchmark |
+| Stage 1 Prompt Detection | GPT-4o via `legacy/generate_queries.py` | Auto-detect object prompts |
+| Segmentation | SAM3 | Object detection / masks |
+| Depth | DPT or DINOv3 | Monocular depth estimation |
 
 ---
 
@@ -473,8 +540,8 @@ cherry/
 
 | Variable | Description |
 |----------|-------------|
-| `ANTHROPIC_API_KEY` | Required for VLM evaluation (Claude) |
-| `OPENAI_API_KEY` | Required for query generation (GPT-4o) |
+| `ANTHROPIC_API_KEY` | Required for Claude evaluation |
+| `OPENAI_API_KEY` | Required for OpenAI evaluation and Stage 1 prompt detection |
 | `HF_TOKEN` | Required for SAM3 gated model access |
 | `CUDA_VISIBLE_DEVICES` | GPU selection for inference |
 
@@ -489,19 +556,25 @@ python depth_sam3_connector.py \
     --prompts "table" "chair" "lamp" "person" \
     --output_dir spatial_outputs/
 
-# 2. Run full embodied evaluation
+# 2. Run query benchmark evaluation
+python run_query_benchmark.py \
+    --graph spatial_outputs/scene_spatial_graph.json \
+    --render-image \
+    --evaluate \
+    --provider openai \
+    --model gpt-4o \
+    --output-dir query_benchmark_outputs/
+
+# 3. Analyze query benchmark outputs
+python analyze_query_results.py \
+    --input query_benchmark_outputs/scene__openai__gpt-4o/evaluation_results.json
+
+# 4. Or run the older embodied benchmark
 python run_embodied_eval.py \
     --graph spatial_outputs/scene_spatial_graph.json \
     --task suite \
     --num-tasks 30 \
-    --output-dir eval_results/
-
-# 3. Or run allocentric Q&A evaluation
-python run_allocentric_eval.py \
-    --graph spatial_outputs/scene_spatial_graph.json \
-    --mode full \
-    --anchor "table" \
-    --output-dir allocentric_results/
+    --output-dir embodied_eval_outputs/
 ```
 
 **Expected Output:**

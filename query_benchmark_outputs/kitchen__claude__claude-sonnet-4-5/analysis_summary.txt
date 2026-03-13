@@ -1,0 +1,83 @@
+QUERY BENCHMARK ANALYSIS
+================================================================================
+Input: /Users/suezhou/Desktop/Desktop - Xueru's Macbook Pro - 1/cns186_finalproj/cherry/query_benchmark_outputs/kitchen__claude__claude-sonnet-4-5/evaluation_results.json
+Model: claude-sonnet-4-5 (claude)
+Overall accuracy: 41.7% (50/120)
+
+By Task Type
+------------
+allocentric_qa: 31.2% (15/48)
+egocentric_qa: 48.6% (35/72)
+
+By Frame Type
+-------------
+object_to_object: 45.0% (27/60)
+viewer_centered: 38.3% (23/60)
+
+By Query Subtype
+----------------
+binary_relation: 50.0% (20/40)
+object_retrieval: 10.0% (4/40)
+relation_mcq: 65.0% (26/40)
+
+By Relation Axis
+----------------
+above_below: 50.0% (12/24)
+foreground_background: 41.7% (5/12)
+front_behind: 16.7% (6/36)
+left_right: 56.2% (27/48)
+
+By Template ID
+--------------
+allo_v1: 35.7% (10/28)
+allo_v2: 25.0% (5/20)
+ego_v1: 43.2% (16/37)
+ego_v2: 54.3% (19/35)
+
+By Task / Frame / Subtype
+-------------------------
+Task           | Frame            | Subtype          | Accuracy | Correct | Count
+---------------+------------------+------------------+----------+---------+------
+Allocentric QA | Object-to-object | Binary relation  | 37.5%    | 3       | 8    
+Allocentric QA | Object-to-object | Object retrieval | 12.5%    | 1       | 8    
+Allocentric QA | Object-to-object | Relation MCQ     | 37.5%    | 3       | 8    
+Allocentric QA | Viewer-centered  | Binary relation  | 37.5%    | 3       | 8    
+Allocentric QA | Viewer-centered  | Object retrieval | 0.0%     | 0       | 8    
+Allocentric QA | Viewer-centered  | Relation MCQ     | 62.5%    | 5       | 8    
+Egocentric QA  | Object-to-object | Binary relation  | 58.3%    | 7       | 12   
+Egocentric QA  | Object-to-object | Object retrieval | 25.0%    | 3       | 12   
+Egocentric QA  | Object-to-object | Relation MCQ     | 83.3%    | 10      | 12   
+Egocentric QA  | Viewer-centered  | Binary relation  | 58.3%    | 7       | 12   
+Egocentric QA  | Viewer-centered  | Object retrieval | 0.0%     | 0       | 12   
+Egocentric QA  | Viewer-centered  | Relation MCQ     | 66.7%    | 8       | 12   
+
+Note
+----
+Counts in the Task / Frame / Subtype table aggregate over relation-axis buckets.
+Generation is capped at 4 queries per (task_type, frame_type, query_subtype, relation_axis) bucket before these rows are combined.
+Legal relation axes are:
+- Egocentric QA + Viewer-centered: Left / right, Above / below, Foreground / background
+- Egocentric QA + Object-to-object: Left / right, Above / below, Front / behind
+- Allocentric QA + Viewer-centered: Left / right, Front / behind
+- Allocentric QA + Object-to-object: Left / right, Front / behind
+Some rows fall below the nominal total because invalid or ambiguous queries are filtered out before evaluation.
+
+By Task / Template
+------------------
+allocentric_qa | allo_v1: 35.7% (10/28)
+allocentric_qa | allo_v2: 25.0% (5/20)
+egocentric_qa | ego_v1: 43.2% (16/37)
+egocentric_qa | ego_v2: 54.3% (19/35)
+
+Top Mistakes
+-----------
+GT=in_front | Pred=behind: 16
+GT=left | Pred=right: 5
+GT=window_2 | Pred=window_4: 4
+GT=window_2 | Pred=cabinet_6: 4
+GT=behind | Pred=in_front: 3
+GT=window_0 | Pred=window_4: 3
+GT=above | Pred=below: 3
+GT=foreground | Pred=background: 3
+GT=window_2 | Pred=cabinet_4: 2
+GT=below | Pred=above: 2

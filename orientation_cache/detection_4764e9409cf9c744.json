@@ -1,0 +1,15 @@
+{
+  "objects": [
+    "cabinet",
+    "sink",
+    "counter",
+    "window",
+    "lamp",
+    "flowers",
+    "towel"
+  ],
+  "suggested_anchor": "counter",
+  "confidence": 0.9,
+  "scene_type": "kitchen",
+  "raw_response": "{\n    \"objects\": [\"cabinet\", \"sink\", \"counter\", \"window\", \"lamp\", \"flowers\", \"towel\"],\n    \"suggested_anchor\": \"counter\",\n    \"confidence\": 0.9,\n    \"scene_type\": \"kitchen\"\n}"
+}

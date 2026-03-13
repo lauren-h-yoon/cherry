@@ -1,0 +1,756 @@
+ALLOCENTRIC QUERY SUMMARY
+======================================================================
+Image: ../photos/living_room2.jpg
+
+ANCHOR OBJECT
+----------------------------------------------------------------------
+Name: chair_1
+ID: entity_1
+Category: chair
+z_order: 22
+Center: (321.70, 274.62)
+Relative depth: 0.1794
+Pixel count: 4338
+
+ESTIMATED ANCHOR ORIENTATION
+----------------------------------------------------------------------
+Orientation: toward_camera
+Confidence: 0.95
+Reason: The chair's full frontal view is visible, indicating it faces toward the camera.
+Orientation mode: estimated
+
+HEURISTICS / SOURCES
+----------------------------------------------------------------------
+Orientation source: openai_vision_estimate
+Visibility source: heuristic_bbox_zorder_occlusion
+Distance metric: heuristic_spatial_distance
+
+VISIBILITY HEURISTIC
+----------------------------------------------------------------------
+A target is marked occluded if another object lies between anchor and target in z-order
+and overlaps the target bbox enough, or lies close to the anchor→target image-plane ray.
+
+Z-ORDER CONVENTION
+----------------------------------------------------------------------
+Larger z_order = closer to camera
+Smaller z_order = farther from camera
+For orientation-aware front/behind, anchor orientation is estimated by a VLM.
+
+NEAREST / FARTHEST OBJECTS
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, which object is closest?
+   A: vase_2
+   Meta: distance_metric=heuristic_spatial_distance
+
+2. Q: Using the chair_1 as the reference point, which object is farthest away?
+   A: painting_5
+   Meta: distance_metric=heuristic_spatial_distance
+
+3. Q: Using the chair_1 as the reference point, which object is second closest?
+   A: chair_2
+   Meta: distance_metric=heuristic_spatial_distance
+
+
+LEFT / RIGHT RELATION
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, is the painting_5 to the left or to the right?
+   A: left
+   Targets: painting_5
+   Meta: orientation_mode=estimated
+
+2. Q: Using the chair_1 as the reference point, is the painting_7 to the left or to the right?
+   A: left
+   Targets: painting_7
+   Meta: orientation_mode=estimated
+
+3. Q: Using the chair_1 as the reference point, is the painting_3 to the left or to the right?
+   A: right
+   Targets: painting_3
+   Meta: orientation_mode=estimated
+
+4. Q: Using the chair_1 as the reference point, is the painting_0 to the left or to the right?
+   A: right
+   Targets: painting_0
+   Meta: orientation_mode=estimated
+
+5. Q: Using the chair_1 as the reference point, is the painting_4 to the left or to the right?
+   A: right
+   Targets: painting_4
+   Meta: orientation_mode=estimated
+
+6. Q: Using the chair_1 as the reference point, is the painting_9 to the left or to the right?
+   A: left
+   Targets: painting_9
+   Meta: orientation_mode=estimated
+
+7. Q: Using the chair_1 as the reference point, is the lamp_0 to the left or to the right?
+   A: left
+   Targets: lamp_0
+   Meta: orientation_mode=estimated
+
+8. Q: Using the chair_1 as the reference point, is the painting_15 to the left or to the right?
+   A: right
+   Targets: painting_15
+   Meta: orientation_mode=estimated
+
+9. Q: Using the chair_1 as the reference point, is the lamp_2 to the left or to the right?
+   A: right
+   Targets: lamp_2
+   Meta: orientation_mode=estimated
+
+10. Q: Using the chair_1 as the reference point, is the painting_11 to the left or to the right?
+   A: right
+   Targets: painting_11
+   Meta: orientation_mode=estimated
+
+11. Q: Using the chair_1 as the reference point, is the painting_14 to the left or to the right?
+   A: left
+   Targets: painting_14
+   Meta: orientation_mode=estimated
+
+12. Q: Using the chair_1 as the reference point, is the painting_10 to the left or to the right?
+   A: right
+   Targets: painting_10
+   Meta: orientation_mode=estimated
+
+13. Q: Using the chair_1 as the reference point, is the painting_2 to the left or to the right?
+   A: right
+   Targets: painting_2
+   Meta: orientation_mode=estimated
+
+14. Q: Using the chair_1 as the reference point, is the chair_5 to the left or to the right?
+   A: right
+   Targets: chair_5
+   Meta: orientation_mode=estimated
+
+15. Q: Using the chair_1 as the reference point, is the painting_12 to the left or to the right?
+   A: right
+   Targets: painting_12
+   Meta: orientation_mode=estimated
+
+16. Q: Using the chair_1 as the reference point, is the painting_13 to the left or to the right?
+   A: right
+   Targets: painting_13
+   Meta: orientation_mode=estimated
+
+17. Q: Using the chair_1 as the reference point, is the vase_1 to the left or to the right?
+   A: left
+   Targets: vase_1
+   Meta: orientation_mode=estimated
+
+18. Q: Using the chair_1 as the reference point, is the vase_3 to the left or to the right?
+   A: left
+   Targets: vase_3
+   Meta: orientation_mode=estimated
+
+19. Q: Using the chair_1 as the reference point, is the painting_8 to the left or to the right?
+   A: right
+   Targets: painting_8
+   Meta: orientation_mode=estimated
+
+20. Q: Using the chair_1 as the reference point, is the lamp_4 to the left or to the right?
+   A: left
+   Targets: lamp_4
+   Meta: orientation_mode=estimated
+
+21. Q: Using the chair_1 as the reference point, is the painting_16 to the left or to the right?
+   A: left
+   Targets: painting_16
+   Meta: orientation_mode=estimated
+
+22. Q: Using the chair_1 as the reference point, is the chair_2 to the left or to the right?
+   A: right
+   Targets: chair_2
+   Meta: orientation_mode=estimated
+
+23. Q: Using the chair_1 as the reference point, is the painting_6 to the left or to the right?
+   A: right
+   Targets: painting_6
+   Meta: orientation_mode=estimated
+
+24. Q: Using the chair_1 as the reference point, is the painting_1 to the left or to the right?
+   A: left
+   Targets: painting_1
+   Meta: orientation_mode=estimated
+
+25. Q: Using the chair_1 as the reference point, is the vase_2 to the left or to the right?
+   A: right
+   Targets: vase_2
+   Meta: orientation_mode=estimated
+
+26. Q: Using the chair_1 as the reference point, is the lamp_3 to the left or to the right?
+   A: right
+   Targets: lamp_3
+   Meta: orientation_mode=estimated
+
+27. Q: Using the chair_1 as the reference point, is the chair_4 to the left or to the right?
+   A: left
+   Targets: chair_4
+   Meta: orientation_mode=estimated
+
+28. Q: Using the chair_1 as the reference point, is the chair_0 to the left or to the right?
+   A: right
+   Targets: chair_0
+   Meta: orientation_mode=estimated
+
+29. Q: Using the chair_1 as the reference point, is the lamp_1 to the left or to the right?
+   A: left
+   Targets: lamp_1
+   Meta: orientation_mode=estimated
+
+30. Q: Using the chair_1 as the reference point, is the vase_0 to the left or to the right?
+   A: left
+   Targets: vase_0
+   Meta: orientation_mode=estimated
+
+31. Q: Using the chair_1 as the reference point, is the chair_3 to the left or to the right?
+   A: right
+   Targets: chair_3
+   Meta: orientation_mode=estimated
+
+32. Q: Using the chair_1 as the reference point, is the orange_2 to the left or to the right?
+   A: right
+   Targets: orange_2
+   Meta: orientation_mode=estimated
+
+33. Q: Using the chair_1 as the reference point, is the orange_3 to the left or to the right?
+   A: right
+   Targets: orange_3
+   Meta: orientation_mode=estimated
+
+34. Q: Using the chair_1 as the reference point, is the orange_0 to the left or to the right?
+   A: right
+   Targets: orange_0
+   Meta: orientation_mode=estimated
+
+35. Q: Using the chair_1 as the reference point, is the orange_1 to the left or to the right?
+   A: right
+   Targets: orange_1
+   Meta: orientation_mode=estimated
+
+
+FRONT / BEHIND RELATION
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, is the painting_5 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_5
+   Meta: orientation_mode=estimated
+
+2. Q: Using the chair_1 as the reference point, is the painting_7 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_7
+   Meta: orientation_mode=estimated
+
+3. Q: Using the chair_1 as the reference point, is the painting_3 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_3
+   Meta: orientation_mode=estimated
+
+4. Q: Using the chair_1 as the reference point, is the painting_0 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_0
+   Meta: orientation_mode=estimated
+
+5. Q: Using the chair_1 as the reference point, is the painting_4 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_4
+   Meta: orientation_mode=estimated
+
+6. Q: Using the chair_1 as the reference point, is the painting_9 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_9
+   Meta: orientation_mode=estimated
+
+7. Q: Using the chair_1 as the reference point, is the lamp_0 in front of or behind the chair_1?
+   A: behind
+   Targets: lamp_0
+   Meta: orientation_mode=estimated
+
+8. Q: Using the chair_1 as the reference point, is the painting_15 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_15
+   Meta: orientation_mode=estimated
+
+9. Q: Using the chair_1 as the reference point, is the lamp_2 in front of or behind the chair_1?
+   A: behind
+   Targets: lamp_2
+   Meta: orientation_mode=estimated
+
+10. Q: Using the chair_1 as the reference point, is the painting_11 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_11
+   Meta: orientation_mode=estimated
+
+11. Q: Using the chair_1 as the reference point, is the painting_14 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_14
+   Meta: orientation_mode=estimated
+
+12. Q: Using the chair_1 as the reference point, is the painting_10 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_10
+   Meta: orientation_mode=estimated
+
+13. Q: Using the chair_1 as the reference point, is the painting_2 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_2
+   Meta: orientation_mode=estimated
+
+14. Q: Using the chair_1 as the reference point, is the chair_5 in front of or behind the chair_1?
+   A: behind
+   Targets: chair_5
+   Meta: orientation_mode=estimated
+
+15. Q: Using the chair_1 as the reference point, is the painting_12 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_12
+   Meta: orientation_mode=estimated
+
+16. Q: Using the chair_1 as the reference point, is the painting_13 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_13
+   Meta: orientation_mode=estimated
+
+17. Q: Using the chair_1 as the reference point, is the vase_1 in front of or behind the chair_1?
+   A: behind
+   Targets: vase_1
+   Meta: orientation_mode=estimated
+
+18. Q: Using the chair_1 as the reference point, is the vase_3 in front of or behind the chair_1?
+   A: behind
+   Targets: vase_3
+   Meta: orientation_mode=estimated
+
+19. Q: Using the chair_1 as the reference point, is the painting_8 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_8
+   Meta: orientation_mode=estimated
+
+20. Q: Using the chair_1 as the reference point, is the lamp_4 in front of or behind the chair_1?
+   A: behind
+   Targets: lamp_4
+   Meta: orientation_mode=estimated
+
+21. Q: Using the chair_1 as the reference point, is the painting_16 in front of or behind the chair_1?
+   A: behind
+   Targets: painting_16
+   Meta: orientation_mode=estimated
+
+22. Q: Using the chair_1 as the reference point, is the chair_2 in front of or behind the chair_1?
+   A: behind
+   Targets: chair_2
+   Meta: orientation_mode=estimated
+
+23. Q: Using the chair_1 as the reference point, is the painting_6 in front of or behind the chair_1?
+   A: in_front
+   Targets: painting_6
+   Meta: orientation_mode=estimated
+
+24. Q: Using the chair_1 as the reference point, is the painting_1 in front of or behind the chair_1?
+   A: in_front
+   Targets: painting_1
+   Meta: orientation_mode=estimated
+
+25. Q: Using the chair_1 as the reference point, is the vase_2 in front of or behind the chair_1?
+   A: in_front
+   Targets: vase_2
+   Meta: orientation_mode=estimated
+
+26. Q: Using the chair_1 as the reference point, is the lamp_3 in front of or behind the chair_1?
+   A: in_front
+   Targets: lamp_3
+   Meta: orientation_mode=estimated
+
+27. Q: Using the chair_1 as the reference point, is the chair_4 in front of or behind the chair_1?
+   A: in_front
+   Targets: chair_4
+   Meta: orientation_mode=estimated
+
+28. Q: Using the chair_1 as the reference point, is the chair_0 in front of or behind the chair_1?
+   A: in_front
+   Targets: chair_0
+   Meta: orientation_mode=estimated
+
+29. Q: Using the chair_1 as the reference point, is the lamp_1 in front of or behind the chair_1?
+   A: in_front
+   Targets: lamp_1
+   Meta: orientation_mode=estimated
+
+30. Q: Using the chair_1 as the reference point, is the vase_0 in front of or behind the chair_1?
+   A: in_front
+   Targets: vase_0
+   Meta: orientation_mode=estimated
+
+31. Q: Using the chair_1 as the reference point, is the chair_3 in front of or behind the chair_1?
+   A: in_front
+   Targets: chair_3
+   Meta: orientation_mode=estimated
+
+32. Q: Using the chair_1 as the reference point, is the orange_2 in front of or behind the chair_1?
+   A: in_front
+   Targets: orange_2
+   Meta: orientation_mode=estimated
+
+33. Q: Using the chair_1 as the reference point, is the orange_3 in front of or behind the chair_1?
+   A: in_front
+   Targets: orange_3
+   Meta: orientation_mode=estimated
+
+34. Q: Using the chair_1 as the reference point, is the orange_0 in front of or behind the chair_1?
+   A: in_front
+   Targets: orange_0
+   Meta: orientation_mode=estimated
+
+35. Q: Using the chair_1 as the reference point, is the orange_1 in front of or behind the chair_1?
+   A: in_front
+   Targets: orange_1
+   Meta: orientation_mode=estimated
+
+
+ABOVE / BELOW RELATION
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, is the painting_5 above or below the chair_1?
+   A: above
+   Targets: painting_5
+
+2. Q: Using the chair_1 as the reference point, is the painting_7 above or below the chair_1?
+   A: above
+   Targets: painting_7
+
+3. Q: Using the chair_1 as the reference point, is the painting_3 above or below the chair_1?
+   A: above
+   Targets: painting_3
+
+4. Q: Using the chair_1 as the reference point, is the painting_0 above or below the chair_1?
+   A: above
+   Targets: painting_0
+
+5. Q: Using the chair_1 as the reference point, is the painting_4 above or below the chair_1?
+   A: above
+   Targets: painting_4
+
+6. Q: Using the chair_1 as the reference point, is the painting_9 above or below the chair_1?
+   A: above
+   Targets: painting_9
+
+7. Q: Using the chair_1 as the reference point, is the lamp_0 above or below the chair_1?
+   A: above
+   Targets: lamp_0
+
+8. Q: Using the chair_1 as the reference point, is the painting_15 above or below the chair_1?
+   A: above
+   Targets: painting_15
+
+9. Q: Using the chair_1 as the reference point, is the lamp_2 above or below the chair_1?
+   A: above
+   Targets: lamp_2
+
+10. Q: Using the chair_1 as the reference point, is the painting_11 above or below the chair_1?
+   A: above
+   Targets: painting_11
+
+11. Q: Using the chair_1 as the reference point, is the painting_14 above or below the chair_1?
+   A: above
+   Targets: painting_14
+
+12. Q: Using the chair_1 as the reference point, is the painting_10 above or below the chair_1?
+   A: above
+   Targets: painting_10
+
+13. Q: Using the chair_1 as the reference point, is the painting_2 above or below the chair_1?
+   A: above
+   Targets: painting_2
+
+14. Q: Using the chair_1 as the reference point, is the chair_5 above or below the chair_1?
+   A: above
+   Targets: chair_5
+
+15. Q: Using the chair_1 as the reference point, is the painting_12 above or below the chair_1?
+   A: above
+   Targets: painting_12
+
+16. Q: Using the chair_1 as the reference point, is the painting_13 above or below the chair_1?
+   A: above
+   Targets: painting_13
+
+17. Q: Using the chair_1 as the reference point, is the vase_1 above or below the chair_1?
+   A: above
+   Targets: vase_1
+
+18. Q: Using the chair_1 as the reference point, is the vase_3 above or below the chair_1?
+   A: above
+   Targets: vase_3
+
+19. Q: Using the chair_1 as the reference point, is the painting_8 above or below the chair_1?
+   A: above
+   Targets: painting_8
+
+20. Q: Using the chair_1 as the reference point, is the lamp_4 above or below the chair_1?
+   A: above
+   Targets: lamp_4
+
+21. Q: Using the chair_1 as the reference point, is the painting_16 above or below the chair_1?
+   A: above
+   Targets: painting_16
+
+22. Q: Using the chair_1 as the reference point, is the chair_2 above or below the chair_1?
+   A: aligned
+   Targets: chair_2
+
+23. Q: Using the chair_1 as the reference point, is the painting_6 above or below the chair_1?
+   A: above
+   Targets: painting_6
+
+24. Q: Using the chair_1 as the reference point, is the painting_1 above or below the chair_1?
+   A: above
+   Targets: painting_1
+
+25. Q: Using the chair_1 as the reference point, is the vase_2 above or below the chair_1?
+   A: above
+   Targets: vase_2
+
+26. Q: Using the chair_1 as the reference point, is the lamp_3 above or below the chair_1?
+   A: above
+   Targets: lamp_3
+
+27. Q: Using the chair_1 as the reference point, is the chair_4 above or below the chair_1?
+   A: below
+   Targets: chair_4
+
+28. Q: Using the chair_1 as the reference point, is the chair_0 above or below the chair_1?
+   A: below
+   Targets: chair_0
+
+29. Q: Using the chair_1 as the reference point, is the lamp_1 above or below the chair_1?
+   A: aligned
+   Targets: lamp_1
+
+30. Q: Using the chair_1 as the reference point, is the vase_0 above or below the chair_1?
+   A: below
+   Targets: vase_0
+
+31. Q: Using the chair_1 as the reference point, is the chair_3 above or below the chair_1?
+   A: below
+   Targets: chair_3
+
+32. Q: Using the chair_1 as the reference point, is the orange_2 above or below the chair_1?
+   A: below
+   Targets: orange_2
+
+33. Q: Using the chair_1 as the reference point, is the orange_3 above or below the chair_1?
+   A: below
+   Targets: orange_3
+
+34. Q: Using the chair_1 as the reference point, is the orange_0 above or below the chair_1?
+   A: below
+   Targets: orange_0
+
+35. Q: Using the chair_1 as the reference point, is the orange_1 above or below the chair_1?
+   A: below
+   Targets: orange_1
+
+
+VISIBILITY
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, is the painting_5 visible or occluded?
+   A: visible
+   Targets: painting_5
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+2. Q: Using the chair_1 as the reference point, is the painting_7 visible or occluded?
+   A: visible
+   Targets: painting_7
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+3. Q: Using the chair_1 as the reference point, is the painting_3 visible or occluded?
+   A: occluded
+   Targets: painting_3
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+4. Q: Using the chair_1 as the reference point, is the painting_0 visible or occluded?
+   A: visible
+   Targets: painting_0
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+5. Q: Using the chair_1 as the reference point, is the painting_4 visible or occluded?
+   A: visible
+   Targets: painting_4
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+6. Q: Using the chair_1 as the reference point, is the painting_9 visible or occluded?
+   A: visible
+   Targets: painting_9
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+7. Q: Using the chair_1 as the reference point, is the lamp_0 visible or occluded?
+   A: visible
+   Targets: lamp_0
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+8. Q: Using the chair_1 as the reference point, is the painting_15 visible or occluded?
+   A: visible
+   Targets: painting_15
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+9. Q: Using the chair_1 as the reference point, is the lamp_2 visible or occluded?
+   A: visible
+   Targets: lamp_2
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+10. Q: Using the chair_1 as the reference point, is the painting_11 visible or occluded?
+   A: visible
+   Targets: painting_11
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+11. Q: Using the chair_1 as the reference point, is the painting_14 visible or occluded?
+   A: visible
+   Targets: painting_14
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+12. Q: Using the chair_1 as the reference point, is the painting_10 visible or occluded?
+   A: visible
+   Targets: painting_10
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+13. Q: Using the chair_1 as the reference point, is the painting_2 visible or occluded?
+   A: occluded
+   Targets: painting_2
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+14. Q: Using the chair_1 as the reference point, is the chair_5 visible or occluded?
+   A: visible
+   Targets: chair_5
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+15. Q: Using the chair_1 as the reference point, is the painting_12 visible or occluded?
+   A: visible
+   Targets: painting_12
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+16. Q: Using the chair_1 as the reference point, is the painting_13 visible or occluded?
+   A: occluded
+   Targets: painting_13
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+17. Q: Using the chair_1 as the reference point, is the vase_1 visible or occluded?
+   A: occluded
+   Targets: vase_1
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+18. Q: Using the chair_1 as the reference point, is the vase_3 visible or occluded?
+   A: visible
+   Targets: vase_3
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+19. Q: Using the chair_1 as the reference point, is the painting_8 visible or occluded?
+   A: visible
+   Targets: painting_8
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+20. Q: Using the chair_1 as the reference point, is the lamp_4 visible or occluded?
+   A: occluded
+   Targets: lamp_4
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+21. Q: Using the chair_1 as the reference point, is the painting_16 visible or occluded?
+   A: visible
+   Targets: painting_16
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+22. Q: Using the chair_1 as the reference point, is the chair_2 visible or occluded?
+   A: visible
+   Targets: chair_2
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+23. Q: Using the chair_1 as the reference point, is the painting_6 visible or occluded?
+   A: visible
+   Targets: painting_6
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+24. Q: Using the chair_1 as the reference point, is the painting_1 visible or occluded?
+   A: visible
+   Targets: painting_1
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+25. Q: Using the chair_1 as the reference point, is the vase_2 visible or occluded?
+   A: visible
+   Targets: vase_2
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+26. Q: Using the chair_1 as the reference point, is the lamp_3 visible or occluded?
+   A: occluded
+   Targets: lamp_3
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+27. Q: Using the chair_1 as the reference point, is the chair_4 visible or occluded?
+   A: visible
+   Targets: chair_4
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+28. Q: Using the chair_1 as the reference point, is the chair_0 visible or occluded?
+   A: visible
+   Targets: chair_0
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+29. Q: Using the chair_1 as the reference point, is the lamp_1 visible or occluded?
+   A: occluded
+   Targets: lamp_1
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+30. Q: Using the chair_1 as the reference point, is the vase_0 visible or occluded?
+   A: occluded
+   Targets: vase_0
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+31. Q: Using the chair_1 as the reference point, is the chair_3 visible or occluded?
+   A: occluded
+   Targets: chair_3
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+32. Q: Using the chair_1 as the reference point, is the orange_2 visible or occluded?
+   A: occluded
+   Targets: orange_2
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+33. Q: Using the chair_1 as the reference point, is the orange_3 visible or occluded?
+   A: occluded
+   Targets: orange_3
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+34. Q: Using the chair_1 as the reference point, is the orange_0 visible or occluded?
+   A: occluded
+   Targets: orange_0
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+35. Q: Using the chair_1 as the reference point, is the orange_1 visible or occluded?
+   A: occluded
+   Targets: orange_1
+   Meta: visibility_source=heuristic_bbox_zorder_occlusion
+
+
+DIRECTIONAL NEAREST OBJECT
+----------------------------------------------------------------------
+1. Q: Using the chair_1 as the reference point, what is the closest object to the left?
+   A: painting_16
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+
+2. Q: Using the chair_1 as the reference point, what is the closest object to the right?
+   A: vase_2
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+
+3. Q: Using the chair_1 as the reference point, what is the closest object above it?
+   A: vase_2
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+
+4. Q: Using the chair_1 as the reference point, what is the closest object below it?
+   A: chair_2
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+
+5. Q: Using the chair_1 as the reference point, what is the closest object in front of it?
+   A: vase_2
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+
+6. Q: Using the chair_1 as the reference point, what is the closest object behind it?
+   A: chair_2
+   Meta: orientation_mode=estimated, distance_metric=heuristic_spatial_distance
+

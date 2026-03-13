@@ -1,0 +1,1040 @@
+QUERY BENCHMARK SUMMARY
+================================================================================
+Graph: spatial_outputs/living_room2_spatial_graph.json
+Image: ../photos/living_room2.jpg
+Image size: [391, 500]
+Entities: 36
+Queries: 120
+Object retrieval included: True
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | binary_relation
+--------------------------------------------------------------------------------
+[q_1097401]
+Prompt: Imagine you are standing at lamp_1, facing right. is painting_0 in_front or behind relative to vase_2? Return only the answer.
+Anchor: lamp_1
+Reference: vase_2
+Target: painting_0
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_775270]
+Prompt: Place yourself at painting_10 and orient yourself to face the camera. is painting_1 in_front or behind relative to painting_5? Return only the answer.
+Anchor: painting_10
+Reference: painting_5
+Target: painting_1
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_820527]
+Prompt: Place yourself at chair_5 and orient yourself to face away from the camera. is chair_4 in_front or behind relative to painting_7? Return only the answer.
+Anchor: chair_5
+Reference: painting_7
+Target: chair_4
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_906352]
+Prompt: Place yourself at chair_5 and orient yourself to face right. is painting_5 in_front or behind relative to lamp_0? Return only the answer.
+Anchor: chair_5
+Reference: lamp_0
+Target: painting_5
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_110870]
+Prompt: Place yourself at painting_11 and orient yourself to face away from the camera. is painting_8 left or right relative to painting_9? Return only the answer.
+Anchor: painting_11
+Reference: painting_9
+Target: painting_8
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_130292]
+Prompt: Place yourself at vase_2 and orient yourself to face away from the camera. is lamp_3 left or right relative to vase_1? Return only the answer.
+Anchor: vase_2
+Reference: vase_1
+Target: lamp_3
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_174160]
+Prompt: Place yourself at lamp_3 and orient yourself to face left. is orange_0 left or right relative to painting_10? Return only the answer.
+Anchor: lamp_3
+Reference: painting_10
+Target: orange_0
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_185527]
+Prompt: Place yourself at orange_1 and orient yourself to face left. is painting_11 left or right relative to chair_3? Return only the answer.
+Anchor: orange_1
+Reference: chair_3
+Target: painting_11
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | object_retrieval
+--------------------------------------------------------------------------------
+[q_1450446]
+Prompt: Place yourself at painting_9 and orient yourself to face away from the camera. which object is behind of chair_3? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_9
+Reference: chair_3
+Orientation: away
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, orange_2, orange_3, orange_0, orange_1
+Ground truth: orange_2
+Metadata: {"target_relation": "behind"}
+
+[q_1461423]
+Prompt: Imagine you are standing at painting_6, facing away from the camera. which object is in_front of painting_10? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_6
+Reference: painting_10
+Orientation: away
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "in_front"}
+
+[q_1465468]
+Prompt: Imagine you are standing at painting_14, facing right. which object is in_front of chair_0? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_14
+Reference: chair_0
+Orientation: right
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "in_front"}
+
+[q_1466947]
+Prompt: Imagine you are standing at orange_2, facing right. which object is behind of painting_8? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: orange_2
+Reference: painting_8
+Orientation: right
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_3, orange_0, orange_1
+Ground truth: painting_6
+Metadata: {"target_relation": "behind"}
+
+[q_743550]
+Prompt: Place yourself at painting_12 and orient yourself to face the camera. which object is left of painting_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_12
+Reference: painting_2
+Orientation: camera
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "left"}
+
+[q_743615]
+Prompt: Place yourself at painting_13 and orient yourself to face the camera. which object is right of painting_14? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_13
+Reference: painting_14
+Orientation: camera
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_3
+Metadata: {"target_relation": "right"}
+
+[q_745644]
+Prompt: Place yourself at painting_11 and orient yourself to face away from the camera. which object is left of painting_9? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_11
+Reference: painting_9
+Orientation: away
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_3
+Metadata: {"target_relation": "left"}
+
+[q_749738]
+Prompt: Place yourself at orange_3 and orient yourself to face left. which object is right of painting_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_0, orange_1. Return only the answer.
+Anchor: orange_3
+Reference: painting_2
+Orientation: left
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | relation_mcq
+--------------------------------------------------------------------------------
+[q_1118790]
+Prompt: Place yourself at painting_10 and orient yourself to face the camera. where is lamp_0 relative to vase_2? Choose one: in_front, behind. Return only the answer.
+Anchor: painting_10
+Reference: vase_2
+Target: lamp_0
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1226859]
+Prompt: Place yourself at vase_0 and orient yourself to face left. where is painting_1 relative to vase_3? Choose one: in_front, behind. Return only the answer.
+Anchor: vase_0
+Reference: vase_3
+Target: painting_1
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1369829]
+Prompt: Imagine you are standing at lamp_0, facing left. where is vase_2 relative to painting_6? Choose one: in_front, behind. Return only the answer.
+Anchor: lamp_0
+Reference: painting_6
+Target: vase_2
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1420509]
+Prompt: Imagine you are standing at chair_5, facing right. where is painting_14 relative to lamp_2? Choose one: in_front, behind. Return only the answer.
+Anchor: chair_5
+Reference: lamp_2
+Target: painting_14
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_504102]
+Prompt: Place yourself at painting_13 and orient yourself to face left. where is painting_4 relative to chair_1? Choose one: left, right. Return only the answer.
+Anchor: painting_13
+Reference: chair_1
+Target: painting_4
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_685560]
+Prompt: Imagine you are standing at painting_1, facing left. where is painting_9 relative to painting_0? Choose one: left, right. Return only the answer.
+Anchor: painting_1
+Reference: painting_0
+Target: painting_9
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_694108]
+Prompt: Imagine you are standing at chair_3, facing left. where is lamp_4 relative to painting_11? Choose one: left, right. Return only the answer.
+Anchor: chair_3
+Reference: painting_11
+Target: lamp_4
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_740580]
+Prompt: Imagine you are standing at orange_0, facing right. where is chair_5 relative to painting_10? Choose one: left, right. Return only the answer.
+Anchor: orange_0
+Reference: painting_10
+Target: chair_5
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | binary_relation
+--------------------------------------------------------------------------------
+[q_40025]
+Prompt: Place yourself at chair_3 and orient yourself to face left. is lamp_0 in_front or behind relative to you? Return only the answer.
+Anchor: chair_3
+Target: lamp_0
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_43287]
+Prompt: Imagine you are standing at vase_1, facing away from the camera. is chair_5 in_front or behind relative to you? Return only the answer.
+Anchor: vase_1
+Target: chair_5
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_43773]
+Prompt: Imagine you are standing at vase_0, facing away from the camera. is painting_11 in_front or behind relative to you? Return only the answer.
+Anchor: vase_0
+Target: painting_11
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_46068]
+Prompt: Imagine you are standing at painting_6, facing right. is vase_0 in_front or behind relative to you? Return only the answer.
+Anchor: painting_6
+Target: vase_0
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_15800]
+Prompt: Place yourself at painting_0 and orient yourself to face the camera. is painting_7 left or right relative to you? Return only the answer.
+Anchor: painting_0
+Target: painting_7
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_18309]
+Prompt: Place yourself at painting_3 and orient yourself to face left. is lamp_3 left or right relative to you? Return only the answer.
+Anchor: painting_3
+Target: lamp_3
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_20251]
+Prompt: Place yourself at chair_1 and orient yourself to face right. is painting_15 left or right relative to you? Return only the answer.
+Anchor: chair_1
+Target: painting_15
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_22618]
+Prompt: Imagine you are standing at vase_3, facing away from the camera. is vase_0 left or right relative to you? Return only the answer.
+Anchor: vase_3
+Target: vase_0
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | object_retrieval
+--------------------------------------------------------------------------------
+[q_56733]
+Prompt: Place yourself at painting_11 and orient yourself to face left. which object is behind of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_11
+Orientation: left
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "behind"}
+
+[q_56794]
+Prompt: Place yourself at painting_9 and orient yourself to face right. which object is in_front of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_9
+Orientation: right
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "in_front"}
+
+[q_56858]
+Prompt: Imagine you are standing at painting_3, facing the camera. which object is behind of you? Choose one: painting_5, painting_7, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_3
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "behind"}
+
+[q_56922]
+Prompt: Imagine you are standing at orange_0, facing the camera. which object is behind of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_1. Return only the answer.
+Anchor: orange_0
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "behind"}
+
+[q_35948]
+Prompt: Place yourself at painting_2 and orient yourself to face away from the camera. which object is left of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: painting_2
+Orientation: away
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: lamp_2
+Metadata: {"target_relation": "left"}
+
+[q_35958]
+Prompt: Place yourself at vase_3 and orient yourself to face away from the camera. which object is left of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: vase_3
+Orientation: away
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "left"}
+
+[q_36198]
+Prompt: Imagine you are standing at orange_2, facing the camera. which object is right of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: orange_2
+Orientation: camera
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_3, orange_0, orange_1
+Ground truth: orange_3
+Metadata: {"target_relation": "right"}
+
+[q_36243]
+Prompt: Imagine you are standing at lamp_4, facing away from the camera. which object is right of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Anchor: lamp_4
+Orientation: away
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_16
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | relation_mcq
+--------------------------------------------------------------------------------
+[q_48078]
+Prompt: Place yourself at painting_11 and orient yourself to face away from the camera. where is painting_14 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: painting_11
+Target: painting_14
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_52129]
+Prompt: Imagine you are standing at vase_3, facing the camera. where is painting_5 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: vase_3
+Target: painting_5
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_52375]
+Prompt: Imagine you are standing at painting_1, facing the camera. where is painting_7 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: painting_1
+Target: painting_7
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_56385]
+Prompt: Imagine you are standing at vase_0, facing right. where is chair_2 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: vase_0
+Target: chair_2
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_26485]
+Prompt: Place yourself at painting_16 and orient yourself to face the camera. where is painting_10 relative to you? Choose one: left, right. Return only the answer.
+Anchor: painting_16
+Target: painting_10
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_30107]
+Prompt: Place yourself at painting_13 and orient yourself to face right. where is lamp_1 relative to you? Choose one: left, right. Return only the answer.
+Anchor: painting_13
+Target: lamp_1
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_33301]
+Prompt: Imagine you are standing at orange_1, facing away from the camera. where is painting_3 relative to you? Choose one: left, right. Return only the answer.
+Anchor: orange_1
+Target: painting_3
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_34559]
+Prompt: Imagine you are standing at orange_1, facing left. where is painting_5 relative to you? Choose one: left, right. Return only the answer.
+Anchor: orange_1
+Target: painting_5
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | binary_relation
+--------------------------------------------------------------------------------
+[q_05808]
+Prompt: From the viewer's perspective in this image, is painting_1 above or below relative to painting_11? Return only the answer.
+Reference: painting_11
+Target: painting_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_05997]
+Prompt: From the viewer's perspective in this image, is painting_4 above or below relative to painting_13? Return only the answer.
+Reference: painting_13
+Target: painting_4
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_07036]
+Prompt: Looking at the scene from the camera's viewpoint, is vase_0 above or below relative to painting_11? Return only the answer.
+Reference: painting_11
+Target: vase_0
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_07747]
+Prompt: Looking at the scene from the camera's viewpoint, is vase_2 above or below relative to vase_0? Return only the answer.
+Reference: vase_0
+Target: vase_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_11301]
+Prompt: From the viewer's perspective in this image, is vase_3 in_front or behind relative to chair_1? Return only the answer.
+Reference: chair_1
+Target: vase_3
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_11714]
+Prompt: From the viewer's perspective in this image, is painting_14 in_front or behind relative to orange_0? Return only the answer.
+Reference: orange_0
+Target: painting_14
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_11995]
+Prompt: Looking at the scene from the camera's viewpoint, is painting_2 in_front or behind relative to lamp_0? Return only the answer.
+Reference: lamp_0
+Target: painting_2
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_12878]
+Prompt: Looking at the scene from the camera's viewpoint, is lamp_4 in_front or behind relative to chair_3? Return only the answer.
+Reference: chair_3
+Target: lamp_4
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_00631]
+Prompt: From the viewer's perspective in this image, is painting_13 left or right relative to painting_9? Return only the answer.
+Reference: painting_9
+Target: painting_13
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00728]
+Prompt: From the viewer's perspective in this image, is painting_11 left or right relative to lamp_2? Return only the answer.
+Reference: lamp_2
+Target: painting_11
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_01377]
+Prompt: From the viewer's perspective in this image, is painting_2 left or right relative to chair_4? Return only the answer.
+Reference: chair_4
+Target: painting_2
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_01629]
+Prompt: From the viewer's perspective in this image, is vase_2 left or right relative to orange_0? Return only the answer.
+Reference: orange_0
+Target: vase_2
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | object_retrieval
+--------------------------------------------------------------------------------
+[q_10394]
+Prompt: From the viewer's perspective in this image, which object is above of painting_14? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_14
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_12
+Metadata: {"target_relation": "above"}
+
+[q_10399]
+Prompt: From the viewer's perspective in this image, which object is below of painting_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_2
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "below"}
+
+[q_10433]
+Prompt: From the viewer's perspective in this image, which object is above of vase_0? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: vase_0
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "above"}
+
+[q_10471]
+Prompt: Looking at the scene from the camera's viewpoint, which object is below of chair_5? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: chair_5
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "below"}
+
+[q_15595]
+Prompt: From the viewer's perspective in this image, which object is in_front of chair_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: chair_2
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: chair_1
+Metadata: {"target_relation": "in_front"}
+
+[q_15625]
+Prompt: Looking at the scene from the camera's viewpoint, which object is in_front of painting_7? Choose one: painting_5, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_7
+Relation axis: front_behind
+Candidate answers: painting_5, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_3
+Metadata: {"target_relation": "in_front"}
+
+[q_15647]
+Prompt: Looking at the scene from the camera's viewpoint, which object is in_front of painting_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_2
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: chair_5
+Metadata: {"target_relation": "in_front"}
+
+[q_15670]
+Prompt: Looking at the scene from the camera's viewpoint, which object is behind of painting_6? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_6
+Relation axis: front_behind
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "behind"}
+
+[q_05401]
+Prompt: From the viewer's perspective in this image, which object is right of lamp_3? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: lamp_3
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+[q_05416]
+Prompt: From the viewer's perspective in this image, which object is right of orange_1? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0. Return only the answer.
+Reference: orange_1
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+[q_05438]
+Prompt: Looking at the scene from the camera's viewpoint, which object is right of painting_14? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_14
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+[q_05442]
+Prompt: Looking at the scene from the camera's viewpoint, which object is right of painting_2? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Reference: painting_2
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | relation_mcq
+--------------------------------------------------------------------------------
+[q_08222]
+Prompt: From the viewer's perspective in this image, where is chair_4 relative to lamp_2? Choose one: above, below. Return only the answer.
+Reference: lamp_2
+Target: chair_4
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_08630]
+Prompt: From the viewer's perspective in this image, where is painting_1 relative to painting_16? Choose one: above, below. Return only the answer.
+Reference: painting_16
+Target: painting_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_08932]
+Prompt: From the viewer's perspective in this image, where is painting_6 relative to lamp_1? Choose one: above, below. Return only the answer.
+Reference: lamp_1
+Target: painting_6
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_10117]
+Prompt: Looking at the scene from the camera's viewpoint, where is vase_3 relative to chair_0? Choose one: above, below. Return only the answer.
+Reference: chair_0
+Target: vase_3
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_13703]
+Prompt: From the viewer's perspective in this image, where is painting_4 relative to lamp_4? Choose one: in_front, behind. Return only the answer.
+Reference: lamp_4
+Target: painting_4
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_14139]
+Prompt: From the viewer's perspective in this image, where is painting_16 relative to chair_3? Choose one: in_front, behind. Return only the answer.
+Reference: chair_3
+Target: painting_16
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_14588]
+Prompt: Looking at the scene from the camera's viewpoint, where is painting_13 relative to lamp_2? Choose one: in_front, behind. Return only the answer.
+Reference: lamp_2
+Target: painting_13
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_14927]
+Prompt: Looking at the scene from the camera's viewpoint, where is painting_0 relative to painting_8? Choose one: in_front, behind. Return only the answer.
+Reference: painting_8
+Target: painting_0
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_03125]
+Prompt: From the viewer's perspective in this image, where is painting_6 relative to lamp_0? Choose one: left, right. Return only the answer.
+Reference: lamp_0
+Target: painting_6
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_03795]
+Prompt: From the viewer's perspective in this image, where is painting_14 relative to lamp_3? Choose one: left, right. Return only the answer.
+Reference: lamp_3
+Target: painting_14
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_04224]
+Prompt: Looking at the scene from the camera's viewpoint, where is orange_3 relative to painting_3? Choose one: left, right. Return only the answer.
+Reference: painting_3
+Target: orange_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_05177]
+Prompt: Looking at the scene from the camera's viewpoint, where is chair_3 relative to vase_0? Choose one: left, right. Return only the answer.
+Reference: vase_0
+Target: chair_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | binary_relation
+--------------------------------------------------------------------------------
+[q_00152]
+Prompt: From the viewer's perspective in this image, is painting_4 above or below relative to you? Return only the answer.
+Target: painting_4
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00177]
+Prompt: From the viewer's perspective in this image, is lamp_1 above or below relative to you? Return only the answer.
+Target: lamp_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00188]
+Prompt: Looking at the scene from the camera's viewpoint, is painting_4 above or below relative to you? Return only the answer.
+Target: painting_4
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00199]
+Prompt: Looking at the scene from the camera's viewpoint, is painting_13 above or below relative to you? Return only the answer.
+Target: painting_13
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00304]
+Prompt: From the viewer's perspective in this image, is lamp_2 foreground or background relative to you? Return only the answer.
+Target: lamp_2
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: background
+
+[q_00323]
+Prompt: From the viewer's perspective in this image, is chair_4 foreground or background relative to you? Return only the answer.
+Target: chair_4
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00330]
+Prompt: From the viewer's perspective in this image, is orange_0 foreground or background relative to you? Return only the answer.
+Target: orange_0
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00336]
+Prompt: Looking at the scene from the camera's viewpoint, is painting_4 foreground or background relative to you? Return only the answer.
+Target: painting_4
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: background
+
+[q_00027]
+Prompt: From the viewer's perspective in this image, is chair_4 left or right relative to you? Return only the answer.
+Target: chair_4
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00050]
+Prompt: Looking at the scene from the camera's viewpoint, is painting_12 left or right relative to you? Return only the answer.
+Target: painting_12
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00058]
+Prompt: Looking at the scene from the camera's viewpoint, is chair_1 left or right relative to you? Return only the answer.
+Target: chair_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00063]
+Prompt: Looking at the scene from the camera's viewpoint, is chair_4 left or right relative to you? Return only the answer.
+Target: chair_4
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | object_retrieval
+--------------------------------------------------------------------------------
+[q_00292]
+Prompt: From the viewer's perspective in this image, which object is above of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "above"}
+
+[q_00293]
+Prompt: From the viewer's perspective in this image, which object is below of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: vase_1
+Metadata: {"target_relation": "below"}
+
+[q_00294]
+Prompt: Looking at the scene from the camera's viewpoint, which object is above of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "above"}
+
+[q_00295]
+Prompt: Looking at the scene from the camera's viewpoint, which object is below of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: above_below
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: vase_1
+Metadata: {"target_relation": "below"}
+
+[q_00440]
+Prompt: From the viewer's perspective in this image, which object is foreground of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_8
+Metadata: {"target_relation": "foreground"}
+
+[q_00441]
+Prompt: From the viewer's perspective in this image, which object is background of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "background"}
+
+[q_00442]
+Prompt: Looking at the scene from the camera's viewpoint, which object is foreground of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_8
+Metadata: {"target_relation": "foreground"}
+
+[q_00443]
+Prompt: Looking at the scene from the camera's viewpoint, which object is background of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "background"}
+
+[q_00144]
+Prompt: From the viewer's perspective in this image, which object is left of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_3
+Metadata: {"target_relation": "left"}
+
+[q_00145]
+Prompt: From the viewer's perspective in this image, which object is right of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+[q_00146]
+Prompt: Looking at the scene from the camera's viewpoint, which object is left of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_3
+Metadata: {"target_relation": "left"}
+
+[q_00147]
+Prompt: Looking at the scene from the camera's viewpoint, which object is right of you? Choose one: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1. Return only the answer.
+Relation axis: left_right
+Candidate answers: painting_5, painting_7, painting_3, painting_0, painting_4, painting_9, lamp_0, painting_15, lamp_2, painting_11, painting_14, painting_10, painting_2, chair_5, painting_12, painting_13, vase_1, vase_3, painting_8, lamp_4, painting_16, chair_2, chair_1, painting_6, painting_1, vase_2, lamp_3, chair_4, chair_0, lamp_1, vase_0, chair_3, orange_2, orange_3, orange_0, orange_1
+Ground truth: painting_5
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | relation_mcq
+--------------------------------------------------------------------------------
+[q_00237]
+Prompt: From the viewer's perspective in this image, where is vase_3 relative to you? Choose one: above, below. Return only the answer.
+Target: vase_3
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00238]
+Prompt: From the viewer's perspective in this image, where is painting_8 relative to you? Choose one: above, below. Return only the answer.
+Target: painting_8
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00251]
+Prompt: From the viewer's perspective in this image, where is chair_3 relative to you? Choose one: above, below. Return only the answer.
+Target: chair_3
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00253]
+Prompt: From the viewer's perspective in this image, where is orange_3 relative to you? Choose one: above, below. Return only the answer.
+Target: orange_3
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00401]
+Prompt: From the viewer's perspective in this image, where is orange_3 relative to you? Choose one: foreground, background. Return only the answer.
+Target: orange_3
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00422]
+Prompt: Looking at the scene from the camera's viewpoint, where is painting_8 relative to you? Choose one: foreground, background. Return only the answer.
+Target: painting_8
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00436]
+Prompt: Looking at the scene from the camera's viewpoint, where is orange_2 relative to you? Choose one: foreground, background. Return only the answer.
+Target: orange_2
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00439]
+Prompt: Looking at the scene from the camera's viewpoint, where is orange_1 relative to you? Choose one: foreground, background. Return only the answer.
+Target: orange_1
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00089]
+Prompt: From the viewer's perspective in this image, where is vase_3 relative to you? Choose one: left, right. Return only the answer.
+Target: vase_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00100]
+Prompt: From the viewer's perspective in this image, where is chair_0 relative to you? Choose one: left, right. Return only the answer.
+Target: chair_0
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00118]
+Prompt: Looking at the scene from the camera's viewpoint, where is painting_14 relative to you? Choose one: left, right. Return only the answer.
+Target: painting_14
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00123]
+Prompt: Looking at the scene from the camera's viewpoint, where is painting_13 relative to you? Choose one: left, right. Return only the answer.
+Target: painting_13
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left

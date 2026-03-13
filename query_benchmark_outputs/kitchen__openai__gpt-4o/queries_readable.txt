@@ -1,0 +1,1040 @@
+QUERY BENCHMARK SUMMARY
+================================================================================
+Graph: spatial_outputs/kitchen_spatial_graph.json
+Image: photos/kitchen.jpg
+Image size: [480, 640]
+Entities: 39
+Queries: 120
+Object retrieval included: True
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | binary_relation
+--------------------------------------------------------------------------------
+[q_1025985]
+Prompt: Place yourself at window_0 and orient yourself to face away from the camera. is towel in_front or behind relative to cabinet_3? Return only the answer.
+Anchor: window_0
+Reference: cabinet_3
+Target: towel
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1302859]
+Prompt: Imagine you are standing at window_4, facing left. is lamp_0 in_front or behind relative to cabinet_12? Return only the answer.
+Anchor: window_4
+Reference: cabinet_12
+Target: lamp_0
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1356402]
+Prompt: Imagine you are standing at window_3, facing right. is cabinet_15 in_front or behind relative to cabinet_3? Return only the answer.
+Anchor: window_3
+Reference: cabinet_3
+Target: cabinet_15
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_980728]
+Prompt: Place yourself at counter_2 and orient yourself to face the camera. is cabinet_16 in_front or behind relative to flowers_1? Return only the answer.
+Anchor: counter_2
+Reference: flowers_1
+Target: cabinet_16
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_140342]
+Prompt: Place yourself at flowers_1 and orient yourself to face away from the camera. is cabinet_11 left or right relative to window_1? Return only the answer.
+Anchor: flowers_1
+Reference: window_1
+Target: cabinet_11
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_184210]
+Prompt: Place yourself at flowers_0 and orient yourself to face left. is cabinet_6 left or right relative to counter_2? Return only the answer.
+Anchor: flowers_0
+Reference: counter_2
+Target: cabinet_6
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_195577]
+Prompt: Place yourself at flowers_1 and orient yourself to face left. is window_3 left or right relative to sink? Return only the answer.
+Anchor: flowers_1
+Reference: sink
+Target: window_3
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_211378]
+Prompt: Place yourself at cabinet_18 and orient yourself to face left. is flowers_0 left or right relative to cabinet_5? Return only the answer.
+Anchor: cabinet_18
+Reference: cabinet_5
+Target: flowers_0
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | object_retrieval
+--------------------------------------------------------------------------------
+[q_1847808]
+Prompt: Place yourself at counter_0 and orient yourself to face the camera. which object is behind of cabinet_17? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13. Return only the answer.
+Anchor: counter_0
+Reference: cabinet_17
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_1848318]
+Prompt: Place yourself at cabinet_10 and orient yourself to face away from the camera. which object is behind of flowers_3? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_10
+Reference: flowers_3
+Orientation: away
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_16
+Metadata: {"target_relation": "behind"}
+
+[q_1862830]
+Prompt: Imagine you are standing at cabinet_14, facing left. which object is behind of lamp_1? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_14
+Reference: lamp_1
+Orientation: left
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_1
+Metadata: {"target_relation": "behind"}
+
+[q_1867134]
+Prompt: Imagine you are standing at cabinet_2, facing right. which object is behind of cabinet_18? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, lamp_0, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_2
+Reference: cabinet_18
+Orientation: right
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, lamp_0, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_945504]
+Prompt: Place yourself at flowers_1 and orient yourself to face the camera. which object is left of cabinet_14? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: flowers_1
+Reference: cabinet_14
+Orientation: camera
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_0
+Metadata: {"target_relation": "left"}
+
+[q_945569]
+Prompt: Place yourself at flowers_2 and orient yourself to face the camera. which object is right of window_0? Choose one: window_2, window_1, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: flowers_2
+Reference: window_0
+Orientation: camera
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "right"}
+
+[q_958353]
+Prompt: Imagine you are standing at cabinet_4, facing the camera. which object is left of cabinet_7? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_8, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_4
+Reference: cabinet_7
+Orientation: camera
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_8, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "left"}
+
+[q_963877]
+Prompt: Imagine you are standing at counter_1, facing left. which object is left of cabinet_17? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: counter_1
+Reference: cabinet_17
+Orientation: left
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: lamp_1
+Metadata: {"target_relation": "left"}
+
+--------------------------------------------------------------------------------
+allocentric_qa | object_to_object | relation_mcq
+--------------------------------------------------------------------------------
+[q_1455411]
+Prompt: Place yourself at cabinet_6 and orient yourself to face the camera. where is cabinet_18 relative to cabinet_0? Choose one: in_front, behind. Return only the answer.
+Anchor: cabinet_6
+Reference: cabinet_0
+Target: cabinet_18
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_1520917]
+Prompt: Place yourself at window_3 and orient yourself to face left. where is window_4 relative to cabinet_5? Choose one: in_front, behind. Return only the answer.
+Anchor: window_3
+Reference: cabinet_5
+Target: window_4
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_1528269]
+Prompt: Place yourself at cabinet_1 and orient yourself to face left. where is cabinet_8 relative to cabinet_15? Choose one: in_front, behind. Return only the answer.
+Anchor: cabinet_1
+Reference: cabinet_15
+Target: cabinet_8
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_1671239]
+Prompt: Imagine you are standing at cabinet_7, facing the camera. where is cabinet_9 relative to cabinet_16? Choose one: in_front, behind. Return only the answer.
+Anchor: cabinet_7
+Reference: cabinet_16
+Target: cabinet_9
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_519768]
+Prompt: Place yourself at counter_2 and orient yourself to face the camera. where is window_2 relative to cabinet_21? Choose one: left, right. Return only the answer.
+Anchor: counter_2
+Reference: cabinet_21
+Target: window_2
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_610104]
+Prompt: Place yourself at cabinet_21 and orient yourself to face away from the camera. where is cabinet_3 relative to flowers_0? Choose one: left, right. Return only the answer.
+Anchor: cabinet_21
+Reference: flowers_0
+Target: cabinet_3
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_800110]
+Prompt: Imagine you are standing at flowers_2, facing away from the camera. where is cabinet_7 relative to cabinet_11? Choose one: left, right. Return only the answer.
+Anchor: flowers_2
+Reference: cabinet_11
+Target: cabinet_7
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_821487]
+Prompt: Imagine you are standing at cabinet_15, facing away from the camera. where is towel relative to cabinet_17? Choose one: left, right. Return only the answer.
+Anchor: cabinet_15
+Reference: cabinet_17
+Target: towel
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | binary_relation
+--------------------------------------------------------------------------------
+[q_51792]
+Prompt: Imagine you are standing at window_2, facing left. is cabinet_13 in_front or behind relative to you? Return only the answer.
+Anchor: window_2
+Target: cabinet_13
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_53511]
+Prompt: Imagine you are standing at cabinet_14, facing right. is cabinet_1 in_front or behind relative to you? Return only the answer.
+Anchor: cabinet_14
+Target: cabinet_1
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_54354]
+Prompt: Imagine you are standing at cabinet_15, facing right. is flowers_2 in_front or behind relative to you? Return only the answer.
+Anchor: cabinet_15
+Target: flowers_2
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_54595]
+Prompt: Imagine you are standing at cabinet_21, facing right. is counter_1 in_front or behind relative to you? Return only the answer.
+Anchor: cabinet_21
+Target: counter_1
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_22155]
+Prompt: Place yourself at cabinet_12 and orient yourself to face left. is window_1 left or right relative to you? Return only the answer.
+Anchor: cabinet_12
+Target: window_1
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_25417]
+Prompt: Imagine you are standing at cabinet_18, facing the camera. is cabinet_6 left or right relative to you? Return only the answer.
+Anchor: cabinet_18
+Target: cabinet_6
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_25903]
+Prompt: Imagine you are standing at cabinet_13, facing the camera. is lamp_0 left or right relative to you? Return only the answer.
+Anchor: cabinet_13
+Target: lamp_0
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_28198]
+Prompt: Imagine you are standing at cabinet_3, facing left. is window_0 left or right relative to you? Return only the answer.
+Anchor: cabinet_3
+Target: window_0
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | object_retrieval
+--------------------------------------------------------------------------------
+[q_66582]
+Prompt: Place yourself at window_3 and orient yourself to face the camera. which object is behind of you? Choose one: window_2, window_1, window_0, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: window_3
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_66739]
+Prompt: Place yourself at flowers_0 and orient yourself to face left. which object is behind of you? Choose one: window_2, window_1, window_0, window_3, window_4, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: flowers_0
+Orientation: left
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_0
+Metadata: {"target_relation": "behind"}
+
+[q_66860]
+Prompt: Place yourself at cabinet_19 and orient yourself to face right. which object is behind of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_19
+Orientation: right
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_67008]
+Prompt: Imagine you are standing at cabinet_2, facing away from the camera. which object is behind of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_2
+Orientation: away
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: counter_1
+Metadata: {"target_relation": "behind"}
+
+[q_42415]
+Prompt: Place yourself at window_4 and orient yourself to face left. which object is left of you? Choose one: window_2, window_1, window_0, window_3, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: window_4
+Orientation: left
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: flowers_0
+Metadata: {"target_relation": "left"}
+
+[q_42476]
+Prompt: Place yourself at cabinet_6 and orient yourself to face left. which object is right of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_6
+Orientation: left
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "right"}
+
+[q_42540]
+Prompt: Place yourself at cabinet_19 and orient yourself to face right. which object is right of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: cabinet_19
+Orientation: right
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_15
+Metadata: {"target_relation": "right"}
+
+[q_42604]
+Prompt: Imagine you are standing at towel, facing the camera. which object is right of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Anchor: towel
+Orientation: camera
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | relation_mcq
+--------------------------------------------------------------------------------
+[q_56239]
+Prompt: Place yourself at window_2 and orient yourself to face away from the camera. where is counter_0 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: window_2
+Target: counter_0
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_56394]
+Prompt: Place yourself at flowers_0 and orient yourself to face away from the camera. where is window_0 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: flowers_0
+Target: window_0
+Orientation: away
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_60234]
+Prompt: Place yourself at cabinet_19 and orient yourself to face right. where is window_4 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: cabinet_19
+Target: window_4
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_60944]
+Prompt: Imagine you are standing at cabinet_14, facing the camera. where is cabinet_8 relative to you? Choose one: in_front, behind. Return only the answer.
+Anchor: cabinet_14
+Target: cabinet_8
+Orientation: camera
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_31984]
+Prompt: Place yourself at window_0 and orient yourself to face away from the camera. where is counter_1 relative to you? Choose one: left, right. Return only the answer.
+Anchor: window_0
+Target: counter_1
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_36035]
+Prompt: Place yourself at cabinet_8 and orient yourself to face right. where is flowers_4 relative to you? Choose one: left, right. Return only the answer.
+Anchor: cabinet_8
+Target: flowers_4
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_36281]
+Prompt: Place yourself at cabinet_13 and orient yourself to face right. where is cabinet_15 relative to you? Choose one: left, right. Return only the answer.
+Anchor: cabinet_13
+Target: cabinet_15
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_40291]
+Prompt: Imagine you are standing at cabinet_2, facing left. where is flowers_4 relative to you? Choose one: left, right. Return only the answer.
+Anchor: cabinet_2
+Target: flowers_4
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | binary_relation
+--------------------------------------------------------------------------------
+[q_06609]
+Prompt: From the viewer's perspective in this image, is cabinet_19 above or below relative to window_4? Return only the answer.
+Reference: window_4
+Target: cabinet_19
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_07515]
+Prompt: From the viewer's perspective in this image, is cabinet_2 above or below relative to cabinet_19? Return only the answer.
+Reference: cabinet_19
+Target: cabinet_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_08313]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_6 above or below relative to cabinet_11? Return only the answer.
+Reference: cabinet_11
+Target: cabinet_6
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_08628]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_1 above or below relative to lamp_1? Return only the answer.
+Reference: lamp_1
+Target: cabinet_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_12786]
+Prompt: From the viewer's perspective in this image, is lamp_1 in_front or behind relative to cabinet_1? Return only the answer.
+Reference: cabinet_1
+Target: lamp_1
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_12975]
+Prompt: From the viewer's perspective in this image, is cabinet_17 in_front or behind relative to flowers_1? Return only the answer.
+Reference: flowers_1
+Target: cabinet_17
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_14014]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_8 in_front or behind relative to window_1? Return only the answer.
+Reference: window_1
+Target: cabinet_8
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_14725]
+Prompt: Looking at the scene from the camera's viewpoint, is lamp_1 in_front or behind relative to cabinet_3? Return only the answer.
+Reference: cabinet_3
+Target: lamp_1
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_01672]
+Prompt: From the viewer's perspective in this image, is cabinet_10 left or right relative to cabinet_7? Return only the answer.
+Reference: cabinet_7
+Target: cabinet_10
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_01953]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_8 left or right relative to window_2? Return only the answer.
+Reference: window_2
+Target: cabinet_8
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_03005]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_13 left or right relative to cabinet_19? Return only the answer.
+Reference: cabinet_19
+Target: cabinet_13
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_03046]
+Prompt: Looking at the scene from the camera's viewpoint, is window_0 left or right relative to cabinet_4? Return only the answer.
+Reference: cabinet_4
+Target: window_0
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | object_retrieval
+--------------------------------------------------------------------------------
+[q_12323]
+Prompt: From the viewer's perspective in this image, which object is below of flowers_0? Choose one: window_2, window_1, window_0, window_3, window_4, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: flowers_0
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_10
+Metadata: {"target_relation": "below"}
+
+[q_12329]
+Prompt: From the viewer's perspective in this image, which object is below of cabinet_1? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_1
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "below"}
+
+[q_12361]
+Prompt: From the viewer's perspective in this image, which object is below of cabinet_18? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_18
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_2
+Metadata: {"target_relation": "below"}
+
+[q_12459]
+Prompt: Looking at the scene from the camera's viewpoint, which object is above of cabinet_0? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_0
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "above"}
+
+[q_18412]
+Prompt: From the viewer's perspective in this image, which object is behind of cabinet_11? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_11
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_18450]
+Prompt: From the viewer's perspective in this image, which object is behind of cabinet_15? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_15
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_18451]
+Prompt: From the viewer's perspective in this image, which object is in_front of cabinet_4? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_4
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_8
+Metadata: {"target_relation": "in_front"}
+
+[q_18466]
+Prompt: From the viewer's perspective in this image, which object is behind of cabinet_13? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, counter_0. Return only the answer.
+Reference: cabinet_13
+Relation axis: front_behind
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "behind"}
+
+[q_06305]
+Prompt: From the viewer's perspective in this image, which object is left of flowers_1? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: flowers_1
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "left"}
+
+[q_06351]
+Prompt: From the viewer's perspective in this image, which object is right of cabinet_0? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_0
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "right"}
+
+[q_06377]
+Prompt: Looking at the scene from the camera's viewpoint, which object is left of flowers_4? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: flowers_4
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "left"}
+
+[q_06396]
+Prompt: Looking at the scene from the camera's viewpoint, which object is right of cabinet_3? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Reference: cabinet_3
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_0
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | relation_mcq
+--------------------------------------------------------------------------------
+[q_10038]
+Prompt: From the viewer's perspective in this image, where is cabinet_18 relative to cabinet_12? Choose one: above, below. Return only the answer.
+Reference: cabinet_12
+Target: cabinet_18
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_10866]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_2 relative to window_2? Choose one: above, below. Return only the answer.
+Reference: window_2
+Target: cabinet_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_10888]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_11 relative to window_1? Choose one: above, below. Return only the answer.
+Reference: window_1
+Target: cabinet_11
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_11975]
+Prompt: Looking at the scene from the camera's viewpoint, where is window_1 relative to cabinet_4? Choose one: above, below. Return only the answer.
+Reference: cabinet_4
+Target: window_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_16286]
+Prompt: From the viewer's perspective in this image, where is cabinet_20 relative to towel? Choose one: in_front, behind. Return only the answer.
+Reference: towel
+Target: cabinet_20
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_16521]
+Prompt: From the viewer's perspective in this image, where is cabinet_4 relative to cabinet_19? Choose one: in_front, behind. Return only the answer.
+Reference: cabinet_19
+Target: cabinet_4
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_16883]
+Prompt: From the viewer's perspective in this image, where is flowers_4 relative to counter_0? Choose one: in_front, behind. Return only the answer.
+Reference: counter_0
+Target: flowers_4
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_18173]
+Prompt: Looking at the scene from the camera's viewpoint, where is counter_2 relative to cabinet_9? Choose one: in_front, behind. Return only the answer.
+Reference: cabinet_9
+Target: counter_2
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_03668]
+Prompt: From the viewer's perspective in this image, where is cabinet_9 relative to cabinet_14? Choose one: left, right. Return only the answer.
+Reference: cabinet_14
+Target: cabinet_9
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_06030]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_1 relative to cabinet_7? Choose one: left, right. Return only the answer.
+Reference: cabinet_7
+Target: cabinet_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_06175]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_10 relative to cabinet_0? Choose one: left, right. Return only the answer.
+Reference: cabinet_0
+Target: cabinet_10
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_06250]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_1 relative to counter_0? Choose one: left, right. Return only the answer.
+Reference: counter_0
+Target: cabinet_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | binary_relation
+--------------------------------------------------------------------------------
+[q_00176]
+Prompt: From the viewer's perspective in this image, is cabinet_5 above or below relative to you? Return only the answer.
+Target: cabinet_5
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00177]
+Prompt: From the viewer's perspective in this image, is towel above or below relative to you? Return only the answer.
+Target: towel
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00187]
+Prompt: From the viewer's perspective in this image, is cabinet_7 above or below relative to you? Return only the answer.
+Target: cabinet_7
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00224]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_8 above or below relative to you? Return only the answer.
+Target: cabinet_8
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_00346]
+Prompt: From the viewer's perspective in this image, is cabinet_6 foreground or background relative to you? Return only the answer.
+Target: cabinet_6
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00360]
+Prompt: Looking at the scene from the camera's viewpoint, is counter_2 foreground or background relative to you? Return only the answer.
+Target: counter_2
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: background
+
+[q_00371]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_3 foreground or background relative to you? Return only the answer.
+Target: cabinet_3
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00383]
+Prompt: Looking at the scene from the camera's viewpoint, is cabinet_7 foreground or background relative to you? Return only the answer.
+Target: cabinet_7
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00007]
+Prompt: From the viewer's perspective in this image, is cabinet_14 left or right relative to you? Return only the answer.
+Target: cabinet_14
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00028]
+Prompt: From the viewer's perspective in this image, is cabinet_15 left or right relative to you? Return only the answer.
+Target: cabinet_15
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00029]
+Prompt: From the viewer's perspective in this image, is cabinet_4 left or right relative to you? Return only the answer.
+Target: cabinet_4
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00041]
+Prompt: Looking at the scene from the camera's viewpoint, is window_3 left or right relative to you? Return only the answer.
+Target: window_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | object_retrieval
+--------------------------------------------------------------------------------
+[q_00308]
+Prompt: From the viewer's perspective in this image, which object is above of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "above"}
+
+[q_00309]
+Prompt: From the viewer's perspective in this image, which object is below of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_10
+Metadata: {"target_relation": "below"}
+
+[q_00310]
+Prompt: Looking at the scene from the camera's viewpoint, which object is above of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "above"}
+
+[q_00311]
+Prompt: Looking at the scene from the camera's viewpoint, which object is below of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: above_below
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_10
+Metadata: {"target_relation": "below"}
+
+[q_00468]
+Prompt: From the viewer's perspective in this image, which object is foreground of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_3
+Metadata: {"target_relation": "foreground"}
+
+[q_00469]
+Prompt: From the viewer's perspective in this image, which object is background of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "background"}
+
+[q_00470]
+Prompt: Looking at the scene from the camera's viewpoint, which object is foreground of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: cabinet_3
+Metadata: {"target_relation": "foreground"}
+
+[q_00471]
+Prompt: Looking at the scene from the camera's viewpoint, which object is background of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: foreground_background
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "background"}
+
+[q_00152]
+Prompt: From the viewer's perspective in this image, which object is left of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "left"}
+
+[q_00153]
+Prompt: From the viewer's perspective in this image, which object is right of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_0
+Metadata: {"target_relation": "right"}
+
+[q_00154]
+Prompt: Looking at the scene from the camera's viewpoint, which object is left of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_2
+Metadata: {"target_relation": "left"}
+
+[q_00155]
+Prompt: Looking at the scene from the camera's viewpoint, which object is right of you? Choose one: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0. Return only the answer.
+Relation axis: left_right
+Candidate answers: window_2, window_1, window_0, window_3, window_4, flowers_0, cabinet_10, cabinet_14, cabinet_1, counter_2, cabinet_11, flowers_4, sink, flowers_1, flowers_2, flowers_3, cabinet_16, cabinet_12, cabinet_17, lamp_1, cabinet_3, cabinet_5, towel, cabinet_20, cabinet_18, lamp_0, cabinet_2, counter_1, cabinet_19, cabinet_15, cabinet_4, cabinet_8, cabinet_7, cabinet_9, cabinet_6, cabinet_21, cabinet_0, cabinet_13, counter_0
+Ground truth: window_0
+Metadata: {"target_relation": "right"}
+
+--------------------------------------------------------------------------------
+egocentric_qa | viewer_centered | relation_mcq
+--------------------------------------------------------------------------------
+[q_00236]
+Prompt: From the viewer's perspective in this image, where is window_4 relative to you? Choose one: above, below. Return only the answer.
+Target: window_4
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00266]
+Prompt: From the viewer's perspective in this image, where is cabinet_21 relative to you? Choose one: above, below. Return only the answer.
+Target: cabinet_21
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00272]
+Prompt: Looking at the scene from the camera's viewpoint, where is window_0 relative to you? Choose one: above, below. Return only the answer.
+Target: window_0
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00283]
+Prompt: Looking at the scene from the camera's viewpoint, where is flowers_2 relative to you? Choose one: above, below. Return only the answer.
+Target: flowers_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00398]
+Prompt: From the viewer's perspective in this image, where is cabinet_1 relative to you? Choose one: foreground, background. Return only the answer.
+Target: cabinet_1
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: background
+
+[q_00417]
+Prompt: From the viewer's perspective in this image, where is counter_1 relative to you? Choose one: foreground, background. Return only the answer.
+Target: counter_1
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00430]
+Prompt: Looking at the scene from the camera's viewpoint, where is window_1 relative to you? Choose one: foreground, background. Return only the answer.
+Target: window_1
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: background
+
+[q_00462]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_9 relative to you? Choose one: foreground, background. Return only the answer.
+Target: cabinet_9
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00103]
+Prompt: From the viewer's perspective in this image, where is cabinet_19 relative to you? Choose one: left, right. Return only the answer.
+Target: cabinet_19
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00126]
+Prompt: Looking at the scene from the camera's viewpoint, where is sink relative to you? Choose one: left, right. Return only the answer.
+Target: sink
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00134]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_3 relative to you? Choose one: left, right. Return only the answer.
+Target: cabinet_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00139]
+Prompt: Looking at the scene from the camera's viewpoint, where is cabinet_2 relative to you? Choose one: left, right. Return only the answer.
+Target: cabinet_2
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
