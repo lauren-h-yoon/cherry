@@ -2,54 +2,49 @@ QUERY BENCHMARK ANALYSIS
 ================================================================================
 Input: /Users/suezhou/Desktop/Desktop - Xueru's Macbook Pro - 1/cns186_finalproj/cherry/query_benchmark_outputs/kitchen__claude__claude-sonnet-4-5/evaluation_results.json
 Model: claude-sonnet-4-5 (claude)
-Overall accuracy: 41.7% (50/120)
+Overall accuracy: 63.7% (51/80)
 
 By Task Type
 ------------
-allocentric_qa: 31.2% (15/48)
-egocentric_qa: 48.6% (35/72)
+allocentric_qa: 46.9% (15/32)
+egocentric_qa: 75.0% (36/48)
 
 By Frame Type
 -------------
-object_to_object: 45.0% (27/60)
-viewer_centered: 38.3% (23/60)
+object_to_object: 62.5% (25/40)
+viewer_centered: 65.0% (26/40)
 
 By Query Subtype
 ----------------
-binary_relation: 50.0% (20/40)
-object_retrieval: 10.0% (4/40)
+binary_relation: 62.5% (25/40)
 relation_mcq: 65.0% (26/40)
 
 By Relation Axis
 ----------------
-above_below: 50.0% (12/24)
-foreground_background: 41.7% (5/12)
-front_behind: 16.7% (6/36)
-left_right: 56.2% (27/48)
+above_below: 68.8% (11/16)
+foreground_background: 62.5% (5/8)
+front_behind: 45.8% (11/24)
+left_right: 75.0% (24/32)
 
 By Template ID
 --------------
-allo_v1: 35.7% (10/28)
-allo_v2: 25.0% (5/20)
-ego_v1: 43.2% (16/37)
-ego_v2: 54.3% (19/35)
+allo_v1: 50.0% (8/16)
+allo_v2: 43.8% (7/16)
+ego_v1: 80.6% (25/31)
+ego_v2: 64.7% (11/17)
 
 By Task / Frame / Subtype
 -------------------------
-Task           | Frame            | Subtype          | Accuracy | Correct | Count
----------------+------------------+------------------+----------+---------+------
-Allocentric QA | Object-to-object | Binary relation  | 37.5%    | 3       | 8    
-Allocentric QA | Object-to-object | Object retrieval | 12.5%    | 1       | 8    
-Allocentric QA | Object-to-object | Relation MCQ     | 37.5%    | 3       | 8    
-Allocentric QA | Viewer-centered  | Binary relation  | 37.5%    | 3       | 8    
-Allocentric QA | Viewer-centered  | Object retrieval | 0.0%     | 0       | 8    
-Allocentric QA | Viewer-centered  | Relation MCQ     | 62.5%    | 5       | 8    
-Egocentric QA  | Object-to-object | Binary relation  | 58.3%    | 7       | 12   
-Egocentric QA  | Object-to-object | Object retrieval | 25.0%    | 3       | 12   
-Egocentric QA  | Object-to-object | Relation MCQ     | 83.3%    | 10      | 12   
-Egocentric QA  | Viewer-centered  | Binary relation  | 58.3%    | 7       | 12   
-Egocentric QA  | Viewer-centered  | Object retrieval | 0.0%     | 0       | 12   
-Egocentric QA  | Viewer-centered  | Relation MCQ     | 66.7%    | 8       | 12   
+Task           | Frame            | Subtype         | Accuracy | Correct | Count
+---------------+------------------+-----------------+----------+---------+------
+Allocentric QA | Object-to-object | Binary relation | 37.5%    | 3       | 8    
+Allocentric QA | Object-to-object | Relation MCQ    | 50.0%    | 4       | 8    
+Allocentric QA | Viewer-centered  | Binary relation | 62.5%    | 5       | 8    
+Allocentric QA | Viewer-centered  | Relation MCQ    | 37.5%    | 3       | 8    
+Egocentric QA  | Object-to-object | Binary relation | 66.7%    | 8       | 12   
+Egocentric QA  | Object-to-object | Relation MCQ    | 83.3%    | 10      | 12   
+Egocentric QA  | Viewer-centered  | Binary relation | 75.0%    | 9       | 12   
+Egocentric QA  | Viewer-centered  | Relation MCQ    | 75.0%    | 9       | 12   
 
 Note
 ----
@@ -64,20 +59,18 @@ Some rows fall below the nominal total because invalid or ambiguous queries are 
 
 By Task / Template
 ------------------
-allocentric_qa | allo_v1: 35.7% (10/28)
-allocentric_qa | allo_v2: 25.0% (5/20)
-egocentric_qa | ego_v1: 43.2% (16/37)
-egocentric_qa | ego_v2: 54.3% (19/35)
+allocentric_qa | allo_v1: 50.0% (8/16)
+allocentric_qa | allo_v2: 43.8% (7/16)
+egocentric_qa | ego_v1: 80.6% (25/31)
+egocentric_qa | ego_v2: 64.7% (11/17)
 
 Top Mistakes
 -----------
-GT=in_front | Pred=behind: 16
-GT=left | Pred=right: 5
-GT=window_2 | Pred=window_4: 4
-GT=window_2 | Pred=cabinet_6: 4
-GT=behind | Pred=in_front: 3
-GT=window_0 | Pred=window_4: 3
+GT=in_front | Pred=behind: 9
+GT=left | Pred=right: 6
+GT=behind | Pred=in_front: 4
 GT=above | Pred=below: 3
-GT=foreground | Pred=background: 3
-GT=window_2 | Pred=cabinet_4: 2
+GT=right | Pred=left: 2
 GT=below | Pred=above: 2
+GT=foreground | Pred=background: 2
+GT=background | Pred=foreground: 1

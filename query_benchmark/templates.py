@@ -32,12 +32,6 @@ def _answer_only_suffix() -> str:
 
 def _viewer_prompt(query: QuerySpec, prefix: str) -> str:
     answer_only = _answer_only_suffix()
-    if query.query_subtype == QuerySubtype.OBJECT_RETRIEVAL:
-        choices = ", ".join(query.candidate_answers)
-        return (
-            f"{prefix} which object is {query.metadata['target_relation']} of you? "
-            f"Choose one: {choices}. {answer_only}"
-        )
     if query.query_subtype == QuerySubtype.BINARY_RELATION:
         choices = " or ".join(query.candidate_answers)
         return f"{prefix} is {query.target_object} {choices} relative to you? {answer_only}"
@@ -47,12 +41,6 @@ def _viewer_prompt(query: QuerySpec, prefix: str) -> str:
 
 def _object_to_object_prompt(query: QuerySpec, prefix: str) -> str:
     answer_only = _answer_only_suffix()
-    if query.query_subtype == QuerySubtype.OBJECT_RETRIEVAL:
-        choices = ", ".join(query.candidate_answers)
-        return (
-            f"{prefix} which object is {query.metadata['target_relation']} of {query.reference_object}? "
-            f"Choose one: {choices}. {answer_only}"
-        )
     if query.query_subtype == QuerySubtype.BINARY_RELATION:
         choices = " or ".join(query.candidate_answers)
         return f"{prefix} is {query.target_object} {choices} relative to {query.reference_object}? {answer_only}"

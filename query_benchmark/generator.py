@@ -72,7 +72,6 @@ def _make_query(
 
 def generate_queries(
     graph_path: str,
-    include_object_retrieval: bool = True,
     max_queries: Optional[int] = None,
     queries_per_bucket: int = 10,
     seed: Optional[int] = None,
@@ -159,76 +158,6 @@ def generate_queries(
                                     bucketed_queries[bucket].append(query)
                                     counter += 1
 
-            if not include_object_retrieval:
-                continue
-
-            subtype = QuerySubtype.OBJECT_RETRIEVAL
-            validate_combination(task_type, frame_type, subtype, relation_axis)
-            object_names = [e.name for e in entities]
-            for template_id in _template_ids(task_type, frame_type):
-                for orientation in _orientations(task_type):
-                    if frame_type == FrameType.VIEWER_CENTERED:
-                        anchors = entities if task_type == TaskType.ALLOCENTRIC_QA else [None]
-                        for anchor in anchors:
-                            for target_relation in relation_choices(task_type, relation_axis):
-                                candidates = object_names
-                                if anchor is not None:
-                                    candidates = [name for name in object_names if name != anchor.name]
-                                query = _make_query(
-                                    f"q_{counter:05d}",
-                                    task_type,
-                                    frame_type,
-                                    subtype,
-                                    template_id,
-                                    anchor.name if anchor else None,
-                                    None,
-                                    None,
-                                    orientation,
-                                    relation_axis,
-                                    candidates,
-                                    {"target_relation": target_relation},
-                                )
-                                answer = compute_ground_truth_answer(query, by_name)
-                                if answer in candidates:
-                                    query.ground_truth_answer = answer
-                                    bucket = (task_type.value, frame_type.value, subtype.value, relation_axis)
-                                    bucketed_queries[bucket].append(query)
-                                    counter += 1
-                    else:
-                        if task_type == TaskType.EGOCENTRIC_QA:
-                            anchor_reference_pairs = [(None, reference) for reference in entities]
-                        else:
-                            anchor_reference_pairs = [
-                                (anchor, reference)
-                                for anchor, reference in product(entities, entities)
-                                if anchor.name != reference.name
-                            ]
-                        for anchor, reference in anchor_reference_pairs:
-                            for target_relation in relation_choices(task_type, relation_axis):
-                                candidates = [name for name in object_names if name != reference.name]
-                                if anchor is not None:
-                                    candidates = [name for name in candidates if name != anchor.name]
-                                query = _make_query(
-                                    f"q_{counter:05d}",
-                                    task_type,
-                                    frame_type,
-                                    subtype,
-                                    template_id,
-                                    anchor.name if anchor else None,
-                                    reference.name,
-                                    None,
-                                    orientation,
-                                    relation_axis,
-                                    candidates,
-                                    {"target_relation": target_relation},
-                                )
-                                answer = compute_ground_truth_answer(query, by_name)
-                                if answer in candidates:
-                                    query.ground_truth_answer = answer
-                                    bucket = (task_type.value, frame_type.value, subtype.value, relation_axis)
-                                    bucketed_queries[bucket].append(query)
-                                    counter += 1
-
     queries: List[QuerySpec] = []
     for bucket in sorted(bucketed_queries.keys()):
         bucket_queries = bucketed_queries[bucket]
@@ -250,7 +179,6 @@ def generate_queries(
             "num_queries": len(queries),
             "queries_per_bucket": queries_per_bucket,
             "num_buckets": len(bucketed_queries),
-            "include_object_retrieval": include_object_retrieval,
         },
         "queries": [q.to_dict() for q in queries],
     }

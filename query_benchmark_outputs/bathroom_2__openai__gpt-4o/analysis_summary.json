@@ -1,8 +1,8 @@
 {
   "overall": {
-    "count": 120,
-    "correct": 64,
-    "accuracy": 0.5333333333333333,
+    "count": 80,
+    "correct": 59,
+    "accuracy": 0.7375,
     "partial": false
   },
   "model": {
@@ -11,87 +11,82 @@
   },
   "by_task_type": {
     "allocentric_qa": {
-      "count": 48,
-      "correct": 22,
-      "accuracy": 0.4583333333333333
+      "count": 32,
+      "correct": 21,
+      "accuracy": 0.65625
     },
     "egocentric_qa": {
-      "count": 72,
-      "correct": 42,
-      "accuracy": 0.5833333333333334
+      "count": 48,
+      "correct": 38,
+      "accuracy": 0.7916666666666666
     }
   },
   "by_frame_type": {
     "object_to_object": {
-      "count": 60,
-      "correct": 32,
-      "accuracy": 0.5333333333333333
+      "count": 40,
+      "correct": 28,
+      "accuracy": 0.7
     },
     "viewer_centered": {
-      "count": 60,
-      "correct": 32,
-      "accuracy": 0.5333333333333333
+      "count": 40,
+      "correct": 31,
+      "accuracy": 0.775
     }
   },
   "by_query_subtype": {
     "binary_relation": {
       "count": 40,
-      "correct": 31,
-      "accuracy": 0.775
-    },
-    "object_retrieval": {
-      "count": 40,
-      "correct": 2,
-      "accuracy": 0.05
+      "correct": 29,
+      "accuracy": 0.725
     },
     "relation_mcq": {
       "count": 40,
-      "correct": 31,
-      "accuracy": 0.775
+      "correct": 30,
+      "accuracy": 0.75
     }
   },
   "by_relation_axis": {
     "above_below": {
-      "count": 24,
+      "count": 16,
       "correct": 15,
-      "accuracy": 0.625
+      "accuracy": 0.9375
     },
     "foreground_background": {
-      "count": 12,
-      "correct": 5,
-      "accuracy": 0.4166666666666667
+      "count": 8,
+      "correct": 6,
+      "accuracy": 0.75
     },
     "front_behind": {
-      "count": 36,
-      "correct": 18,
-      "accuracy": 0.5
+      "count": 24,
+      "correct": 17,
+      "accuracy": 0.7083333333333334
     },
     "left_right": {
-      "count": 48,
-      "correct": 26,
-      "accuracy": 0.5416666666666666
+      "count": 32,
+      "correct": 21,
+      "accuracy": 0.65625
     }
   },
   "by_template_id": {
     "allo_v1": {
-      "count": 27,
-      "correct": 13,
-      "accuracy": 0.48148148148148145
+      "count": 19,
+      "correct": 10,
+      "accuracy": 0.5263157894736842
     },
     "allo_v2": {
-      "count": 21,
-      "correct": 9,
-      "accuracy": 0.42857142857142855
+      "count": 13,
+      "correct": 11,
+      "accuracy": 0.8461538461538461
     },
     "ego_v1": {
-      "count": 36,
-      "correct": 18,
-      "accuracy": 0.5
+      "count": 27,
+      "correct": 20,
+      "accuracy": 0.7407407407407407
     },
     "ego_v2": {
-      "count": 36,
-      "correct": 24,
-      "accuracy": 0.6666666666666666
+      "count": 21,
+      "correct": 18,
+      "accuracy": 0.8571428571428571
     }
   },
   "by_task_frame_subtype": {
@@ -100,55 +95,35 @@
       "count": 8,
       "accuracy": 0.625
     },
-    "allocentric_qa | object_to_object | object_retrieval": {
-      "correct": 1,
-      "count": 8,
-      "accuracy": 0.125
-    },
     "allocentric_qa | object_to_object | relation_mcq": {
-      "correct": 5,
+      "correct": 4,
       "count": 8,
-      "accuracy": 0.625
+      "accuracy": 0.5
     },
     "allocentric_qa | viewer_centered | binary_relation": {
       "correct": 6,
       "count": 8,
       "accuracy": 0.75
     },
-    "allocentric_qa | viewer_centered | object_retrieval": {
-      "correct": 0,
-      "count": 8,
-      "accuracy": 0.0
-    },
     "allocentric_qa | viewer_centered | relation_mcq": {
-      "correct": 5,
+      "correct": 6,
       "count": 8,
-      "accuracy": 0.625
+      "accuracy": 0.75
     },
     "egocentric_qa | object_to_object | binary_relation": {
-      "correct": 10,
+      "correct": 9,
       "count": 12,
-      "accuracy": 0.8333333333333334
-    },
-    "egocentric_qa | object_to_object | object_retrieval": {
-      "correct": 0,
-      "count": 12,
-      "accuracy": 0.0
+      "accuracy": 0.75
     },
     "egocentric_qa | object_to_object | relation_mcq": {
-      "correct": 11,
-      "count": 12,
-      "accuracy": 0.9166666666666666
-    },
-    "egocentric_qa | viewer_centered | binary_relation": {
       "correct": 10,
       "count": 12,
       "accuracy": 0.8333333333333334
     },
-    "egocentric_qa | viewer_centered | object_retrieval": {
-      "correct": 1,
+    "egocentric_qa | viewer_centered | binary_relation": {
+      "correct": 9,
       "count": 12,
-      "accuracy": 0.08333333333333333
+      "accuracy": 0.75
     },
     "egocentric_qa | viewer_centered | relation_mcq": {
       "correct": 10,
@@ -168,18 +143,10 @@
     {
       "task_type": "allocentric_qa",
       "frame_type": "object_to_object",
-      "query_subtype": "object_retrieval",
-      "correct": 1,
-      "count": 8,
-      "accuracy": 0.125
-    },
-    {
-      "task_type": "allocentric_qa",
-      "frame_type": "object_to_object",
       "query_subtype": "relation_mcq",
-      "correct": 5,
+      "correct": 4,
       "count": 8,
-      "accuracy": 0.625
+      "accuracy": 0.5
     },
     {
       "task_type": "allocentric_qa",
@@ -192,47 +159,23 @@
     {
       "task_type": "allocentric_qa",
       "frame_type": "viewer_centered",
-      "query_subtype": "object_retrieval",
-      "correct": 0,
-      "count": 8,
-      "accuracy": 0.0
-    },
-    {
-      "task_type": "allocentric_qa",
-      "frame_type": "viewer_centered",
       "query_subtype": "relation_mcq",
-      "correct": 5,
+      "correct": 6,
       "count": 8,
-      "accuracy": 0.625
+      "accuracy": 0.75
     },
     {
       "task_type": "egocentric_qa",
       "frame_type": "object_to_object",
       "query_subtype": "binary_relation",
-      "correct": 10,
+      "correct": 9,
       "count": 12,
-      "accuracy": 0.8333333333333334
-    },
-    {
-      "task_type": "egocentric_qa",
-      "frame_type": "object_to_object",
-      "query_subtype": "object_retrieval",
-      "correct": 0,
-      "count": 12,
-      "accuracy": 0.0
+      "accuracy": 0.75
     },
     {
       "task_type": "egocentric_qa",
       "frame_type": "object_to_object",
       "query_subtype": "relation_mcq",
-      "correct": 11,
-      "count": 12,
-      "accuracy": 0.9166666666666666
-    },
-    {
-      "task_type": "egocentric_qa",
-      "frame_type": "viewer_centered",
-      "query_subtype": "binary_relation",
       "correct": 10,
       "count": 12,
       "accuracy": 0.8333333333333334
@@ -240,10 +183,10 @@
     {
       "task_type": "egocentric_qa",
       "frame_type": "viewer_centered",
-      "query_subtype": "object_retrieval",
-      "correct": 1,
+      "query_subtype": "binary_relation",
+      "correct": 9,
       "count": 12,
-      "accuracy": 0.08333333333333333
+      "accuracy": 0.75
     },
     {
       "task_type": "egocentric_qa",
@@ -256,51 +199,36 @@
   ],
   "by_task_template": {
     "allocentric_qa | allo_v1": {
-      "count": 27,
-      "correct": 13,
-      "accuracy": 0.48148148148148145
+      "count": 19,
+      "correct": 10,
+      "accuracy": 0.5263157894736842
     },
     "allocentric_qa | allo_v2": {
-      "count": 21,
-      "correct": 9,
-      "accuracy": 0.42857142857142855
+      "count": 13,
+      "correct": 11,
+      "accuracy": 0.8461538461538461
     },
     "egocentric_qa | ego_v1": {
-      "count": 36,
-      "correct": 18,
-      "accuracy": 0.5
+      "count": 27,
+      "correct": 20,
+      "accuracy": 0.7407407407407407
     },
     "egocentric_qa | ego_v2": {
-      "count": 36,
-      "correct": 24,
-      "accuracy": 0.6666666666666666
+      "count": 21,
+      "correct": 18,
+      "accuracy": 0.8571428571428571
     }
   },
   "top_mistakes": [
     {
-      "ground_truth": "mirror_1",
-      "predicted": "mirror_0",
-      "count": 7
+      "ground_truth": "left",
+      "predicted": "right",
+      "count": 8
     },
     {
       "ground_truth": "in_front",
       "predicted": "behind",
-      "count": 4
-    },
-    {
-      "ground_truth": "mirror_1",
-      "predicted": "faucet_1",
-      "count": 4
-    },
-    {
-      "ground_truth": "left",
-      "predicted": "right",
-      "count": 3
-    },
-    {
-      "ground_truth": "mirror_1",
-      "predicted": "towel_2",
-      "count": 3
+      "count": 6
     },
     {
       "ground_truth": "right",
@@ -310,22 +238,17 @@
     {
       "ground_truth": "background",
       "predicted": "foreground",
-      "count": 3
-    },
-    {
-      "ground_truth": "mirror_1",
-      "predicted": "toilet_0",
       "count": 2
     },
     {
-      "ground_truth": "mirror_0",
-      "predicted": "faucet_1",
-      "count": 2
+      "ground_truth": "behind",
+      "predicted": "in_front",
+      "count": 1
     },
     {
-      "ground_truth": "towel_3",
-      "predicted": "towel_2",
-      "count": 2
+      "ground_truth": "below",
+      "predicted": "above",
+      "count": 1
     }
   ]
 }

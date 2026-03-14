@@ -153,7 +153,6 @@ def write_readable_queries(output_path: Path, generated: Dict) -> None:
     lines.append(f"Image size: {generated.get('image_size', [])}")
     lines.append(f"Entities: {metadata.get('num_entities', '?')}")
     lines.append(f"Queries: {metadata.get('num_queries', len(queries))}")
-    lines.append(f"Object retrieval included: {metadata.get('include_object_retrieval', False)}")
     lines.append("")
 
     current_group = None
@@ -305,9 +304,8 @@ def main() -> None:
     parser.add_argument("--graph", "-g", required=True, help="Path to Stage 1 spatial_graph.json")
     parser.add_argument("--output-dir", "-o", default="query_benchmark_outputs", help="Base output directory")
     parser.add_argument("--queries-per-bucket", type=int, default=4, help="Maximum number of queries to keep per category bucket (default: 4)")
-    parser.add_argument("--seed", type=int, help="Random seed for object sampling")
+    parser.add_argument("--seed", type=int, help="Random seed for per-bucket query sampling")
     parser.add_argument("--max-queries", type=int, help="Optional cap on generated queries")
-    parser.add_argument("--no-object-retrieval", action="store_true", help="Skip object retrieval queries")
     parser.add_argument("--render-image", action="store_true", help="Render labeled benchmark image")
     parser.add_argument("--evaluate", action="store_true", help="Run a model and exact-match evaluate answers")
     parser.add_argument("--provider", choices=["claude", "qwen", "vllm", "openai", "ollama"], default="openai")
@@ -327,7 +325,6 @@ def main() -> None:
 
     generated = generate_queries(
         args.graph,
-        include_object_retrieval=not args.no_object_retrieval,
         max_queries=args.max_queries,
         queries_per_bucket=args.queries_per_bucket,
         seed=args.seed,
