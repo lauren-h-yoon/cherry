@@ -228,31 +228,6 @@ def compute_ground_truth_answer(query: QuerySpec, entities: Dict[str, Entity]) -
     if query.query_subtype.name in ("BINARY_RELATION", "RELATION_MCQ"):
         return compute_relation_answer(query, entities)
 
-    if query.query_subtype.name == "OBJECT_RETRIEVAL":
-        candidates = [entities[name] for name in query.candidate_answers if name in entities]
-        if not candidates:
-            return None
-        for candidate in candidates:
-            probe = QuerySpec(
-                query_id=query.query_id,
-                task_type=query.task_type,
-                frame_type=query.frame_type,
-                query_subtype=query.query_subtype,
-                template_id=query.template_id,
-                prompt=query.prompt,
-                anchor_object=query.anchor_object,
-                reference_object=query.reference_object,
-                target_object=candidate.name,
-                orientation=query.orientation,
-                relation_axis=query.relation_axis,
-                candidate_answers=query.candidate_answers,
-                ground_truth_answer="",
-                metadata=query.metadata,
-            )
-            if compute_relation_answer(probe, entities) == query.metadata.get("target_relation"):
-                return candidate.name
-        return None
-
     return None
 
 

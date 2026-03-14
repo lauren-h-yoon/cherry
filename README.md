@@ -78,7 +78,6 @@ Current query families:
 Current query subtypes:
 - `binary_relation`
 - `relation_mcq`
-- `object_retrieval`
 
 ## Key Concept: Embodied Spatial Intelligence Evaluation
 

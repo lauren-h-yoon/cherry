@@ -18,7 +18,6 @@ class FrameType(str, Enum):
 class QuerySubtype(str, Enum):
     BINARY_RELATION = "binary_relation"
     RELATION_MCQ = "relation_mcq"
-    OBJECT_RETRIEVAL = "object_retrieval"
 
 
 class Orientation(str, Enum):
@@ -95,6 +94,5 @@ def validate_combination(
     if query_subtype not in (
         QuerySubtype.BINARY_RELATION,
         QuerySubtype.RELATION_MCQ,
-        QuerySubtype.OBJECT_RETRIEVAL,
     ):
         raise ValueError(f"Unsupported query subtype '{query_subtype.value}'")

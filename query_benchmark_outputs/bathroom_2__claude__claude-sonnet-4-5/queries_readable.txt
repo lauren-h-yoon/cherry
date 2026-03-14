@@ -4,13 +4,12 @@ Graph: spatial_outputs/bathroom_2_spatial_graph.json
 Image: photos/bathroom_2.jpg
 Image size: [426, 640]
 Entities: 19
-Queries: 120
-Object retrieval included: True
+Queries: 80
 
 --------------------------------------------------------------------------------
 allocentric_qa | object_to_object | binary_relation
 --------------------------------------------------------------------------------
-[q_115879]
+[q_109907]
 Prompt: Place yourself at trash can and orient yourself to face the camera. is hair dryer in_front or behind relative to toilet_0? Return only the answer.
 Anchor: trash can
 Reference: toilet_0
@@ -20,7 +19,7 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: in_front
 
-[q_121536]
+[q_115564]
 Prompt: Place yourself at mirror_0 and orient yourself to face away from the camera. is towel_3 in_front or behind relative to soap_1? Return only the answer.
 Anchor: mirror_0
 Reference: soap_1
@@ -30,7 +29,7 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: in_front
 
-[q_132264]
+[q_126292]
 Prompt: Place yourself at toilet_1 and orient yourself to face right. is trash can in_front or behind relative to faucet_1? Return only the answer.
 Anchor: toilet_1
 Reference: faucet_1
@@ -40,7 +39,7 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_156145]
+[q_150173]
 Prompt: Imagine you are standing at towel_3, facing right. is mirror_1 in_front or behind relative to sink_0? Return only the answer.
 Anchor: towel_3
 Reference: sink_0
@@ -50,7 +49,7 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_22765]
+[q_21961]
 Prompt: Place yourself at towel_2 and orient yourself to face away from the camera. is towel_3 left or right relative to sink_0? Return only the answer.
 Anchor: towel_2
 Reference: sink_0
@@ -60,7 +59,7 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
 
-[q_25192]
+[q_24388]
 Prompt: Place yourself at sink_1 and orient yourself to face away from the camera. is faucet_1 left or right relative to soap_1? Return only the answer.
 Anchor: sink_1
 Reference: soap_1
@@ -70,7 +69,7 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
 
-[q_30676]
+[q_29872]
 Prompt: Place yourself at hair dryer and orient yourself to face left. is faucet_0 left or right relative to soap_0? Return only the answer.
 Anchor: hair dryer
 Reference: soap_0
@@ -80,7 +79,7 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
 
-[q_32097]
+[q_31293]
 Prompt: Place yourself at soap_3 and orient yourself to face left. is toilet_1 left or right relative to faucet_0? Return only the answer.
 Anchor: soap_3
 Reference: faucet_0
@@ -91,176 +90,168 @@ Candidate answers: left, right
 Ground truth: right
 
 --------------------------------------------------------------------------------
-allocentric_qa | object_to_object | object_retrieval
---------------------------------------------------------------------------------
-[q_207976]
-Prompt: Place yourself at toilet_1 and orient yourself to face away from the camera. which object is behind of faucet_1? Choose one: mirror_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, sink_0. Return only the answer.
-Anchor: toilet_1
-Reference: faucet_1
-Orientation: away
-Relation axis: front_behind
-Candidate answers: mirror_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, sink_0
-Ground truth: sink_0
-Metadata: {"target_relation": "behind"}
-
-[q_210720]
-Prompt: Imagine you are standing at faucet_2, facing away from the camera. which object is behind of towel_1? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: faucet_2
-Reference: towel_1
-Orientation: away
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: soap_2
-Metadata: {"target_relation": "behind"}
-
-[q_211731]
-Prompt: Imagine you are standing at faucet_1, facing left. which object is in_front of toilet_0? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, sink_0. Return only the answer.
-Anchor: faucet_1
-Reference: toilet_0
-Orientation: left
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, sink_0
-Ground truth: towel_0
-Metadata: {"target_relation": "in_front"}
-
-[q_212101]
-Prompt: Imagine you are standing at hair dryer, facing right. which object is in_front of trash can? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: hair dryer
-Reference: trash can
-Orientation: right
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "in_front"}
-
-[q_109316]
-Prompt: Place yourself at toilet_0 and orient yourself to face the camera. which object is left of towel_3? Choose one: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: toilet_0
-Reference: towel_3
-Orientation: camera
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "left"}
-
-[q_109332]
-Prompt: Place yourself at toilet_0 and orient yourself to face the camera. which object is left of soap_2? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: toilet_0
-Reference: soap_2
-Orientation: camera
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "left"}
-
-[q_109839]
-Prompt: Place yourself at towel_3 and orient yourself to face away from the camera. which object is right of towel_0? Choose one: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: towel_3
-Reference: towel_0
-Orientation: away
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
-
-[q_110863]
-Prompt: Place yourself at soap_3 and orient yourself to face left. which object is left of towel_1? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: soap_3
-Reference: towel_1
-Orientation: left
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_0, soap_1, faucet_1, sink_0
-Ground truth: soap_2
-Metadata: {"target_relation": "left"}
-
---------------------------------------------------------------------------------
 allocentric_qa | object_to_object | relation_mcq
 --------------------------------------------------------------------------------
-[q_162491]
-Prompt: Place yourself at trash can and orient yourself to face the camera. where is faucet_2 relative to soap_2? Choose one: in_front, behind. Return only the answer.
-Anchor: trash can
-Reference: soap_2
-Target: faucet_2
+[q_160477]
+Prompt: Place yourself at sink_0 and orient yourself to face the camera. where is towel_2 relative to towel_0? Choose one: in_front, behind. Return only the answer.
+Anchor: sink_0
+Reference: towel_0
+Target: towel_2
 Orientation: camera
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_175999]
-Prompt: Place yourself at towel_0 and orient yourself to face left. where is faucet_1 relative to soap_0? Choose one: in_front, behind. Return only the answer.
-Anchor: towel_0
+[q_190521]
+Prompt: Imagine you are standing at towel_2, facing left. where is faucet_0 relative to soap_0? Choose one: in_front, behind. Return only the answer.
+Anchor: towel_2
 Reference: soap_0
+Target: faucet_0
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_193478]
+Prompt: Imagine you are standing at towel_1, facing left. where is faucet_2 relative to faucet_0? Choose one: in_front, behind. Return only the answer.
+Anchor: towel_1
+Reference: faucet_0
+Target: faucet_2
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_199128]
+Prompt: Imagine you are standing at towel_0, facing right. where is soap_2 relative to faucet_1? Choose one: in_front, behind. Return only the answer.
+Anchor: towel_0
+Reference: faucet_1
+Target: soap_2
+Orientation: right
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_63708]
+Prompt: Place yourself at faucet_2 and orient yourself to face the camera. where is soap_1 relative to toilet_0? Choose one: left, right. Return only the answer.
+Anchor: faucet_2
+Reference: toilet_0
+Target: soap_1
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_63838]
+Prompt: Place yourself at faucet_2 and orient yourself to face the camera. where is hair dryer relative to soap_0? Choose one: left, right. Return only the answer.
+Anchor: faucet_2
+Reference: soap_0
+Target: hair dryer
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_67896]
+Prompt: Place yourself at toilet_1 and orient yourself to face away from the camera. where is trash can relative to towel_2? Choose one: left, right. Return only the answer.
+Anchor: toilet_1
+Reference: towel_2
+Target: trash can
+Orientation: away
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_89407]
+Prompt: Imagine you are standing at soap_3, facing the camera. where is sink_1 relative to faucet_2? Choose one: left, right. Return only the answer.
+Anchor: soap_3
+Reference: faucet_2
+Target: sink_1
+Orientation: camera
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+allocentric_qa | viewer_centered | binary_relation
+--------------------------------------------------------------------------------
+[q_10667]
+Prompt: Place yourself at towel_0 and orient yourself to face left. is soap_3 in_front or behind relative to you? Return only the answer.
+Anchor: towel_0
+Target: soap_3
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_10724]
+Prompt: Place yourself at soap_3 and orient yourself to face left. is faucet_1 in_front or behind relative to you? Return only the answer.
+Anchor: soap_3
 Target: faucet_1
 Orientation: left
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_193870]
-Prompt: Imagine you are standing at soap_2, facing away from the camera. where is towel_2 relative to mirror_0? Choose one: in_front, behind. Return only the answer.
-Anchor: soap_2
-Reference: mirror_0
-Target: towel_2
-Orientation: away
+[q_11841]
+Prompt: Imagine you are standing at mirror_1, facing left. is sink_0 in_front or behind relative to you? Return only the answer.
+Anchor: mirror_1
+Target: sink_0
+Orientation: left
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_12237]
+Prompt: Imagine you are standing at towel_3, facing right. is sink_0 in_front or behind relative to you? Return only the answer.
+Anchor: towel_3
+Target: sink_0
+Orientation: right
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: in_front
 
-[q_200205]
-Prompt: Imagine you are standing at soap_3, facing left. where is soap_2 relative to faucet_1? Choose one: in_front, behind. Return only the answer.
-Anchor: soap_3
-Reference: faucet_1
-Target: soap_2
-Orientation: left
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: in_front
-
-[q_105150]
-Prompt: Imagine you are standing at faucet_2, facing right. where is toilet_0 relative to towel_3? Choose one: left, right. Return only the answer.
+[q_04408]
+Prompt: Place yourself at faucet_2 and orient yourself to face the camera. is mirror_1 left or right relative to you? Return only the answer.
 Anchor: faucet_2
-Reference: towel_3
-Target: toilet_0
-Orientation: right
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_108522]
-Prompt: Imagine you are standing at faucet_1, facing right. where is towel_1 relative to towel_3? Choose one: left, right. Return only the answer.
-Anchor: faucet_1
-Reference: towel_3
-Target: towel_1
-Orientation: right
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_75591]
-Prompt: Place yourself at mirror_0 and orient yourself to face left. where is sink_1 relative to towel_0? Choose one: left, right. Return only the answer.
-Anchor: mirror_0
-Reference: towel_0
-Target: sink_1
-Orientation: left
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_99341]
-Prompt: Imagine you are standing at faucet_2, facing left. where is towel_1 relative to towel_3? Choose one: left, right. Return only the answer.
-Anchor: faucet_2
-Reference: towel_3
-Target: towel_1
-Orientation: left
+Target: mirror_1
+Orientation: camera
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
 
+[q_05114]
+Prompt: Place yourself at toilet_0 and orient yourself to face left. is mirror_0 left or right relative to you? Return only the answer.
+Anchor: toilet_0
+Target: mirror_0
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_06598]
+Prompt: Imagine you are standing at soap_2, facing left. is towel_1 left or right relative to you? Return only the answer.
+Anchor: soap_2
+Target: towel_1
+Orientation: left
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_06961]
+Prompt: Imagine you are standing at soap_3, facing right. is soap_1 left or right relative to you? Return only the answer.
+Anchor: soap_3
+Target: soap_1
+Orientation: right
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
 --------------------------------------------------------------------------------
-allocentric_qa | viewer_centered | binary_relation
+allocentric_qa | viewer_centered | relation_mcq
 --------------------------------------------------------------------------------
-[q_11190]
-Prompt: Place yourself at towel_1 and orient yourself to face left. is towel_2 in_front or behind relative to you? Return only the answer.
+[q_13410]
+Prompt: Place yourself at towel_1 and orient yourself to face left. where is towel_2 relative to you? Choose one: in_front, behind. Return only the answer.
 Anchor: towel_1
 Target: towel_2
 Orientation: left
@@ -268,8 +259,8 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_12006]
-Prompt: Imagine you are standing at mirror_1, facing away from the camera. is hair dryer in_front or behind relative to you? Return only the answer.
+[q_14226]
+Prompt: Imagine you are standing at mirror_1, facing away from the camera. where is hair dryer relative to you? Choose one: in_front, behind. Return only the answer.
 Anchor: mirror_1
 Target: hair dryer
 Orientation: away
@@ -277,8 +268,8 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_12127]
-Prompt: Imagine you are standing at toilet_0, facing away from the camera. is towel_3 in_front or behind relative to you? Return only the answer.
+[q_14347]
+Prompt: Imagine you are standing at toilet_0, facing away from the camera. where is towel_3 relative to you? Choose one: in_front, behind. Return only the answer.
 Anchor: toilet_0
 Target: towel_3
 Orientation: away
@@ -286,8 +277,8 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: in_front
 
-[q_12520]
-Prompt: Imagine you are standing at sink_1, facing left. is mirror_1 in_front or behind relative to you? Return only the answer.
+[q_14740]
+Prompt: Imagine you are standing at sink_1, facing left. where is mirror_1 relative to you? Choose one: in_front, behind. Return only the answer.
 Anchor: sink_1
 Target: mirror_1
 Orientation: left
@@ -295,8 +286,8 @@ Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_04554]
-Prompt: Place yourself at toilet_1 and orient yourself to face the camera. is hair dryer left or right relative to you? Return only the answer.
+[q_07062]
+Prompt: Place yourself at toilet_1 and orient yourself to face the camera. where is hair dryer relative to you? Choose one: left, right. Return only the answer.
 Anchor: toilet_1
 Target: hair dryer
 Orientation: camera
@@ -304,8 +295,8 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
 
-[q_05181]
-Prompt: Place yourself at faucet_1 and orient yourself to face away from the camera. is trash can left or right relative to you? Return only the answer.
+[q_07689]
+Prompt: Place yourself at faucet_1 and orient yourself to face away from the camera. where is trash can relative to you? Choose one: left, right. Return only the answer.
 Anchor: faucet_1
 Target: trash can
 Orientation: away
@@ -313,8 +304,8 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
 
-[q_05667]
-Prompt: Place yourself at faucet_2 and orient yourself to face right. is trash can left or right relative to you? Return only the answer.
+[q_08175]
+Prompt: Place yourself at faucet_2 and orient yourself to face right. where is trash can relative to you? Choose one: left, right. Return only the answer.
 Anchor: faucet_2
 Target: trash can
 Orientation: right
@@ -322,160 +313,10 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
 
-[q_06941]
-Prompt: Imagine you are standing at toilet_1, facing right. is towel_2 left or right relative to you? Return only the answer.
+[q_09449]
+Prompt: Imagine you are standing at toilet_1, facing right. where is towel_2 relative to you? Choose one: left, right. Return only the answer.
 Anchor: toilet_1
 Target: towel_2
-Orientation: right
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
---------------------------------------------------------------------------------
-allocentric_qa | viewer_centered | object_retrieval
---------------------------------------------------------------------------------
-[q_15839]
-Prompt: Place yourself at towel_3 and orient yourself to face left. which object is behind of you? Choose one: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: towel_3
-Orientation: left
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "behind"}
-
-[q_15902]
-Prompt: Place yourself at sink_0 and orient yourself to face right. which object is in_front of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1. Return only the answer.
-Anchor: sink_0
-Orientation: right
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1
-Ground truth: mirror_0
-Metadata: {"target_relation": "in_front"}
-
-[q_15934]
-Prompt: Imagine you are standing at soap_0, facing the camera. which object is behind of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: soap_0
-Orientation: camera
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "behind"}
-
-[q_15976]
-Prompt: Imagine you are standing at mirror_1, facing left. which object is in_front of you? Choose one: toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: mirror_1
-Orientation: left
-Relation axis: front_behind
-Candidate answers: toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: toilet_1
-Metadata: {"target_relation": "in_front"}
-
-[q_10047]
-Prompt: Place yourself at faucet_2 and orient yourself to face away from the camera. which object is left of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: faucet_2
-Orientation: away
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: towel_3
-Metadata: {"target_relation": "left"}
-
-[q_10052]
-Prompt: Place yourself at faucet_0 and orient yourself to face away from the camera. which object is right of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: faucet_0
-Orientation: away
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
-
-[q_10110]
-Prompt: Place yourself at toilet_1 and orient yourself to face right. which object is right of you? Choose one: mirror_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: toilet_1
-Orientation: right
-Relation axis: left_right
-Candidate answers: mirror_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: towel_2
-Metadata: {"target_relation": "right"}
-
-[q_10172]
-Prompt: Imagine you are standing at soap_0, facing the camera. which object is left of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0. Return only the answer.
-Anchor: soap_0
-Orientation: camera
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0
-Ground truth: mirror_0
-Metadata: {"target_relation": "left"}
-
---------------------------------------------------------------------------------
-allocentric_qa | viewer_centered | relation_mcq
---------------------------------------------------------------------------------
-[q_13420]
-Prompt: Place yourself at towel_3 and orient yourself to face away from the camera. where is mirror_1 relative to you? Choose one: in_front, behind. Return only the answer.
-Anchor: towel_3
-Target: mirror_1
-Orientation: away
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: in_front
-
-[q_14432]
-Prompt: Imagine you are standing at towel_2, facing the camera. where is trash can relative to you? Choose one: in_front, behind. Return only the answer.
-Anchor: towel_2
-Target: trash can
-Orientation: camera
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: in_front
-
-[q_14494]
-Prompt: Imagine you are standing at trash can, facing the camera. where is soap_2 relative to you? Choose one: in_front, behind. Return only the answer.
-Anchor: trash can
-Target: soap_2
-Orientation: camera
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: in_front
-
-[q_14580]
-Prompt: Imagine you are standing at sink_1, facing the camera. where is faucet_0 relative to you? Choose one: in_front, behind. Return only the answer.
-Anchor: sink_1
-Target: faucet_0
-Orientation: camera
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: behind
-
-[q_07441]
-Prompt: Place yourself at hair dryer and orient yourself to face the camera. where is soap_1 relative to you? Choose one: left, right. Return only the answer.
-Anchor: hair dryer
-Target: soap_1
-Orientation: camera
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: left
-
-[q_08347]
-Prompt: Place yourself at towel_3 and orient yourself to face right. where is mirror_0 relative to you? Choose one: left, right. Return only the answer.
-Anchor: towel_3
-Target: mirror_0
-Orientation: right
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_09145]
-Prompt: Imagine you are standing at hair dryer, facing away from the camera. where is sink_1 relative to you? Choose one: left, right. Return only the answer.
-Anchor: hair dryer
-Target: sink_1
-Orientation: away
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_09736]
-Prompt: Imagine you are standing at mirror_0, facing right. where is toilet_0 relative to you? Choose one: left, right. Return only the answer.
-Anchor: mirror_0
-Target: toilet_0
 Orientation: right
 Relation axis: left_right
 Candidate answers: left, right
@@ -484,296 +325,197 @@ Ground truth: right
 --------------------------------------------------------------------------------
 egocentric_qa | object_to_object | binary_relation
 --------------------------------------------------------------------------------
-[q_01752]
-Prompt: From the viewer's perspective in this image, is towel_0 above or below relative to mirror_0? Return only the answer.
-Reference: mirror_0
-Target: towel_0
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: above
-
-[q_01799]
-Prompt: From the viewer's perspective in this image, is mirror_0 above or below relative to toilet_0? Return only the answer.
-Reference: toilet_0
-Target: mirror_0
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: above
-
-[q_02059]
-Prompt: Looking at the scene from the camera's viewpoint, is faucet_1 above or below relative to towel_2? Return only the answer.
-Reference: towel_2
-Target: faucet_1
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: below
-
-[q_02221]
-Prompt: Looking at the scene from the camera's viewpoint, is mirror_1 above or below relative to towel_1? Return only the answer.
-Reference: towel_1
+[q_01747]
+Prompt: From the viewer's perspective in this image, is mirror_1 above or below relative to hair dryer? Return only the answer.
+Reference: hair dryer
 Target: mirror_1
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: below
 
-[q_03388]
-Prompt: From the viewer's perspective in this image, is towel_1 in_front or behind relative to soap_1? Return only the answer.
+[q_01872]
+Prompt: From the viewer's perspective in this image, is towel_2 above or below relative to soap_1? Return only the answer.
 Reference: soap_1
-Target: towel_1
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: behind
+Target: towel_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
 
-[q_03653]
-Prompt: Looking at the scene from the camera's viewpoint, is toilet_0 in_front or behind relative to towel_1? Return only the answer.
-Reference: towel_1
-Target: toilet_0
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: behind
-
-[q_03721]
-Prompt: Looking at the scene from the camera's viewpoint, is towel_3 in_front or behind relative to soap_1? Return only the answer.
-Reference: soap_1
-Target: towel_3
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: behind
-
-[q_03731]
-Prompt: Looking at the scene from the camera's viewpoint, is soap_2 in_front or behind relative to soap_1? Return only the answer.
-Reference: soap_1
+[q_01936]
+Prompt: Looking at the scene from the camera's viewpoint, is soap_2 above or below relative to mirror_1? Return only the answer.
+Reference: mirror_1
 Target: soap_2
-Relation axis: front_behind
-Candidate answers: in_front, behind
-Ground truth: behind
-
-[q_00311]
-Prompt: From the viewer's perspective in this image, is toilet_1 left or right relative to mirror_0? Return only the answer.
-Reference: mirror_0
-Target: toilet_1
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: left
-
-[q_00436]
-Prompt: From the viewer's perspective in this image, is mirror_1 left or right relative to towel_0? Return only the answer.
-Reference: towel_0
-Target: mirror_1
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_00610]
-Prompt: Looking at the scene from the camera's viewpoint, is soap_3 left or right relative to toilet_1? Return only the answer.
-Reference: toilet_1
-Target: soap_3
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_00831]
-Prompt: Looking at the scene from the camera's viewpoint, is toilet_1 left or right relative to soap_3? Return only the answer.
-Reference: soap_3
-Target: toilet_1
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: left
-
---------------------------------------------------------------------------------
-egocentric_qa | object_to_object | object_retrieval
---------------------------------------------------------------------------------
-[q_03021]
-Prompt: From the viewer's perspective in this image, which object is below of towel_2? Choose one: mirror_1, toilet_1, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: towel_2
 Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "below"}
+Candidate answers: above, below
+Ground truth: below
+
+[q_02020]
+Prompt: Looking at the scene from the camera's viewpoint, is hair dryer above or below relative to trash can? Return only the answer.
+Reference: trash can
+Target: hair dryer
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
 
 [q_03026]
-Prompt: From the viewer's perspective in this image, which object is above of trash can? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
+Prompt: From the viewer's perspective in this image, is mirror_0 in_front or behind relative to trash can? Return only the answer.
 Reference: trash can
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "above"}
-
-[q_03045]
-Prompt: From the viewer's perspective in this image, which object is below of soap_0? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: soap_0
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0
-Ground truth: trash can
-Metadata: {"target_relation": "below"}
-
-[q_03053]
-Prompt: Looking at the scene from the camera's viewpoint, which object is below of mirror_1? Choose one: toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: mirror_1
-Relation axis: above_below
-Candidate answers: toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: toilet_1
-Metadata: {"target_relation": "below"}
-
-[q_04468]
-Prompt: From the viewer's perspective in this image, which object is behind of faucet_2? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: faucet_2
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "behind"}
-
-[q_04485]
-Prompt: From the viewer's perspective in this image, which object is in_front of soap_0? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: soap_0
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_1, faucet_1, sink_0
-Ground truth: soap_1
-Metadata: {"target_relation": "in_front"}
-
-[q_04491]
-Prompt: From the viewer's perspective in this image, which object is behind of sink_0? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1. Return only the answer.
-Reference: sink_0
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1
-Ground truth: mirror_1
-Metadata: {"target_relation": "behind"}
-
-[q_04504]
-Prompt: Looking at the scene from the camera's viewpoint, which object is behind of faucet_2? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: faucet_2
-Relation axis: front_behind
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "behind"}
-
-[q_01620]
-Prompt: From the viewer's perspective in this image, which object is right of sink_1? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: sink_1
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
-
-[q_01646]
-Prompt: Looking at the scene from the camera's viewpoint, which object is right of trash can? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: trash can
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
-
-[q_01647]
-Prompt: Looking at the scene from the camera's viewpoint, which object is left of faucet_2? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: faucet_2
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: towel_3
-Metadata: {"target_relation": "left"}
-
-[q_01658]
-Prompt: Looking at the scene from the camera's viewpoint, which object is left of towel_1? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Reference: towel_1
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: toilet_0
-Metadata: {"target_relation": "left"}
-
---------------------------------------------------------------------------------
-egocentric_qa | object_to_object | relation_mcq
---------------------------------------------------------------------------------
-[q_02558]
-Prompt: From the viewer's perspective in this image, where is toilet_1 relative to towel_1? Choose one: above, below. Return only the answer.
-Reference: towel_1
-Target: toilet_1
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: below
-
-[q_02617]
-Prompt: From the viewer's perspective in this image, where is hair dryer relative to soap_0? Choose one: above, below. Return only the answer.
-Reference: soap_0
-Target: hair dryer
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: above
-
-[q_02707]
-Prompt: Looking at the scene from the camera's viewpoint, where is towel_0 relative to toilet_1? Choose one: above, below. Return only the answer.
-Reference: toilet_1
-Target: towel_0
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: above
-
-[q_03007]
-Prompt: Looking at the scene from the camera's viewpoint, where is hair dryer relative to sink_0? Choose one: above, below. Return only the answer.
-Reference: sink_0
-Target: hair dryer
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: above
-
-[q_03845]
-Prompt: From the viewer's perspective in this image, where is toilet_1 relative to mirror_0? Choose one: in_front, behind. Return only the answer.
-Reference: mirror_0
-Target: toilet_1
+Target: mirror_0
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_03947]
-Prompt: From the viewer's perspective in this image, where is soap_3 relative to hair dryer? Choose one: in_front, behind. Return only the answer.
-Reference: hair dryer
-Target: soap_3
+[q_03036]
+Prompt: From the viewer's perspective in this image, is soap_0 in_front or behind relative to trash can? Return only the answer.
+Reference: trash can
+Target: soap_0
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: in_front
 
-[q_04395]
-Prompt: Looking at the scene from the camera's viewpoint, where is towel_0 relative to soap_0? Choose one: in_front, behind. Return only the answer.
-Reference: soap_0
+[q_03152]
+Prompt: From the viewer's perspective in this image, is mirror_0 in_front or behind relative to towel_1? Return only the answer.
+Reference: towel_1
+Target: mirror_0
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: behind
+
+[q_03276]
+Prompt: Looking at the scene from the camera's viewpoint, is towel_3 in_front or behind relative to mirror_1? Return only the answer.
+Reference: mirror_1
+Target: towel_3
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_00327]
+Prompt: From the viewer's perspective in this image, is towel_1 left or right relative to trash can? Return only the answer.
+Reference: trash can
+Target: towel_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00580]
+Prompt: Looking at the scene from the camera's viewpoint, is soap_2 left or right relative to mirror_1? Return only the answer.
+Reference: mirror_1
+Target: soap_2
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00595]
+Prompt: Looking at the scene from the camera's viewpoint, is towel_0 left or right relative to toilet_1? Return only the answer.
+Reference: toilet_1
 Target: towel_0
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_00617]
+Prompt: Looking at the scene from the camera's viewpoint, is soap_1 left or right relative to towel_2? Return only the answer.
+Reference: towel_2
+Target: soap_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+--------------------------------------------------------------------------------
+egocentric_qa | object_to_object | relation_mcq
+--------------------------------------------------------------------------------
+[q_02304]
+Prompt: From the viewer's perspective in this image, where is sink_1 relative to towel_2? Choose one: above, below. Return only the answer.
+Reference: towel_2
+Target: sink_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: below
+
+[q_02530]
+Prompt: From the viewer's perspective in this image, where is faucet_2 relative to soap_0? Choose one: above, below. Return only the answer.
+Reference: soap_0
+Target: faucet_2
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_02730]
+Prompt: Looking at the scene from the camera's viewpoint, where is towel_1 relative to toilet_0? Choose one: above, below. Return only the answer.
+Reference: toilet_0
+Target: towel_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_02878]
+Prompt: Looking at the scene from the camera's viewpoint, where is mirror_1 relative to soap_1? Choose one: above, below. Return only the answer.
+Reference: soap_1
+Target: mirror_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_03696]
+Prompt: From the viewer's perspective in this image, where is hair dryer relative to mirror_0? Choose one: in_front, behind. Return only the answer.
+Reference: mirror_0
+Target: hair dryer
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_03743]
+Prompt: From the viewer's perspective in this image, where is toilet_1 relative to toilet_0? Choose one: in_front, behind. Return only the answer.
+Reference: toilet_0
+Target: toilet_1
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_04422]
-Prompt: Looking at the scene from the camera's viewpoint, where is towel_2 relative to faucet_1? Choose one: in_front, behind. Return only the answer.
-Reference: faucet_1
-Target: towel_2
+[q_04003]
+Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to towel_2? Choose one: in_front, behind. Return only the answer.
+Reference: towel_2
+Target: sink_1
+Relation axis: front_behind
+Candidate answers: in_front, behind
+Ground truth: in_front
+
+[q_04165]
+Prompt: Looking at the scene from the camera's viewpoint, where is hair dryer relative to towel_0? Choose one: in_front, behind. Return only the answer.
+Reference: towel_0
+Target: hair dryer
 Relation axis: front_behind
 Candidate answers: in_front, behind
 Ground truth: behind
 
-[q_01087]
-Prompt: From the viewer's perspective in this image, where is toilet_0 relative to hair dryer? Choose one: left, right. Return only the answer.
-Reference: hair dryer
+[q_01208]
+Prompt: From the viewer's perspective in this image, where is soap_3 relative to soap_1? Choose one: left, right. Return only the answer.
+Reference: soap_1
+Target: soap_3
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_01473]
+Prompt: Looking at the scene from the camera's viewpoint, where is towel_0 relative to towel_1? Choose one: left, right. Return only the answer.
+Reference: towel_1
+Target: towel_0
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
+[q_01541]
+Prompt: Looking at the scene from the camera's viewpoint, where is toilet_0 relative to soap_1? Choose one: left, right. Return only the answer.
+Reference: soap_1
 Target: toilet_0
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
 
-[q_01170]
-Prompt: From the viewer's perspective in this image, where is mirror_1 relative to soap_3? Choose one: left, right. Return only the answer.
-Reference: soap_3
-Target: mirror_1
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: left
-
-[q_01393]
-Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to toilet_0? Choose one: left, right. Return only the answer.
-Reference: toilet_0
-Target: sink_1
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_01466]
-Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to towel_0? Choose one: left, right. Return only the answer.
-Reference: towel_0
-Target: sink_1
+[q_01551]
+Prompt: Looking at the scene from the camera's viewpoint, where is sink_0 relative to soap_1? Choose one: left, right. Return only the answer.
+Reference: soap_1
+Target: sink_0
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
@@ -781,65 +523,72 @@ Ground truth: right
 --------------------------------------------------------------------------------
 egocentric_qa | viewer_centered | binary_relation
 --------------------------------------------------------------------------------
-[q_00094]
-Prompt: From the viewer's perspective in this image, is soap_3 above or below relative to you? Return only the answer.
-Target: soap_3
+[q_00080]
+Prompt: From the viewer's perspective in this image, is mirror_0 above or below relative to you? Return only the answer.
+Target: mirror_0
 Relation axis: above_below
 Candidate answers: above, below
-Ground truth: below
+Ground truth: above
 
-[q_00097]
-Prompt: From the viewer's perspective in this image, is faucet_1 above or below relative to you? Return only the answer.
+[q_00088]
+Prompt: From the viewer's perspective in this image, is towel_1 above or below relative to you? Return only the answer.
+Target: towel_1
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00099]
+Prompt: Looking at the scene from the camera's viewpoint, is mirror_0 above or below relative to you? Return only the answer.
+Target: mirror_0
+Relation axis: above_below
+Candidate answers: above, below
+Ground truth: above
+
+[q_00112]
+Prompt: Looking at the scene from the camera's viewpoint, is faucet_1 above or below relative to you? Return only the answer.
 Target: faucet_1
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: below
 
-[q_00104]
-Prompt: Looking at the scene from the camera's viewpoint, is trash can above or below relative to you? Return only the answer.
-Target: trash can
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: below
-
-[q_00115]
-Prompt: Looking at the scene from the camera's viewpoint, is soap_1 above or below relative to you? Return only the answer.
-Target: soap_1
-Relation axis: above_below
-Candidate answers: above, below
-Ground truth: below
-
-[q_00162]
+[q_00154]
 Prompt: From the viewer's perspective in this image, is towel_2 foreground or background relative to you? Return only the answer.
 Target: towel_2
 Relation axis: foreground_background
 Candidate answers: foreground, background
 Ground truth: background
 
-[q_00163]
-Prompt: From the viewer's perspective in this image, is towel_3 foreground or background relative to you? Return only the answer.
-Target: towel_3
+[q_00157]
+Prompt: From the viewer's perspective in this image, is trash can foreground or background relative to you? Return only the answer.
+Target: trash can
 Relation axis: foreground_background
 Candidate answers: foreground, background
 Ground truth: background
 
-[q_00174]
+[q_00166]
 Prompt: From the viewer's perspective in this image, is soap_3 foreground or background relative to you? Return only the answer.
 Target: soap_3
 Relation axis: foreground_background
 Candidate answers: foreground, background
 Ground truth: foreground
 
-[q_00180]
-Prompt: Looking at the scene from the camera's viewpoint, is toilet_1 foreground or background relative to you? Return only the answer.
-Target: toilet_1
+[q_00170]
+Prompt: From the viewer's perspective in this image, is sink_0 foreground or background relative to you? Return only the answer.
+Target: sink_0
 Relation axis: foreground_background
 Candidate answers: foreground, background
-Ground truth: background
+Ground truth: foreground
 
-[q_00004]
-Prompt: From the viewer's perspective in this image, is mirror_0 left or right relative to you? Return only the answer.
-Target: mirror_0
+[q_00006]
+Prompt: From the viewer's perspective in this image, is faucet_2 left or right relative to you? Return only the answer.
+Target: faucet_2
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: right
+
+[q_00014]
+Prompt: From the viewer's perspective in this image, is soap_3 left or right relative to you? Return only the answer.
+Target: soap_3
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
@@ -851,169 +600,75 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
 
-[q_00020]
-Prompt: Looking at the scene from the camera's viewpoint, is toilet_1 left or right relative to you? Return only the answer.
-Target: toilet_1
+[q_00024]
+Prompt: Looking at the scene from the camera's viewpoint, is trash can left or right relative to you? Return only the answer.
+Target: trash can
 Relation axis: left_right
 Candidate answers: left, right
-Ground truth: right
-
-[q_00025]
-Prompt: Looking at the scene from the camera's viewpoint, is faucet_2 left or right relative to you? Return only the answer.
-Target: faucet_2
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
---------------------------------------------------------------------------------
-egocentric_qa | viewer_centered | object_retrieval
---------------------------------------------------------------------------------
-[q_00156]
-Prompt: From the viewer's perspective in this image, which object is above of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "above"}
-
-[q_00157]
-Prompt: From the viewer's perspective in this image, which object is below of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: trash can
-Metadata: {"target_relation": "below"}
-
-[q_00158]
-Prompt: Looking at the scene from the camera's viewpoint, which object is above of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "above"}
-
-[q_00159]
-Prompt: Looking at the scene from the camera's viewpoint, which object is below of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: above_below
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: trash can
-Metadata: {"target_relation": "below"}
-
-[q_00236]
-Prompt: From the viewer's perspective in this image, which object is foreground of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: foreground_background
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: sink_1
-Metadata: {"target_relation": "foreground"}
-
-[q_00237]
-Prompt: From the viewer's perspective in this image, which object is background of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: foreground_background
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "background"}
-
-[q_00238]
-Prompt: Looking at the scene from the camera's viewpoint, which object is foreground of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: foreground_background
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: sink_1
-Metadata: {"target_relation": "foreground"}
-
-[q_00239]
-Prompt: Looking at the scene from the camera's viewpoint, which object is background of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: foreground_background
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "background"}
-
-[q_00076]
-Prompt: From the viewer's perspective in this image, which object is left of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: trash can
-Metadata: {"target_relation": "left"}
-
-[q_00077]
-Prompt: From the viewer's perspective in this image, which object is right of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
-
-[q_00078]
-Prompt: Looking at the scene from the camera's viewpoint, which object is left of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: trash can
-Metadata: {"target_relation": "left"}
-
-[q_00079]
-Prompt: Looking at the scene from the camera's viewpoint, which object is right of you? Choose one: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0. Return only the answer.
-Relation axis: left_right
-Candidate answers: mirror_1, toilet_1, towel_2, towel_3, mirror_0, trash can, faucet_2, toilet_0, faucet_0, hair dryer, sink_1, towel_0, towel_1, soap_2, soap_3, soap_0, soap_1, faucet_1, sink_0
-Ground truth: mirror_1
-Metadata: {"target_relation": "right"}
+Ground truth: left
 
 --------------------------------------------------------------------------------
 egocentric_qa | viewer_centered | relation_mcq
 --------------------------------------------------------------------------------
-[q_00131]
-Prompt: From the viewer's perspective in this image, where is soap_2 relative to you? Choose one: above, below. Return only the answer.
-Target: soap_2
+[q_00124]
+Prompt: From the viewer's perspective in this image, where is sink_1 relative to you? Choose one: above, below. Return only the answer.
+Target: sink_1
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: below
 
-[q_00138]
-Prompt: Looking at the scene from the camera's viewpoint, where is toilet_1 relative to you? Choose one: above, below. Return only the answer.
-Target: toilet_1
+[q_00136]
+Prompt: Looking at the scene from the camera's viewpoint, where is towel_3 relative to you? Choose one: above, below. Return only the answer.
+Target: towel_3
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: above
 
-[q_00149]
-Prompt: Looking at the scene from the camera's viewpoint, where is towel_1 relative to you? Choose one: above, below. Return only the answer.
-Target: towel_1
+[q_00137]
+Prompt: Looking at the scene from the camera's viewpoint, where is mirror_0 relative to you? Choose one: above, below. Return only the answer.
+Target: mirror_0
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: above
 
-[q_00154]
-Prompt: Looking at the scene from the camera's viewpoint, where is faucet_1 relative to you? Choose one: above, below. Return only the answer.
-Target: faucet_1
+[q_00143]
+Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to you? Choose one: above, below. Return only the answer.
+Target: sink_1
 Relation axis: above_below
 Candidate answers: above, below
 Ground truth: below
 
-[q_00207]
-Prompt: From the viewer's perspective in this image, where is hair dryer relative to you? Choose one: foreground, background. Return only the answer.
-Target: hair dryer
+[q_00194]
+Prompt: From the viewer's perspective in this image, where is mirror_0 relative to you? Choose one: foreground, background. Return only the answer.
+Target: mirror_0
 Relation axis: foreground_background
 Candidate answers: foreground, background
 Ground truth: background
 
-[q_00214]
-Prompt: From the viewer's perspective in this image, where is soap_1 relative to you? Choose one: foreground, background. Return only the answer.
-Target: soap_1
-Relation axis: foreground_background
-Candidate answers: foreground, background
-Ground truth: foreground
-
-[q_00223]
-Prompt: Looking at the scene from the camera's viewpoint, where is faucet_2 relative to you? Choose one: foreground, background. Return only the answer.
-Target: faucet_2
-Relation axis: foreground_background
-Candidate answers: foreground, background
-Ground truth: background
-
-[q_00227]
-Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to you? Choose one: foreground, background. Return only the answer.
+[q_00200]
+Prompt: From the viewer's perspective in this image, where is sink_1 relative to you? Choose one: foreground, background. Return only the answer.
 Target: sink_1
 Relation axis: foreground_background
 Candidate answers: foreground, background
 Ground truth: foreground
 
-[q_00046]
-Prompt: From the viewer's perspective in this image, where is faucet_0 relative to you? Choose one: left, right. Return only the answer.
-Target: faucet_0
+[q_00203]
+Prompt: From the viewer's perspective in this image, where is soap_2 relative to you? Choose one: foreground, background. Return only the answer.
+Target: soap_2
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00207]
+Prompt: From the viewer's perspective in this image, where is faucet_1 relative to you? Choose one: foreground, background. Return only the answer.
+Target: faucet_1
+Relation axis: foreground_background
+Candidate answers: foreground, background
+Ground truth: foreground
+
+[q_00048]
+Prompt: From the viewer's perspective in this image, where is sink_1 relative to you? Choose one: left, right. Return only the answer.
+Target: sink_1
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: left
@@ -1025,16 +680,16 @@ Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
 
+[q_00067]
+Prompt: Looking at the scene from the camera's viewpoint, where is sink_1 relative to you? Choose one: left, right. Return only the answer.
+Target: sink_1
+Relation axis: left_right
+Candidate answers: left, right
+Ground truth: left
+
 [q_00072]
 Prompt: Looking at the scene from the camera's viewpoint, where is soap_0 relative to you? Choose one: left, right. Return only the answer.
 Target: soap_0
-Relation axis: left_right
-Candidate answers: left, right
-Ground truth: right
-
-[q_00073]
-Prompt: Looking at the scene from the camera's viewpoint, where is soap_1 relative to you? Choose one: left, right. Return only the answer.
-Target: soap_1
 Relation axis: left_right
 Candidate answers: left, right
 Ground truth: right
