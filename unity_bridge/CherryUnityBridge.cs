@@ -188,7 +188,10 @@ public class CherryUnityBridge : MonoBehaviour
         var gridRoot = new GameObject("Grid");
         gridRoot.transform.SetParent(_sceneRoot.transform);
 
-        var mat = new Material(Shader.Find("Standard"));
+        Shader gridShader = Shader.Find("Standard")
+                          ?? Shader.Find("Universal Render Pipeline/Lit")
+                          ?? Shader.Find("HDRP/Lit");
+        var mat = new Material(gridShader);
         mat.color = new Color(0.40f, 0.40f, 0.40f, 0.6f);
 
         float half = sceneSize / 2f;
@@ -263,9 +266,13 @@ public class CherryUnityBridge : MonoBehaviour
 
     private void ApplyColor(GameObject go, Color color)
     {
-        var mat = new Material(Shader.Find("Standard"));
+        Shader shader = Shader.Find("Standard")
+                     ?? Shader.Find("Universal Render Pipeline/Lit")
+                     ?? Shader.Find("HDRP/Lit");
+        var rend = go.GetComponent<Renderer>();
+        var mat = shader != null ? new Material(shader) : rend.material;
         mat.color = color;
-        go.GetComponent<Renderer>().material = mat;
+        rend.material = mat;
     }
 
     // ════════════════════════════════════════════════════════════════════════
@@ -323,8 +330,8 @@ public class CherryUnityBridge : MonoBehaviour
 
         lock (_queueLock) { _commandQueue.Enqueue(cmd); }
 
-        // Block until main thread processes it (5 s timeout)
-        if (!cmd.Signal.Wait(5000))
+        // Block until main thread processes it (15 s timeout)
+        if (!cmd.Signal.Wait(15000))
         {
             SendJson(ctx.Response, 504, JsonError("timeout — main thread did not respond"));
             return;
