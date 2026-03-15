@@ -120,10 +120,15 @@ public class CherryUnityBridge : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void OnDestroy() => StopServer();
+
+    void OnApplicationQuit() => StopServer();
+
+    private void StopServer()
     {
         _running = false;
         try { _listener?.Stop(); } catch { }
+        try { _listener?.Close(); } catch { }
         _listenerThread?.Join(1000);
     }
 
@@ -271,7 +276,16 @@ public class CherryUnityBridge : MonoBehaviour
     {
         _listener = new HttpListener();
         _listener.Prefixes.Add($"http://localhost:{port}/");
-        _listener.Start();
+        try
+        {
+            _listener.Start();
+        }
+        catch (HttpListenerException ex)
+        {
+            Debug.LogError($"[CherryBridge] Could not start on port {port}: {ex.Message}. " +
+                           "Stop Play mode, wait a moment, then press Play again.");
+            return;
+        }
         _running = true;
 
         _listenerThread = new Thread(ListenLoop) { IsBackground = true };
