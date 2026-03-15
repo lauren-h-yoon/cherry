@@ -77,7 +77,9 @@ Current query families:
 
 Current query subtypes:
 - `binary_relation`
-- `relation_mcq`
+
+Current query format:
+- binary relation judgment only
 
 ## Key Concept: Embodied Spatial Intelligence Evaluation
 
