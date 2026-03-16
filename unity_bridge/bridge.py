@@ -5,14 +5,14 @@ The C# script (CherryUnityBridge.cs) must be attached to a GameObject in your
 Unity scene and the scene must be running.  By default it listens on
 http://localhost:5555/.
 
-Unity Coordinate System
------------------------
+Unity Coordinate System (origin = camera position)
+---------------------------------------------------
   X  :  Left (−) / Right (+)
-  Y  :  Down (−) / Up (+)   — ground plane at Y = 0
-  Z  :  Near (−) / Far  (+) — depth axis
+  Y  :  Down (−) / Up (+)    — Y = 0 is camera eye level
+  Z  :  Toward camera (−) / Into scene (+)
 
-Scene extents:  X ∈ [−10, 10],  Z ∈ [−10, 10],  Y ∈ [0, 10]
-Sphere radius:  0.5 Unity units  → sit on ground → set Y = 0.5
+Scene extents:  X ∈ [−10, 10],  Y ∈ [−6, 6],  Z ∈ [0, 20]
+Sphere radius:  0.5 Unity units
 
 Objects in the real scene (chairs, tables, …) are represented as labelled
 spheres; the *label* carries the semantic meaning.
@@ -79,8 +79,8 @@ class UnityBridge:
     bridge = UnityBridge()
     bridge.wait_for_unity()          # blocks until Unity is ready
     bridge.initialize_scene()        # optional re-init
-    bridge.place_object("chair", x=1, y=0.5, z=2)
-    bridge.place_object("table", x=0, y=0.5, z=0, color="blue")
+    bridge.place_object("chair", x=1, y=0, z=2)
+    bridge.place_object("table", x=0, y=0, z=5, color="blue")
     state = bridge.get_scene_state()
     print(state.summary())
     bridge.clear_scene()
@@ -108,7 +108,7 @@ class UnityBridge:
             headers={"Content-Type": "application/json"},
         )
         try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
+            with urllib.request.urlopen(req, timeout=30) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.URLError as exc:
             raise ConnectionError(
@@ -169,8 +169,8 @@ class UnityBridge:
         ----------
         label  : Semantic label (e.g. "chair", "table").
         x      : Horizontal position.  Negative = left, Positive = right.
-        y      : Vertical position.    0 = ground.  Set y = 0.5 to sit on the ground.
-        z      : Depth position.       Negative = near camera, Positive = far.
+        y      : Vertical position.    0 = camera eye level.  Negative = below, Positive = above.
+        z      : Depth position.       0 = camera position, Positive = into scene.
         color  : Optional color name ("red", "blue", "green", "yellow",
                  "purple", "orange", "cyan", "pink") or hex string "#RRGGBB".
                  Auto-assigned from palette if omitted.

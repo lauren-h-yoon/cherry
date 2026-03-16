@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -6,26 +7,23 @@ using System.Threading;
 using UnityEngine;
 
 /// <summary>
-/// CherryUnityBridge - HTTP server that receives commands from Python to place objects in a 3D scene.
+/// CherryUnityBridge — HTTP server that receives commands from Python to place objects in a 3D scene.
 ///
-/// Attach this script to any GameObject in your Unity scene (e.g. an empty "Bridge" object).
-/// The scene initializes automatically on Start().
+/// Attach this script to any GameObject in your Unity scene.
 ///
-/// Unity Coordinate System:
-///   X axis: Left (negative) / Right (positive)
-///   Y axis: Down (negative) / Up (positive)  -- ground plane at Y=0
-///   Z axis: Toward viewer (negative) / Away from viewer (positive)
+/// Coordinate System (origin = camera position):
+///   X axis: Left (−) / Right (+)
+///   Y axis: Down (−) / Up (+)   — Y=0 is camera eye level
+///   Z axis: Into the scene (+)  — Z=0 is camera position
 ///
-/// Scene bounds: X ∈ [-10, 10], Z ∈ [-10, 10], Y ∈ [0, 10]
-/// All objects are placed as spheres with radius 0.5 (diameter 1.0 unit).
-/// To place a sphere sitting on the ground: set Y = 0.5.
+/// Scene bounds: X ∈ [−10, 10], Y ∈ [−6, 6], Z ∈ [0, 20]
 ///
-/// HTTP endpoints (all on localhost:5555):
-///   GET  /health        -- health check
-///   POST /place_object  -- place a labeled sphere
-///   POST /clear_scene   -- remove all placed spheres
-///   GET  /scene_state   -- get list of all placed objects
-///   POST /initialize    -- re-initialize scene (clears all objects)
+/// HTTP endpoints (localhost:5555):
+///   GET  /health        — health check
+///   POST /place_object  — place a labeled sphere {"label","x","y","z","color","scale"}
+///   POST /clear_scene   — remove all placed spheres
+///   GET  /scene_state   — list all placed objects
+///   POST /initialize    — clear scene
 /// </summary>
 public class CherryUnityBridge : MonoBehaviour
 {
@@ -33,246 +31,203 @@ public class CherryUnityBridge : MonoBehaviour
     public int port = 5555;
 
     [Header("Scene Settings")]
-    public float sceneSize = 20f;
+    public float sceneSize  = 20f;
     public float sphereRadius = 0.5f;
 
-    // ── Threading infrastructure ────────────────────────────────────────────
+    // ── HTTP server ──────────────────────────────────────────────────────────
     private HttpListener _listener;
-    private Thread _listenerThread;
+    private Thread       _listenerThread;
     private volatile bool _running = false;
 
     private readonly Queue<PendingCommand> _commandQueue = new Queue<PendingCommand>();
-    private readonly object _queueLock = new object();
+    private readonly object                _queueLock    = new object();
 
-    // ── Scene state ─────────────────────────────────────────────────────────
-    private GameObject _sceneRoot;      // permanent scene elements
-    private GameObject _objectsRoot;    // placed objects only — wiped on clear_scene
+    // ── Scene state ──────────────────────────────────────────────────────────
+    private GameObject _objectsRoot;
 
     [Serializable]
     private class PlacedObjectRecord
     {
-        public int id;
-        public string label;
-        public float x, y, z;
-        public string colorHex;
-        public float scale;
+        public int id; public string label;
+        public float x, y, z, scale; public string colorHex;
     }
-
     private readonly List<PlacedObjectRecord> _records = new List<PlacedObjectRecord>();
 
-    // ── Command queue entry ─────────────────────────────────────────────────
     private class PendingCommand
     {
-        public string Type;
-        public string Body;
-        public string Result;
+        public string Type, Body, Result;
         public readonly ManualResetEventSlim Signal = new ManualResetEventSlim(false);
     }
 
-    // ── Color palette for auto-assignment ───────────────────────────────────
     private static readonly Color[] Palette = {
-        new Color(0.90f, 0.20f, 0.20f),  // red
-        new Color(0.20f, 0.50f, 0.90f),  // blue
-        new Color(0.20f, 0.80f, 0.25f),  // green
-        new Color(0.95f, 0.75f, 0.10f),  // yellow
-        new Color(0.70f, 0.20f, 0.90f),  // purple
-        new Color(0.95f, 0.50f, 0.10f),  // orange
-        new Color(0.10f, 0.80f, 0.80f),  // cyan
-        new Color(0.90f, 0.20f, 0.70f),  // pink
-        new Color(0.60f, 0.40f, 0.20f),  // brown
-        new Color(0.50f, 0.90f, 0.50f),  // lime
+        new Color(0.90f,0.20f,0.20f), new Color(0.20f,0.50f,0.90f),
+        new Color(0.20f,0.80f,0.25f), new Color(0.95f,0.75f,0.10f),
+        new Color(0.70f,0.20f,0.90f), new Color(0.95f,0.50f,0.10f),
+        new Color(0.10f,0.80f,0.80f), new Color(0.90f,0.20f,0.70f),
+        new Color(0.60f,0.40f,0.20f), new Color(0.50f,0.90f,0.50f),
     };
 
     // ════════════════════════════════════════════════════════════════════════
     // Unity lifecycle
     // ════════════════════════════════════════════════════════════════════════
 
+    // Only one instance may run the server at a time
+    private static CherryUnityBridge _activeInstance;
+
     void Start()
     {
-        InitializeScene();
+        if (_activeInstance != null && _activeInstance != this)
+        {
+            Debug.LogWarning($"[CherryBridge] Duplicate instance on '{gameObject.name}' — disabled. Keep only one Bridge GameObject in the scene.");
+            enabled = false;
+            return;
+        }
+        _activeInstance = this;
+
+        // Keep running even when the Unity editor window loses focus
+        // (required so Update() processes HTTP commands while Python runs in another window)
+        Application.runInBackground = true;
+
+        // Create the objects container immediately so place_object works at once
+        _objectsRoot = new GameObject("PlacedObjects");
+
+        // Start the HTTP server before anything else so Update() is free to respond
         StartServer();
+
+        // Build the grid/camera in a coroutine so it doesn't block the first frame
+        StartCoroutine(BuildSceneAsync());
     }
 
     void Update()
     {
-        // Execute ONE queued command per frame on the main thread
-        // (Unity API calls are not thread-safe)
         PendingCommand cmd = null;
         lock (_queueLock)
         {
             if (_commandQueue.Count > 0)
                 cmd = _commandQueue.Dequeue();
         }
-
         if (cmd == null) return;
 
-        try
-        {
-            cmd.Result = DispatchCommand(cmd.Type, cmd.Body);
-        }
-        catch (Exception ex)
-        {
-            cmd.Result = JsonError(ex.Message);
-        }
-        finally
-        {
-            cmd.Signal.Set();
-        }
+        try   { cmd.Result = DispatchCommand(cmd.Type, cmd.Body); }
+        catch (Exception ex) { cmd.Result = JsonError(ex.Message); }
+        finally { cmd.Signal.Set(); }
     }
 
-    void OnDestroy() => StopServer();
-
+    void OnDestroy()
+    {
+        if (_activeInstance == this) _activeInstance = null;
+        StopServer();
+    }
     void OnApplicationQuit() => StopServer();
 
     private void StopServer()
     {
         _running = false;
-        try { _listener?.Stop(); } catch { }
+        try { _listener?.Stop();  } catch { }
         try { _listener?.Close(); } catch { }
         _listenerThread?.Join(1000);
     }
 
     // ════════════════════════════════════════════════════════════════════════
-    // Scene initialization
+    // Scene setup (runs after first frame so HTTP is already responsive)
     // ════════════════════════════════════════════════════════════════════════
 
-    private void InitializeScene()
+    private IEnumerator BuildSceneAsync()
     {
-        // Root objects
-        _sceneRoot = new GameObject("CherryScene_Static");
-        _objectsRoot = new GameObject("CherryScene_Objects");
-
-        // ── Ground plane ────────────────────────────────────────────────────
-        var ground = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        ground.name = "Ground";
-        ground.transform.SetParent(_sceneRoot.transform);
-        ground.transform.position = Vector3.zero;
-        // Unity Plane is 10x10 units by default; scale to sceneSize
-        ground.transform.localScale = new Vector3(sceneSize / 10f, 1f, sceneSize / 10f);
-        ApplyColor(ground, new Color(0.65f, 0.65f, 0.65f));
-
-        // ── Grid overlay ────────────────────────────────────────────────────
-        BuildGrid();
-
-        // ── Axis markers ────────────────────────────────────────────────────
-        BuildAxisMarkers();
-
-        // ── Lighting ────────────────────────────────────────────────────────
-        var lightObj = new GameObject("DirectionalLight");
-        lightObj.transform.SetParent(_sceneRoot.transform);
-        var light = lightObj.AddComponent<Light>();
-        light.type = LightType.Directional;
-        light.intensity = 1.2f;
-        light.color = new Color(1f, 0.97f, 0.92f);
-        lightObj.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-        RenderSettings.ambientLight = new Color(0.38f, 0.38f, 0.38f);
-
-        // ── Camera ──────────────────────────────────────────────────────────
-        // Positioned for a clear overview: high and slightly behind
-        var cam = Camera.main;
-        if (cam != null)
-        {
-            cam.transform.position = new Vector3(0f, 16f, -14f);
-            cam.transform.rotation = Quaternion.Euler(46f, 0f, 0f);
-            cam.backgroundColor = new Color(0.12f, 0.12f, 0.17f);
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.farClipPlane = 200f;
-        }
-
-        Debug.Log($"[CherryBridge] Scene initialized — {sceneSize}x{sceneSize} ground plane.");
+        yield return null; // let Update() run at least once first
+        SetupCamera();
+        yield return StartCoroutine(BuildGridAsync());
+        Debug.Log("[CherryBridge] Scene ready.");
     }
 
-    private void BuildGrid()
+    private IEnumerator BuildGridAsync()
     {
         var gridRoot = new GameObject("Grid");
-        gridRoot.transform.SetParent(_sceneRoot.transform);
+        var mat = MakeTransparentMaterial(new Color(1f, 1f, 1f, 0.06f));
 
-        Shader gridShader = Shader.Find("Standard")
-                          ?? Shader.Find("Universal Render Pipeline/Lit")
-                          ?? Shader.Find("HDRP/Lit");
-        var mat = new Material(gridShader);
-        mat.color = new Color(0.40f, 0.40f, 0.40f, 0.6f);
+        const float step = 2f;
+        float halfXZ = sceneSize / 2f;
+        float halfY  = Mathf.Ceil(sceneSize / 4f / step) * step;
+        int xSteps   = Mathf.RoundToInt(halfXZ / step);
+        int zCount   = Mathf.RoundToInt(sceneSize / step);
+        int ySteps   = Mathf.RoundToInt(halfY / step);
 
-        float half = sceneSize / 2f;
-        int steps = (int)(sceneSize / 2); // line every 2 units
-
-        for (int i = -steps; i <= steps; i++)
+        // Yield after each Y-level so Update() stays responsive during grid construction
+        for (int jj = -ySteps; jj <= ySteps; jj++)
         {
-            float t = i * 2f;
-            SpawnGridLine(gridRoot, mat, new Vector3(t, 0.01f, 0f), new Vector3(0.04f, 0.01f, sceneSize));
-            SpawnGridLine(gridRoot, mat, new Vector3(0f, 0.01f, t), new Vector3(sceneSize, 0.01f, 0.04f));
+            float y = jj * step;
+            for (int ii = -xSteps; ii <= xSteps; ii++)
+                SpawnGridLine(gridRoot, mat,
+                    new Vector3(ii * step, y, halfXZ),
+                    new Vector3(0.02f, 0.02f, sceneSize));
+            for (int kk = 0; kk <= zCount; kk++)
+                SpawnGridLine(gridRoot, mat,
+                    new Vector3(0f, y, kk * step),
+                    new Vector3(sceneSize, 0.02f, 0.02f));
+            yield return null;
         }
+        for (int ii = -xSteps; ii <= xSteps; ii++)
+        {
+            for (int kk = 0; kk <= zCount; kk++)
+                SpawnGridLine(gridRoot, mat,
+                    new Vector3(ii * step, 0f, kk * step),
+                    new Vector3(0.02f, halfY * 2f, 0.02f));
+            yield return null;
+        }
+    }
+
+    private void SetupCamera()
+    {
+        foreach (var c in Camera.allCameras) Destroy(c.gameObject);
+
+        var camGo = new GameObject("CherryCamera");
+        camGo.transform.position = Vector3.zero;
+        camGo.transform.rotation = Quaternion.identity;
+        var cam = camGo.AddComponent<Camera>();
+        cam.backgroundColor = new Color(0.12f, 0.12f, 0.17f);
+        cam.clearFlags  = CameraClearFlags.SolidColor;
+        cam.farClipPlane = 200f;
+        cam.fieldOfView  = 60f;
+        camGo.tag = "MainCamera";
+        camGo.AddComponent<CherryCamera>();
+    }
+
+    private Material MakeTransparentMaterial(Color color)
+    {
+        Shader shader = Shader.Find("Universal Render Pipeline/Lit")
+                     ?? Shader.Find("HDRP/Lit")
+                     ?? Shader.Find("Standard")
+                     ?? Shader.Find("Sprites/Default");
+        if (shader == null) return new Material(Shader.Find("Hidden/InternalErrorShader"));
+        var mat = new Material(shader);
+        mat.color = color;
+        if (mat.HasProperty("_Surface"))
+        {
+            mat.SetFloat("_Surface", 1f); mat.SetFloat("_Blend", 0f);
+            mat.SetFloat("_SrcBlend", 5f); mat.SetFloat("_DstBlend", 10f);
+            mat.SetFloat("_ZWrite", 0f);
+            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+        }
+        else if (mat.HasProperty("_Mode"))
+        {
+            mat.SetFloat("_Mode", 3f); mat.SetFloat("_SrcBlend", 5f);
+            mat.SetFloat("_DstBlend", 10f); mat.SetFloat("_ZWrite", 0f);
+            mat.DisableKeyword("_ALPHATEST_ON"); mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            mat.EnableKeyword("_ALPHABLEND_ON");
+            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+        }
+        return mat;
     }
 
     private void SpawnGridLine(GameObject parent, Material mat, Vector3 pos, Vector3 scale)
     {
         var line = GameObject.CreatePrimitive(PrimitiveType.Cube);
         line.transform.SetParent(parent.transform);
-        line.transform.position = pos;
+        line.transform.position   = pos;
         line.transform.localScale = scale;
         line.GetComponent<Renderer>().material = mat;
         Destroy(line.GetComponent<Collider>());
-    }
-
-    private void BuildAxisMarkers()
-    {
-        float edge = sceneSize / 2f - 0.8f;
-
-        // X axis (red)
-        SpawnAxisMarker("+X\n(right)",  new Vector3( edge, 0.5f, 0f), new Color(0.90f, 0.20f, 0.20f));
-        SpawnAxisMarker("-X\n(left)",   new Vector3(-edge, 0.5f, 0f), new Color(1.00f, 0.60f, 0.60f));
-
-        // Z axis (blue)
-        SpawnAxisMarker("+Z\n(far)",    new Vector3(0f, 0.5f,  edge), new Color(0.20f, 0.40f, 0.90f));
-        SpawnAxisMarker("-Z\n(near)",   new Vector3(0f, 0.5f, -edge), new Color(0.60f, 0.70f, 1.00f));
-
-        // Y axis (green pillar at origin)
-        var pillar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        pillar.name = "YAxisPillar";
-        pillar.transform.SetParent(_sceneRoot.transform);
-        pillar.transform.position = new Vector3(0f, 2f, 0f);
-        pillar.transform.localScale = new Vector3(0.12f, 2f, 0.12f);
-        ApplyColor(pillar, new Color(0.20f, 0.85f, 0.20f));
-        Destroy(pillar.GetComponent<Collider>());
-        SpawnTextLabel("+Y (up)", new Vector3(0.3f, 4.3f, 0f), new Color(0.20f, 0.95f, 0.20f));
-    }
-
-    private void SpawnAxisMarker(string text, Vector3 pos, Color color)
-    {
-        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.name = $"AxisMarker_{text.Replace("\n", "")}";
-        cube.transform.SetParent(_sceneRoot.transform);
-        cube.transform.position = pos;
-        cube.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-        ApplyColor(cube, color);
-        Destroy(cube.GetComponent<Collider>());
-        SpawnTextLabel(text, pos + Vector3.up * 0.7f, color);
-    }
-
-    private void SpawnTextLabel(string text, Vector3 pos, Color color)
-    {
-        var go = new GameObject($"TextLabel");
-        go.transform.SetParent(_sceneRoot.transform);
-        go.transform.position = pos;
-        var tm = go.AddComponent<TextMesh>();
-        tm.text = text;
-        tm.fontSize = 28;
-        tm.characterSize = 0.12f;
-        tm.color = color;
-        tm.anchor = TextAnchor.MiddleCenter;
-        tm.alignment = TextAlignment.Center;
-    }
-
-    private void ApplyColor(GameObject go, Color color)
-    {
-        Shader shader = Shader.Find("Standard")
-                     ?? Shader.Find("Universal Render Pipeline/Lit")
-                     ?? Shader.Find("HDRP/Lit");
-        var rend = go.GetComponent<Renderer>();
-        var mat = shader != null ? new Material(shader) : rend.material;
-        mat.color = color;
-        rend.material = mat;
     }
 
     // ════════════════════════════════════════════════════════════════════════
@@ -283,21 +238,15 @@ public class CherryUnityBridge : MonoBehaviour
     {
         _listener = new HttpListener();
         _listener.Prefixes.Add($"http://localhost:{port}/");
-        try
-        {
-            _listener.Start();
-        }
+        try { _listener.Start(); }
         catch (HttpListenerException ex)
         {
-            Debug.LogError($"[CherryBridge] Could not start on port {port}: {ex.Message}. " +
-                           "Stop Play mode, wait a moment, then press Play again.");
+            Debug.LogError($"[CherryBridge] Port {port} in use: {ex.Message}. Stop Play, wait a moment, try again.");
             return;
         }
         _running = true;
-
         _listenerThread = new Thread(ListenLoop) { IsBackground = true };
         _listenerThread.Start();
-
         Debug.Log($"[CherryBridge] HTTP bridge listening on http://localhost:{port}/");
     }
 
@@ -319,150 +268,110 @@ public class CherryUnityBridge : MonoBehaviour
     {
         string body = "";
         if (ctx.Request.HasEntityBody)
-        {
-            using var reader = new System.IO.StreamReader(
-                ctx.Request.InputStream, ctx.Request.ContentEncoding);
-            body = reader.ReadToEnd();
-        }
+            using (var r = new System.IO.StreamReader(ctx.Request.InputStream, ctx.Request.ContentEncoding))
+                body = r.ReadToEnd();
 
         string path = ctx.Request.Url.AbsolutePath.TrimStart('/');
         var cmd = new PendingCommand { Type = path, Body = body };
-
         lock (_queueLock) { _commandQueue.Enqueue(cmd); }
 
-        // Block until main thread processes it (15 s timeout)
         if (!cmd.Signal.Wait(15000))
         {
-            SendJson(ctx.Response, 504, JsonError("timeout — main thread did not respond"));
+            SendJson(ctx.Response, 504, JsonError("timeout"));
             return;
         }
-
         SendJson(ctx.Response, 200, cmd.Result);
     }
 
     private static void SendJson(HttpListenerResponse resp, int status, string body)
     {
-        resp.StatusCode = status;
-        resp.ContentType = "application/json; charset=utf-8";
-        byte[] bytes = Encoding.UTF8.GetBytes(body);
-        resp.ContentLength64 = bytes.Length;
-        resp.OutputStream.Write(bytes, 0, bytes.Length);
-        resp.Close();
+        try
+        {
+            resp.StatusCode    = status;
+            resp.ContentType   = "application/json; charset=utf-8";
+            byte[] bytes       = Encoding.UTF8.GetBytes(body);
+            resp.ContentLength64 = bytes.Length;
+            resp.OutputStream.Write(bytes, 0, bytes.Length);
+        }
+        finally { resp.Close(); }
     }
 
     // ════════════════════════════════════════════════════════════════════════
-    // Command dispatch (runs on main thread via Update())
+    // Command dispatch
     // ════════════════════════════════════════════════════════════════════════
 
     private string DispatchCommand(string type, string body)
     {
         switch (type.ToLowerInvariant())
         {
-            case "health":      return Health();
-            case "place_object":return PlaceObject(body);
-            case "clear_scene": return ClearScene();
-            case "scene_state": return GetSceneState();
-            case "initialize":
-                ClearScene();
-                return "{\"status\":\"reinitialized\"}";
-            default:
-                return JsonError($"unknown endpoint: {type}");
+            case "health":       return Health();
+            case "place_object": return PlaceObject(body);
+            case "clear_scene":  return ClearScene();
+            case "scene_state":  return GetSceneState();
+            case "initialize":   ClearScene(); return "{\"status\":\"reinitialized\"}";
+            default:             return JsonError($"unknown endpoint: {type}");
         }
     }
 
-    // ── /health ─────────────────────────────────────────────────────────────
-    private string Health()
-    {
-        return $"{{\"status\":\"ok\",\"objects_placed\":{_records.Count}}}";
-    }
+    private string Health() =>
+        $"{{\"status\":\"ok\",\"objects_placed\":{_records.Count}}}";
 
-    // ── /place_object ────────────────────────────────────────────────────────
-    //  Body: {"label":"chair","x":1.0,"y":0.5,"z":2.0,"color":"blue","scale":1.0}
     private string PlaceObject(string body)
     {
-        // Parse request (JsonUtility requires [Serializable] class)
         var req = JsonUtility.FromJson<PlaceObjectRequest>(body);
-        if (req == null) return JsonError("invalid JSON body");
+        if (req == null) return JsonError("invalid JSON");
 
         string label = string.IsNullOrEmpty(req.label) ? "object" : req.label;
-        float x = req.x;
-        float y = req.y < 0f ? sphereRadius : req.y; // auto: sit on ground
-        float z = req.z;
-        float scale = req.scale <= 0f ? 1f : req.scale;
+        float scale  = req.scale <= 0f ? 1f : req.scale;
 
-        // Create sphere
         var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.name = $"Obj_{label}_{_records.Count}";
         sphere.transform.SetParent(_objectsRoot.transform);
-        sphere.transform.position = new Vector3(x, y, z);
+        sphere.transform.position   = new Vector3(req.x, req.y, req.z);
         sphere.transform.localScale = Vector3.one * (sphereRadius * 2f * scale);
 
-        // Color
         Color color = ResolveColor(req.color, _records.Count);
         ApplyColor(sphere, color);
 
-        // Text label (floats above sphere)
         var labelGo = new GameObject($"Label_{label}");
         labelGo.transform.SetParent(_objectsRoot.transform);
-        float labelY = y + (sphereRadius * scale) + 0.35f;
-        labelGo.transform.position = new Vector3(x, labelY, z);
+        labelGo.transform.position = new Vector3(req.x, req.y + sphereRadius * scale + 0.35f, req.z);
         var tm = labelGo.AddComponent<TextMesh>();
-        tm.text = label;
-        tm.fontSize = 26;
-        tm.characterSize = 0.13f;
-        tm.color = Color.white;
-        tm.anchor = TextAnchor.MiddleCenter;
-        tm.alignment = TextAlignment.Center;
+        tm.text = label; tm.fontSize = 26; tm.characterSize = 0.13f;
+        tm.color = Color.white; tm.anchor = TextAnchor.MiddleCenter;
 
-        // Record
         string hex = "#" + ColorUtility.ToHtmlStringRGB(color);
-        var rec = new PlacedObjectRecord { id = _records.Count, label = label, x = x, y = y, z = z, colorHex = hex, scale = scale };
-        _records.Add(rec);
+        _records.Add(new PlacedObjectRecord { id = _records.Count, label = label,
+            x = req.x, y = req.y, z = req.z, colorHex = hex, scale = scale });
 
-        Debug.Log($"[CherryBridge] Placed '{label}' at ({x:F2}, {y:F2}, {z:F2})");
-
-        return $"{{\"status\":\"placed\",\"id\":{rec.id},\"label\":\"{label}\"," +
-               $"\"position\":{{\"x\":{x},\"y\":{y},\"z\":{z}}},\"color\":\"{hex}\"}}";
+        return $"{{\"status\":\"placed\",\"id\":{_records.Count - 1},\"label\":\"{label}\"," +
+               $"\"position\":{{\"x\":{req.x},\"y\":{req.y},\"z\":{req.z}}},\"color\":\"{hex}\"}}";
     }
 
     [Serializable]
     private class PlaceObjectRequest
     {
-        public string label = "";
-        public float x = 0f;
-        public float y = -1f;  // -1 = auto (sit on ground)
-        public float z = 0f;
-        public string color = "";
-        public float scale = 1f;
+        public string label = ""; public float x, y, z; public string color = ""; public float scale = 1f;
     }
 
-    // ── /clear_scene ─────────────────────────────────────────────────────────
     private string ClearScene()
     {
         int count = _records.Count;
-
-        // Destroy all placed object GameObjects at once via parent
-        foreach (Transform child in _objectsRoot.transform)
-            Destroy(child.gameObject);
-
+        foreach (Transform child in _objectsRoot.transform) Destroy(child.gameObject);
         _records.Clear();
-
-        Debug.Log($"[CherryBridge] Cleared {count} objects.");
         return $"{{\"status\":\"cleared\",\"removed\":{count}}}";
     }
 
-    // ── /scene_state ─────────────────────────────────────────────────────────
     private string GetSceneState()
     {
-        var sb = new StringBuilder();
-        sb.Append("{\"objects\":[");
+        var sb = new StringBuilder("{\"objects\":[");
         for (int i = 0; i < _records.Count; i++)
         {
             if (i > 0) sb.Append(',');
             var r = _records[i];
             sb.Append($"{{\"id\":{r.id},\"label\":\"{r.label}\"," +
-                       $"\"x\":{r.x},\"y\":{r.y},\"z\":{r.z}," +
-                       $"\"color\":\"{r.colorHex}\",\"scale\":{r.scale}}}");
+                      $"\"x\":{r.x},\"y\":{r.y},\"z\":{r.z}," +
+                      $"\"color\":\"{r.colorHex}\",\"scale\":{r.scale}}}");
         }
         sb.Append($"],\"count\":{_records.Count}}}");
         return sb.ToString();
@@ -472,27 +381,36 @@ public class CherryUnityBridge : MonoBehaviour
     // Helpers
     // ════════════════════════════════════════════════════════════════════════
 
+    private void ApplyColor(GameObject go, Color color)
+    {
+        Shader shader = Shader.Find("Universal Render Pipeline/Lit")
+                     ?? Shader.Find("HDRP/Lit")
+                     ?? Shader.Find("Standard");
+        var rend = go.GetComponent<Renderer>();
+        var mat  = shader != null ? new Material(shader) : rend.material;
+        mat.color = color;
+        rend.material = mat;
+    }
+
     private Color ResolveColor(string name, int index)
     {
         if (!string.IsNullOrEmpty(name))
         {
-            // Named colors
             switch (name.ToLowerInvariant().Trim())
             {
-                case "red":    return new Color(0.90f, 0.20f, 0.20f);
-                case "blue":   return new Color(0.20f, 0.50f, 0.90f);
-                case "green":  return new Color(0.20f, 0.80f, 0.25f);
-                case "yellow": return new Color(0.95f, 0.90f, 0.10f);
-                case "purple": return new Color(0.70f, 0.20f, 0.90f);
-                case "orange": return new Color(0.95f, 0.50f, 0.10f);
-                case "cyan":   return new Color(0.10f, 0.80f, 0.80f);
-                case "pink":   return new Color(0.90f, 0.20f, 0.70f);
+                case "red":    return new Color(0.90f,0.20f,0.20f);
+                case "blue":   return new Color(0.20f,0.50f,0.90f);
+                case "green":  return new Color(0.20f,0.80f,0.25f);
+                case "yellow": return new Color(0.95f,0.90f,0.10f);
+                case "purple": return new Color(0.70f,0.20f,0.90f);
+                case "orange": return new Color(0.95f,0.50f,0.10f);
+                case "cyan":   return new Color(0.10f,0.80f,0.80f);
+                case "pink":   return new Color(0.90f,0.20f,0.70f);
                 case "white":  return Color.white;
                 case "gray":
-                case "grey":   return new Color(0.60f, 0.60f, 0.60f);
-                case "brown":  return new Color(0.55f, 0.35f, 0.15f);
+                case "grey":   return new Color(0.60f,0.60f,0.60f);
+                case "brown":  return new Color(0.55f,0.35f,0.15f);
             }
-            // Hex color (#RRGGBB)
             if (ColorUtility.TryParseHtmlString(name, out Color hex)) return hex;
         }
         return Palette[index % Palette.Length];
