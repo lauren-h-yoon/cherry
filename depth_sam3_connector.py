@@ -76,10 +76,19 @@ class DepthSAM3Connector:
         sam3_confidence: float = 0.3,
         depth_backend: str = "dpt",  # "dpt" or "dinov3"
         depth_model_name: str = "Intel/dpt-large",
-        device: str = "cuda"
+        device: str = "cuda",
+        # Filtering parameters
+        max_instances_per_category: int = 0,  # 0 = no limit
+        min_confidence: float = 0.0,  # Additional confidence filter (post-SAM3)
+        min_bbox_area_ratio: float = 0.0,  # Min bbox area as ratio of image area
     ):
         self.device = device
         self.depth_backend = depth_backend
+
+        # Filtering settings
+        self.max_instances_per_category = max_instances_per_category
+        self.min_confidence = min_confidence
+        self.min_bbox_area_ratio = min_bbox_area_ratio
 
         # Initialize SAM3
         self.sam3 = SAM3Runner(
@@ -139,6 +148,65 @@ class DepthSAM3Connector:
         x1, y1, x2, y2 = bbox
         return [(x1 + x2) / 2, (y1 + y2) / 2]
 
+    def _compute_bbox_area(self, bbox: List[float]) -> float:
+        """Compute bounding box area."""
+        x1, y1, x2, y2 = bbox
+        return (x2 - x1) * (y2 - y1)
+
+    def _filter_entities(
+        self,
+        entities: List[Dict],
+        image_area: float,
+    ) -> List[Dict]:
+        """
+        Filter entities based on configured thresholds.
+
+        Filtering steps:
+        1. Filter by minimum confidence
+        2. Filter by minimum bounding box area
+        3. Limit instances per category (keep top by confidence)
+        """
+        filtered = entities
+
+        # Step 1: Filter by confidence
+        if self.min_confidence > 0:
+            before_count = len(filtered)
+            filtered = [e for e in filtered if e["confidence"] >= self.min_confidence]
+            if len(filtered) < before_count:
+                print(f"    Filtered {before_count - len(filtered)} entities below confidence {self.min_confidence}")
+
+        # Step 2: Filter by minimum bbox area
+        if self.min_bbox_area_ratio > 0:
+            min_area = image_area * self.min_bbox_area_ratio
+            before_count = len(filtered)
+            filtered = [e for e in filtered if self._compute_bbox_area(e["bbox"]) >= min_area]
+            if len(filtered) < before_count:
+                print(f"    Filtered {before_count - len(filtered)} entities below min area ratio {self.min_bbox_area_ratio}")
+
+        # Step 3: Limit instances per category
+        if self.max_instances_per_category > 0:
+            # Group by category
+            by_category: Dict[str, List[Dict]] = {}
+            for e in filtered:
+                cat = e["category"]
+                if cat not in by_category:
+                    by_category[cat] = []
+                by_category[cat].append(e)
+
+            # Keep top N per category by confidence
+            limited = []
+            for cat, cat_entities in by_category.items():
+                # Sort by confidence descending
+                cat_entities.sort(key=lambda x: x["confidence"], reverse=True)
+                kept = cat_entities[:self.max_instances_per_category]
+                if len(cat_entities) > len(kept):
+                    print(f"    Limited {cat}: {len(cat_entities)} -> {len(kept)} instances")
+                limited.extend(kept)
+
+            filtered = limited
+
+        return filtered
+
     def analyze(
         self,
         image: Image.Image,
@@ -187,6 +255,24 @@ class DepthSAM3Connector:
                     "depth_stats": depth_stats
                 })
                 entity_id += 1
+
+        # Apply filtering
+        image_area = image.width * image.height
+        pre_filter_count = len(raw_entities)
+        raw_entities = self._filter_entities(raw_entities, image_area)
+        if len(raw_entities) < pre_filter_count:
+            print(f"  Filtered: {pre_filter_count} -> {len(raw_entities)} entities")
+
+        # Re-number entities after filtering and reassign names with sequential indices
+        by_category: Dict[str, int] = {}
+        for e in raw_entities:
+            cat = e["category"]
+            idx = by_category.get(cat, 0)
+            by_category[cat] = idx + 1
+            e["name"] = f"{cat}_{idx}" if by_category[cat] > 1 or self.max_instances_per_category > 0 else cat
+
+        for i, e in enumerate(raw_entities):
+            e["id"] = f"entity_{i}"
 
         # Sort by median depth and assign z-order
         raw_entities.sort(key=lambda e: e["depth_stats"].median)
@@ -383,21 +469,41 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # With inline prompts
+  # With inline prompts (manual)
   python depth_sam3_connector.py --image scene.jpg --prompts "table" "chair" "lamp"
 
-  # With prompts file from generate_queries.py
+  # With prompts file
   python depth_sam3_connector.py --image scene.jpg --prompts-file outputs/prompts.json
 
-  # Combined (prompts-file + additional prompts)
-  python depth_sam3_connector.py --image scene.jpg --prompts-file outputs/prompts.json --prompts "extra_object"
+  # Auto-detect with GPT-4o
+  python depth_sam3_connector.py --image scene.jpg --prompt-source gpt4o
+
+  # Use COCO vocabulary for indoor scenes
+  python depth_sam3_connector.py --image scene.jpg --prompt-source vocabulary --scene-type indoor
+
+  # Use COCO ground-truth (for COCO dataset images)
+  python depth_sam3_connector.py --image 000000397133.jpg --prompt-source coco_gt \\
+      --coco-annotations annotations/instances_val2017.json
+
+  # With filtering
+  python depth_sam3_connector.py --image scene.jpg --prompt-source gpt4o \\
+      --max_per_category 3 --min_confidence 0.5
 """
     )
 
     # Input options
     parser.add_argument("--image", "-i", required=True, help="Image path")
-    parser.add_argument("--prompts", "-p", nargs="+", help="Text prompts (inline)")
-    parser.add_argument("--prompts-file", help="JSON file with prompts (from generate_queries.py)")
+    parser.add_argument("--prompts", "-p", nargs="+", help="Text prompts (inline, manual)")
+    parser.add_argument("--prompts-file", help="JSON file with prompts")
+
+    # Prompt source options
+    parser.add_argument("--prompt-source", choices=["manual", "vocabulary", "coco_gt", "gpt4o"],
+                        default="manual", help="Prompt source method (default: manual)")
+    parser.add_argument("--scene-type", default="indoor",
+                        choices=["all", "indoor", "living_room", "kitchen", "bedroom", "outdoor"],
+                        help="Scene type for vocabulary method (default: indoor)")
+    parser.add_argument("--coco-annotations", help="Path to COCO instances JSON (for coco_gt)")
+    parser.add_argument("--prompt-cache-dir", default="prompt_cache", help="Cache dir for GPT-4o")
 
     # Output options
     parser.add_argument("--output_dir", "-o", default="spatial_outputs", help="Output directory")
@@ -407,35 +513,90 @@ Examples:
 
     # Model options
     parser.add_argument("--sam3_bpe", default="sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz")
-    parser.add_argument("--sam3_confidence", type=float, default=0.3)
+    parser.add_argument("--sam3_confidence", type=float, default=0.3,
+                        help="SAM3 initial confidence threshold (default: 0.3)")
     parser.add_argument("--depth_backend", choices=["dpt", "dinov3"], default="dpt")
     parser.add_argument("--device", default="cuda")
 
+    # Filtering options
+    parser.add_argument("--max_per_category", type=int, default=0,
+                        help="Max instances per category, 0=unlimited (default: 0)")
+    parser.add_argument("--min_confidence", type=float, default=0.0,
+                        help="Post-detection confidence filter (default: 0.0)")
+    parser.add_argument("--min_area_ratio", type=float, default=0.0,
+                        help="Min bbox area as ratio of image (default: 0.0)")
+
     args = parser.parse_args()
 
-    # Collect prompts from both sources
+    # Collect prompts based on source
     prompts = []
 
-    if args.prompts_file:
+    if args.prompt_source == "manual":
+        # Manual mode: use --prompts and/or --prompts-file
+        if args.prompts_file:
+            file_prompts = load_prompts_from_file(args.prompts_file)
+            prompts.extend(file_prompts)
+            print(f"Loaded {len(file_prompts)} prompts from: {args.prompts_file}")
+
+        if args.prompts:
+            prompts.extend(args.prompts)
+
+    else:
+        # Auto-detection modes
+        from prompt_sources import PromptGenerator
+
+        generator = PromptGenerator(
+            coco_annotations_path=args.coco_annotations,
+            cache_dir=args.prompt_cache_dir,
+        )
+
+        if args.prompt_source == "vocabulary":
+            prompts = generator.from_coco_vocabulary(
+                scene_type=args.scene_type,
+                include_extended=True,
+            )
+            print(f"Using COCO vocabulary ({args.scene_type}): {len(prompts)} prompts")
+
+        elif args.prompt_source == "coco_gt":
+            if not args.coco_annotations:
+                parser.error("--coco-annotations required for coco_gt prompt source")
+            image_filename = Path(args.image).name
+            prompts = generator.from_coco_annotations(image_filename=image_filename)
+            print(f"Using COCO ground-truth: {len(prompts)} objects in {image_filename}")
+
+        elif args.prompt_source == "gpt4o":
+            result = generator.from_gpt4o(args.image)
+            prompts = result.get("prompts", [])
+            print(f"GPT-4o detected {len(prompts)} objects")
+            print(f"  Scene type: {result.get('scene_type')}")
+            print(f"  Suggested anchor: {result.get('suggested_anchor')}")
+
+        # Add any additional manual prompts
+        if args.prompts:
+            prompts.extend(args.prompts)
+            print(f"Added {len(args.prompts)} additional manual prompts")
+
+    # Legacy support: if prompts-file provided with non-manual source, merge them
+    if args.prompt_source != "manual" and args.prompts_file:
         file_prompts = load_prompts_from_file(args.prompts_file)
         prompts.extend(file_prompts)
-        print(f"Loaded {len(file_prompts)} prompts from: {args.prompts_file}")
-
-    if args.prompts:
-        prompts.extend(args.prompts)
+        print(f"Merged {len(file_prompts)} prompts from file")
 
     # Remove duplicates while preserving order
     prompts = list(dict.fromkeys(prompts))
 
     if not prompts:
-        parser.error("Must provide prompts via --prompts or --prompts-file")
+        parser.error("Must provide prompts via --prompts, --prompts-file, or --prompt-source")
 
     # Initialize connector
     connector = DepthSAM3Connector(
         sam3_bpe_path=args.sam3_bpe,
         sam3_confidence=args.sam3_confidence,
         depth_backend=args.depth_backend,
-        device=args.device
+        device=args.device,
+        max_instances_per_category=args.max_per_category,
+        min_confidence=args.min_confidence,
+        min_bbox_area_ratio=args.min_area_ratio,
     )
 
     # Analyze image
