@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_6502889e3df7",
+  "category": "daily_indoors",
+  "image_id": "38520f5dbb89d17d",
+  "caption": "In the center of the image we can see a man and robot are standing on the stage. On the right side of the image we can see a couch, pillows, table. On the table we can see a book. In the background of the image we can see the screen, lights, curtain, door, board on the wall. At the top of the image we can see the roof and lights. At the bottom of the image we can see some people.",
+  "caption_word_count": 82,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "38520f5dbb89d17d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:27:07.472087+00:00"
+}

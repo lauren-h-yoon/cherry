@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This photo is taken inside of an office. A woman is sitting at a desk in front of a computer screen. She is wearing a striped shirt. A large board is hanging on a wall behind the woman. There is a printer sitting on a brown table. A blue chair is in front of the printer.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_12d19a7ea5ee",
+  "category": "architectural_street",
+  "image_id": "8e844b3fd7a9206a",
+  "caption": "This picture is clicked outside. In the foreground we can see the net and an animal seems to be walking on the ground and we can see the plants and some other items.",
+  "caption_word_count": 33,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "8e844b3fd7a9206a"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:27:44.426248+00:00"
+}

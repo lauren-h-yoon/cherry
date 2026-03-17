@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_7c7a69cfc214",
+  "category": "daily_indoors",
+  "image_id": "0908c3260e13f3a5",
+  "caption": "In this image, I can see two persons standing and painting a wall with wall paint brushes. I can see a man holding a bucket. In the bottom right corner of the image, it looks like a ladder. On the left side of the image, I can see an object and a pipe attached to the wall. In the bottom left side of the image, there is a plant.",
+  "caption_word_count": 69,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0908c3260e13f3a5"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:36.208390+00:00"
+}

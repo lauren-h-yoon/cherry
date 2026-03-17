@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There is a road. On the side of the road there are cars. Also there are buildings with brick wall. On the wall there are windows. Near to that that there are pot with plants. Also there are windows with mesh.
+
+Source: Localized Narratives (Open Images)

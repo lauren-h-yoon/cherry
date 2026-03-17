@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_29f41104b0fa",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_29f41104b0fa/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image i can see a woman holding a bat and she is smiling and there is a some text written on the wall and back side of her.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:23.082909+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_774c9861b244",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_774c9861b244/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see few people with different color dresses. To the side of these people I can see some objects on the table. In the background I can see the wall and there are lights in the top.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:26.890868+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

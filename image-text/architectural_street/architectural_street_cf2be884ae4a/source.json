@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_cf2be884ae4a",
+  "category": "architectural_street",
+  "image_id": "d4c15913037ad037",
+  "caption": "This picture is clicked outside. In the foreground we can see the graves of the persons and we can see there are some objects placed on the ground, the ground is covered with the green grass and we can see the plants and trees. In the background we can see the sky.",
+  "caption_word_count": 52,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "d4c15913037ad037"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:17.875597+00:00"
+}

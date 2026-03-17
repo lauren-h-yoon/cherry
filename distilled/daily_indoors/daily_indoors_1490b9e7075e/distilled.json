@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_1490b9e7075e",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_1490b9e7075e/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there is a cabinet having sink tap, bottles, clock on it. There is a rod having a cloth is attached to the wall. Beside the cabinet there is a standing having few clothes on it. There are few plants. Behind there is a curtain to the window.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:54.676368+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

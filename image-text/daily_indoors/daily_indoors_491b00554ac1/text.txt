@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This picture is taken inside of a home. There is a large rug sitting on a brown wooden floor in the room. A chair is sitting against a white painted wall. A picture frame is hanging above the chair. There is a large cabinet sitting near the chair in the corner of the room. Green plants hang on a side wall of the room.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

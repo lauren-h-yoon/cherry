@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_aae5c51f71f9",
+  "category": "daily_indoors",
+  "image_id": "0324c6ec3f9d62e7",
+  "caption": "This is a photo. In this picture we can see a table, text, bouquets, cloth. In the background of the image we can see the wall. At the bottom of the image we can see the floor.",
+  "caption_word_count": 37,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0324c6ec3f9d62e7"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:35.140763+00:00"
+}

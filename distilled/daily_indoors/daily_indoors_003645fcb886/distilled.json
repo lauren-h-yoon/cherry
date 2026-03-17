@@ -1,0 +1,35 @@
+{
+  "item_id": "daily_indoors_003645fcb886",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_003645fcb886/image.jpg",
+  "objects": [
+    {
+      "object": "wooden desk",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "computer monitors",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "white keyboard",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "blue wall",
+      "spatially_referenced": true,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nThere is a wooden desk against a blue wall. There is two computer monitors on the desk. There is a white keyboard on the desk in front of the computer.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:03.296782+00:00",
+  "stats": {
+    "total_objects": 4,
+    "spatially_referenced": 4,
+    "not_spatially_referenced": 0
+  }
+}

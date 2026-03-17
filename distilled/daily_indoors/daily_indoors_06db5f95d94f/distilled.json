@@ -1,0 +1,55 @@
+{
+  "item_id": "daily_indoors_06db5f95d94f",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_06db5f95d94f/image.jpg",
+  "objects": [
+    {
+      "object": "table",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "books",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "chairs",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "glass",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "poster",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "wall",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "pillar",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "plant",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nThere is a room. There is a group of people. They are sitting on a chairs. Some persons are standing. They are holding a glass. There is a table. There is a books on a table. In the center we have a woman. She is wearing a red color dress. She is holding glass. We can see in background poster,wall,pillar and plant.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:27.218752+00:00",
+  "stats": {
+    "total_objects": 8,
+    "spatially_referenced": 2,
+    "not_spatially_referenced": 6
+  }
+}

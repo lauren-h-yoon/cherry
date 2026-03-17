@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_5ea3a39561cc",
+  "category": "daily_indoors",
+  "image_id": "001c89242ad9886e",
+  "caption": "This picture seems to be clicked inside the room. In the center we can see a woman standing on the ground and bending. In the background we can see the curtain and the wall and some metal objects.",
+  "caption_word_count": 38,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "001c89242ad9886e"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T14:59:46.350280+00:00"
+}

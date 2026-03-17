@@ -1,0 +1,9 @@
+Category: creative_scenes (animation)
+Movie: tears_of_steel
+Timestamp: 00:03:50
+License: CC BY 3.0
+
+Spatial Description:
+Rooftop scene. Robot figure on left foreground, two characters in center midground, destroyed cityscape in background with smoke. Atmospheric depth and size scaling.
+
+Source: Blender Open Movies (https://download.blender.org/demo/movies/ToS/tears_of_steel_1080p.mov)

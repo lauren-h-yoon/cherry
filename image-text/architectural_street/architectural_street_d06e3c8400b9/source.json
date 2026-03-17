@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_d06e3c8400b9",
+  "category": "architectural_street",
+  "image_id": "0058ee4249e2e83f",
+  "caption": "In this image we can see few buildings. There are few trees in the image. There is a vehicle in the image. There is a person at the left side of the image. There is a safety cone in the image.",
+  "caption_word_count": 41,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0058ee4249e2e83f"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:16.857271+00:00"
+}

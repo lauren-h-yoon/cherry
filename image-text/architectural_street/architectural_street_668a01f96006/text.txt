@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The street is lined with many signs. All are giving different directs to help the flow of traffic. The sidewalk is paved with red brick. Three are some green shrubs surrounded by trees. The majority of tress have no leaves at all but some still have their yellow leaves. A indication that winter is on the way. In the distance a person is walking from a door. The person has on black pants.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

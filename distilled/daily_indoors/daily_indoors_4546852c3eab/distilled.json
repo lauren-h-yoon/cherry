@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4546852c3eab",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4546852c3eab/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nTwo shiny brown wooden doors are seen in an office. There is a white sign on the door on the right saying \"Sense Sortida\" there are pictures on the wall in between the doors, and on either side. The tan terrazzo floors shine in the daylight. The door on the left has a golden door handle, and the left has a silver one. On the right of the right door there is a wooden, and metal chair with a blue seat.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:16.514999+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

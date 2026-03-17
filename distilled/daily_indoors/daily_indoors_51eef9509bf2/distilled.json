@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_51eef9509bf2",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_51eef9509bf2/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the image there are many people sitting on either sides of table staring in the front, there are few persons standing on stage with speakers on either side of them, this is inside a tent with bulbs hanging on the top.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:28.176907+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

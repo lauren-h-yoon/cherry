@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In this image we can see the side view of a car, in front of the car there is a man and a child walking on the road, in front of the man there are cars and houses.
+
+Source: Localized Narratives (Open Images)

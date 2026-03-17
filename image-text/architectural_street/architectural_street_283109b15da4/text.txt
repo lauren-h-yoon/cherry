@@ -1,0 +1,5 @@
+Category: architectural_street
+
+People sit and walk around an open air cafe on the sidewalk in front of a restaurant. There are white and black plastic chairs lining the stone sidewalk. Next to the chairs are large trees that are filled with leaves. The sky above is grey and cloudy.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

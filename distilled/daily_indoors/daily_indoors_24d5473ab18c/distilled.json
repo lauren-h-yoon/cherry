@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_24d5473ab18c",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_24d5473ab18c/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nHere is the man standing and singing a song. He is playing guitar. This is the mic attached to the mike stand. This looks like a hi-hat instrument. I can see an object placed here. At background This looks like an empty chair.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:17.285340+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is a line of motorcycles parked in a row.  All of the motorcycles are facing the same way and parked on pavement. People are walking through the motorcycles in the second row back.  Trees are behind the motorcycles.  The pavement has grass growing through it in places.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

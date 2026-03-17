@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3f8a42533684",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3f8a42533684/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nA picture is on red wall. This man is sitting in-front of this piano keyboard. On this piano keyboard there are books. A floor with carpet. Front there is a couch. In-front of this cough there is a table, on this table there are books and papers. A woman is standing and wore a blue suit.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:04.838343+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_2c1c4c35a724",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_2c1c4c35a724/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis is the picture inside the room. There are three people in the image, one is sitting and two are standing behind the chairs. At the left there is a box on the table, at the right there are papers on the table, at the back there is a board. There are books, ball on the table.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:27.525134+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

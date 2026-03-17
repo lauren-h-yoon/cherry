@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3abc1724d6b3",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3abc1724d6b3/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see six people, four elders and two kids, one kid is lying on the bed and another one is standing on the bed. I can see a window, a wall with a poster and a curtain on the right hand side. I can see a wall and a metal cupboard with lockers behind the people.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:49.503815+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_e6fdd2235d90",
+  "category": "daily_indoors",
+  "image_id": "055dcb952b192b0d",
+  "caption": "The image is taken inside the room. In the center of the image there is a table and there are many bottles which are placed on the table. In the background there is another table and there are books, decors, a lamp which is placed on the table next to it there is a sofa and a cushion on the sofa. In the background there is a wall and there are many photo frames which are attached to the wall.",
+  "caption_word_count": 80,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "055dcb952b192b0d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:18.858175+00:00"
+}

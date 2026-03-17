@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In the center of the image we can see a car. In the background of the image we can see the buildings, windows, trees, cars, wall, plants. At the bottom of the image we can see the pavement. At the top of the image we can see the sky.
+
+Source: Localized Narratives (Open Images)

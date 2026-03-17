@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The building is standing tall on a cloudy day. The clouds in the sky are grey in color. It looks like it is about to rain. All of the people outside of the building are walking around. They are all wearing coats.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

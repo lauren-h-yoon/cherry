@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_2cba422afc2d",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_2cba422afc2d/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nAt the bottom there is a woman who is wearing black dress. She is sitting near to the pyramid. In the background we can see the group of persons were standing near the wall. On the left background there is a group of person sitting near to the banner and door. On the right we can see the group of persons were standing near to the door.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:30.437496+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

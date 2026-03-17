@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In this image, we can see some buildings. There are vehicles on the road. There is a signal light on the right side of the image. There is a sky at the top of the image.
+
+Source: Localized Narratives (Open Images)

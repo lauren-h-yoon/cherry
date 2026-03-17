@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_741e218758c4",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_741e218758c4/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I see a man who is sitting on the chair and he is holding a mic, In front there are lot of cups and a kettle. In the background I see a chair and the wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:20.309938+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

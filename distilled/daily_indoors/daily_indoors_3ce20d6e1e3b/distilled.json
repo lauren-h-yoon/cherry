@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3ce20d6e1e3b",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3ce20d6e1e3b/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there is a tea pot, glasses, cups and on the glass there is one bird and there is blurry background. At the bottom there is a table.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:58.271801+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

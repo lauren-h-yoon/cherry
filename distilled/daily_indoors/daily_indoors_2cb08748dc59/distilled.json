@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_2cb08748dc59",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_2cb08748dc59/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see there are few persons sitting on chairs and playing a musical instrument, in front of them there is a mic, behind them there is a piano. In the background there is a wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:29.709640+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

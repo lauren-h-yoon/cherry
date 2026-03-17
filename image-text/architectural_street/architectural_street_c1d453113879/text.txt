@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is the photo of a large building on a street corner.  The sky is clear and blue.  A police car sits at the corner across from the building.  On the other side of the police car are well manicured tree's and grass.  Two people, one in blue jeans and a pink shirt, and another person in a red shirt and blue jeans are walking near the building.  An orange traffic cone with a do not enter sign attached to it sits in the road.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

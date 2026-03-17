@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The sky is overcast and cloudy. There's a bike leaning against the pole on the sidewalk. The street light is green. There are cars driving along the street. Some people are crossing at the corner. There are trees lining the buildings in the distance. Some cars are parked. There is a gray garbage can sitting by the building. The person Crossing in the middle of the street in the distance has on a red shirt.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

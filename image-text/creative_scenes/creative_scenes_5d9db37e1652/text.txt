@@ -1,0 +1,9 @@
+Category: creative_scenes (animation)
+Movie: sintel
+Timestamp: 00:07:45
+License: CC BY 3.0
+
+Spatial Description:
+Dragon lair interior. Sintel on left foreground, baby dragon in center midground, cave walls and treasure piles in background. Lighting and occlusion create depth.
+
+Source: Blender Open Movies (https://download.blender.org/demo/movies/Sintel.2010.1080p.mkv)

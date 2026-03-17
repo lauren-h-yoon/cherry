@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+The living room has a lot of color in it. The couch is multicolored. There is a star blanket throw that's on the back of the couch. There is a stuffed bear to the left of the couch. The stuff there is holding a fish. There's a picture of the American flag on the wall over the couch. There are multi colored rugs on the floor in front of the couch. There's a red black and white plaid blanket on the couch.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

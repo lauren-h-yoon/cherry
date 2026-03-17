@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_d6dcf11b25f8",
+  "category": "daily_indoors",
+  "image_id": "a3686852fc538890",
+  "caption": "This image is taken indoors. At the bottom of the image there is a floor. In the background there is a wall with a fire extinguisher on it. On the left side of the image a man is sitting on the chair and two men are standing on the floor. In the middle of the image five men are sitting on the chairs and holding hand-fans in their hands.",
+  "caption_word_count": 69,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "a3686852fc538890"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:17.200533+00:00"
+}

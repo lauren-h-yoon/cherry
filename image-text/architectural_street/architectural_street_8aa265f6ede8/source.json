@@ -1,0 +1,10 @@
+{
+  "item_id": "architectural_street_8aa265f6ede8",
+  "category": "architectural_street",
+  "image_name": "608",
+  "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/608.jpg",
+  "paragraph": "A yellow taxi drives on a city street on a cloudy day. Its headlights are on, and there is a white license plate on its front bumper. There is a group of people on the sidewalk, walking away from the camera. The street is wet like it recently rained. There is an American flag hanging on a pole above the sidewalk. There are tall buildings in the background, and green trees on the left side in front of the people walking.",
+  "paragraph_word_count": 81,
+  "source": "stanford_image_paragraph_captioning",
+  "retrieved_at": "2026-02-26T12:41:17.411210+00:00"
+}

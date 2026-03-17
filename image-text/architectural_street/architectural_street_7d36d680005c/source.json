@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_7d36d680005c",
+  "category": "architectural_street",
+  "image_id": "d05867c81e8e690a",
+  "caption": "This looks like a fort with pillars. These are the trees. I can see houses and buildings. This is the view of the city. These are the cars on the road. In the background, that looks like water.",
+  "caption_word_count": 38,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "d05867c81e8e690a"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:27:47.086868+00:00"
+}

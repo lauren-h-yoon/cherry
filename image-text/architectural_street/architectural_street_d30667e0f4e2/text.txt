@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is the picture of a building. In this image there is a text on the building and there are curtains behind the door and window. On the left side of the image there is a plant behind the window. On the right side of the image there is a building. At the top there is sky.
+
+Source: Localized Narratives (Open Images)

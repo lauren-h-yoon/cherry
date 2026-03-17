@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_39b3fe63c398",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_39b3fe63c398/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nHere in this picture we can see a woman standing in front of the speech desk giving a speech and at the right side we can see a woman sitting with a table in front of her and bag on it, here we can see a guy he is also sitting on a chair, here we can see a door, here at the top we can see a plant, at the left side we can see persons hand\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:48.774129+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+There is a white computer sitting on a desk. There is a white keyboard in front of the computer. There is a green bottle on the desk next to the computer. There is a white mouse on top of a black mouse pad on the desk. There are books lined up along the back of the desk and the wall. There is a white speaker on the desk in front of the books.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

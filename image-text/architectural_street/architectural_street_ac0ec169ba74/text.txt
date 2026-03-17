@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The city street crowded with people. To the left side there are tents up and people walking around. There is some sort of Street Fair happening. The street light is yellow. There are people crossing the street at the crosswalk. There's a big truck to the left that is right. The back of the truck is open. Most of the tents by the street fair are right. The sun is shining on the top of the white tents. There are buildings in the distance.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

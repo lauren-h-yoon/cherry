@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_3d56d4ead8df",
+  "category": "daily_indoors",
+  "image_id": "01fb725fb1aa7b04",
+  "caption": "This is an inside view of a room. On the left side there are two tables and a chair. On the table few photo frames are placed. On the right side there is a bed on which few pillows are placed and there is a curtain to the window. In the background there are few frames attached to the wall. Beside the bed there is a lamp.",
+  "caption_word_count": 67,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "01fb725fb1aa7b04"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:31.272952+00:00"
+}

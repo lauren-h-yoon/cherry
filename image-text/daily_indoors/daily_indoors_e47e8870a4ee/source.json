@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_e47e8870a4ee",
+  "category": "daily_indoors",
+  "image_id": "e81fe0a4b0cf6b2c",
+  "caption": "Here we can see two persons holding a knife and cutting food item on a chopping board. This is a table. On the table there are bottles, bowl, spoon, and food. There are cupboards, washbasin, tap, glass, and an object. From the glass we can see a house. In the background we can see wall.",
+  "caption_word_count": 55,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "e81fe0a4b0cf6b2c"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:02.901530+00:00"
+}

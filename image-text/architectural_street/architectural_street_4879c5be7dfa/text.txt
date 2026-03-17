@@ -1,0 +1,5 @@
+Category: architectural_street
+
+Three horses are walking down the street. There are people sitting on top of the horses. The two men sitting on the horses are wearing white long sleeve shirts. The men are also wearing red scarves around their necks. Both of the horses are walking but the men on their backs. All three horses are brown. The horse to the right all the way to the right is darker than the others.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

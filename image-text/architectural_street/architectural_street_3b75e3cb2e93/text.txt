@@ -1,0 +1,5 @@
+Category: architectural_street
+
+In this picture I can see the road. I can see the house. I can see trees on the left and right side. I can see clouds in the sky.
+
+Source: Localized Narratives (Open Images)

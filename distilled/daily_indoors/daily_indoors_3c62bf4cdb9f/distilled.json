@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3c62bf4cdb9f",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3c62bf4cdb9f/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nA few people are walking by an all glass window wall. Some of the people are carrying pale pink umbrellas and some others are carrying a blue umbrella. A little white dog walks alongside a woman walking.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:56.054300+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

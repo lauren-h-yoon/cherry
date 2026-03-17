@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_f9c507432a29",
+  "category": "architectural_street",
+  "image_id": "e6baa3f70f3f4245",
+  "caption": "This is an outside view. On the left side there is a wall. Here I can see many plants and grass on the ground. In the background there is a building, a wall and many trees. At the top of the image I can see the sky.",
+  "caption_word_count": 47,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "e6baa3f70f3f4245"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:02.472894+00:00"
+}

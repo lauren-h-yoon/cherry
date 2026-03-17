@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This picture is taken outside on a cloudy day. A bus is sitting on a road driving past a row of vehicles that are sitting at a light. Buildings can be seen on both sides of the road. Vehicles are parked near sidewalks that are in front of the buildings. The sky above the buildings has white clouds in it.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_73d9378df8cd",
+  "category": "architectural_street",
+  "image_id": "55cd387acc2fc643",
+  "caption": "This image is taken outdoors. At the bottom of the image there is a road and a ground with grass on it. In the background there are many trees. On the right side of the image a man is running on the ground. On the right side of the image a man is standing on the road. In the middle of the image a few people are running on the road.",
+  "caption_word_count": 71,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "55cd387acc2fc643"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:55.554430+00:00"
+}

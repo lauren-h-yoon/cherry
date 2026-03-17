@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_700449c4b7cd",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_700449c4b7cd/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThere is desk against the wall. The desk as a silver desktop computer on it. The computer has a bright blue button that is lit. Next to the computer is a white landline phone with a black phone cord attached to it. The monitor is siting next to the phone. It is white and is showing a blue screen with a Asian character on the screen. The keyboard is siting in front of the monitor and is black. Next to the monitor, at the end of the desk, there is stuffed penguin. He has yellow feet and a yellow beak with large black and white eyes.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:13.019101+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

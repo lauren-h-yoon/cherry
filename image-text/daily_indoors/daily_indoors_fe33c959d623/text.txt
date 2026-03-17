@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+We are looking through the window of a pizza joint. Three pizza pies are lined in front of the window. There are also six pizzas lining the counter. A man in a white t-shirt is standing at the counter with his elbows on the glass top. A man is standing at the prep station making a pizza. There are neon signs in the window as well as against the back wall. There is also a lit ATM sign.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

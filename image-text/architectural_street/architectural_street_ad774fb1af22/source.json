@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_ad774fb1af22",
+  "category": "architectural_street",
+  "image_id": "284a845037a8dd47",
+  "caption": "In the image there are two cars drifting on the road, behind it there are few men standing in front of fence with a bike behind them and in the background there is a bus stop followed by buildings behind it.",
+  "caption_word_count": 41,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "284a845037a8dd47"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:12.579298+00:00"
+}

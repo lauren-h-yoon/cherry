@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There is a large colorful building next to a street. There are many windows on the front and the side of the building. There are small trees in front of the building with yellow leaves on it. There are many cars parked on the street in front of the building. There is a truck that is purple and has orange flames painted on the side of it.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

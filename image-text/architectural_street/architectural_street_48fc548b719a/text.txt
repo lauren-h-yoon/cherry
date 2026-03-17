@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A yellow taxi drives down a city street on a cloudy day. The street looks wet from rain. There are white lines painted on the black pavement. There are tall buildings in the background: United Colors of Benneton, Antiques and Fine Art, a sign that says Computers, and there are flags on flagpoles above the sidewalk, attached to the building. There are people walking on the sidewalk in front of the store windows. There are red awnings above the windows on the building on the far left side.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

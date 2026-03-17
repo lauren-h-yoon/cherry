@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_d30667e0f4e2",
+  "category": "architectural_street",
+  "image_id": "c309b5bf2993fd10",
+  "caption": "This is the picture of a building. In this image there is a text on the building and there are curtains behind the door and window. On the left side of the image there is a plant behind the window. On the right side of the image there is a building. At the top there is sky.",
+  "caption_word_count": 57,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "c309b5bf2993fd10"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:29.067407+00:00"
+}

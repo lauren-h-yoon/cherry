@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_34d5ba52bec7",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_34d5ba52bec7/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the image we can see there are two men who are holding guitar in their hand and at the background the wall is in orange colour and a side there are stairs and there is a casio in the room and there are monitor and CPU too.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:43.597890+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

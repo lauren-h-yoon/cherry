@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_463df35f8b55",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_463df35f8b55/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see a woman. We can also see a cushion, a roll mat, a basket with the books, flower pot, house plants, sofa, window, a rack with the books and also some objects. We can also see a text board, an object on the counter which is on the right. We can also see a frame attached to the wall. We can see the ceiling, floor and also a mat. In the bottom right corner we can see the text and the image has borders.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:17.977891+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

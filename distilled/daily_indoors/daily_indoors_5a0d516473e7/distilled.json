@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_5a0d516473e7",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_5a0d516473e7/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see two people sitting in-front of the table. These people are wearing the different color dresses. I can see the glass and bowl on the table. In the background I can see the person and many boards to the building. I can also see the lights to the building.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:44.325284+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

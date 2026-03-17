@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_491b00554ac1",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_491b00554ac1/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis picture is taken inside of a home. There is a large rug sitting on a brown wooden floor in the room. A chair is sitting against a white painted wall. A picture frame is hanging above the chair. There is a large cabinet sitting near the chair in the corner of the room. Green plants hang on a side wall of the room.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:21.607525+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

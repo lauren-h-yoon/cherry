@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_37c5bc8c8246",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_37c5bc8c8246/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture we can see a group of people are sitting on the floor, two people are in squat position and a person is lying on the floor. Behind the people there is a bike and a wall with a fire extinguisher, signboard and other things.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:45.812110+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4faef1cca2c4",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4faef1cca2c4/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture we can see a table and a woman is sitting on a chair. This is a monitor and its a cpu. At the right side of the picture we can see one woman standing and giving something to this woman. On the background of the picture we can see a wall, a cupboards. This is a bottle , flower vase. In this cupboard we can see few items arranged.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:26.721475+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

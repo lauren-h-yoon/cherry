@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_5660b4e04b86",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_5660b4e04b86/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the center of the image we can see two persons are boxing and wearing gloves, cap. In the background of the image we can see the boxing coat. At the top of the image we can see the wall and boards. At the bottom of the image we can see some persons.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:33.317124+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

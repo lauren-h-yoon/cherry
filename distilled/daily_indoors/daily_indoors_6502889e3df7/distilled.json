@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_6502889e3df7",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_6502889e3df7/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the center of the image we can see a man and robot are standing on the stage. On the right side of the image we can see a couch, pillows, table. On the table we can see a book. In the background of the image we can see the screen, lights, curtain, door, board on the wall. At the top of the image we can see the roof and lights. At the bottom of the image we can see some people.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:56.817463+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_19f9b804b4cd",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_19f9b804b4cd/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image, we can see a woman standing on a blue object. In the background, we can see people, some objects, wall, door, sign board, glass object, railing and few things.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:02.677150+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

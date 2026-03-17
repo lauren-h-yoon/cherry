@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_38739f50fc72",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_38739f50fc72/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis is an image of a very large fireplace. The fireplace is made out of brick. On top of the fireplace there are numerous of bottles. In the middle of the bottles that are on the second row there is a round wall clock. In front of the fireplace there is a brown chair that is made out of wood. The floor that is in front of the fireplace is also made out of bricks.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:48.041769+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

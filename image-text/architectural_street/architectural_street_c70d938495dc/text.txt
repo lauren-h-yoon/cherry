@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A view of the city at nighttime.  There are blue Christmas lights on the tree.  There is snow on the ground.   It is snowing outside.  The buildings has lights glowing from the window.  There is a blue sign with a question mark of the side of the street.  The traffic light is red.   There is a car driving down the street.  The sky is a dark blue.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There are a group of boats parked in a marina. There are several boats that have colors of red, white, and blue throughout the vessel. The prominent boat is of a red color, and seems to have no individuals on board the boat. In addition, the reflection of the prominent boat is displayed in the reflection that is shown on the body of water displayed in the picture.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

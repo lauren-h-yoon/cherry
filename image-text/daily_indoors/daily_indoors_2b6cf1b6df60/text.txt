@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A small kitchen is pictured. It has white colored wooden cabinets. The counter top is colored with darker wood then the cabinets. A window is above the sink. The glass in the window has a design of a clock etched in it. There is a rug that is dark in color on the floor. And on the wall coming inside the kitchen is a wine rack with lots of wine bottles on it.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

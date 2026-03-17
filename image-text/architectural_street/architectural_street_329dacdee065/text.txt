@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A man and woman are standing next to each other in formal wear. She has a ring of flowers in her hair, and he is wearing a suit and bow tie. She is adjusting his tie. They are flanked by two other men in suits. It's not clear what the occasion is - perhaps a wedding - but they are in a building with some kind of patio, and a park with a fountain can be seen in the background.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

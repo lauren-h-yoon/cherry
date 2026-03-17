@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_b2d4be07b72f",
+  "category": "daily_indoors",
+  "image_id": "ba39ec61ada53ad8",
+  "caption": "In the image we can see two children wearing clothes. One is standing and the other one is lying. Here we can see screen, the table and the poster. On the poster we can see the drawing.",
+  "caption_word_count": 37,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "ba39ec61ada53ad8"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:28:20.094852+00:00"
+}

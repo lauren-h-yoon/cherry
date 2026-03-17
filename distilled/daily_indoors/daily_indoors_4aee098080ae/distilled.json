@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4aee098080ae",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4aee098080ae/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image a woman is typing on a tablet which is fixed to a stand. Beside there is a woman wearing spectacles is holding a mike in her hand. Before her there is a stand. Beside there is a woman wearing blue shirt is having spectacles. Beside her there are few persons standing on the floor having few mike stands, bags and few stands on it. A girl is standing near the door. She is wearing a cap. Behind her there is a wall. Right side there is a shoe.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:23.793902+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

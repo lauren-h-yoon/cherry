@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A very large building in the city is at the end of the city road. It has many windows and many doorways. Cars are parked in front of the building and on the side of the building that is closest to the large building. There is no traffic on the city road that you can see from this picture. On the other side of the road you can see many trees with green leafs on them.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

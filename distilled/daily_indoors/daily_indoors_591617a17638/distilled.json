@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_591617a17638",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_591617a17638/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the foreground of the picture we can see table, laptop, glass, lemon slice and woman sitting in chair. The woman is smiling. In the background it looks like a wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:41.410112+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

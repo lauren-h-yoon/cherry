@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is a parking lot with a little more than a scattering of cars.  A brick sidewalk lines the building of the parking  lot and a single car is parked at that curb.  A fence encloses the building.  There the scattering of cars is parked are a few tree's, green and vibrant.  An apartment complex is across the road.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

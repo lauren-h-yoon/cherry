@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is a picture of a city. In the foreground of the picture there are plants and water. In the center of the picture there are buildings, boats and trees. Sky is bit cloudy. This is an edited image.
+
+Source: Localized Narratives (Open Images)

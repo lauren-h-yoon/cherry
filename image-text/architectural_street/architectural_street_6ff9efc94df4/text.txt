@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This is an image of a street. The street is made up of gray pavement. There are white lines dotting the street. There are shadows being cast on the road from the trees. The trees are leafy green with brown tree trunks. There are white concrete posts on the sidewalk. The posts have a black metal fence between them.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

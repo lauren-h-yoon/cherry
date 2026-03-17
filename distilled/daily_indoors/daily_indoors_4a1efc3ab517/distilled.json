@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_4a1efc3ab517",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_4a1efc3ab517/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture I can see an inside view of a room. Here I can see a person is sitting and holding an object. On the left side I can see a TV on a table, table fan and bags. On the right side I can see a red color table which has some objects on it. In the background I can see a wall and a board which has something written on it. Here I can see a flower pot.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:23.069114+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

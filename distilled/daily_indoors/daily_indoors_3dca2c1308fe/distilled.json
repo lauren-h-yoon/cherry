@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_3dca2c1308fe",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_3dca2c1308fe/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nThis is inside view picture. In this picture a man is sitting and smiling. In Front of him there is a glass with drink in it. Behind the man there are few persons sitting. At the right side of the picture we can see a reception.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:37:59.732754+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

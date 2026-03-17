@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_7c10e650520d",
+  "category": "daily_indoors",
+  "image_id": "d34f40c01043edcc",
+  "caption": "In the center of the image we can see a cat sitting. In the background there is a window. On the left there is a table and we can see things placed on the table.",
+  "caption_word_count": 35,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "d34f40c01043edcc"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:27.344982+00:00"
+}

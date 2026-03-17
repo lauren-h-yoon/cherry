@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_529872a072dc",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_529872a072dc/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn the background we can see the wall, railings, stairs and a person. On the right side of the picture we can see a board on the pillar. In this picture we can see a boy wearing a jacket and he is smiling.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:28.905434+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

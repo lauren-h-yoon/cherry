@@ -1,0 +1,5 @@
+Category: manufacturing_indoors
+
+A garage with white walls and wooden doors with glass panes. There is a black motorcycle inside with plastic carriers on the back. There is a large silver car parked behind the motorcycle. In front of the motorcycle there is an orange snow blower. There are grey shelves on the walls filled with items.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This image is a street in a neighborhood. This area looks to be suburban. There is a car parked on the side of the road. The car parked on the side of the road is black. There is a black car parked in a driveway. There are numerous power lines over the road. There are two mens standing on a slope near a driveway. There is a small white hydrant by the men.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

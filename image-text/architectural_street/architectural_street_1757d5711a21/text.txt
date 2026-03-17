@@ -1,0 +1,5 @@
+Category: architectural_street
+
+The street is pave. There are white lines painted on the road. There is a one van driving on the road. On the side of the road are lines of lamp post. There is also along gray metal railings on the side of the road. Farther from the camera is a structure with pinwheels on it. The sky is blue and clear.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

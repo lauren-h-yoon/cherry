@@ -1,0 +1,30 @@
+{
+  "item_id": "daily_indoors_084c0067f778",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_084c0067f778/image.jpg",
+  "objects": [
+    {
+      "object": "papers",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "door",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "light",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nIn this picture I can see a person in a fancy dress, there are papers on the wall, there is a door and a light and there are some other objects.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:34.569924+00:00",
+  "stats": {
+    "total_objects": 3,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 3
+  }
+}

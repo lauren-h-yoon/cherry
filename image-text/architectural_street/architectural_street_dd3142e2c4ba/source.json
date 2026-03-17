@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_dd3142e2c4ba",
+  "category": "architectural_street",
+  "image_id": "0bcde54c96402875",
+  "caption": "In the center of the image there is a man. On the right side of the there is a wall. On the left side of the image there is a bridge and street light. In the background there is a sky.",
+  "caption_word_count": 41,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "0bcde54c96402875"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:24:30.487109+00:00"
+}

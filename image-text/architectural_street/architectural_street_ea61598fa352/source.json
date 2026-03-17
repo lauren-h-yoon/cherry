@@ -1,0 +1,13 @@
+{
+  "item_id": "architectural_street_ea61598fa352",
+  "category": "architectural_street",
+  "image_id": "15cc1075ec3b4ad7",
+  "caption": "In the foreground I can see the road and there is a text on the road. In the background, I can see a bus on the road. I can see the glass windows at the top of the picture.",
+  "caption_word_count": 39,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "15cc1075ec3b4ad7"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:24.070066+00:00"
+}

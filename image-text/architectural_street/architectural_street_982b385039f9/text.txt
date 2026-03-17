@@ -1,0 +1,5 @@
+Category: architectural_street
+
+People are walking in a space near the front of a building. There is a woman clutching her hand bag. The woman is searching for an item in her hand bag. There are many other people behind her. there are large pots with plants in them in front of the building. There is a smaller building in front of a larger building.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

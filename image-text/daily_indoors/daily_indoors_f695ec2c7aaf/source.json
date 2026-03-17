@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_f695ec2c7aaf",
+  "category": "daily_indoors",
+  "image_id": "6f858f93f8e54207",
+  "caption": "In this picture we can see a frame on the wall. There are few objects on the table. We can see a skull on the wall. There is a chair on the left side.",
+  "caption_word_count": 34,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "6f858f93f8e54207"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:25:34.252366+00:00"
+}

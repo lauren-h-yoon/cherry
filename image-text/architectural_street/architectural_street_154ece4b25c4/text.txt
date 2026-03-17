@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There are a bunch of semi's parked at a truck-stop. One semi is black and has light green on it. One of them is blue and the other is white. The sky is clear and has clouds.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

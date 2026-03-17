@@ -1,0 +1,55 @@
+{
+  "item_id": "daily_indoors_082cd6c4e645",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_082cd6c4e645/image.jpg",
+  "objects": [
+    {
+      "object": "chair",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "table",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "plant",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "mat",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "photo frame",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "windows",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "plants",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "wall",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nOn the right side of the image we can see chair, table. On the left side of the image we can see plant, table, mat and person standing on the ground. In the background we an see person, photo frame, windows, plants, table, chair and wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:33.583229+00:00",
+  "stats": {
+    "total_objects": 8,
+    "spatially_referenced": 4,
+    "not_spatially_referenced": 4
+  }
+}

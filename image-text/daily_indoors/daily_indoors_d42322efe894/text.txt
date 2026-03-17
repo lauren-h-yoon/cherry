@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A man sitting at the chair. In the background is a beach with umbrella like hut made of dry hay. The man is wearing a grey shirt. There are cups and glasses on the table. The tablecloth is white with a colorful stripe throw at the center.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_433b3d31af0a",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_433b3d31af0a/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nOn the left side, there are persons in suits. Two of them are speaking. One of them is watching fishes, which are in an aquarium. This aquarium is placed on a platform. On the right side, there are fishes in another aquarium. In the background, there is a poster and a wall.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:12.871312+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

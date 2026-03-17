@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_15dbe89b6a00",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_15dbe89b6a00/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image we can see a kettle, pebbles in a plate, candle stand, and a frame on the platform. In the background we can see wall and a frame which is truncated.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:56.132792+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

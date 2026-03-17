@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There is a bear on the back of a bus. The bus is orange. There is a walker on the back of the bus. There are people standing on the side of a street. There is a white line on the street. The bus has hub caps on it's wheels.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_6d44b38f6eeb",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_6d44b38f6eeb/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see a woman wearing black and silver colored dress is siting on a chair which is black in color and holding a microphone in her hand. I can see the black colored background.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:08.651360+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

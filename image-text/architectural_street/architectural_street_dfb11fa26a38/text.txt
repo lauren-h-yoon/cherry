@@ -1,0 +1,5 @@
+Category: architectural_street
+
+A man and woman are walking down a sidewalk past buildings. There is a tall blue, red and white sign standing on the sidewalk. There are signs hanging on the building. A gray car can be seen in the background of the photo. Tall green trees are standing near the car. One of the trees is near a brown building. The sky is blue and clear above the buildings.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

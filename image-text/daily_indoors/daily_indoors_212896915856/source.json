@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_212896915856",
+  "category": "daily_indoors",
+  "image_id": "fa2531ac7085bdba",
+  "caption": "In this image I see a person who is sitting on the floor and holding a book. I can also see there are 2 bottles and some mud over here.",
+  "caption_word_count": 30,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "fa2531ac7085bdba"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:49.355584+00:00"
+}

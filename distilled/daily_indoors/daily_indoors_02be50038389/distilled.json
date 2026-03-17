@@ -1,0 +1,40 @@
+{
+  "item_id": "daily_indoors_02be50038389",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_02be50038389/image.jpg",
+  "objects": [
+    {
+      "object": "railed gate",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "umbrella",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "bag",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "coat",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "hood",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nA lady is near a railed gate and she is peaking over it. She has a nice dark brown coat on that has a light brown fur on the hood. She is holding a red umbrella over her head. She appears to be going inside of her bag to look for something. Her bag is green. There are a couple of people in the background not far from her.\n\nSource: Stanford Image-Paragraph Captioning (Visual Genome)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:10.215320+00:00",
+  "stats": {
+    "total_objects": 5,
+    "spatially_referenced": 3,
+    "not_spatially_referenced": 2
+  }
+}

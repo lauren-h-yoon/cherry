@@ -1,0 +1,5 @@
+Category: architectural_street
+
+This picture is taken outside on a sunny day. A woman is standing on a sidewalk holding a purse in her hand. She is wearing a leather jacket and blue jeans. There is a blue mailbox on the sidewalk with a white bucket underneath it. A trashcan and two trash bags are sitting by the mailbox. Cars are on a road near the sidewalk. There is a large building across the street from the woman on the sidewalk.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

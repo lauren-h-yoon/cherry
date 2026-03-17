@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_7d62640e5e20",
+  "category": "daily_indoors",
+  "image_id": "c1e2025f5406d1af",
+  "caption": "This is a picture taken in a room, there are a group of people some are sitting on a chair and some are standing on the floor in front of this people there is a table on the table there is a book, paper, laptop, cup and cables. Background of this people is a glass window and a wall.",
+  "caption_word_count": 59,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "c1e2025f5406d1af"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-26T20:26:57.355159+00:00"
+}

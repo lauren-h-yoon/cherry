@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_a66faf6a5bd5",
+  "category": "daily_indoors",
+  "image_id": "00271a638d86d638",
+  "caption": "This picture is clicked inside the room. In the foreground there is a table on the top of which a jug, paper and some other items are placed and we can see a person and a person holding some object and standing. In the background we can see the wall, cabinets containing bottles and some other objects and we can see there are some objects in the background.",
+  "caption_word_count": 68,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "00271a638d86d638"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:44.886593+00:00"
+}

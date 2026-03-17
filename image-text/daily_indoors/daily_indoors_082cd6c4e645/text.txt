@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+On the right side of the image we can see chair, table. On the left side of the image we can see plant, table, mat and person standing on the ground. In the background we an see person, photo frame, windows, plants, table, chair and wall.
+
+Source: Localized Narratives (Open Images)

@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_7c7a2590cfd0",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_7c7a2590cfd0/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this picture there is a man who is wearing spectacle, blazer, shirt, jeans and shoe. Beside him we can see a woman who is wearing blazer, shirt, jeans and shoes. She is holding the mic. On the table we can see water bottles and glass. On the right we can see another man who is holding a mic. Beside him we can see a woman who is standing near to the red cloth. On the top right there is a light. On the left we can see the books in wooden rack.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:39:35.635447+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

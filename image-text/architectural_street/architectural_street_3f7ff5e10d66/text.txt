@@ -1,0 +1,5 @@
+Category: architectural_street
+
+There is a tall brick building next to a street. There are cars parked on the street next to the building. There is a black fence in front of the cars. There is a large tree in front of the fence. There is a black car next to a dark colored jeep. There is a lamp post next to the fence on the street. There are many windows on the building.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

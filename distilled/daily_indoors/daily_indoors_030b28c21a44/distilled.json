@@ -1,0 +1,40 @@
+{
+  "item_id": "daily_indoors_030b28c21a44",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_030b28c21a44/image.jpg",
+  "objects": [
+    {
+      "object": "chair",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "glass",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "table",
+      "spatially_referenced": true,
+      "mentions": 1
+    },
+    {
+      "object": "monitor",
+      "spatially_referenced": false,
+      "mentions": 1
+    },
+    {
+      "object": "wall",
+      "spatially_referenced": false,
+      "mentions": 1
+    }
+  ],
+  "raw_text": "Category: daily_indoors\n\nOn the left side, there is a person in black color T-shirt, smiling, sitting on a chair and holding a glass. Beside him, there is a table, on which there are some objects and there is a person who is in black color T-shirt, smiling and sitting. In the background, there is a monitor, there is a wall and there are some objects.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:11.182059+00:00",
+  "stats": {
+    "total_objects": 5,
+    "spatially_referenced": 3,
+    "not_spatially_referenced": 2
+  }
+}

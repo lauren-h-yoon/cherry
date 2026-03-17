@@ -1,0 +1,5 @@
+Category: architectural_street
+
+People that walking on the busy Street. The sun is shining brightly on the street. Most of the people are wearing no sleeves and shorts. There's a motorcycle parked on the sidewalk behind the woman walking. There's a bus driving down the street. There are buildings to the left of the bus. The sky is clear and blue.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

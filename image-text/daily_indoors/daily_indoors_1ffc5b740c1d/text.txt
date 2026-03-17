@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This picture is taken inside of a bedroom. There is a large brown and white bed sitting against a brown painted wall. Five pillow are sitting on top of the bed, along with a white bedspread. There is a brown table sitting near the bed. A white lamp, flowers and books are sitting on the table. A white door is closed to the entrance of the room, beside the table.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

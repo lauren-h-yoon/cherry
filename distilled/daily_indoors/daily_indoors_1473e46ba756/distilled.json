@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_1473e46ba756",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_1473e46ba756/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image there are group of persons sitting and there is a woman standing and giving speech. In front of the woman there is a podium and on the podium there is a mic. In the front there are empty chairs and on the table there are laptops. In the background there is a screen and on the table in the front there is a bag.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:36:53.951023+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

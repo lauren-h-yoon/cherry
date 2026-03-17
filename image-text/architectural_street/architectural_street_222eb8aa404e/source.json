@@ -1,0 +1,10 @@
+{
+  "item_id": "architectural_street_222eb8aa404e",
+  "category": "architectural_street",
+  "image_name": "201",
+  "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/201.jpg",
+  "paragraph": "There are people walking down a road while holding their bikes.  There are cars parked along the left side of the road.  The trash bins are on the sidewalk on the right side of road.  A blue and green bin is visible.  There is a 20 mph sign on the sidewalk.  A red light is on the traffic signals.   Green trees surround the road.  There is a house peeking out from behind the trees on the left side.",
+  "paragraph_word_count": 78,
+  "source": "stanford_image_paragraph_captioning",
+  "retrieved_at": "2026-02-26T12:41:20.764853+00:00"
+}

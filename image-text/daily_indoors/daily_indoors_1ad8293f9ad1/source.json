@@ -1,0 +1,13 @@
+{
+  "item_id": "daily_indoors_1ad8293f9ad1",
+  "category": "daily_indoors",
+  "image_id": "000f186681cac78d",
+  "caption": "In this picture, we can see a person, and table with some objects on it, like machine, paper, cup with some objects in it, and we can see the wall, and some posters with some text and some images on it, clocks, and some objects attached to it, we can see a chair.",
+  "caption_word_count": 53,
+  "metadata": {
+    "dataset": "open_images",
+    "image_id": "000f186681cac78d"
+  },
+  "source": "localized_narratives_open_images",
+  "retrieved_at": "2026-02-11T15:00:20.257153+00:00"
+}

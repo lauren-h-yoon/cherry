@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+This is a picture of a bedroom. The room looks to be a hotel room. There is a dresser in the room. The dresser is wooden. The dresser is light reddish brown. There is a white plastic bucket on the dresser. There are short clear glasses next to the ice bucket. There is a large TV on the dresser. The TV is black.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,0 +1,5 @@
+Category: architectural_street
+
+People walk up the stairs of a large building.  People also sit on the stairs.  The sky is bright blue.  The building has several columns.  A bird walks on the sidewalk in front of the building.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)

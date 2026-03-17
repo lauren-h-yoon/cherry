@@ -1,0 +1,14 @@
+{
+  "item_id": "daily_indoors_59bd2dd3f4d7",
+  "category": "daily_indoors",
+  "image_key": "raw/daily_indoors/daily_indoors_59bd2dd3f4d7/image.jpg",
+  "objects": [],
+  "raw_text": "Category: daily_indoors\n\nIn this image I can see two people. One person is sitting on the chair and one person is standing. I can see the table in-front of these people. I can see some electronic gadgets on it. In the back I can see some boards to the wall. To the right I can see the cupboards and I can see some objects on it. I can also see the cloth to the right.\n\nSource: Localized Narratives (Open Images)",
+  "chunks_processed": 1,
+  "distilled_at": "2026-02-26T20:38:42.873533+00:00",
+  "stats": {
+    "total_objects": 0,
+    "spatially_referenced": 0,
+    "not_spatially_referenced": 0
+  }
+}

@@ -1,0 +1,5 @@
+Category: daily_indoors
+
+A man in a white shirt and black pants holds a decorative red, gray and green bird in a classroom. Nine small kids are sitting on a teal carpet watching the man as he speaks. In the distance are shelves of books.
+
+Source: Stanford Image-Paragraph Captioning (Visual Genome)
