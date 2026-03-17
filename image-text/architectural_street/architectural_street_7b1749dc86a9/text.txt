@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A man is walking a parking lot. He is wearing a black jacket and brown pants. White snow is piled against a wall in front of the man. A car and suv are parked in the lot. A tall pole is standing near the suv. The top parts of buildings can be seen in the background of the photo. A clear blue sky is above the buildings.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

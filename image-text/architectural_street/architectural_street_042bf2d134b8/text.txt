@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A large slab of concrete next to a black paved street. The concrete is in three sections. There is a silver vehicle parked on the concrete's middle section. There is a blue license plate on the read of the vehicle.  Next to the concrete is a small storage building. It is tan color with white trim. There is two doors on the building.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

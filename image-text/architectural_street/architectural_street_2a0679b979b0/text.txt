@@ -1,5 +1,0 @@
-Category: architectural_street
-
-In this picture there is a building. In the foreground there are vehicles and there is text on the vehicles. On the right side of the image there is a door and there is a poster on the door and there is text on the poster and there is a man standing behind the door. At the bottom there is a road.
-
-Source: Localized Narratives (Open Images)

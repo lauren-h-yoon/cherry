@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A narrow city street is flanked by buildings.  There are arched railing along each side of the street.  ON the left side of the street, a large store front is next to a tall house with protruding windows.  A couple walks with a stroller toward this house.  On the opposite side of the street, sits a large brick building with a stone archway. Several people are walking along the sidewalk.  In the distance is a line of more building reaching further toward the horizon.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

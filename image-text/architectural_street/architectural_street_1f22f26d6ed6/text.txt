@@ -1,5 +1,0 @@
-Category: architectural_street
-
-Several times of watercraft are displayed in this image.  Ripples of water are underneath the boats and the sky is a cloudy blue.  A tall building with a light green top is situated in the background.  There is a wooden plank that sits between parked boats.  In the rear are several buildings and houses.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

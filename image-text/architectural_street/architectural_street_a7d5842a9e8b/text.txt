@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The pickup truck is parked. The truck is gray. Beside the truck is a building. The building is red. The door of the building is white. The sky is blue and clear. The ground has bit of snow. The house is blue with gray roof. The trees are brown and bare. The posts are gray. The wires are attached to the posts.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

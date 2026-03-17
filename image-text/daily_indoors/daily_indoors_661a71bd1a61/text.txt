@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A bathroom with white tile on the wall. There is a white toilet on the ground. There is a white sink next to the toilet and a mirror hanging on the wall above the sink.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

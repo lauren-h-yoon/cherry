@@ -50,11 +50,31 @@ Thumbs.db
 outputs_test/
 spatial_outputs/
 spatial_agent_outputs/
+unity_eval_outputs/
 *.npy
 *.npz
 *.pt
 *_viz.png
 *_annotated.png
+
+# Batch evaluation outputs
+*_batch_eval_*/
+query_outputs_*/
+spatial_outputs_*/
+spatial_analysis_results/
+eval_outputs/
+eval_visualizations/
+query_visualizations/
+query_visualizations_detailed/
+
+# Large datasets (download separately)
+val2017/
+annotations/
+image-text/
+distilled/
+
+# Cache
+prompt_cache/
 
 # Model weights (too large for git)
 *.pth

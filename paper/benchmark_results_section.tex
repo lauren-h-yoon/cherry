@@ -1,0 +1,75 @@
+%=============================================================================
+% BENCHMARK RESULTS SECTION - Condensed (2 pages, 2 tables)
+%=============================================================================
+
+We evaluate three vision-language models on our spatial reasoning benchmark: GPT-5-mini (OpenAI), Claude Haiku 4.5 (Anthropic), and Qwen2.5-VL-7B (Alibaba). Each model receives the annotated scene image and a structured query, responding with a spatial relation label. The evaluation spans 50 images with 3,672 total queries.
+
+\subsection{Overall Performance}
+
+Table~\ref{tab:overall_results} presents overall accuracy by task type. All three models achieve above-chance performance, but substantial gaps exist between egocentric and allocentric reasoning tasks.
+
+\begin{table}[h]
+\centering
+\caption{Overall spatial reasoning accuracy by task type. GPT-5-mini shows the largest egocentric-allocentric gap despite achieving the best egocentric performance.}
+\label{tab:overall_results}
+\begin{tabular}{@{}lccc|c@{}}
+\toprule
+\textbf{Model} & \textbf{Egocentric} & \textbf{Allocentric} & \textbf{Gap} & \textbf{Overall} \\
+\midrule
+Qwen2.5-VL-7B & 63.9\% & 52.8\% & 11.1 & \textbf{59.8\%} \\
+GPT-5-mini & \textbf{66.7\%} & 39.9\% & \textbf{26.8} & 56.8\% \\
+Claude Haiku 4.5 & 57.4\% & 47.6\% & 9.8 & 53.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Qwen2.5-VL-7B achieves the highest overall accuracy (59.8\%), followed by GPT-5-mini (56.8\%) and Claude Haiku 4.5 (53.8\%). Notably, GPT-5-mini---a reasoning model that employs internal chain-of-thought---achieves the best egocentric accuracy (66.7\%) but exhibits the largest egocentric-allocentric gap (26.8 percentage points), more than double that of the other models. This suggests that while reasoning capabilities enhance straightforward spatial judgments, they may not transfer effectively to perspective transformation tasks.
+
+All models show relatively balanced performance between viewer-centered and object-to-object frame types (differences $<$3 percentage points), indicating that frame type alone does not significantly affect performance. However, substantial variation exists across relation axes: vertical relations (above/below) achieve the highest accuracy across all models (65--71\%), while left/right relations prove most challenging for GPT-5-mini (47.6\% overall, driven by allocentric failures).
+
+\subsection{Hierarchical Breakdown}
+
+Table~\ref{tab:hierarchical} provides a fine-grained breakdown by task type, frame type, and relation axis. This hierarchical view reveals specific failure patterns obscured by aggregate metrics.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Hierarchical accuracy breakdown (\%). \colorbox{red!15}{Red} indicates accuracy below 40\% (critical failure), \colorbox{yellow!25}{yellow} indicates 40--50\% (below chance for binary).}
+\label{tab:hierarchical}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}ll|ccc@{}}
+\toprule
+\textbf{Task / Frame} & \textbf{Relation} & \textbf{GPT-5-mini} & \textbf{Claude} & \textbf{Qwen} \\
+\midrule
+\multirow{3}{*}{Ego / Viewer}
+    & above/below & 68.9 & 62.9 & 65.4 \\
+    & fg/bg & 60.1 & 55.3 & 60.4 \\
+    & left/right & 63.6 & 58.7 & 61.2 \\
+\midrule
+\multirow{3}{*}{Ego / Obj-Obj}
+    & above/below & 72.4 & 64.1 & 65.4 \\
+    & front/behind & 69.9 & 52.0 & 53.6 \\
+    & left/right & 65.3 & 51.5 & 61.2 \\
+\midrule
+\multirow{2}{*}{Allo / Viewer}
+    & front/behind & 58.2 & \cellcolor{yellow!25}49.0 & 52.8 \\
+    & left/right & \cellcolor{red!15}32.9 & 50.0 & 52.8 \\
+\midrule
+\multirow{2}{*}{Allo / Obj-Obj}
+    & front/behind & \cellcolor{yellow!25}41.3 & \cellcolor{yellow!25}41.7 & 52.8 \\
+    & left/right & \cellcolor{red!15}23.3 & \cellcolor{yellow!25}48.6 & 52.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The hierarchical breakdown reveals distinct failure patterns across models. GPT-5-mini exhibits a critical failure mode on allocentric left/right queries: object-to-object accuracy drops to 23.3\% and viewer-centered to 32.9\%---well below the 50\% chance level for binary choices. This indicates that despite strong reasoning capabilities for egocentric tasks (65--72\% on egocentric left/right), GPT-5-mini systematically fails at lateral perspective transformation. The model appears to confuse left and right when reasoning from another object's viewpoint.
+
+Claude Haiku 4.5 and Qwen2.5-VL-7B show more balanced performance across conditions. Claude achieves moderate accuracy uniformly but struggles with allocentric front/behind relations (41.7\% object-to-object). Qwen maintains the most consistent performance, never dropping below 52\% on any condition, suggesting more robust (though not superior) spatial representations.
+
+\subsection{Summary of Findings}
+
+Our benchmark evaluation reveals three key patterns. First, reasoning models show amplified egocentric-allocentric gaps: GPT-5-mini achieves the best egocentric performance but the worst allocentric performance, resulting in a 26.8 percentage point gap. This suggests that chain-of-thought reasoning may not transfer to---or may even impede---perspective transformation tasks.
+
+Second, left/right allocentric transformations are particularly challenging. This category shows the largest failures, with GPT-5-mini dropping to near-random performance (23--33\%). Mental rotation for lateral directions poses a specific computational challenge that current VLMs struggle to solve.
+
+Third, different models exhibit distinct weaknesses: GPT-5-mini excels at egocentric tasks but fails catastrophically on allocentric left/right; Claude Haiku 4.5 shows uniform but moderate performance; Qwen2.5-VL-7B achieves the best balance across conditions. These patterns suggest that architecture and training approach, rather than scale alone, determine spatial reasoning capabilities.

@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-There is a white toilet in a bathroom. There is a black tissue box on the back of the toilet. There is a small black waste basket on the ground next to the toilet. There is a wire rack above the toilet with folded white towels on it. There is a roll of toilet paper hanging off of a counter next to the toilet.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

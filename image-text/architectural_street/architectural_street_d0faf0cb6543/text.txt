@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A small, yellow, crop-duster type plane sits on a field of green grass.  The plane sits alone up a blue, morning sky laced with white clouds.  The plane is centered in the field, and no pilot is around.  The skyline of the city is shown in the background of the field, just to the right of the plane.  Mountains and trees line are shown in the background just to the left of the field.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

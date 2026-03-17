@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A large yellow and orange bus is parked in front of a building. The bus is mostly yellow, but the back of the bus is orange and red in color. There are windows on the side of the bus and lights and a sign on the front of the bus. A man is sitting by the bus waiting for it to stop. The building behind the bus is large and white. It has a lot of windows covering it.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

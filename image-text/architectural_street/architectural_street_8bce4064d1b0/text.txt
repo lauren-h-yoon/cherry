@@ -1,5 +1,0 @@
-Category: architectural_street
-
-This is outside image taken of a building with a blue car parked outside of it.The building is two story and also two tones.The top of the building is tan and the bottom of the building is blue.There are black street lights on the sidewalk with pink flowers hanging from the pole.There are also three people walking down the sidewalk on the other side of the black fence.There are green hedges to the left and they are in a white boulder.The road is clear but there are white lines and a water drain in the road.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

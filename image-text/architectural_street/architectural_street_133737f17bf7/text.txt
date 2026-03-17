@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A busy city street on a cloudy day is seen. There are business signs lining the buildings on both sides of the street. The signs are bright and neon glowing signs mounted on buildings and written in a foreign language. Over the street power lines are crisscrossing.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-There is a wooden desk against a blue wall. There is two computer monitors on the desk. There is a white keyboard on the desk in front of the computer.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

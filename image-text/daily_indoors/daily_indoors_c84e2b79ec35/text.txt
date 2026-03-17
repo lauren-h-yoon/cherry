@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-This photo is taken inside of a home. A small kitchen is seen in the front of the photo. A large blue sink is sitting in front of a red painted wall. Brown cabinets are sitting below the sink. A small white dishwasher is built into the cabinets. A white double door can be seen in the background of the photo. A sign is hanging above the double door. Part of a lamp shade can be seen behind the kitchen wall.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

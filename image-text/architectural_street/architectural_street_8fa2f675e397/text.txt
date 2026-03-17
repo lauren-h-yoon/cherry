@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A street is covered with snow.There are buildings on both sides of the street. There are cars parked on the road and they are also covered with snow. There is a children playing sign by the road. It's shaped like a diamond and it is yellow. The snow has tracks of someone who walked in it. In front of the buildings there are trees without any leaves.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

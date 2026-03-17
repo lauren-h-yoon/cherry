@@ -1,5 +1,0 @@
-Category: architectural_street
-
-In this picture there are objects in the foreground and there is text on the objects. At the back there is a person walking behind the fence and there is a building. At the top there is sky. At the bottom there are plants and there is ground.
-
-Source: Localized Narratives (Open Images)

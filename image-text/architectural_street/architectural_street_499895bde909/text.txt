@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A tall brick building with a tower on it sits behind a walkway. There are several people standing on the walkway in front of the building. There are some people sitting on a bench. In front of the bench is a large white and blue bus. There is two metal bars behind the bus. A man in a red shirt is standing in front of the bus.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

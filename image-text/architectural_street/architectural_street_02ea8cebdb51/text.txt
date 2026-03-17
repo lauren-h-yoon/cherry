@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The sky is partly cloudy but mostly blue. There are people walking along the street. Most of the stores are open. The sun is shining on the buildings to the right.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

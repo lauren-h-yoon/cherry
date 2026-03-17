@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-The room is very tidy and clean. The floors are made of wood. There's a table and chairs in the room. The table is a dark wood color. The chairs are dark wood also. There is a small futon to the right of the table and chairs. There's a lava lamp on the desk across from the futon. There's also a television on the desk across from the futon.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

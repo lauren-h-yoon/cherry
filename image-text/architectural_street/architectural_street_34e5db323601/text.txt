@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A middle aged man in a beige fedora is riding an electric skateboard on a sidewalk.  There is a tattoo parlor next to the man on the sidewalk.  A gumball machine sits outside the parlor.  The man is wearing jeans and a short sleeve button up shirt and sunglasses.  He also has sneakers on.  In the parlor a large man with a case of drinks can be seen entering the store.  There are photos of tattoos all along the wall of the parlor.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

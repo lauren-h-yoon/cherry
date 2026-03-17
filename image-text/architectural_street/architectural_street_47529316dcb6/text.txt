@@ -1,5 +1,0 @@
-Category: architectural_street
-
-In the center of the image we can see a building, pole, flag, pillars, door, stairs. In the background of the image we can see the trees, mesh, grass, railing, poles, lights. At the bottom of the image we can see the pavement, stairs and some people are walking on the pavement. At the top of the image we can see the sky.
-
-Source: Localized Narratives (Open Images)

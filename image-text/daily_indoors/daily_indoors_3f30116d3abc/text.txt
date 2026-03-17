@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A wooden table has a bottle of red wine on it. Next to the bottle is a glass that is halfway filled with the wine. In front of them is a round cake with no frosting. Next to the cake is a brown mug. Also on the table is a large brown clay vase. A man is standing by the table and he is holding a stuffed toy.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

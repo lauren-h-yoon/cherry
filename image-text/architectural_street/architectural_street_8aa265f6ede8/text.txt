@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A yellow taxi drives on a city street on a cloudy day. Its headlights are on, and there is a white license plate on its front bumper. There is a group of people on the sidewalk, walking away from the camera. The street is wet like it recently rained. There is an American flag hanging on a pole above the sidewalk. There are tall buildings in the background, and green trees on the left side in front of the people walking.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

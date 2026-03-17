@@ -1,5 +1,0 @@
-Category: architectural_street
-
-People is eating outdoors sitting on tables. An old lady with grey hair is front a table. The circular tables are covered with white table coats. Purple napkins are folded over the table. The building has windows with white frames. A woman holds a purse on her shoulder.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

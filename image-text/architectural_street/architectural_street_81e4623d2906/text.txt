@@ -1,5 +1,0 @@
-Category: architectural_street
-
-Two buildings are a part of a hotel in a foreign country. The hotel is yellow and the roof is orange. The sky appears to be white and is very foggy. There is a car parked partly on the sidewalk near the hotel.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

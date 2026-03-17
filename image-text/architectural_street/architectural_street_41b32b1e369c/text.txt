@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There is a white building on the corner of a street. There are two cars on the street in front of the building. There is a blue sign on the side of the building. There is a tall tree on the side of the road. There is a tall silver pole on the sidewalk next to the street. There is a phone booth on the sidewalk next to the street.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A roundabout is seen in the middle of the road in a tropical location. The round has grass which slopes up, and has letters carved into small bushes with taller bushes behind the letters, and two small red bushes on either side of the words. To the right there is a large field full of palm trees and other trees which have been shaped like hearts.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The large road has only two cars on it. One car is at the intersection and it is a black car with yellow side doors. Another car is behind the pedestrian crosswalk and is a dark color. There are trees growing in a row dividing the two directions of the road. Buildings are on the sides of the road.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

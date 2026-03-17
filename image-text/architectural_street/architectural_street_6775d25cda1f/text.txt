@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The sky is cloudy and blue. The sun is shining bright. The sun is more on the left side then on the right. The right side of the street is in the shade. There are more people walking on the right side then there are on the left side. A person is riding the bike down the street with the traffic. There is a big white truck ahead in the distance. The person riding the bike is wearing a yellow top.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

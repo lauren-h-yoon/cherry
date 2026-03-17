@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The image is of a road in the countryside.  The road is on a hill and there are trees on both sides on the road. This is a one lane road and vehicles travel on both sides.  Headed down the hill are three vehicles. The lead vehicle is a bus with the name Comaz written in blue above the windshield.  Near the top of the hill a bridge spans over the road.  The bridge is made of concrete and there is a metal railing along the side.  The sky is blue with a few light clouds.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

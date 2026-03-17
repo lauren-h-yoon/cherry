@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The sidewalks are fulled with people walking up and down them. The building by the sidewalk has many large windows. The street doesn't have many cars. You can see one car and one city bus in the distance. The trees are tall with green leafs.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

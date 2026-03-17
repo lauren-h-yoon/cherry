@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A large mirror is in a bathroom. Under the mirror is a large black counter with two white sinks. There is a television hanging from the ceiling above the counter.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

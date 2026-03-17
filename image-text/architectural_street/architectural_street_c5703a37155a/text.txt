@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There are several boats in the water. There is a large red building behind the water. There is a large white cruise ship. There are several white clouds in the sky.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

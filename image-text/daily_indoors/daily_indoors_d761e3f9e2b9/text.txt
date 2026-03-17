@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A woman and a little boy are sitting in bed looking at two cats.  The woman has glasses on and a long sleeved striped shirt.  The boy has short dark hair and is wearing a blue tshirt with a pattern on it and a red collar.  The two cats are lying on the bed next to eachother.  The cat on the left has white, orange, and black fur.  The cat on the right is black and grey striped.  The bed spread is blue colored and has a celestial pattern of suns and moons.  The headboard is made of wood.  Next to the bed is a nightstand made of wood.  On top of the night stand is a lamp, book, and several small items.  There is also a small table to the right of the picture with items on it.  The wall appears to be white.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

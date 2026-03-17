@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The van is parked. The van is white. The van's windows are dark colored. The van is parked at the sidewalk. There is a small gray fire hydrant at the sidewalk. By the sidewalk is a building. On the building there is a sign saying BOOKS. The sign is black with white text. The street has a yellow line painted on it.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

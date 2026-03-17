@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A clean bed is sitting in a corner of a bedroom.  The wooden frame bed has both a headboard and base board.  The sheets are crisp and white.  Pillows are under the sheets at the head of the bed.  Light beige paint covers the bedroom walls.  There are photos framed on the walls.  Besides the bed are two end tables with a lamp on each.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

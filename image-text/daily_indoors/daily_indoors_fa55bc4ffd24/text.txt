@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-There is a theater and it is empty of people. The stage is in front of the rows of chairs. The stage has a red curtain that is closed. The lights are still on in the theater. The chairs where people sit are blue in color.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

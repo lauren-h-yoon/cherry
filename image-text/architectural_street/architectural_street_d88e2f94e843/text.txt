@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The airport is quiet and calm. There are a couple of luggage carts around. There are two planes parked waiting for passengers. There are two red and white poles in the distance buy the building.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

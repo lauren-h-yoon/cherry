@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-Two desks are in the middle of the floor in an office building. There are two monitors on the desk on the left. There is a desk to the right of if and there is a monitor on it with a cabinet underneath. A gray swivel chair is in front of the desk with two monitors on it. The carpet on the floor is two blue squares that are close in color that alternate to for a checkered floor. There is a wall behind the desks that is all windows and a cement column in the middle.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

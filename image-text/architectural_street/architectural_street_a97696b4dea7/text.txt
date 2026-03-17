@@ -1,5 +1,0 @@
-Category: architectural_street
-
-This is an outside view. Here I can see few cars on the road. On the right side, I can see a tree trunk and many leaves on the ground. In the background there are some buildings and trees.
-
-Source: Localized Narratives (Open Images)

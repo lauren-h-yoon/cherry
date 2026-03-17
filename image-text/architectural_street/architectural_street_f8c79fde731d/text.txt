@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The scene is of beach on front a blue ocean. Some parts of the ocean has dark blue color. On the beach there are some green bushes. A yellow boat is protected from the sun under a roof. On the right of the beach there are rocky formations cover with stones. There is a small building next to the boat.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

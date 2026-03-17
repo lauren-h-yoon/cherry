@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-There is a pink building next to a lot of tables. There are many people sitting in chairs around the tables. There is a white umbrella over one of the tables.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

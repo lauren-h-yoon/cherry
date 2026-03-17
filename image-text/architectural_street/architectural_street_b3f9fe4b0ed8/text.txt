@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A bunch of cars are making a turn in the street. There is one pedestrian attempting to walk across the street while the cars are turning. A bunch of trees are located on the side of the streets on the sidewalk.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

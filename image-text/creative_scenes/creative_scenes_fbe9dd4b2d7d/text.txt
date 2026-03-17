@@ -1,9 +1,0 @@
-Category: creative_scenes (animation)
-Movie: tears_of_steel
-Timestamp: 00:01:20
-License: CC BY 3.0
-
-Spatial Description:
-Futuristic control room. Multiple monitors in foreground showing data, operator in midground at console, windowed wall showing city in background. Strong depth from layered technology.
-
-Source: Blender Open Movies (https://download.blender.org/demo/movies/ToS/tears_of_steel_1080p.mov)

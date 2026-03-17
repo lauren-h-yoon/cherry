@@ -1,5 +1,0 @@
-Category: architectural_street
-
-In the center of the image we can see building, windows, boards, air conditioners, doors, lights, flag, electric light pole, stores, cars. At the top of the image there is a sky. At the bottom of the image there is a road. On the right side of the image we can truck, tree.
-
-Source: Localized Narratives (Open Images)

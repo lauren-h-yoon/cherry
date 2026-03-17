@@ -1,9 +1,0 @@
-Category: creative_scenes (animation)
-Movie: sintel
-Timestamp: 00:02:15
-License: CC BY 3.0
-
-Spatial Description:
-Sintel sitting by campfire in cave entrance. Fire in immediate foreground, Sintel in midground, cave opening showing landscape in background. Depth from layered elements.
-
-Source: Blender Open Movies (https://download.blender.org/demo/movies/Sintel.2010.1080p.mkv)

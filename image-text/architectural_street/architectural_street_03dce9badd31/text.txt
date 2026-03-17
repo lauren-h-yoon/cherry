@@ -1,5 +1,0 @@
-Category: architectural_street
-
-Some cars are parked in a parking lot. There are some packages in the garage. There are cinder blocks on the ground. There are poles in the garage. The lights are on a couple of the cars. There are lines on the ground. The walls are white. There are many things in front of the white car.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A couple of people are walking through an alley. A bunch of buildings are surrounding the area. A man has a yellow polo shirt and it's tucked into his pants. A lady is walking away towards the background.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

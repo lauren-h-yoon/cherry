@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-This is an image of a kitchen. The kitchen has a chair with a red cushion. The kitchen has a table with red place mats. The chairs are made of wood and metal. The doors in the kitchen have vents on them. There is a gray microwave on the countertop. The countertop is wood grain. The floor is shiny, white tiles.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

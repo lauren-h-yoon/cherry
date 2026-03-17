@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There is a man in a white shirt riding a bike. The bike is red black. There is a blue garbage can in front of the man. There is a brown building.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

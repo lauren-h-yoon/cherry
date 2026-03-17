@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The snow is all over the ground. The pole with a traffic light on it is coming out of the ground. The pole is leaning to the left. There are footprints in the snow. There are cars driving on the street. The cars are driving slowly down the snowy Street. The car closest to the camera has their brake lights on. The brake lights are red. Most of the trees if not all are bare.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

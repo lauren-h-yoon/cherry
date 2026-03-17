@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A person wearing a white hooded top is walking on the wet sidewalk. A person wearing a long yellow coat is cleaning the sidewalk. A big pot is on the curb, The pot has green leaves and blue flowers. There is sign on a pole behind the pot. A yellow car is on front a big building that has an awning with big letters.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

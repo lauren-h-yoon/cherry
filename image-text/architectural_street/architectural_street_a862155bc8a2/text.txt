@@ -1,5 +1,0 @@
-Category: architectural_street
-
-This image is of a farm depot. The large towering building appears to be a grain silo. The buildings are all made up of gray and white sheet metal. The road is shaded and dark gray. There are cars parked along the road. There are also large green, leafy trees along the road. The sky is blue with some lingering white clouds along the horizon. The van parked on the side of the road is black with white headlights.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A man is standing behind a counter that has cookies on it. The man is wearing a gray shirt. There is a silver microwave on the cabinet behind the man. On the stove is a green kettle.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

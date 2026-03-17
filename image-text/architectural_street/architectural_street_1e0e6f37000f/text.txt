@@ -1,5 +1,0 @@
-Category: architectural_street
-
-a bunch of cars are going down the road. there is a big bus on the road. the bus is red in color. there are seats on the top level.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

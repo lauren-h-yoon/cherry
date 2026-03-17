@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There is a road. On the road there are many vehicles. On the sides of the road there are sidewalks. On the sidewalk there are many people. There are many buildings. There are trees. On the right side there is a person sitting on stool. There is a table and a stool. On the table there is a cup and some other items. In the background there is sky. Also there are name boards and windows for the building.
-
-Source: Localized Narratives (Open Images)

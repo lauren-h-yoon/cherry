@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A bunch of people are walking on the sidewalk downtown. There are mostly women walking and they all appear to be busy shopping or hanging out. There are two us flags hanging from the building towards the left and some other flags as well. There is a small police van that has NYPD in blue on the side near the sidewalk.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

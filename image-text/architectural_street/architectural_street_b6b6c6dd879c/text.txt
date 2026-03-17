@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A short, small, young baseball player is standing at bat. He is wearing a green and yellow shirt and white baseball pants. On his feet are black cleats. Behind him is a large, chain linked fence where three people stand behind it watching the boy swing his bat. Parked on the street behind the people, is a green parked car.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

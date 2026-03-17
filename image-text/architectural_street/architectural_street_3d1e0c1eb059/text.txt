@@ -1,5 +1,0 @@
-Category: architectural_street
-
-In the image we can see there are vehicles on the road. This is a road and white lines on the road. These are the stairs, fence, board, grass and we can even see there is a person standing.
-
-Source: Localized Narratives (Open Images)

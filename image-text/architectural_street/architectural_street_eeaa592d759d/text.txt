@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A billboard is visible in the grass on a metal pole.  A street corner with a green sign is at the edge of the grass.  The road is empty with a white line painted on it.   There is a truck parked with a trailer attached to the back.  A fruit stand sits in the grass.  Trees with green leaves are behind the building and car.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

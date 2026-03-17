@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A small cafe nestled in the corner of an old yellow brick building, with not much decor. The front is a simple store front sign across the two windows and the door way into the little cafe. Out front they have on one side two little cafe signs showing menu items and specials. They also have a chalkboard sign in the front widow outside to read. They have placed one round table and four wooden chairs out side with a green umbrellas the same color as the name on the door way sign.  It is a bright sunny day and there is a car out front a small shop down from the cafe.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

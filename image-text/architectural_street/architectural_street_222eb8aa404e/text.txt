@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There are people walking down a road while holding their bikes.  There are cars parked along the left side of the road.  The trash bins are on the sidewalk on the right side of road.  A blue and green bin is visible.  There is a 20 mph sign on the sidewalk.  A red light is on the traffic signals.   Green trees surround the road.  There is a house peeking out from behind the trees on the left side.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

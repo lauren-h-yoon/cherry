@@ -1,5 +1,0 @@
-Category: architectural_street
-
-This is an image of a parking lot. There are cars parked in the lot. The car in the middle is black. The lights on the car are red and white. The car on the right is silver. The car on the left is silver. The rims on the wheels are silver. The tires are black and rubber. There is a white line painted on the gray pavement. There are tall, thin palms trees by the lot.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

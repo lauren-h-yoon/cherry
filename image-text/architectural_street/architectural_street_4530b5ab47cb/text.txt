@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There is a red truck in a parking lot. It is next to a white car. There is a lot of chrome on the truck. there are many cars in the parking lot. There are trees at the end of the parking lot. There are signs in the parking lot. The sun is shining on the car. There is a sidewalk by the truck. There is a big windshield in the truck. There is a building in the background.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A desk with a computer and keyboard is visible in the image.  It seems to be an office area.  There is a painting on a green wall.  The lamp is besides the computer screen and appears to be off.  A phone with a cord, a box of tissues and scissors are on the desk area.  There is a tan swivel chair next to the desk.  A newspaper clipping is attached to the tan wall.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

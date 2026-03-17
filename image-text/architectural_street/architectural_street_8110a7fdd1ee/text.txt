@@ -1,5 +1,0 @@
-Category: architectural_street
-
-It is nighttime on a rainy city sidewalk. A woman wearing a long sleeved beige print blouse and blue jeans is walking alone facing the photographer. She carries a dark solid colored umbrella in her left hand. Her right hand is near her face and holding what appears to be a professional camera with a wide lens. Because of the camera and umbrella, her face is not visible. Diagonally across her chest she wears a dark handbag with a long strap. She is currently in mid-stride and her right leg is slightly in front of her left. To the right is a long striped wall of shadowed city building. To the left is a large tree covered in leaves. The night is dark but illuminated by various traffic signals and street lights and they cast colorful reflections on the wet sidewalk. Red, yellow, blue and white colors from the lights stretch across the woman's path.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

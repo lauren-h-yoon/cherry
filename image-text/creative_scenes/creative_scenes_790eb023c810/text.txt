@@ -1,9 +1,0 @@
-Category: creative_scenes (animation)
-Movie: sintel
-Timestamp: 00:04:30
-License: CC BY 3.0
-
-Spatial Description:
-Village marketplace. Vendor stalls in foreground with goods, crowd of people in midground, buildings lining street in background creating linear perspective.
-
-Source: Blender Open Movies (https://download.blender.org/demo/movies/Sintel.2010.1080p.mkv)

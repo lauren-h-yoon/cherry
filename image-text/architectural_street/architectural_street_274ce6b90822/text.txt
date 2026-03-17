@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A building has a green awning and a sign that says Tony's Place. The sign also has a picture of a chef in a hat and a steamy plate. The building has three windows with window blinds over them. The door is glass. There is a bench in front of the building, right under the windows. The curb is painted red and it has white letters on it.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

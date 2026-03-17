@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-This photo was taken indoors in a room of people. The people are standing in front of a table. The table has a blue table cloth with white writing on it. The people are all well dressed. On the right in the front kneels a man with a camera. On the left in the front kneels a man with another camera. The table has small statues in white and red. The man in the middle has a baffled look on his face.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

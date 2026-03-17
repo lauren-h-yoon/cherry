@@ -1,5 +1,0 @@
-Category: architectural_street
-
-The image is of a bridge. A couple walking at the sidewalk with their brown dog. Beside the dog is a green metal railings. Below the railings is a calm water. By the sidewalk is a light pole full of writings and stickers. Few inches from the pole is a woman walking. Beside the woman is a railing. At the street, there is a red jeep driving.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

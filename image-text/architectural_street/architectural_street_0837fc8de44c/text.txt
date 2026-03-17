@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A street is seen in a smaller town in the mountains at night on long exposure so the cars are nothing more than streams of light on the road. The traffic light above the street has all three of the lights, red, yellow, and green are lit. On the left side of the street is a lit sign for "Orting High School" in the distance is a shell gas station.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

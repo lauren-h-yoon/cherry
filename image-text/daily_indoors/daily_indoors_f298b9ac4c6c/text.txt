@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A bathroom with a white toilet and tub by a wall.  There is a white and grey marble countertop on the cabinet.  The drawers are a dark brown wood on the cabinet.  A greyish tan covers the bathroom walls.  Grey square tiles cover the floor.  There are stainless steel faucets and knobs and handles on the cabinet drawers.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

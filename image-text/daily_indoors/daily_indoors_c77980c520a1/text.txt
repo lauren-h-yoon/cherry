@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A table is filled with many small bowls. The bowls are different colors and sizes. They are filled with assorted foods. There are some chopsticks on some of the bowls. The table is wood. The table is brown. The food is Asian. There is an napkin by the bowl. The napkin is blue. There are many bowls. There are other tables.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

@@ -1,5 +1,0 @@
-Category: architectural_street
-
-This photo is taken outside on a sunny day. Two men can be seen on a sidewalk near a brick building. A large black trash can is near one of the men. Large green trees line the sidewalk. A road is beside the sidewalk and across from it is a large building. Vehicles are lined up on the street in front of the building.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

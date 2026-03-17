@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage[preprint]{neurips_2025}
+
+%=============================================================================
+% PACKAGES
+%=============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{siunitx}
+
+% TikZ for diagrams
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, fit, backgrounds}
+
+% Graphics path
+\graphicspath{{figures/}}
+
+%=============================================================================
+% METADATA
+%=============================================================================
+\title{Evaluating Spatial Reasoning in Vision-Language Models: \\
+A Diagnostic Benchmark with Mechanistic Analysis}
+
+\author{%
+  Lauren Hyoseo Yoon\thanks{Equal contribution. Listing is alphabetical.} \\
+  Computation and Neural Systems \\
+  California Institute of Technology \\
+  \texttt{laurenhyoon@caltech.edu}
+  \And
+  Xue Ru Zhou$^*$ \\
+  Electrical Engineering \\
+  California Institute of Technology \\
+  \texttt{xzhou5@caltech.edu}
+}
+
+%=============================================================================
+% DOCUMENT
+%=============================================================================
+\begin{document}
+
+\maketitle
+
+%-----------------------------------------------------------------------------
+% ABSTRACT
+%-----------------------------------------------------------------------------
+\begin{abstract}
+We present a systematic benchmark for evaluating spatial reasoning in vision-language models (VLMs), decomposing spatial understanding into interpretable dimensions: egocentric versus allocentric perspective-taking, viewer-centered versus object-relative reference frames, and multiple spatial relation axes. Our benchmark employs automated ground truth generation from scene images using segmentation and depth estimation, enabling exact-match evaluation across \num{3672} queries. Evaluating three state-of-the-art VLMs, we find consistent performance gaps between egocentric and allocentric reasoning (11--25 percentage points), with allocentric tasks requiring perspective transformation proving substantially harder. Through mechanistic analysis of internal activations and attention patterns, we identify distinct failure mechanisms: egocentric failures correlate with insufficient visual attention (grounding failures), while allocentric failures show no attention deficit (reasoning failures). These findings suggest that improving spatial reasoning requires task-specific interventions rather than uniform approaches.
+\end{abstract}
+
+%-----------------------------------------------------------------------------
+% INTRODUCTION
+%-----------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+% TODO: Write introduction
+% - Motivation: spatial reasoning is fundamental for embodied AI
+% - Problem: existing benchmarks conflate detection, localization, and reasoning
+% - Solution: our diagnostic benchmark isolates spatial reasoning
+% - Contributions: benchmark + evaluation + mechanistic analysis
+
+%-----------------------------------------------------------------------------
+% BACKGROUND / RELATED WORK
+%-----------------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\input{related_work}
+
+%-----------------------------------------------------------------------------
+% METHODOLOGY
+%-----------------------------------------------------------------------------
+\input{methodology_section}
+
+%-----------------------------------------------------------------------------
+% RESULTS
+%-----------------------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+
+\input{benchmark_results_section}
+
+%-----------------------------------------------------------------------------
+% MECHANISTIC ANALYSIS
+%-----------------------------------------------------------------------------
+\input{spatial_analysis_section}
+
+%-----------------------------------------------------------------------------
+% CONCLUSION
+%-----------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+% TODO: Write conclusion
+% - Summary of contributions
+% - Key findings: egocentric-allocentric gap, distinct failure mechanisms
+% - Implications for VLM development
+% - Future work: intervention studies, more models, embodied evaluation
+
+%-----------------------------------------------------------------------------
+% REFERENCES
+%-----------------------------------------------------------------------------
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

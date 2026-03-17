@@ -1,5 +1,0 @@
-Category: daily_indoors
-
-A few people are walking by an all glass window wall. Some of the people are carrying pale pink umbrellas and some others are carrying a blue umbrella. A little white dog walks alongside a woman walking.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

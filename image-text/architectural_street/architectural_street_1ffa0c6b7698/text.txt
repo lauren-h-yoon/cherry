@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A little boy in a blue shirt and black pants is swinging a blue baseball bat. There are other kids outside the fence watching him. There is a man in a white shirt and tie standing outside the fence.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

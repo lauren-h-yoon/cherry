@@ -1,5 +1,0 @@
-Category: manufacturing_indoors
-
-There is a dark blue, clear night sky. In the forefront, there is granite-looking concrete. Beyond that, there is sidewalk that looks yellowish in the glow of evening lights. Farther back, there is a building with steel and scattered lights. There is heavy machinery visible through the building. The building itself appears to be a cross between a glass house and manufacturing facility. The left side of the building is shaped like a Lego-brick type of Christmas tree. The remaining building is more rectangular with a an staircase-type roof that looks like it is ascending towards the right side.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

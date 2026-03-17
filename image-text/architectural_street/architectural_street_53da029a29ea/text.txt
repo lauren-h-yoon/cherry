@@ -1,5 +1,0 @@
-Category: architectural_street
-
-As we can see in the image there are buildings, chairs, tables and trees in the background. On tables there are white color clothes. On the top there is sky.
-
-Source: Localized Narratives (Open Images)

@@ -1,5 +1,0 @@
-Category: architectural_street
-
-There is a black and white building sitting on the corner of a street. There is a black car on the street in front of the building. There is a tall tower that has a black and green clock on it.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)

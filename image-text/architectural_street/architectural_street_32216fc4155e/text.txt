@@ -1,5 +1,0 @@
-Category: architectural_street
-
-A yellow hydrant is near street. The hydrant has blue and red accents on it. There are a bunch of trees on a sidewalk overlooking some parked cars and a motorcycle.
-
-Source: Stanford Image-Paragraph Captioning (Visual Genome)
