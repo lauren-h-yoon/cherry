@@ -16,19 +16,57 @@ The Unity Bridge enables VLMs to reconstruct 3D spatial layouts by placing label
 │  │              │                             │                           │ │
 │  │  UnityBridge │    place_object(...)        │  CherryUnityBridge.cs     │ │
 │  │  (bridge.py) │    clear_scene()            │  CherryCamera.cs          │ │
-│  │              │    get_scene_state()        │                           │ │
-│  └──────┬───────┘    health()                 └───────────────────────────┘ │
+│  │              │    capture_view()           │                           │ │
+│  │              │    rotate_camera()          │                           │ │
+│  └──────┬───────┘                             └───────────────────────────┘ │
 │         │                                                                   │
 │         │  LangChain Tools                                                  │
 │         ▼                                                                   │
 │  ┌──────────────┐                                                           │
 │  │   VLM Agent  │  (Claude / GPT-4o / Qwen)                                 │
 │  │              │                                                           │
-│  │  - Sees image                                                            │
-│  │  - Calls tools to place objects                                          │
-│  │  - Multi-turn agentic loop                                               │
+│  │  - Sees original image                                                   │
+│  │  - Places objects (abstract 3D representation)                           │
+│  │  - Captures Unity view to verify placements                              │
+│  │  - Rotates camera to check depth relationships                           │
 │  └──────────────┘                                                           │
 │                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Embodied Interaction: See → Act → Verify
+
+The model creates an **abstracted 3D mental model** of the original image in Unity, then verifies it visually:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  TURN 1: Analyze original image                                             │
+│  ┌─────────────────┐                                                        │
+│  │ [Original Photo]│ → Model understands spatial layout                     │
+│  │   🪑    🖼️      │   "Sofa left, chair right, painting above..."          │
+│  │      🛋️   🪴    │                                                        │
+│  └─────────────────┘                                                        │
+│          ▼                                                                  │
+│  TURN 2: Place objects in Unity                                             │
+│  ┌─────────────────┐                                                        │
+│  │ place_object()  │ → Objects appear as labeled spheres                    │
+│  │ place_object()  │                                                        │
+│  └─────────────────┘                                                        │
+│          ▼                                                                  │
+│  TURN 3: Verify with capture_view()                                         │
+│  ┌─────────────────┐    ┌─────────────────┐                                │
+│  │ [Original Photo]│ vs │ [Unity Render]  │  "Does abstraction match?"     │
+│  │   🪑    🖼️      │    │   ○    ○        │                                │
+│  │      🛋️   🪴    │    │ ○        ○      │                                │
+│  └─────────────────┘    └─────────────────┘                                │
+│          ▼                                                                  │
+│  TURN 4: Rotate camera for depth verification                               │
+│  ┌─────────────────┐                                                        │
+│  │ rotate_camera(  │ → View from side to verify front/back                  │
+│  │   yaw=45        │                                                        │
+│  │ )               │                                                        │
+│  │ capture_view()  │ → Adjust placements if needed                          │
+│  └─────────────────┘                                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -91,10 +129,21 @@ from unity_bridge import UnityBridge
 bridge = UnityBridge(base_url="http://localhost:5555")
 bridge.wait_for_unity(timeout_s=30)      # Block until Unity ready
 bridge.initialize_scene()                 # Clear and reset
+
+# Place objects
 bridge.place_object("chair", x=2, y=0.5, z=3, color="blue", scale=1.0)
 bridge.place_object("table", x=-1, y=0.5, z=5, color="brown", scale=1.5)
+
+# Verify placements
 state = bridge.get_scene_state()          # Returns SceneState
 print(state.summary())
+
+# Embodied perception: capture and verify
+image_data = bridge.capture_view()        # Returns PNG bytes
+bridge.rotate_camera(yaw=45, pitch=0)     # Look from the side
+side_view = bridge.capture_view()         # Verify depth relationships
+bridge.reset_camera()                     # Return to default view
+
 bridge.clear_scene()                      # Remove all objects
 ```
 
@@ -107,18 +156,28 @@ from unity_bridge import UnityBridge, create_unity_tools
 
 bridge = UnityBridge()
 bridge.wait_for_unity()
-tools = create_unity_tools(bridge)  # Returns [place_object, clear_scene, get_scene_state]
+tools = create_unity_tools(bridge)  # Returns all tools including camera tools
 
 # Pass to LangChain agent or provider.bind_tools()
 ```
 
-**Available Tools:**
+**Core Placement Tools:**
 
 | Tool | Parameters | Description |
 |------|------------|-------------|
 | `place_object` | label, x, y, z, color?, scale? | Place a labeled sphere at (x,y,z) |
 | `clear_scene` | - | Remove all placed spheres |
 | `get_scene_state` | - | List all currently placed objects |
+
+**Embodied Perception Tools:**
+
+| Tool | Parameters | Description |
+|------|------------|-------------|
+| `capture_view` | - | Capture current Unity camera view as image |
+| `rotate_camera` | yaw, pitch | Rotate camera (-90° to +90° each axis) |
+| `reset_camera` | - | Reset camera to default orientation |
+
+These enable **embodied interaction**: the model can see its placements and verify the abstract 3D representation matches its understanding of the original image.
 
 ### Unity Side
 
@@ -135,6 +194,9 @@ Attach this script to any GameObject in your Unity scene. It starts an HTTP serv
 | POST | `/clear_scene` | Remove all spheres |
 | GET | `/scene_state` | List all placed objects |
 | POST | `/initialize` | Reset scene (alias for clear) |
+| GET | `/capture_view` | Capture camera view as base64 PNG |
+| POST | `/rotate_camera` | Rotate camera: `{"yaw","pitch"}` |
+| POST | `/reset_camera` | Reset camera to default |
 
 #### `CherryCamera.cs`
 

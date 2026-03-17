@@ -102,6 +102,19 @@ temp/
 # Test images (use sample images sparingly)
 # Sample images (large files)
 visual_scenes_2d_unsplash/
+photos/
+
+# Query benchmark outputs (regenerable)
+query_benchmark_outputs/
+
+# Paper files (separate repo)
+paper/
 
 # HuggingFace cache
 .cache/
+
+# COCO dataset (large, downloaded separately)
+annotations/
+val2017/
+train2017/
+*.zip

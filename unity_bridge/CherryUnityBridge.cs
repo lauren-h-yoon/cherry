@@ -304,12 +304,15 @@ public class CherryUnityBridge : MonoBehaviour
     {
         switch (type.ToLowerInvariant())
         {
-            case "health":       return Health();
-            case "place_object": return PlaceObject(body);
-            case "clear_scene":  return ClearScene();
-            case "scene_state":  return GetSceneState();
-            case "initialize":   ClearScene(); return "{\"status\":\"reinitialized\"}";
-            default:             return JsonError($"unknown endpoint: {type}");
+            case "health":        return Health();
+            case "place_object":  return PlaceObject(body);
+            case "clear_scene":   return ClearScene();
+            case "scene_state":   return GetSceneState();
+            case "initialize":    ClearScene(); return "{\"status\":\"reinitialized\"}";
+            case "capture_view":  return CaptureView();
+            case "rotate_camera": return RotateCamera(body);
+            case "reset_camera":  return ResetCamera();
+            default:              return JsonError($"unknown endpoint: {type}");
         }
     }
 
@@ -375,6 +378,105 @@ public class CherryUnityBridge : MonoBehaviour
         }
         sb.Append($"],\"count\":{_records.Count}}}");
         return sb.ToString();
+    }
+
+    // ─── Camera capture for embodied perception ─────────────────────────────
+
+    private Camera _mainCamera;
+
+    private Camera MainCamera
+    {
+        get
+        {
+            if (_mainCamera == null)
+                _mainCamera = Camera.main;
+            return _mainCamera;
+        }
+    }
+
+    private string CaptureView()
+    {
+        if (MainCamera == null)
+            return JsonError("No main camera found");
+
+        // Render to texture
+        int width = 640;
+        int height = 480;
+        RenderTexture rt = new RenderTexture(width, height, 24);
+        MainCamera.targetTexture = rt;
+        Texture2D screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
+
+        MainCamera.Render();
+        RenderTexture.active = rt;
+        screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        screenshot.Apply();
+
+        // Reset camera
+        MainCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(rt);
+
+        // Encode to PNG and base64
+        byte[] bytes = screenshot.EncodeToPNG();
+        Destroy(screenshot);
+        string base64 = System.Convert.ToBase64String(bytes);
+
+        return $"{{\"status\":\"captured\",\"width\":{width},\"height\":{height},\"image\":\"{base64}\"}}";
+    }
+
+    [Serializable]
+    private class RotateCameraRequest
+    {
+        public float yaw = 0f;
+        public float pitch = 0f;
+    }
+
+    private string RotateCamera(string body)
+    {
+        var req = JsonUtility.FromJson<RotateCameraRequest>(body);
+        if (req == null)
+            return JsonError("Invalid JSON for rotate_camera");
+
+        // Find CherryCamera component
+        var cherryCamera = MainCamera?.GetComponent<CherryCamera>();
+        if (cherryCamera == null)
+            return JsonError("CherryCamera component not found on main camera");
+
+        // Clamp values
+        float yaw = Mathf.Clamp(req.yaw, -90f, 90f);
+        float pitch = Mathf.Clamp(req.pitch, -90f, 90f);
+
+        // Apply rotation via reflection or direct field access
+        // CherryCamera uses _yaw and _pitch fields
+        var yawField = typeof(CherryCamera).GetField("_yaw", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var pitchField = typeof(CherryCamera).GetField("_pitch", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+        if (yawField != null && pitchField != null)
+        {
+            yawField.SetValue(cherryCamera, yaw);
+            pitchField.SetValue(cherryCamera, pitch);
+
+            // Trigger rotation update
+            var baseRotField = typeof(CherryCamera).GetField("_baseRotation", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (baseRotField != null)
+            {
+                Quaternion baseRot = (Quaternion)baseRotField.GetValue(cherryCamera);
+                MainCamera.transform.rotation = baseRot * Quaternion.Euler(pitch, yaw, 0f);
+            }
+        }
+
+        return $"{{\"status\":\"rotated\",\"yaw\":{yaw},\"pitch\":{pitch}}}";
+    }
+
+    private string ResetCamera()
+    {
+        var cherryCamera = MainCamera?.GetComponent<CherryCamera>();
+        if (cherryCamera != null)
+        {
+            cherryCamera.ResetOrientation();
+            return "{\"status\":\"reset\",\"yaw\":0,\"pitch\":0}";
+        }
+        return JsonError("CherryCamera component not found");
     }
 
     // ════════════════════════════════════════════════════════════════════════

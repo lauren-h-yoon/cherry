@@ -214,3 +214,55 @@ class UnityBridge:
             for obj in resp.get("objects", [])
         ]
         return SceneState(objects=objects, count=resp.get("count", len(objects)))
+
+    def capture_view(self, save_path: Optional[str] = None) -> bytes:
+        """
+        Capture the current Unity camera view as a PNG image.
+
+        Parameters
+        ----------
+        save_path : str, optional
+            If provided, save the image to this path.
+
+        Returns
+        -------
+        bytes
+            PNG image data
+        """
+        resp = self._request("capture_view", method="GET")
+
+        # Response contains base64-encoded image
+        import base64
+        image_data = base64.b64decode(resp.get("image", ""))
+
+        if save_path:
+            with open(save_path, "wb") as f:
+                f.write(image_data)
+
+        return image_data
+
+    def rotate_camera(self, yaw: float = 0, pitch: float = 0) -> Dict:
+        """
+        Rotate the Unity camera.
+
+        Parameters
+        ----------
+        yaw : float
+            Horizontal rotation in degrees (-90 to +90)
+        pitch : float
+            Vertical rotation in degrees (-90 to +90)
+
+        Returns
+        -------
+        dict with new camera orientation
+        """
+        resp = self._check_error(self._request("rotate_camera", data={
+            "yaw": float(yaw),
+            "pitch": float(pitch),
+        }))
+        return resp
+
+    def reset_camera(self) -> Dict:
+        """Reset camera to default orientation (yaw=0, pitch=0)."""
+        resp = self._check_error(self._request("reset_camera", data={}))
+        return resp

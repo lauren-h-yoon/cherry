@@ -235,9 +235,168 @@ class GetSceneStateTool(BaseTool):
             return f"ERROR getting scene state: {exc}"
 
 
+# ─── Embodied perception tools ─────────────────────────────────────────────────
+
+class CaptureViewInput(BaseModel):
+    """Input schema for capture_view (no parameters required)."""
+    pass
+
+
+class CaptureViewTool(BaseTool):
+    """
+    Capture the current Unity camera view as an image.
+
+    Use this to SEE your placed objects and verify the spatial arrangement
+    matches your understanding of the original image. This enables:
+      - Visual verification of placements
+      - Comparison between original image and abstract representation
+      - Iterative refinement based on visual feedback
+    """
+
+    name: str = "capture_view"
+    description: str = (
+        "Capture the current Unity camera view as an image. "
+        "Use this to visually verify your object placements and ensure "
+        "the abstract 3D representation matches the spatial relationships "
+        "in the original image. Returns a description of what's visible."
+    )
+    args_schema: Type[BaseModel] = CaptureViewInput
+
+    bridge: UnityBridge = None
+    _last_image: bytes = None
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    def __init__(self, bridge: UnityBridge, **kwargs):
+        super().__init__(**kwargs)
+        object.__setattr__(self, "bridge", bridge)
+
+    def _run(
+        self,
+        run_manager: Optional[CallbackManagerForToolRun] = None,
+    ) -> str:
+        try:
+            image_data = self.bridge.capture_view()
+            object.__setattr__(self, "_last_image", image_data)
+
+            # Get scene state to describe what's visible
+            state = self.bridge.get_scene_state()
+            if not state.objects:
+                return "Captured view: Scene is empty. No objects placed yet."
+
+            return (
+                f"Captured view showing {state.count} object(s):\n"
+                f"{state.summary()}\n"
+                "Use this to verify spatial relationships match the original image."
+            )
+        except Exception as exc:
+            return f"ERROR capturing view: {exc}"
+
+
+class RotateCameraInput(BaseModel):
+    """Input schema for rotate_camera."""
+
+    yaw: float = Field(
+        default=0,
+        description=(
+            "Horizontal rotation in degrees. "
+            "Negative = look left, Positive = look right. "
+            "Range: -90 to +90 degrees."
+        )
+    )
+    pitch: float = Field(
+        default=0,
+        description=(
+            "Vertical rotation in degrees. "
+            "Negative = look down, Positive = look up. "
+            "Range: -90 to +90 degrees."
+        )
+    )
+
+
+class RotateCameraTool(BaseTool):
+    """
+    Rotate the Unity camera to view the scene from different angles.
+
+    Use this to verify spatial relationships from multiple viewpoints,
+    especially for depth (front/back) relationships that may be ambiguous
+    from the default view.
+    """
+
+    name: str = "rotate_camera"
+    description: str = (
+        "Rotate the Unity camera to view the scene from a different angle. "
+        "Use this to verify depth relationships (which objects are in front/behind) "
+        "by looking at the scene from the side. "
+        "yaw: horizontal rotation (-90 left to +90 right), "
+        "pitch: vertical rotation (-90 down to +90 up)."
+    )
+    args_schema: Type[BaseModel] = RotateCameraInput
+
+    bridge: UnityBridge = None
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    def __init__(self, bridge: UnityBridge, **kwargs):
+        super().__init__(**kwargs)
+        object.__setattr__(self, "bridge", bridge)
+
+    def _run(
+        self,
+        yaw: float = 0,
+        pitch: float = 0,
+        run_manager: Optional[CallbackManagerForToolRun] = None,
+    ) -> str:
+        try:
+            resp = self.bridge.rotate_camera(yaw=yaw, pitch=pitch)
+            return (
+                f"Camera rotated to yaw={yaw}°, pitch={pitch}°. "
+                "Call capture_view to see the scene from this angle."
+            )
+        except Exception as exc:
+            return f"ERROR rotating camera: {exc}"
+
+
+class ResetCameraInput(BaseModel):
+    """Input schema for reset_camera (no parameters required)."""
+    pass
+
+
+class ResetCameraTool(BaseTool):
+    """Reset the Unity camera to the default forward-facing orientation."""
+
+    name: str = "reset_camera"
+    description: str = (
+        "Reset the camera to the default orientation (looking straight ahead). "
+        "Use this after rotating to return to the standard viewpoint."
+    )
+    args_schema: Type[BaseModel] = ResetCameraInput
+
+    bridge: UnityBridge = None
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    def __init__(self, bridge: UnityBridge, **kwargs):
+        super().__init__(**kwargs)
+        object.__setattr__(self, "bridge", bridge)
+
+    def _run(
+        self,
+        run_manager: Optional[CallbackManagerForToolRun] = None,
+    ) -> str:
+        try:
+            self.bridge.reset_camera()
+            return "Camera reset to default orientation (yaw=0, pitch=0)."
+        except Exception as exc:
+            return f"ERROR resetting camera: {exc}"
+
+
 # ─── Factory ──────────────────────────────────────────────────────────────────
 
-def create_unity_tools(bridge: UnityBridge) -> List[BaseTool]:
+def create_unity_tools(bridge: UnityBridge, include_camera_tools: bool = True) -> List[BaseTool]:
     """
     Create all Unity placement tools bound to a given UnityBridge instance.
 
@@ -245,14 +404,26 @@ def create_unity_tools(bridge: UnityBridge) -> List[BaseTool]:
     ----------
     bridge : UnityBridge
         A connected bridge instance (call bridge.wait_for_unity() first).
+    include_camera_tools : bool
+        If True, include camera control tools for embodied interaction.
 
     Returns
     -------
     List[BaseTool]
-        [place_object, clear_scene, get_scene_state]
+        Core tools: [place_object, clear_scene, get_scene_state]
+        With camera: + [capture_view, rotate_camera, reset_camera]
     """
-    return [
+    tools = [
         PlaceObjectTool(bridge=bridge),
         ClearSceneTool(bridge=bridge),
         GetSceneStateTool(bridge=bridge),
     ]
+
+    if include_camera_tools:
+        tools.extend([
+            CaptureViewTool(bridge=bridge),
+            RotateCameraTool(bridge=bridge),
+            ResetCameraTool(bridge=bridge),
+        ])
+
+    return tools
