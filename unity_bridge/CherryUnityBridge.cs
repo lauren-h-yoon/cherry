@@ -11,19 +11,21 @@ using UnityEngine;
 ///
 /// Attach this script to any GameObject in your Unity scene.
 ///
-/// Coordinate System (origin = camera position):
+/// Coordinate System:
 ///   X axis: Left (−) / Right (+)
-///   Y axis: Down (−) / Up (+)   — Y=0 is camera eye level
-///   Z axis: Into the scene (+)  — Z=0 is camera position
+///   Y axis: Ground (0) / Up (+)  — Y=0 is floor level; sphere on ground at Y=0.5
+///   Z axis: Near (0) / Far (+)   — Z=0 is at the camera; Z=20 is far background
 ///
-/// Scene bounds: X ∈ [−10, 10], Y ∈ [−6, 6], Z ∈ [0, 20]
+/// Scene bounds: X ∈ [−10, 10], Y ∈ [0, 10], Z ∈ [0, 20]
 ///
 /// HTTP endpoints (localhost:5555):
-///   GET  /health        — health check
-///   POST /place_object  — place a labeled sphere {"label","x","y","z","color","scale"}
-///   POST /clear_scene   — remove all placed spheres
-///   GET  /scene_state   — list all placed objects
-///   POST /initialize    — clear scene
+///   GET  /health         — health check
+///   POST /place_object   — place a labeled sphere {"label","x","y","z","color","scale"}
+///   POST /remove_object  — remove object nearest to {"x","y","z"}
+///   POST /move_object    — move object nearest to {"x","y","z","new_x","new_y","new_z"}
+///   POST /clear_scene    — remove all placed spheres
+///   GET  /scene_state    — list all placed objects
+///   POST /initialize     — clear scene
 /// </summary>
 public class CherryUnityBridge : MonoBehaviour
 {
@@ -136,14 +138,43 @@ public class CherryUnityBridge : MonoBehaviour
     {
         yield return null; // let Update() run at least once first
         SetupCamera();
+        BuildFloor();
+        BuildCornerLight();
         yield return StartCoroutine(BuildGridAsync());
         Debug.Log("[CherryBridge] Scene ready.");
+    }
+
+    private void BuildCornerLight()
+    {
+        var lightGo = new GameObject("CornerLight");
+        // Positioned at top-left-far corner, angled down toward the scene centre
+        lightGo.transform.position = new Vector3(-10f, 10f, 20f);
+        lightGo.transform.rotation = Quaternion.LookRotation(
+            new Vector3(10f, -10f, -10f).normalized); // points toward scene centre
+        var light = lightGo.AddComponent<Light>();
+        light.type      = LightType.Directional;
+        light.color     = new Color(1f, 0.95f, 0.85f); // warm white
+        light.intensity = 1.2f;
+    }
+
+    private void BuildFloor()
+    {
+        // Solid semi-transparent plane covering the 20×20 scene at Y=0.
+        // Unity's Plane primitive is 10 units wide at scale 1, so scale (2,1,2) → 20×20.
+        // Centre: X=0, Z=sceneSize/2 so it spans Z=[0,20].
+        var floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        floor.name = "Floor";
+        floor.transform.position   = new Vector3(0f, 0f, sceneSize / 2f);
+        floor.transform.localScale = new Vector3(sceneSize / 10f, 1f, sceneSize / 10f);
+        floor.GetComponent<Renderer>().material =
+            MakeTransparentMaterial(new Color(0.92f, 0.92f, 0.95f, 0.75f));
+        Destroy(floor.GetComponent<Collider>());
     }
 
     private IEnumerator BuildGridAsync()
     {
         var gridRoot = new GameObject("Grid");
-        var mat = MakeTransparentMaterial(new Color(1f, 1f, 1f, 0.06f));
+        var mat      = MakeTransparentMaterial(new Color(1f, 1f, 1f, 0f));
 
         const float step = 2f;
         float halfXZ = sceneSize / 2f;
@@ -181,7 +212,7 @@ public class CherryUnityBridge : MonoBehaviour
         foreach (var c in Camera.allCameras) Destroy(c.gameObject);
 
         var camGo = new GameObject("CherryCamera");
-        camGo.transform.position = Vector3.zero;
+        camGo.transform.position = new Vector3(0f, 5f, 0f);
         camGo.transform.rotation = Quaternion.identity;
         var cam = camGo.AddComponent<Camera>();
         cam.backgroundColor = new Color(0.12f, 0.12f, 0.17f);
@@ -304,15 +335,17 @@ public class CherryUnityBridge : MonoBehaviour
     {
         switch (type.ToLowerInvariant())
         {
-            case "health":        return Health();
-            case "place_object":  return PlaceObject(body);
-            case "clear_scene":   return ClearScene();
-            case "scene_state":   return GetSceneState();
-            case "initialize":    ClearScene(); return "{\"status\":\"reinitialized\"}";
-            case "capture_view":  return CaptureView();
-            case "rotate_camera": return RotateCamera(body);
-            case "reset_camera":  return ResetCamera();
-            default:              return JsonError($"unknown endpoint: {type}");
+            case "health":         return Health();
+            case "place_object":   return PlaceObject(body);
+            case "remove_object":  return RemoveObject(body);
+            case "move_object":    return MoveObject(body);
+            case "clear_scene":    return ClearScene();
+            case "scene_state":    return GetSceneState();
+            case "initialize":     ClearScene(); return "{\"status\":\"reinitialized\"}";
+            case "capture_view":   return CaptureView();
+            case "rotate_camera":  return RotateCamera(body);
+            case "reset_camera":   return ResetCamera();
+            default:               return JsonError($"unknown endpoint: {type}");
         }
     }
 
@@ -326,8 +359,9 @@ public class CherryUnityBridge : MonoBehaviour
 
         string label = string.IsNullOrEmpty(req.label) ? "object" : req.label;
         float scale  = req.scale <= 0f ? 1f : req.scale;
+        bool isCube  = !string.IsNullOrEmpty(req.shape) && req.shape.ToLowerInvariant() == "cube";
 
-        var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        var sphere = GameObject.CreatePrimitive(isCube ? PrimitiveType.Cube : PrimitiveType.Sphere);
         sphere.name = $"Obj_{label}_{_records.Count}";
         sphere.transform.SetParent(_objectsRoot.transform);
         sphere.transform.position   = new Vector3(req.x, req.y, req.z);
@@ -354,7 +388,84 @@ public class CherryUnityBridge : MonoBehaviour
     [Serializable]
     private class PlaceObjectRequest
     {
-        public string label = ""; public float x, y, z; public string color = ""; public float scale = 1f;
+        public string label = ""; public float x, y, z; public string color = ""; public float scale = 1f; public string shape = "sphere";
+    }
+
+    [Serializable]
+    private class RemoveObjectRequest { public float x, y, z; }
+
+    [Serializable]
+    private class MoveObjectRequest { public float x, y, z, new_x, new_y, new_z; }
+
+    // Returns the index in _records of the object nearest to (x,y,z), or -1 if empty.
+    private int FindClosestRecord(float x, float y, float z, out float distance)
+    {
+        int best = -1;
+        float bestDist = float.MaxValue;
+        for (int i = 0; i < _records.Count; i++)
+        {
+            var r = _records[i];
+            float d = Vector3.Distance(new Vector3(x, y, z), new Vector3(r.x, r.y, r.z));
+            if (d < bestDist) { bestDist = d; best = i; }
+        }
+        distance = bestDist;
+        return best;
+    }
+
+    private string RemoveObject(string body)
+    {
+        var req = JsonUtility.FromJson<RemoveObjectRequest>(body);
+        if (req == null) return JsonError("invalid JSON");
+
+        int idx = FindClosestRecord(req.x, req.y, req.z, out float _);
+        if (idx < 0) return JsonError("no objects in scene");
+
+        var rec = _records[idx];
+
+        // Destroy the sphere and its label — both share the same X/Z as the record.
+        var toDestroy = new List<Transform>();
+        foreach (Transform child in _objectsRoot.transform)
+        {
+            Vector3 p = child.position;
+            if (Mathf.Abs(p.x - rec.x) < 0.01f && Mathf.Abs(p.z - rec.z) < 0.01f)
+                toDestroy.Add(child);
+        }
+        foreach (var t in toDestroy) Destroy(t.gameObject);
+
+        string label = rec.label;
+        int id       = rec.id;
+        _records.RemoveAt(idx);
+
+        return $"{{\"status\":\"removed\",\"id\":{id},\"label\":\"{label}\"}}";
+    }
+
+    private string MoveObject(string body)
+    {
+        var req = JsonUtility.FromJson<MoveObjectRequest>(body);
+        if (req == null) return JsonError("invalid JSON");
+
+        int idx = FindClosestRecord(req.x, req.y, req.z, out float _);
+        if (idx < 0) return JsonError("no objects in scene");
+
+        var rec = _records[idx];
+        float oldX = rec.x, oldY = rec.y, oldZ = rec.z;
+
+        // Move the sphere and its label, preserving each child's Y offset.
+        foreach (Transform child in _objectsRoot.transform)
+        {
+            Vector3 p = child.position;
+            if (Mathf.Abs(p.x - oldX) < 0.01f && Mathf.Abs(p.z - oldZ) < 0.01f)
+            {
+                float yOffset = p.y - oldY;
+                child.position = new Vector3(req.new_x, req.new_y + yOffset, req.new_z);
+            }
+        }
+
+        rec.x = req.new_x; rec.y = req.new_y; rec.z = req.new_z;
+
+        return $"{{\"status\":\"moved\",\"id\":{rec.id},\"label\":\"{rec.label}\"," +
+               $"\"from\":{{\"x\":{oldX},\"y\":{oldY},\"z\":{oldZ}}}," +
+               $"\"to\":{{\"x\":{req.new_x},\"y\":{req.new_y},\"z\":{req.new_z}}}}}";
     }
 
     private string ClearScene()

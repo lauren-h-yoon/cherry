@@ -14,8 +14,8 @@ The model uses three tools:
 Unity Coordinate System
 -----------------------
   X :  Left (−10) … Right (+10)
-  Y :  Ground (0) … Up (+10)    — sphere sits on ground at Y = 0.5
-  Z :  Near  (−10) … Far (+10)  — depth / foreground–background
+  Y :  Ground (0) … Up (+10)   — sphere sits on ground at Y = 0.5
+  Z :  Near  (0)  … Far (+20)  — Z=0 at camera, Z=20 is far background
 
 Setup
 -----
@@ -47,159 +47,96 @@ Examples
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Optional, List, Dict
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from unity_bridge import UnityBridge, create_unity_tools, SceneState
+# Load .env if present
+_env_file = Path(__file__).parent / ".env"
+if _env_file.exists():
+    for _line in _env_file.read_text().splitlines():
+        if _line.strip() and not _line.startswith("#") and "=" in _line:
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
+
+from unity_bridge import UnityBridge, create_zero_shot_tools, SceneState
 from spatial_agent.model_providers import create_model_provider, VLMProvider
+from spatial_agent.prompts import PLACEMENT_SYSTEM_PROMPT
+from spatial_graph_to_unity import convert_for_evaluation
 
 
-# ─── System prompt ────────────────────────────────────────────────────────────
-
-SYSTEM_PROMPT = """You are an embodied spatial reasoning agent.
-
-Your task is to reconstruct the 3D spatial layout of a scene by placing
-labelled spheres in a Unity landscape.  You will be given an image (and
-optionally a text description) of a real scene.
-
-## Your job
-Identify the key objects in the image and place each one as a labelled sphere
-whose position encodes its spatial relationship to the others.
-
-## Unity coordinate system
-The scene is a flat 20 × 20 unit ground plane.  Coordinate axes:
-
-  X axis  :  Left (−10)  ←→  Right (+10)
-  Y axis  :  Ground (0)  ↑   Up (+10)
-  Z axis  :  Near  (−10) ←→  Far  (+10)   [depth away from camera]
-
-Guidelines for mapping image space → Unity space:
-  • Objects on the LEFT  of the image → more negative X
-  • Objects on the RIGHT of the image → more positive X
-  • Objects in the FOREGROUND (bottom of image) → more negative Z
-  • Objects in the BACKGROUND (top of image)    → more positive Z
-  • Objects that are physically HIGHER → more positive Y
-  • Spheres sit on the ground at Y = 0.5 (sphere radius).
-  • Use scale to reflect object size (table → 1.5–2.0, cup → 0.5).
-
-## Strategy
-1. Scan the image for distinct objects worth representing.
-2. Plan their relative positions mentally (what's to the left of what? what's
-   closer to the camera? what's stacked on top of what?).
-3. Call place_object for each object, choosing (x, y, z) to encode those
-   relationships accurately.
-4. Call get_scene_state to review your placements.
-5. Optionally adjust with clear_scene + re-place if needed.
-6. When satisfied, state "DONE" in your final message.
-
-## Important
-- Place at least the 5 most spatially prominent objects.
-- Keep positions within scene bounds: X ∈ [−10,10], Z ∈ [−10,10], Y ∈ [0,10].
-- Objects should NOT overlap (keep at least 1 unit of separation).
-- Labels should be concise (e.g. "chair", "table", "window", "refrigerator").
-"""
+# SYSTEM_PROMPT imported from spatial_agent.prompts
+SYSTEM_PROMPT = PLACEMENT_SYSTEM_PROMPT
 
 
-# ─── Agent loop ───────────────────────────────────────────────────────────────
+# ─── Zero-shot placement ──────────────────────────────────────────────────────
 
 def run_agentic_placement(
     image_path: str,
     provider: VLMProvider,
     bridge: UnityBridge,
     graph_data: Optional[Dict] = None,
-    max_turns: int = 10,
     verbose: bool = True,
 ) -> SceneState:
     """
-    Run a multi-turn agentic loop where the VLM places objects in Unity.
+    Zero-shot placement: one API call, execute all returned place_object calls.
 
-    The loop continues until the model outputs "DONE" or max_turns is reached.
-    Tool calls are executed against the live Unity scene.
+    The model receives the image and prompt, responds with a batch of
+    place_object tool calls, and those are executed against the Unity scene.
 
     Returns the final SceneState.
     """
-    tools = create_unity_tools(bridge)
+    tools = create_zero_shot_tools(bridge)
+    tool_schemas = _tools_to_schema(tools)
 
-    # Build the user prompt
-    user_prompt = "Please reconstruct the spatial layout of the scene shown in the image by placing labelled spheres in Unity."
+    # Build user prompt
+    user_prompt = "Reconstruct the spatial layout of the scene shown in the image by placing labelled spheres in Unity."
 
     if graph_data:
         entities = graph_data.get("entities", [])
-        if entities:
-            labels = [e.get("label", "") for e in entities[:12] if e.get("label")]
-            if labels:
-                user_prompt += (
-                    f"\n\nThe following objects have been detected in the scene "
-                    f"(from the spatial graph): {', '.join(labels)}. "
-                    "Focus on placing these objects with accurate relative positions."
-                )
+        labels = [e.get("label", "") for e in entities[:12] if e.get("label")]
+        if labels:
+            user_prompt += (
+                f"\n\nDetected objects: {', '.join(labels)}. "
+                "Place these objects with accurate relative positions."
+            )
 
     if verbose:
-        print(f"\n[Unity Eval] Image: {image_path}")
+        print(f"\n[Unity Eval] Image:    {image_path}")
         print(f"[Unity Eval] Provider: {provider.model_name}")
-        print(f"[Unity Eval] Max turns: {max_turns}")
-        print("[Unity Eval] Starting placement loop…\n")
 
-    # Convert LangChain tools to provider tool schema
-    tool_schemas = _tools_to_schema(tools)
+    response = provider.generate(
+        image_path=image_path,
+        prompt=user_prompt,
+        system_prompt=SYSTEM_PROMPT,
+        tools=tool_schemas,
+    )
 
-    # Conversation history (for multi-turn providers)
-    conversation: List[Dict] = []
+    if verbose and response.text:
+        print(f"[Model] {response.text}")
 
-    for turn in range(1, max_turns + 1):
+    for tc in response.tool_calls:
+        if tc.name != "place_object":
+            continue
+
+        # Clamp coordinates to valid Unity ranges
+        args = dict(tc.arguments)
+        args["x"] = max(-10.0, min(10.0, float(args.get("x", 0))))
+        args["y"] = max(0.0,   min(10.0, float(args.get("y", 0.5))))
+        args["z"] = max(0.0,   min(20.0, float(args.get("z", 5))))
+
         if verbose:
-            print(f"── Turn {turn}/{max_turns} ────────────────────────────────────")
+            print(f"  → place_object({args})")
+        result = _dispatch_tool(tc.name, args, tools)
+        if verbose:
+            print(f"     {result}")
 
-        # On first turn, send image + prompt; subsequent turns only send tool results
-        current_prompt = user_prompt if turn == 1 else _build_followup_prompt(conversation)
-
-        response = provider.generate(
-            image_path=image_path,
-            prompt=current_prompt,
-            system_prompt=SYSTEM_PROMPT,
-            tools=tool_schemas,
-        )
-
-        if verbose and response.text:
-            print(f"[Model] {response.text}")
-
-        # Execute tool calls
-        any_tool_called = False
-        for tc in response.tool_calls:
-            any_tool_called = True
-            if verbose:
-                print(f"  → Tool: {tc.name}({tc.arguments})")
-
-            result = _dispatch_tool(tc.name, tc.arguments, tools)
-
-            if verbose:
-                print(f"     ✓ {result}")
-
-            conversation.append({
-                "tool": tc.name,
-                "args": tc.arguments,
-                "result": result,
-            })
-
-        # Check termination
-        text_lower = response.text.lower() if response.text else ""
-        if "done" in text_lower and not any_tool_called:
-            if verbose:
-                print("\n[Unity Eval] Model signalled DONE.")
-            break
-
-        if not any_tool_called and not response.text:
-            if verbose:
-                print("[Unity Eval] No tool calls and no text — stopping.")
-            break
-
-    # Final state
     final_state = bridge.get_scene_state()
     if verbose:
-        print(f"\n[Unity Eval] Final scene state:\n{final_state.summary()}")
+        print(f"\n[Unity Eval] Placed {final_state.count} object(s).")
 
     return final_state
 
@@ -208,7 +145,7 @@ def _tools_to_schema(tools) -> List[Dict]:
     """Convert LangChain BaseTool list to OpenAI-compatible function schema dicts."""
     schemas = []
     for tool in tools:
-        schema = tool.args_schema.schema() if tool.args_schema else {}
+        schema = tool.args_schema.model_json_schema() if tool.args_schema else {}
         schemas.append({
             "name": tool.name,
             "description": tool.description,
@@ -219,18 +156,6 @@ def _tools_to_schema(tools) -> List[Dict]:
             },
         })
     return schemas
-
-
-def _build_followup_prompt(conversation: List[Dict]) -> str:
-    """Build a follow-up prompt from the tool call history."""
-    if not conversation:
-        return "Please continue placing objects."
-    last = conversation[-1]
-    return (
-        f"Tool '{last['tool']}' returned: {last['result']}\n\n"
-        "Continue placing objects or call get_scene_state to review, "
-        "then say DONE when finished."
-    )
 
 
 def _dispatch_tool(name: str, args: Dict, tools) -> str:
@@ -338,9 +263,9 @@ def main():
 
     # Model
     parser.add_argument("--provider", "-p",
-                        choices=["claude", "qwen", "vllm", "openai", "ollama"],
-                        default="claude",
-                        help="VLM provider (default: claude)")
+                        choices=["claude", "openai", "huggingface", "hf", "vllm", "qwen", "ollama"],
+                        default="huggingface",
+                        help="VLM provider (default: huggingface)")
     parser.add_argument("--model", "-m",
                         help="Model name (uses provider default if omitted)")
     parser.add_argument("--vllm-url", default="http://localhost:8000/v1",
@@ -357,8 +282,6 @@ def main():
                         help="Skip re-initializing the Unity scene (use current state)")
 
     # Eval
-    parser.add_argument("--max-turns", "-n", type=int, default=10,
-                        help="Max agentic turns (default: 10)")
     parser.add_argument("--output-dir", "-o", default="unity_eval_outputs",
                         help="Directory for output JSON (default: unity_eval_outputs)")
     parser.add_argument("--quiet", "-q", action="store_true",
@@ -379,7 +302,12 @@ def main():
             print(f"ERROR: graph not found: {graph_path}", file=sys.stderr)
             sys.exit(1)
         with open(graph_path) as f:
-            graph_data = json.load(f)
+            raw_graph = json.load(f)
+        # Normalise: depth_sam3_connector.py uses "nodes"; evaluation expects "entities"
+        if "nodes" in raw_graph and "entities" not in raw_graph:
+            graph_data = convert_for_evaluation(raw_graph)
+        else:
+            graph_data = raw_graph
 
     # ── Unity bridge ─────────────────────────────────────────────────────────
     unity_url = args.unity_url or f"http://localhost:{args.unity_port}"
@@ -407,7 +335,6 @@ def main():
         provider=provider,
         bridge=bridge,
         graph_data=graph_data,
-        max_turns=args.max_turns,
         verbose=not args.quiet,
     )
 

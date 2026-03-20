@@ -15,7 +15,7 @@ Spatial Graph (2D image space):
 Unity (3D world space):
     X: -10 (left) to +10 (right), 0 = center
     Y: 0 (ground) to +10 (up), objects sit at Y = 0.5 (sphere radius)
-    Z: -10 (near/foreground) to +10 (far/background)
+    Z: 0 (near/camera) to +20 (far/background)
 
 Usage
 -----
@@ -45,7 +45,7 @@ from typing import Dict, List, Optional, Tuple, Any
 # Default Unity scene bounds
 UNITY_X_RANGE = (-10.0, 10.0)
 UNITY_Y_RANGE = (0.0, 10.0)
-UNITY_Z_RANGE = (-10.0, 10.0)
+UNITY_Z_RANGE = (0.0, 20.0)
 UNITY_SPHERE_RADIUS = 0.5
 
 

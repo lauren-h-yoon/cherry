@@ -5,13 +5,13 @@ The C# script (CherryUnityBridge.cs) must be attached to a GameObject in your
 Unity scene and the scene must be running.  By default it listens on
 http://localhost:5555/.
 
-Unity Coordinate System (origin = camera position)
----------------------------------------------------
+Unity Coordinate System
+-----------------------
   X  :  Left (−) / Right (+)
-  Y  :  Down (−) / Up (+)    — Y = 0 is camera eye level
-  Z  :  Toward camera (−) / Into scene (+)
+  Y  :  Ground (0) / Up (+)  — Y = 0 is floor level; sphere sits on ground at Y = 0.5
+  Z  :  Near (0) / Far (+)   — Z = 0 is at the camera; Z = 20 is far background
 
-Scene extents:  X ∈ [−10, 10],  Y ∈ [−6, 6],  Z ∈ [0, 20]
+Scene extents:  X ∈ [−10, 10],  Y ∈ [0, 10],  Z ∈ [0, 20]
 Sphere radius:  0.5 Unity units
 
 Objects in the real scene (chairs, tables, …) are represented as labelled
@@ -161,6 +161,7 @@ class UnityBridge:
         z: float,
         color: Optional[str] = None,
         scale: float = 1.0,
+        shape: str = "sphere",
     ) -> Dict:
         """
         Place a labelled sphere in the Unity scene.
@@ -186,11 +187,51 @@ class UnityBridge:
             "y": float(y),
             "z": float(z),
             "scale": float(scale),
+            "shape": shape,
         }
         if color is not None:
             payload["color"] = color
 
         resp = self._check_error(self._request("place_object", data=payload))
+        return resp
+
+    def remove_object(self, x: float, y: float, z: float) -> Dict:
+        """
+        Remove the object closest to the given position.
+
+        Parameters
+        ----------
+        x, y, z : Position to search from.
+
+        Returns
+        -------
+        dict with keys: status, id, label
+        """
+        payload = {"x": float(x), "y": float(y), "z": float(z)}
+        resp = self._check_error(self._request("remove_object", data=payload))
+        return resp
+
+    def move_object(
+        self,
+        x: float,
+        y: float,
+        z: float,
+        new_x: float,
+        new_y: float,
+        new_z: float,
+    ) -> Dict:
+        """
+        Move the object closest to (x, y, z) to (new_x, new_y, new_z).
+
+        Returns
+        -------
+        dict with keys: status, id, label, from, to
+        """
+        payload = {
+            "x": float(x), "y": float(y), "z": float(z),
+            "new_x": float(new_x), "new_y": float(new_y), "new_z": float(new_z),
+        }
+        resp = self._check_error(self._request("move_object", data=payload))
         return resp
 
     def clear_scene(self) -> Dict:

@@ -162,7 +162,7 @@ Spatial Graph (2D + depth)          Unity (3D)
 ──────────────────────────          ──────────
 bbox_center[0]: 0..width    ──►     X: -10..+10  (left/right)
 bbox_center[1]: 0..height   ──►     Y: inferred  (height based on category)
-relative_depth: 0..1        ──►     Z: -10..+10  (near/far)
+relative_depth: 0..1        ──►     Z:   0..+20  (near/far)
 ```
 
 ### Phase 3: Experiment Runner
