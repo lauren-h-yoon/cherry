@@ -212,7 +212,7 @@ public class CherryUnityBridge : MonoBehaviour
         foreach (var c in Camera.allCameras) Destroy(c.gameObject);
 
         var camGo = new GameObject("CherryCamera");
-        camGo.transform.position = new Vector3(0f, 5f, 0f);
+        camGo.transform.position = new Vector3(0f, 3f, 0f);
         camGo.transform.rotation = Quaternion.identity;
         var cam = camGo.AddComponent<Camera>();
         cam.backgroundColor = new Color(0.12f, 0.12f, 0.17f);

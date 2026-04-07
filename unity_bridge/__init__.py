@@ -16,6 +16,6 @@ Scene bounds: X ∈ [−10, 10], Y ∈ [0, 10], Z ∈ [0, 20]
 """
 
 from .bridge import UnityBridge, PlacedObject, SceneState
-from .tools import create_unity_tools, create_zero_shot_tools
+from .tools import create_unity_tools
 
-__all__ = ["UnityBridge", "PlacedObject", "SceneState", "create_unity_tools", "create_zero_shot_tools"]
+__all__ = ["UnityBridge", "PlacedObject", "SceneState", "create_unity_tools"]

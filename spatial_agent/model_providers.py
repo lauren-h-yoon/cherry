@@ -79,6 +79,7 @@ class VLMProvider(ABC):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         """
         Generate a response, optionally invoking tools.
@@ -93,6 +94,9 @@ class VLMProvider(ABC):
             System / instruction prompt for the model.
         tools : list of dict
             Tool schemas in common format (see module docstring).
+        snapshot_path : str, optional
+            Path to a Unity scene snapshot PNG. When provided, it is injected
+            as a second image in the user message (after the original image).
 
         Returns
         -------
@@ -147,6 +151,7 @@ class ClaudeProvider(VLMProvider):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         img_data, media_type = self._encode_image(image_path)
 
@@ -160,26 +165,33 @@ class ClaudeProvider(VLMProvider):
             for t in tools
         ] if tools else []
 
+        content: List[Dict] = [
+            {
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": media_type,
+                    "data": img_data,
+                },
+            },
+        ]
+        if snapshot_path:
+            snap_data, snap_media = self._encode_image(snapshot_path)
+            content.append({
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": snap_media,
+                    "data": snap_data,
+                },
+            })
+        content.append({"type": "text", "text": prompt})
+
         request_kwargs: Dict[str, Any] = {
             "model": self.model_name,
             "max_tokens": 4096,
             "system": system_prompt,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image",
-                            "source": {
-                                "type": "base64",
-                                "media_type": media_type,
-                                "data": img_data,
-                            },
-                        },
-                        {"type": "text", "text": prompt},
-                    ],
-                }
-            ],
+            "messages": [{"role": "user", "content": content}],
         }
         if anthropic_tools:
             request_kwargs["tools"] = anthropic_tools
@@ -225,6 +237,7 @@ class OpenAIProvider(VLMProvider):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         img_data, media_type = self._encode_image(image_path)
 
@@ -240,23 +253,28 @@ class OpenAIProvider(VLMProvider):
             for t in tools
         ] if tools else []
 
+        user_content: List[Dict] = [
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:{media_type};base64,{img_data}",
+                    "detail": "high",
+                },
+            },
+        ]
+        if snapshot_path:
+            snap_data, snap_media = self._encode_image(snapshot_path)
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
+            })
+        user_content.append({"type": "text", "text": prompt})
+
         request_kwargs: Dict[str, Any] = {
             "model": self.model_name,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:{media_type};base64,{img_data}",
-                                "detail": "high",
-                            },
-                        },
-                        {"type": "text", "text": prompt},
-                    ],
-                },
+                {"role": "user", "content": user_content},
             ],
         }
         if openai_tools:
@@ -316,6 +334,7 @@ class VLLMProvider(VLMProvider):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         img_data, media_type = self._encode_image(image_path)
 
@@ -331,22 +350,22 @@ class VLLMProvider(VLMProvider):
             for t in tools
         ] if tools else []
 
+        user_content: List[Dict] = [
+            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
+        ]
+        if snapshot_path:
+            snap_data, snap_media = self._encode_image(snapshot_path)
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
+            })
+        user_content.append({"type": "text", "text": prompt})
+
         request_kwargs: Dict[str, Any] = {
             "model": self.model_name,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:{media_type};base64,{img_data}",
-                            },
-                        },
-                        {"type": "text", "text": prompt},
-                    ],
-                },
+                {"role": "user", "content": user_content},
             ],
         }
         if openai_tools:
@@ -406,6 +425,7 @@ class OllamaProvider(VLMProvider):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         img_data, media_type = self._encode_image(image_path)
 
@@ -421,22 +441,22 @@ class OllamaProvider(VLMProvider):
             for t in tools
         ] if tools else []
 
+        user_content: List[Dict] = [
+            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
+        ]
+        if snapshot_path:
+            snap_data, snap_media = self._encode_image(snapshot_path)
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
+            })
+        user_content.append({"type": "text", "text": prompt})
+
         request_kwargs: Dict[str, Any] = {
             "model": self.model_name,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:{media_type};base64,{img_data}",
-                            },
-                        },
-                        {"type": "text", "text": prompt},
-                    ],
-                },
+                {"role": "user", "content": user_content},
             ],
         }
         if openai_tools:
@@ -463,27 +483,26 @@ class OllamaProvider(VLMProvider):
 
 class HuggingFaceProvider(VLMProvider):
     """
-    HuggingFace Inference API provider (serverless, no local GPU required).
+    HuggingFace Inference provider via the HF router (router.huggingface.co/v1).
 
-    Uses huggingface_hub.InferenceClient which talks to HF's hosted endpoints.
-    Requires a HuggingFace token with access to the model.
+    Uses the OpenAI-compatible HF router endpoint, which supports open-source
+    VLMs on free-tier accounts.  Requires a HuggingFace token.
 
-    Default model: meta-llama/Llama-3.2-11B-Vision-Instruct
+    Default model: Qwen/Qwen3-VL-8B-Instruct
 
     Usage:
         export HUGGINGFACE_TOKEN=hf_...
         provider = HuggingFaceProvider()
     """
 
-    DEFAULT_MODEL = "Qwen/Qwen2.5-VL-7B-Instruct"
+    DEFAULT_MODEL = "Qwen/Qwen3-VL-8B-Instruct"
+    HF_ROUTER_URL = "https://router.huggingface.co/v1"
 
     def __init__(self, model_name: Optional[str] = None, token: Optional[str] = None, **kwargs):
         try:
-            from huggingface_hub import InferenceClient as _InferenceClient
+            from openai import OpenAI as _OpenAI
         except ImportError:
-            raise ImportError(
-                "huggingface_hub required. Install with: pip install huggingface_hub"
-            )
+            raise ImportError("openai package required. Install with: pip install openai")
 
         import os
         self.model_name = model_name or self.DEFAULT_MODEL
@@ -492,7 +511,7 @@ class HuggingFaceProvider(VLMProvider):
             raise ValueError(
                 "HuggingFace token required. Set HUGGINGFACE_TOKEN env var or pass token= argument."
             )
-        self._client = _InferenceClient(model=self.model_name, token=resolved_token)
+        self._client = _OpenAI(base_url=self.HF_ROUTER_URL, api_key=resolved_token)
 
     def generate(
         self,
@@ -500,10 +519,10 @@ class HuggingFaceProvider(VLMProvider):
         prompt: str,
         system_prompt: str,
         tools: List[Dict],
+        snapshot_path: Optional[str] = None,
     ) -> VLMResponse:
         img_data, media_type = self._encode_image(image_path)
 
-        # HF InferenceClient accepts OpenAI-compatible tool format
         hf_tools = [
             {
                 "type": "function",
@@ -516,26 +535,32 @@ class HuggingFaceProvider(VLMProvider):
             for t in tools
         ] if tools else []
 
+        user_content: List[Dict] = [
+            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
+        ]
+        if snapshot_path:
+            snap_data, snap_media = self._encode_image(snapshot_path)
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
+            })
+        user_content.append({"type": "text", "text": prompt})
+
         messages = [
             {"role": "system", "content": system_prompt},
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:{media_type};base64,{img_data}"},
-                    },
-                    {"type": "text", "text": prompt},
-                ],
-            },
+            {"role": "user", "content": user_content},
         ]
 
-        kwargs: Dict[str, Any] = {"messages": messages, "max_tokens": 2048}
+        request_kwargs: Dict[str, Any] = {
+            "model": self.model_name,
+            "messages": messages,
+            "max_tokens": 2048,
+        }
         if hf_tools:
-            kwargs["tools"] = hf_tools
+            request_kwargs["tools"] = hf_tools
 
         try:
-            response = self._client.chat_completion(**kwargs)
+            response = self._client.chat.completions.create(**request_kwargs)
             msg = response.choices[0].message
             text = msg.content or ""
             tool_calls: List[ToolCall] = []
@@ -543,7 +568,7 @@ class HuggingFaceProvider(VLMProvider):
             if msg.tool_calls:
                 for tc in msg.tool_calls:
                     try:
-                        args = json.loads(tc.function.arguments) if isinstance(tc.function.arguments, str) else tc.function.arguments
+                        args = json.loads(tc.function.arguments)
                     except (json.JSONDecodeError, AttributeError):
                         args = {}
                     tool_calls.append(ToolCall(name=tc.function.name, arguments=args))
