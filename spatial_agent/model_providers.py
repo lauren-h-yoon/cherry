@@ -56,6 +56,7 @@ class ToolCall:
     """A single tool call made by the model."""
     name: str
     arguments: Dict[str, Any]
+    id: Optional[str] = None
 
 
 @dataclass
@@ -63,6 +64,8 @@ class VLMResponse:
     """Response from a VLM provider."""
     text: str
     tool_calls: List[ToolCall] = field(default_factory=list)
+    # Raw assistant message dict (OpenAI format) for appending to conversation history.
+    raw_assistant_message: Optional[Dict] = field(default=None)
 
 
 # ─── Base class ───────────────────────────────────────────────────────────────
@@ -75,11 +78,12 @@ class VLMProvider(ABC):
     @abstractmethod
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
         """
         Generate a response, optionally invoking tools.
@@ -121,6 +125,72 @@ class VLMProvider(ABC):
             data = base64.b64encode(f.read()).decode("utf-8")
         return data, media_type
 
+    def _openai_generate(
+        self,
+        client: Any,
+        image_path: Optional[str],
+        prompt: Optional[str],
+        system_prompt: Optional[str],
+        tools: Optional[List[Dict]],
+        snapshot_path: Optional[str],
+        messages: Optional[List[Dict]],
+        extra_kwargs: Optional[Dict] = None,
+    ) -> VLMResponse:
+        """Shared generate logic for all OpenAI-compatible providers."""
+        openai_tools = [
+            {"type": "function", "function": {"name": t["name"], "description": t["description"], "parameters": t["parameters"]}}
+            for t in (tools or [])
+        ]
+
+        if messages is not None:
+            built_messages = messages
+        else:
+            img_data, media_type = self._encode_image(image_path)
+            user_content: List[Dict] = [
+                {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
+            ]
+            if snapshot_path:
+                snap_data, snap_media = self._encode_image(snapshot_path)
+                user_content.append({"type": "image_url", "image_url": {"url": f"data:{snap_media};base64,{snap_data}"}})
+            if prompt:
+                user_content.append({"type": "text", "text": prompt})
+            built_messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content},
+            ]
+
+        request_kwargs: Dict[str, Any] = {
+            "model": self.model_name,
+            "messages": built_messages,
+            "max_tokens": 2048,
+            **(extra_kwargs or {}),
+        }
+        if openai_tools:
+            request_kwargs["tools"] = openai_tools
+
+        response = client.chat.completions.create(**request_kwargs)
+        msg = response.choices[0].message
+        text = msg.content or ""
+        tool_calls: List[ToolCall] = []
+
+        if msg.tool_calls:
+            for tc in msg.tool_calls:
+                try:
+                    args = json.loads(tc.function.arguments)
+                except (json.JSONDecodeError, AttributeError):
+                    args = {}
+                tool_calls.append(ToolCall(name=tc.function.name, arguments=args, id=tc.id))
+
+        # Build raw assistant message for history management
+        raw_msg: Dict[str, Any] = {"role": "assistant", "content": text or None}
+        if msg.tool_calls:
+            raw_msg["tool_calls"] = [
+                {"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments}}
+                for tc in msg.tool_calls
+            ]
+
+        return VLMResponse(text=text, tool_calls=tool_calls, raw_assistant_message=raw_msg)
+
 
 # ─── Claude (Anthropic) ───────────────────────────────────────────────────────
 
@@ -147,52 +217,54 @@ class ClaudeProvider(VLMProvider):
 
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
-        img_data, media_type = self._encode_image(image_path)
-
-        # Convert to Anthropic tool format (uses "input_schema" not "parameters")
         anthropic_tools = [
             {
                 "name": t["name"],
                 "description": t["description"],
                 "input_schema": t["parameters"],
             }
-            for t in tools
-        ] if tools else []
-
-        content: List[Dict] = [
-            {
-                "type": "image",
-                "source": {
-                    "type": "base64",
-                    "media_type": media_type,
-                    "data": img_data,
-                },
-            },
+            for t in (tools or [])
         ]
-        if snapshot_path:
-            snap_data, snap_media = self._encode_image(snapshot_path)
-            content.append({
-                "type": "image",
-                "source": {
-                    "type": "base64",
-                    "media_type": snap_media,
-                    "data": snap_data,
-                },
-            })
-        content.append({"type": "text", "text": prompt})
 
-        request_kwargs: Dict[str, Any] = {
-            "model": self.model_name,
-            "max_tokens": 4096,
-            "system": system_prompt,
-            "messages": [{"role": "user", "content": content}],
-        }
+        if messages is not None:
+            # Convert OpenAI-format messages to Anthropic format.
+            # Extract system from first message if present.
+            sys_prompt = system_prompt or ""
+            anthropic_messages = []
+            for m in messages:
+                if m["role"] == "system":
+                    sys_prompt = m["content"]
+                else:
+                    anthropic_messages.append(m)
+            request_kwargs: Dict[str, Any] = {
+                "model": self.model_name,
+                "max_tokens": 4096,
+                "system": sys_prompt,
+                "messages": anthropic_messages,
+            }
+        else:
+            img_data, media_type = self._encode_image(image_path)
+            content: List[Dict] = [
+                {"type": "image", "source": {"type": "base64", "media_type": media_type, "data": img_data}},
+            ]
+            if snapshot_path:
+                snap_data, snap_media = self._encode_image(snapshot_path)
+                content.append({"type": "image", "source": {"type": "base64", "media_type": snap_media, "data": snap_data}})
+            content.append({"type": "text", "text": prompt})
+            request_kwargs = {
+                "model": self.model_name,
+                "max_tokens": 4096,
+                "system": system_prompt,
+                "messages": [{"role": "user", "content": content}],
+            }
+
         if anthropic_tools:
             request_kwargs["tools"] = anthropic_tools
 
@@ -204,9 +276,15 @@ class ClaudeProvider(VLMProvider):
             if block.type == "text":
                 text = block.text
             elif block.type == "tool_use":
-                tool_calls.append(ToolCall(name=block.name, arguments=block.input))
+                tool_calls.append(ToolCall(name=block.name, arguments=block.input, id=block.id))
 
-        return VLMResponse(text=text, tool_calls=tool_calls)
+        raw_msg: Dict[str, Any] = {"role": "assistant", "content": []}
+        if text:
+            raw_msg["content"].append({"type": "text", "text": text})
+        for tc in tool_calls:
+            raw_msg["content"].append({"type": "tool_use", "id": tc.id, "name": tc.name, "input": tc.arguments})
+
+        return VLMResponse(text=text, tool_calls=tool_calls, raw_assistant_message=raw_msg)
 
 
 # ─── OpenAI ───────────────────────────────────────────────────────────────────
@@ -233,68 +311,14 @@ class OpenAIProvider(VLMProvider):
 
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
-        img_data, media_type = self._encode_image(image_path)
-
-        openai_tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": t["name"],
-                    "description": t["description"],
-                    "parameters": t["parameters"],
-                },
-            }
-            for t in tools
-        ] if tools else []
-
-        user_content: List[Dict] = [
-            {
-                "type": "image_url",
-                "image_url": {
-                    "url": f"data:{media_type};base64,{img_data}",
-                    "detail": "high",
-                },
-            },
-        ]
-        if snapshot_path:
-            snap_data, snap_media = self._encode_image(snapshot_path)
-            user_content.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
-            })
-        user_content.append({"type": "text", "text": prompt})
-
-        request_kwargs: Dict[str, Any] = {
-            "model": self.model_name,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content},
-            ],
-        }
-        if openai_tools:
-            request_kwargs["tools"] = openai_tools
-
-        response = self._client.chat.completions.create(**request_kwargs)
-
-        msg = response.choices[0].message
-        text = msg.content or ""
-        tool_calls: List[ToolCall] = []
-
-        if msg.tool_calls:
-            for tc in msg.tool_calls:
-                try:
-                    args = json.loads(tc.function.arguments)
-                except json.JSONDecodeError:
-                    args = {}
-                tool_calls.append(ToolCall(name=tc.function.name, arguments=args))
-
-        return VLMResponse(text=text, tool_calls=tool_calls)
+        return self._openai_generate(self._client, image_path, prompt, system_prompt, tools, snapshot_path, messages)
 
 
 # ─── vLLM (OpenAI-compatible server) ─────────────────────────────────────────
@@ -330,62 +354,14 @@ class VLLMProvider(VLMProvider):
 
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
-        img_data, media_type = self._encode_image(image_path)
-
-        openai_tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": t["name"],
-                    "description": t["description"],
-                    "parameters": t["parameters"],
-                },
-            }
-            for t in tools
-        ] if tools else []
-
-        user_content: List[Dict] = [
-            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
-        ]
-        if snapshot_path:
-            snap_data, snap_media = self._encode_image(snapshot_path)
-            user_content.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
-            })
-        user_content.append({"type": "text", "text": prompt})
-
-        request_kwargs: Dict[str, Any] = {
-            "model": self.model_name,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content},
-            ],
-        }
-        if openai_tools:
-            request_kwargs["tools"] = openai_tools
-
-        response = self._client.chat.completions.create(**request_kwargs)
-
-        msg = response.choices[0].message
-        text = msg.content or ""
-        tool_calls: List[ToolCall] = []
-
-        if msg.tool_calls:
-            for tc in msg.tool_calls:
-                try:
-                    args = json.loads(tc.function.arguments)
-                except json.JSONDecodeError:
-                    args = {}
-                tool_calls.append(ToolCall(name=tc.function.name, arguments=args))
-
-        return VLMResponse(text=text, tool_calls=tool_calls)
+        return self._openai_generate(self._client, image_path, prompt, system_prompt, tools, snapshot_path, messages)
 
 
 # ─── Ollama ───────────────────────────────────────────────────────────────────
@@ -421,62 +397,14 @@ class OllamaProvider(VLMProvider):
 
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
-        img_data, media_type = self._encode_image(image_path)
-
-        openai_tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": t["name"],
-                    "description": t["description"],
-                    "parameters": t["parameters"],
-                },
-            }
-            for t in tools
-        ] if tools else []
-
-        user_content: List[Dict] = [
-            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
-        ]
-        if snapshot_path:
-            snap_data, snap_media = self._encode_image(snapshot_path)
-            user_content.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
-            })
-        user_content.append({"type": "text", "text": prompt})
-
-        request_kwargs: Dict[str, Any] = {
-            "model": self.model_name,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content},
-            ],
-        }
-        if openai_tools:
-            request_kwargs["tools"] = openai_tools
-
-        response = self._client.chat.completions.create(**request_kwargs)
-
-        msg = response.choices[0].message
-        text = msg.content or ""
-        tool_calls: List[ToolCall] = []
-
-        if msg.tool_calls:
-            for tc in msg.tool_calls:
-                try:
-                    args = json.loads(tc.function.arguments)
-                except json.JSONDecodeError:
-                    args = {}
-                tool_calls.append(ToolCall(name=tc.function.name, arguments=args))
-
-        return VLMResponse(text=text, tool_calls=tool_calls)
+        return self._openai_generate(self._client, image_path, prompt, system_prompt, tools, snapshot_path, messages)
 
 
 # ─── HuggingFace Inference API ────────────────────────────────────────────────
@@ -515,75 +443,47 @@ class HuggingFaceProvider(VLMProvider):
 
     def generate(
         self,
-        image_path: str,
-        prompt: str,
-        system_prompt: str,
-        tools: List[Dict],
+        image_path: Optional[str] = None,
+        prompt: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        tools: Optional[List[Dict]] = None,
         snapshot_path: Optional[str] = None,
+        messages: Optional[List[Dict]] = None,
     ) -> VLMResponse:
-        img_data, media_type = self._encode_image(image_path)
-
-        hf_tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": t["name"],
-                    "description": t["description"],
-                    "parameters": t["parameters"],
-                },
-            }
-            for t in tools
-        ] if tools else []
-
-        user_content: List[Dict] = [
-            {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
-        ]
-        if snapshot_path:
-            snap_data, snap_media = self._encode_image(snapshot_path)
-            user_content.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:{snap_media};base64,{snap_data}"},
-            })
-        user_content.append({"type": "text", "text": prompt})
-
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content},
-        ]
-
-        request_kwargs: Dict[str, Any] = {
-            "model": self.model_name,
-            "messages": messages,
-            "max_tokens": 2048,
-        }
-        if hf_tools:
-            request_kwargs["tools"] = hf_tools
-
         try:
-            response = self._client.chat.completions.create(**request_kwargs)
-            msg = response.choices[0].message
-            text = msg.content or ""
-            tool_calls: List[ToolCall] = []
-
-            if msg.tool_calls:
-                for tc in msg.tool_calls:
-                    try:
-                        args = json.loads(tc.function.arguments)
-                    except (json.JSONDecodeError, AttributeError):
-                        args = {}
-                    tool_calls.append(ToolCall(name=tc.function.name, arguments=args))
-
+            resp = self._openai_generate(self._client, image_path, prompt, system_prompt, tools, snapshot_path, messages)
             # If model returned text but no tool calls, try to parse JSON place_object calls
-            if not tool_calls and text:
-                tool_calls = self._parse_tool_calls_from_text(text)
-
-            return VLMResponse(text=text, tool_calls=tool_calls)
-
+            if not resp.tool_calls and resp.text:
+                resp.tool_calls = self._parse_tool_calls_from_text(resp.text)
+            return resp
         except Exception as exc:
-            # Tool calling not supported — retry with JSON-format prompt
             if "tool" in str(exc).lower() or "500" in str(exc):
-                return self._generate_json_fallback(messages, image_path, prompt, system_prompt)
+                # Fallback only supported for single-turn calls
+                if messages is None:
+                    return self._generate_json_fallback(image_path, prompt, system_prompt)
             raise
+
+    def _generate_json_fallback(self, image_path: str, prompt: str, system_prompt: str) -> VLMResponse:
+        """Fallback: ask the model to output place_object calls as JSON array."""
+        img_data, media_type = self._encode_image(image_path)
+        json_prompt = (
+            (prompt or "") + "\n\n"
+            "Output ONLY a JSON array of place_object calls, no other text. Format:\n"
+            '[{"label":"chair","x":-3,"y":0.5,"z":5}, {"label":"table","x":0,"y":0.5,"z":4}, ...]\n'
+            "Include at least 5 objects. Use the coordinate system described above."
+        )
+        fallback_messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": f"data:{media_type};base64,{img_data}"}},
+                {"type": "text", "text": json_prompt},
+            ]},
+        ]
+        response = self._client.chat.completions.create(
+            model=self.model_name, messages=fallback_messages, max_tokens=1024
+        )
+        text = response.choices[0].message.content or ""
+        return VLMResponse(text=text, tool_calls=self._parse_tool_calls_from_text(text))
 
     def _generate_json_fallback(self, messages, image_path, prompt, system_prompt) -> VLMResponse:
         """

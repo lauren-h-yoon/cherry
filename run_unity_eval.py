@@ -204,7 +204,11 @@ def run_multi_turn(
     verbose: bool = True,
 ) -> Tuple[SceneState, List[str]]:
     """
-    Multi-turn placement: zero-shot first, then iterative snapshot + refine.
+    Multi-turn placement: zero-shot first, then iterative snapshot → refine loop.
+
+    Each refinement turn sends only the current Unity snapshot to the model.
+    Conversation history is maintained across turns so the model can reason about
+    what it has already done.
 
     Returns (final_scene_state, list_of_snapshot_paths).
     """
@@ -215,39 +219,42 @@ def run_multi_turn(
     tools = create_unity_tools(bridge)
     tool_schemas = _tools_to_schema(tools)
 
+    # Seed the conversation with the system prompt
+    history: List[Dict] = [
+        {"role": "system", "content": MULTI_TURN_PLACEMENT_SYSTEM_PROMPT},
+    ]
+
     for turn in range(max_turns):
         snap_path = take_snapshot(bridge, out_dir, turn)
         snapshots.append(snap_path)
         if verbose:
             print(f"\n[Turn {turn + 1}] Snapshot: {snap_path}")
 
-        # Composite reference + snapshot into one image for single-image APIs
-        composite_path = str(out_dir / f"composite_turn_{turn:02d}.png")
-        composite_images(image_path, snap_path, composite_path)
+        # User message: just the snapshot image, no text prompt
+        snap_data, snap_media = provider._encode_image(snap_path)
+        history.append({
+            "role": "user",
+            "content": [
+                {"type": "image_url", "image_url": {"url": f"data:{snap_media};base64,{snap_data}"}},
+            ],
+        })
 
-        # Build user prompt with current scene state so model knows coordinates
-        scene = bridge.get_scene_state()
-        scene_lines = [
-            f"  {o.label}: x={o.x:.1f}, y={o.y:.1f}, z={o.z:.1f}"
-            for o in scene.objects
-        ]
-        user_prompt = "Current objects:\n" + "\n".join(scene_lines) if scene_lines else "Current objects: (none)"
-
-        response = provider.generate(
-            image_path=composite_path,
-            prompt=user_prompt,
-            system_prompt=MULTI_TURN_PLACEMENT_SYSTEM_PROMPT,
-            tools=tool_schemas,
-        )
+        response = provider.generate(messages=history, tools=tool_schemas)
 
         if verbose and response.text:
             print(f"[Model] {response.text}")
+
+        # Append assistant message to history
+        if response.raw_assistant_message:
+            history.append(response.raw_assistant_message)
 
         if not response.tool_calls:
             if verbose:
                 print("[Multi-turn] No tool calls — stopping early.")
             break
 
+        # Execute tools and append tool results to history
+        tool_results = []
         for tc in response.tool_calls:
             args = _clamp_coords(dict(tc.arguments))
             if verbose:
@@ -255,6 +262,13 @@ def run_multi_turn(
             result = _dispatch_tool(tc.name, args, tools)
             if verbose:
                 print(f"     {result}")
+            if tc.id:
+                tool_results.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "content": result,
+                })
+        history.extend(tool_results)
 
     # Final snapshot
     final_snap = take_snapshot(bridge, out_dir, len(snapshots))
